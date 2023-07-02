@@ -1,15 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contracts.Responses.Product
+﻿namespace Contracts.Responses.Product
 {
     public class GetProductResponse
     {
-     public string Name { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public Guid Id { get; set; }
         public Guid CompanyId { get; set; }
@@ -17,7 +10,7 @@ namespace Contracts.Responses.Product
         public Guid CategoryId { get; set; }
         public string CategoryName { get; set; }
         public Guid SubcategoryId { get; set; }
-        public string SubcategoryName { get; set;}
+        public string SubcategoryName { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
     }
