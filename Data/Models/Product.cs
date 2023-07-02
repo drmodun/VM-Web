@@ -23,7 +23,7 @@ namespace Data.Models
 
         public Guid CompanyId { get; set; }
 
-        public List<Transaciton> Transactions { get; set; }
+        public List<Transaction> Transactions { get; set; }
         public Company? Company { get; set; }
         public Subcategory? Subcategory { get; set; }
 

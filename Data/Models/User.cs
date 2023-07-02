@@ -14,7 +14,7 @@
 
         public string Role { get; set; }
 
-        public List<Transaciton> Transactions { get; set; }
+        public List<Transaction> Transactions { get; set; }
 
         public List<Order> Orders { get; set; }
 
