@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Transaction
 {
-    internal class GetTransactionRequest
+    public class GetTransactionRequest
     {
+        public Guid Id { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    public class Transaciton
+    public class Transaction
     {
         //since the user can buy the same item multiple times, a primary key is needed here
         public Guid Id { get; set; }

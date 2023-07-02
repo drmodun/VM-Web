@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Transaction
 {
-    internal class GetAllTransactionsResponse
+    public class GetAllTransactionsResponse
     {
+        public List<GetTransactionResponse> Transactions { get; set; }
     }
 }

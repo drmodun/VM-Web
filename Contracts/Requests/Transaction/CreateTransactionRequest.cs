@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Contracts.Requests.Transaction
         public Guid ProductId { get; set; }
 
         public DateTime CreatedAt { get; set; }
+        public TransactionType Type { get; set; }
         //later add verification for transactions, during testing it is better to have fake ones
     }
 }

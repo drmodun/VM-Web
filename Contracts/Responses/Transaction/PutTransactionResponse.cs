@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Transaction
 {
-    internal class PutTransactionResponse
+    public class PutTransactionResponse
     {
+        public bool Success { get; set; }
     }
 }

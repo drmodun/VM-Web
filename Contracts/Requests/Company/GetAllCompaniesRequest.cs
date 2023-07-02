@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Company
 {
-    internal class GetAllCompaniesRequest
+    public class GetAllCompaniesRequest
     {
+        public string ? Name { get; set; }
+        public string? Description { get; set; }
+
     }
 }

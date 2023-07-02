@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Company
 {
-    internal class GetCompanyRequest
+    public class GetCompanyRequest
     {
+        public Guid Id { get; set; }
     }
 }
