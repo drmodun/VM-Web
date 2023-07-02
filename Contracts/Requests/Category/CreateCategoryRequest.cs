@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Category
 {
-    internal class CreateCategoryRequest
+    public class CreateCategoryRequest
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public Dictionary<string, string> Schema { get; set; }
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Subcategory
 {
-    internal class GetAllSubcategoriesResponse
+    public class GetAllSubcategoriesResponse
     {
+        public List<GetSubcategoryResponse> Subcategories { get; set; }
     }
 }

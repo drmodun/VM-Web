@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.User
 {
-    internal class Delet4eUserRequest
+    public class DeleteUserRequest
     {
+        public bool Success { get; set; }
     }
 }

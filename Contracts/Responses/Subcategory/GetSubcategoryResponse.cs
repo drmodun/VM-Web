@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Subcategory
 {
-    internal class GetSubcategoryResponse
+    public class GetSubcategoryResponse
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Guid CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public Dictionary<string, string> SubSchema { get; set; }
     }
 }

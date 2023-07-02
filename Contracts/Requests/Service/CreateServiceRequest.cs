@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Contracts.Responses.User
+namespace Contracts.Requests.Service
 {
-    public class GetAllUsersResponse
+    public class CreateServiceRequest
     {
-        public List<GetAllUsersResponse> Users { get; set; }
+        public string Name { get; set; }
+
     }
 }

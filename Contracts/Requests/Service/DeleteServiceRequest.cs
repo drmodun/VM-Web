@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.User
+namespace Contracts.Requests.Service
 {
-    public class GetAllUsersResponse
+    internal class DeleteServiceRequest
     {
-        public List<GetAllUsersResponse> Users { get; set; }
     }
 }

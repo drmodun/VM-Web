@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Category
 {
-    internal class GetAllCategoriesRequest
+    public class GetAllCategoriesRequest
     {
+        public string ? Name { get; set; }
+
+        public string ? Description { get; set; }
     }
 }

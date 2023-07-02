@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.User
+namespace Contracts.Responses.Service
 {
-    public class GetAllUsersResponse
+    public class GetServiceResponse
     {
-        public List<GetAllUsersResponse> Users { get; set; }
+
     }
 }

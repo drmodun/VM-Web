@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Subcategory
 {
-    internal class PutSubcategoryRequest
+    public class PutSubcategoryRequest
     {
+        public bool Success { get; set; }
     }
 }

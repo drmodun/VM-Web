@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.User
+namespace Data.Enums
 {
-    public class GetAllUsersResponse
+    public enum ServiceType
     {
-        public List<GetAllUsersResponse> Users { get; set; }
+        Network,
+        Computer,
+        Device,
+        Other
     }
 }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Subcategory
 {
-    internal class DeleteSubcategoryResponse
+    public class DeleteSubcategoryResponse
     {
+        public bool Success { get; set; }
     }
 }

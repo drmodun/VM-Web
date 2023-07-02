@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.User
 {
-    internal class GetUserRequest
+    public class GetUserRequest
     {
+        public Guid Id { get; set; }
     }
 }

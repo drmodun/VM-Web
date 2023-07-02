@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Subcategory
 {
-    internal class DeleteSibcategoryRequest
+    public class DeleteSibcategoryRequest
     {
+        public Guid Id { get; set; }
     }
 }

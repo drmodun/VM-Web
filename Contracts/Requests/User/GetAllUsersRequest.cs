@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.User
 {
-    internal class GetAllUsersRequest
+    public class GetAllUsersRequest
     {
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+
+        public string ? Address { get; set; }
     }
 }
