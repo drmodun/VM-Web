@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.Product
+namespace Contracts.Requests.PreviousClients
 {
-    public class CreateProductResponse
+    public class GetPreviousClientRequest
     {
-        public bool Success { get; set; }
+        public Guid Id { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.Porduct
+namespace Contracts.Responses.Product
 {
     public class GetProductResponse
     {

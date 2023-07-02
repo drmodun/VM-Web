@@ -1,4 +1,4 @@
-﻿using Contracts.Responses.Porduct;
+﻿using Contracts.Responses.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;

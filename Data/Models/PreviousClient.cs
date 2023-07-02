@@ -8,7 +8,7 @@
 
         public string Website { get; set; }
 
-        public int Rating { get; set; }
+        public int ? Rating { get; set; }
 
         public string Image { get; set; }
         public PreviousClient()

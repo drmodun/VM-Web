@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.Product
+namespace Contracts.Responses.PreviousClient
 {
-    public class CreateProductResponse
+    public class CreatePreviousClientResponse
     {
         public bool Success { get; set; }
     }
