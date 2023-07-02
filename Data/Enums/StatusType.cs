@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.Service
+namespace Data.Enums
 {
-    public class PutServiceResponse
+    internal class StatusType
     {
-        public bool Success { get; set; }   
     }
 }

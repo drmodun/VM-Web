@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Service
 {
-    internal class DeleteServiceRequest
+    public class DeleteServiceRequest
     {
+        public Guid Id { get; set; }
     }
 }

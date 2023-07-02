@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Responses.Service
+namespace Contracts.Responses.Order
 {
-    public class PutServiceResponse
+    internal class PuutOrderResponse
     {
-        public bool Success { get; set; }   
     }
 }
