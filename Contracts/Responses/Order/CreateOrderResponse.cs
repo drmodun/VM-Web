@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Order
 {
-    internal class CreateOrderRespnse
+    public class CreateOrderResponse
     {
+        public bool Success { get; set; }
     }
 }

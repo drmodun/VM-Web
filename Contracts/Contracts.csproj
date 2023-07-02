@@ -9,4 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Responses\Company\" />
+  </ItemGroup>
 </Project>

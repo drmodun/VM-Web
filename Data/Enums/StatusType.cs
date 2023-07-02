@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Data.Enums
 {
-    internal class StatusType
+    public enum StatusType
     {
+        Pending,
+        Accepted,
+        Rejected,
+        InProgress,
+        Completed,
+        Failed
     }
 }

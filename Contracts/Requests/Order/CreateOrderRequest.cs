@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Order
 {
-    internal class CreateOrderRequest
+    public class CreateOrderRequest
     {
+        public Guid ServiceId { get; set; }
+        public Guid UserId { get; set; }
+
+
     }
 }

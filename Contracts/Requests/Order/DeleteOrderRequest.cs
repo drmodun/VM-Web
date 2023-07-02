@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Order
 {
-    internal class DeleteOrderRequest
+    public class DeleteOrderRequest
     {
+        public Guid OrderId { get; set; }
     }
 }

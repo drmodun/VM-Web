@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Requests.Order
+namespace Contracts.Requests.Company
 {
-    public class GetOrderRequest
+    internal class PutCompanyRequest
     {
-        public Guid OrderId { get; set; }
     }
 }
