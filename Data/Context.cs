@@ -12,7 +12,7 @@ namespace Data
         public DbSet<Models.PreviousClient> PreviousClients => Set<Models.PreviousClient>();
         public DbSet<Models.Product> Products => Set<Models.Product>();
         public DbSet<Models.User> Users => Set<Models.User>();
-        public DbSet<Models.Category> Categories => Set<Models.Category>(); 
+        public DbSet<Models.Category> Categories => Set<Models.Category>();
         public DbSet<Models.Subcategory> Subcategories => Set<Models.Subcategory>();
 
         public DbSet<Models.Transaciton> Transacitons => Set<Models.Transaciton>();
@@ -29,8 +29,8 @@ namespace Data
                 .HasForeignKey(o => o.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Category>()
-                .HasMany(x=>x.Products)
-                .WithOne(o=>o.Category)
+                .HasMany(x => x.Products)
+                .WithOne(o => o.Category)
                 .HasForeignKey(o => o.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Subcategory>()
@@ -42,12 +42,12 @@ namespace Data
             modelBuilder.Entity<Company>()
                 .HasMany(x => x.Products)
                 .WithOne(o => o.Company)
-                .HasForeignKey(o=>o.CompanyId)
+                .HasForeignKey(o => o.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<User>()
-                .HasMany(x=>x.Transactions)
-                .WithOne(o=>o.User)
-                .HasForeignKey(o=>o.UserId)
+                .HasMany(x => x.Transactions)
+                .WithOne(o => o.User)
+                .HasForeignKey(o => o.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<User>()
                 .HasMany(x => x.Orders)
@@ -56,7 +56,7 @@ namespace Data
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder
                 .Entity<Product>()
-                .HasMany(x=>x.Transactions)
+                .HasMany(x => x.Transactions)
                 .WithOne(o => o.Product)
                 .HasForeignKey(o => o.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);

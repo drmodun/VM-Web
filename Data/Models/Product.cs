@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace Data.Models
 {
@@ -14,7 +9,7 @@ namespace Data.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public decimal Price { get; set; } 
+        public decimal Price { get; set; }
 
         public int Quantity { get; set; }
 
@@ -24,7 +19,7 @@ namespace Data.Models
 
         public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
-        public Guid SubCategoryId { get; set;}
+        public Guid SubCategoryId { get; set; }
 
         public Guid CompanyId { get; set; }
 
