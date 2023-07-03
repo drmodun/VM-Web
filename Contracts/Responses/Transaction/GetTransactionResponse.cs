@@ -8,6 +8,7 @@ namespace Contracts.Responses.Transaction
         public Guid UserId { get; set; }
         public Guid ProductId { get; set; }
 
+        public int Quantity { get; set; }
         public string UserName { get; set; }
         public string ProductName { get; set; }
         public DateTime CreatedAt { get; set; }

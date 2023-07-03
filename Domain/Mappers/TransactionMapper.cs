@@ -15,7 +15,8 @@ namespace Domain.Mappers
                 Id = transaction.Id,
                 ProductId = transaction.ProductId,
                 ProductName = transaction.Product.Name,
-                TransactionType = transaction.Type
+                TransactionType = transaction.Type,
+                Quantity = transaction.Quantity
             };
         }
         public Transaction ToEntity(CreateTransactionRequest request)
@@ -26,6 +27,7 @@ namespace Domain.Mappers
                 CreatedAt = DateTime.UtcNow,
                 ProductId = request.ProductId,
                 Type = request.Type,
+                Quantity = request.Quantity,
                 Id = Guid.NewGuid(),
             };
         }

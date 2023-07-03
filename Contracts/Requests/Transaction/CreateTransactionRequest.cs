@@ -7,6 +7,7 @@ namespace Contracts.Requests.Transaction
         public Guid UserId { get; set; }
         public Guid ProductId { get; set; }
 
+        public int Quantity { get; set; }
         public TransactionType Type { get; set; }
         //later add verification for transactions, during testing it is better to have fake ones
     }

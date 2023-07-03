@@ -17,7 +17,7 @@ namespace Domain.Validatiors
         {
             _context = context;
             RuleFor(x => x.Name).Must(x => x.Length <= 50 && x.Length > 4).WithMessage("Name of subcategory must be between 5 and 50 chaarcters");
-            RuleFor(x => x.Description).Must(x => x.Length <= 100 && x.Length > 10).WithMessage("Descciption of subcategory must be between 10 and 100 chaarcters");
+            RuleFor(x => x.Description).Must(x => x.Length <= 100 && x.Length > 10).WithMessage("Description of subcategory must be between 10 and 100 chaarcters");
             RuleFor(x => x.SubSchema).Must((x) =>
             {
                 var check = true;
