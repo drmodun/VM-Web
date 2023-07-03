@@ -12,7 +12,7 @@
 
         public string Website { get; set; }
 
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
 
     }
 }

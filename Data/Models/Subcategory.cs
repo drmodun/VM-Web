@@ -10,7 +10,7 @@
         public Category? Category { get; set; }
         public string Description { get; set; }
 
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
 
         //Due to simplification, at the start of development a simple dictionary will be used as a placeholder for the schema
         //The first value presents the name of the attribute, the second value presents whether the attribute is required or not

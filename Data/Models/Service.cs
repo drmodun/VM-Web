@@ -8,7 +8,7 @@ namespace Data.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public ServiceType ServiceType { get; set; }
-        public List<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; } = new List<Order>();
         public decimal Price { get; set; }
 
 
