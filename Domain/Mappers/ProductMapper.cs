@@ -1,11 +1,6 @@
 ﻿using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Mappers
 {
@@ -28,7 +23,7 @@ namespace Domain.Mappers
                 Quantity = product.Quantity,
                 SubcategoryName = product.Subcategory.Name,
                 SubcategoryId = product.Subcategory.Id,
-                
+
             };
         }
         public Product ToEntity(CreateProductRequest request)

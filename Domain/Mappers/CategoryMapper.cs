@@ -1,11 +1,6 @@
 ﻿using Contracts.Requests.Category;
 using Contracts.Responses.Category;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Mappers
 {
@@ -32,6 +27,5 @@ namespace Domain.Mappers
             };
         }
 
-        } 
     }
 }

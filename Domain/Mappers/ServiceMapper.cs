@@ -1,12 +1,6 @@
-﻿using Contracts.Requests.Category;
-using Contracts.Requests.Service;
+﻿using Contracts.Requests.Service;
 using Contracts.Responses.Service;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Mappers
 {

@@ -1,10 +1,5 @@
 ﻿using Contracts.Requests.User;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Mappers
 {
@@ -34,7 +29,7 @@ namespace Domain.Mappers
                 Role = "user",
                 Id = Guid.NewGuid(),
                 LastUpdated = DateTime.UtcNow,
-                
+
             };
 
         }

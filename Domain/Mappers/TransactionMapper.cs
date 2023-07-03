@@ -1,12 +1,6 @@
 ﻿using Contracts.Requests.Transaction;
 using Contracts.Responses.Transaction;
-using Data.Enums;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Mappers
 {
@@ -23,7 +17,7 @@ namespace Domain.Mappers
                 ProductName = transaction.Product.Name,
                 TransactionType = transaction.Type
             };
-        } 
+        }
         public Transaction ToEntity(CreateTransactionRequest request)
         {
             return new Transaction
@@ -33,7 +27,7 @@ namespace Domain.Mappers
                 ProductId = request.ProductId,
                 Type = request.Type,
                 Id = Guid.NewGuid(),
-            }
+            };
         }
     }
 }
