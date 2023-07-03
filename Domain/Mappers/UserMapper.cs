@@ -17,6 +17,24 @@ namespace Domain.Mappers
                 PhoneNumber = user.PhoneNumber
             };
         }
+        public User ToUpdated(PutUserRequest request)
+        {
+            return new User
+            {
+                Address = request.Address,
+                Email = request.Email,
+                Password = request.Password,
+                PhoneNumber = request.PhoneNumber,
+                Name = request.Name,
+                Role = "user",
+                Id = request.Id,
+                LastUpdated = DateTime.UtcNow,
+
+            };
+
+        }
+
+
         public User ToEntity(CreateUserRequest request)
         {
             return new User

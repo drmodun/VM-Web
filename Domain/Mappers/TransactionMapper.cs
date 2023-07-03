@@ -6,7 +6,19 @@ namespace Domain.Mappers
 {
     public class TransactionMapper
     {
-        public GetTransactionResponse ToDTO(Transaction transaction)
+        public Transaction ToUpdated(PutTransactionRequest request)
+        {
+            return new Transaction
+            {
+                UserId = request.UserId,
+                CreatedAt = DateTime.UtcNow,
+                ProductId = request.ProductId,
+                Type = request.Type,
+                Quantity = request.Quantity,
+                Id = request.Id
+            };
+        }
+    public GetTransactionResponse ToDTO(Transaction transaction)
         {
             return new GetTransactionResponse
             {

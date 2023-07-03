@@ -44,5 +44,25 @@ namespace Domain.Mappers
                 UpdatedAt = DateTime.Now,
             };
         }
+
+        public Product ToUpdated(PutProductRequest request)
+        {
+            return new Product
+            {
+                Id = request.Id,
+                Name = request.Name,
+                CategoryId = request.CategoryId,
+                Attributes = request.Attributes,
+                SubAttributes = request.SubAttributes,
+                CompanyId = request.CompanyId,
+                Description = request.Description,
+                Price = request.Price,
+                SubCategoryId = request.SubCategoryId,
+                Image = request.Image,
+                Quantity = request.Quantity,
+                UpdatedAt = DateTime.Now,
+
+            };
+        }
     }
 }

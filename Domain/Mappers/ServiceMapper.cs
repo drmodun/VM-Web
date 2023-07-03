@@ -29,5 +29,16 @@ namespace Domain.Mappers
                 ServiceType = request.ServiceType,
             };
         }
+    public Service ToUpdated(PutServiceRequest request)
+        {
+            return new Service
+            {
+                Id = request.Id,
+                Name = request.Name,
+                Description = request.Description,
+                Price = request.Price,
+                ServiceType = request.ServiceType,
+            };
+        }
     }
 }

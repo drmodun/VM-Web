@@ -30,6 +30,16 @@ namespace Domain.Mappers
             };
         }
 
-
+        public Company ToUpdated(PutCompanyRequest request)
+        {
+            return new Company
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Logo = request.Logo,
+                Website = request.Website,
+                Id = request.Id
+            };
+        }
     }
 }

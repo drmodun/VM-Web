@@ -32,5 +32,17 @@ namespace Domain.Mappers
                 Status = StatusType.Pending
             };
         }
+
+        public Order ToUpdated (PutOrderRequest request)
+        {
+            return new Order
+            {
+                Created = DateTime.Now,
+                Id = request.Id,
+                ServiceId = request.ServiceId,
+                UserId = request.UserId,
+                Status = StatusType.Pending
+            };
+        }
     }
 }

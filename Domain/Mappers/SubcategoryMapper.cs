@@ -17,6 +17,18 @@ namespace Domain.Mappers
                 SubSchema = request.SubSchema,
             };
         }
+        public Subcategory ToUpdated(PutSubcategoryRequest request)
+        {
+            return new Subcategory
+            {
+                Description = request.Description,
+                CategoryId = request.CategoryId,
+                Name = request.Name,
+                Id = request.Id,
+               
+                SubSchema = request.SubSchema,
+            };
+        }
         public GetSubcategoryResponse ToDTO(Subcategory subcategory)
         {
             return new GetSubcategoryResponse

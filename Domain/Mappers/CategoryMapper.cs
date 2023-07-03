@@ -26,6 +26,16 @@ namespace Domain.Mappers
                 Id = Guid.NewGuid(),
             };
         }
+        public Category ToUpdated(PutCategoryRequest request)
+        {
+            return new Category
+            {
+                Schema = request.Schema,
+                Name = request.Name,
+                Description = request.Description,
+                Id = request.Id
+            };
+        }
 
     }
 }

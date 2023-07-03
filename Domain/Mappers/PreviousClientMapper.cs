@@ -31,5 +31,18 @@ namespace Domain.Mappers
 
             };
         }
+
+        public PreviousClient TuUpdated(PutPreviousClientRequest request)
+        {
+            return new PreviousClient
+            {
+                Image = request.Image,
+                Name = request.Name,
+                Website = request.Website,
+                Rating = request.Rating,
+                Description = request.Description,
+                Id = request.Id
+            };
+        }
     }
 }
