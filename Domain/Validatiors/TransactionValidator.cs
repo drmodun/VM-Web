@@ -2,11 +2,6 @@
 using Data.Models;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Validatiors
 {
@@ -18,7 +13,7 @@ namespace Domain.Validatiors
         {
             _context = context;
 
-            RuleFor(x => new { x.ProductId, x.Quantity}).MustAsync(async (x, cancellationtoken) =>
+            RuleFor(x => new { x.ProductId, x.Quantity }).MustAsync(async (x, cancellationtoken) =>
             {
                 var product = await _context.Products.FirstOrDefaultAsync(b => b.Id == x.ProductId, cancellationtoken);
                 return product.Quantity >= x.Quantity && x.Quantity > 0;

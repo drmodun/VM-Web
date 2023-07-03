@@ -2,18 +2,13 @@
 using Data.Models;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Validatiors
 {
     public class SubcategoryValdiator : AbstractValidator<Subcategory>
     {
         private readonly Context _context;
-        public SubcategoryValdiator(Context context) 
+        public SubcategoryValdiator(Context context)
         {
             _context = context;
             RuleFor(x => x.Name).Must(x => x.Length <= 50 && x.Length > 4).WithMessage("Name of subcategory must be between 5 and 50 chaarcters");

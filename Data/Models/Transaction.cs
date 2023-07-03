@@ -10,7 +10,7 @@ namespace Data.Models
 
         public User? User { get; set; }
 
-        public int Quantity { get; set; }   
+        public int Quantity { get; set; }
 
         public Product? Product { get; set; }
         public Guid ProductId { get; set; }

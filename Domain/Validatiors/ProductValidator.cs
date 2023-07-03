@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Data;
+﻿using Data;
 using Data.Models;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace Domain.Validatiors
 {
@@ -23,23 +17,23 @@ namespace Domain.Validatiors
             RuleFor(x => x.Description).MinimumLength(10).WithMessage("Product description must be 10 or more characters long");
             RuleFor(x => x.Description).MaximumLength(100).WithMessage("Product name cannot be longer than 100 characters");
             RuleFor(x => x.Id).NotEmpty().WithMessage("Product must have valid Id");
-            
+
             RuleFor(x => x.CategoryId).MustAsync(async (x, cancellationtoken) =>
             {
                 return await _context.Categories.AnyAsync(b => b.Id == x, cancellationtoken);
             }).WithMessage("CategoryId must lead to a category");
-            
+
             RuleFor(x => x.SubCategoryId).MustAsync(async (x, cancellationtoken) =>
             {
                 return await _context.Subcategories.AnyAsync(b => b.Id == x, cancellationtoken);
             }).WithMessage("SubcategoryId must be valid");
-            
+
             RuleFor(x => x.CompanyId).MustAsync(async (x, cancellationtoken) =>
             {
                 return await _context.Companies.AnyAsync(b => b.Id == x);
             }).WithMessage("CompanyId must point ot a company");
-            
-            RuleFor(x => new { x.Attributes, x.SubAttributes, x.CategoryId, x.SubCategoryId})
+
+            RuleFor(x => new { x.Attributes, x.SubAttributes, x.CategoryId, x.SubCategoryId })
                 .MustAsync(async (x, cancellationtoken) =>
             {
                 var document = x.Attributes;
@@ -53,7 +47,7 @@ namespace Domain.Validatiors
                     //might add specific property checks based on string later
                     //for simplification reasons I will use strings as bools here
                     //and could possibly expand their use later
-                    if (!root.TryGetProperty(pair.Key, out property) && pair.Value=="required")
+                    if (!root.TryGetProperty(pair.Key, out property) && pair.Value == "required")
                     {
                         return false;
                     };
