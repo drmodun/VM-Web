@@ -48,7 +48,10 @@ namespace Domain.Repositories
 
         public async Task<Subcategory?> GetSubcategory(Guid id, CancellationToken cancellationToken)
         {
-            return await _context.Subcategories.FindAsync(id, cancellationToken);
+            return await _context.
+                Subcategories
+                .Include(x=>x.Category)
+                .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
         public async Task<List<Subcategory>> GetAllSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)

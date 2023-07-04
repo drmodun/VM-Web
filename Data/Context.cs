@@ -15,7 +15,7 @@ namespace Data
         public DbSet<Models.Category> Categories => Set<Models.Category>();
         public DbSet<Models.Subcategory> Subcategories => Set<Models.Subcategory>();
 
-        public DbSet<Models.Transaction> Transacitons => Set<Models.Transaction>();
+        public DbSet<Models.Transaction> Transactions => Set<Models.Transaction>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

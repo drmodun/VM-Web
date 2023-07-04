@@ -80,7 +80,7 @@ namespace Domain.Repositories
             //this is an improvised way to sort
             //not sure if it will work this way
             //will see if I can remove the orerby label, however this should effectively randomize the default sort
-
+            //check if this sorting works at all
             switch (request.Sorting.SortByName)
             {
                 case SortType.Ascending:
@@ -113,6 +113,8 @@ namespace Domain.Repositories
                     break;
                 default: break;
             }
+
+            switch()
 
             switch (request.Sorting.SortByTotalSold)
             {
