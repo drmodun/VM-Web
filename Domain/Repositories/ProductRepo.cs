@@ -130,7 +130,7 @@ namespace Domain.Repositories
             return await products
                 .Skip(request.Pagination.PageNumber - 1 * request.Pagination.PageSize)
                 .Take(request.Pagination.PageSize)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
 
 
