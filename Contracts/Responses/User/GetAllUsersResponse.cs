@@ -2,6 +2,7 @@
 {
     public class GetAllUsersResponse
     {
-        public PageResponse PageInfo { get; set; } public List<GetAllUsersResponse> Users { get; set; }
+        public PageResponse PageInfo { get; set; }
+        public List<GetAllUsersResponse> Users { get; set; }
     }
 }

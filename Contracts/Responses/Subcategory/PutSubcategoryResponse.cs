@@ -1,4 +1,4 @@
-﻿ namespace Contracts.Responses.Subcategory
+﻿namespace Contracts.Responses.Subcategory
 {
     public class PutSubcategoryResponse
     {

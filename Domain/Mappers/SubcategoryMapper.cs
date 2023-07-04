@@ -25,7 +25,7 @@ namespace Domain.Mappers
                 CategoryId = request.CategoryId,
                 Name = request.Name,
                 Id = request.Id,
-               
+
                 SubSchema = request.SubSchema,
             };
         }

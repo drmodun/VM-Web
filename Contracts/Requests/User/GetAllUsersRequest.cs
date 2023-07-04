@@ -2,8 +2,8 @@
 {
     public class GetAllUsersRequest
     {
-        public string? Name { get; set; } 
-        public SortRequest? Sorting { get; set;} 
+        public string? Name { get; set; }
+        public SortRequest? Sorting { get; set; }
         public PageRequest? Pagination { get; set; }
         public string? Email { get; set; }
 

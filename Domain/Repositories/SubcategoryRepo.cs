@@ -4,13 +4,7 @@ using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -50,7 +44,7 @@ namespace Domain.Repositories
         {
             return await _context.
                 Subcategories
-                .Include(x=>x.Category)
+                .Include(x => x.Category)
                 .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
@@ -60,7 +54,7 @@ namespace Domain.Repositories
                 .Include(x => x.Category)
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .Where(x=> request.CategoryId == null || x.CategoryId == request.CategoryId)
+                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId)
                 .OrderBy(x => Guid.NewGuid());
             //sorting
             //possibly later change logic of sorting to be more dynamic
@@ -79,7 +73,7 @@ namespace Domain.Repositories
             {
                 case SortType.Ascending:
                     Subcategories.ThenBy(x => x.Category.Name);
-                        break;
+                    break;
                 case SortType.Descending:
                     Subcategories.ThenByDescending(x => x.Category.Name);
                     break;

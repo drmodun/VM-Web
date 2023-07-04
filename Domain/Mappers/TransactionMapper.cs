@@ -18,7 +18,7 @@ namespace Domain.Mappers
                 Id = request.Id
             };
         }
-    public GetTransactionResponse ToDTO(Transaction transaction)
+        public GetTransactionResponse ToDTO(Transaction transaction)
         {
             return new GetTransactionResponse
             {

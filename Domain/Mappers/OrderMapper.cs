@@ -33,7 +33,7 @@ namespace Domain.Mappers
             };
         }
 
-        public Order ToUpdated (PutOrderRequest request)
+        public Order ToUpdated(PutOrderRequest request)
         {
             return new Order
             {

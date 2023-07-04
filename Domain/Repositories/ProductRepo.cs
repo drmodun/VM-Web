@@ -1,18 +1,10 @@
 ﻿using Contracts.Requests.Product;
-using Contracts.Responses.Product;
 using Data;
 using Data.Enums;
 using Data.Models;
-using Domain.Mappers;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -32,7 +24,7 @@ namespace Domain.Repositories
             await _context.Products.AddAsync(product, cancellationToken);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
-                
+
         public async Task<bool> UpdateProduct(Product product, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(product, cancellationToken);
@@ -53,10 +45,10 @@ namespace Domain.Repositories
         public async Task<Product?> GetProduct(Guid id, CancellationToken cancellationToken)
         {
             var product = await _context.Products
-                .Include(x=>x.Company)
-                .Include(x=>x.Category)
-                .Include(x=>x.Subcategory)
-                .FirstOrDefaultAsync(b=>b.Id == id, cancellationToken);
+                .Include(x => x.Company)
+                .Include(x => x.Category)
+                .Include(x => x.Subcategory)
+                .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
             if (product is null)
                 return null;
             return product;

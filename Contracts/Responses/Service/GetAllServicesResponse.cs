@@ -2,6 +2,7 @@
 {
     public class GetAllServicesResponse
     {
-        public PageResponse PageInfo { get; set; } public List<GetServiceResponse> Services { get; set; }
+        public PageResponse PageInfo { get; set; }
+        public List<GetServiceResponse> Services { get; set; }
     }
 }

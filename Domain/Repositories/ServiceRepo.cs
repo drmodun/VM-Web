@@ -5,12 +5,6 @@ using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -48,7 +42,7 @@ namespace Domain.Repositories
 
         public async Task<Service?> GetService(Guid id)
         {
-            return await _context.Services.FirstOrDefaultAsync(b=>b.Id == id);
+            return await _context.Services.FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task<List<Service>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
@@ -80,7 +74,7 @@ namespace Domain.Repositories
                 case SortType.Descending:
                     services.ThenByDescending(x => _context.Orders.Where(b => b.ServiceId == x.Id));
                     break;
-                default : break;
+                default: break;
             }
 
             if (request.Pagination != null)

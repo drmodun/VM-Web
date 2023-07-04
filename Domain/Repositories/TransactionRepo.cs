@@ -5,12 +5,6 @@ using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -50,9 +44,9 @@ namespace Domain.Repositories
         public async Task<Transaction?> GetTransaction(Guid id, CancellationToken cancellationToken)
         {
             return await _context.Transactions
-                .Include(x=>x.User)
-                .Include(x=>x.Product)
-                .FirstOrDefaultAsync(b=>b.Id == id, cancellationToken);
+                .Include(x => x.User)
+                .Include(x => x.Product)
+                .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
         public async Task<List<Transaction>> GetAllTransactions(GetAllTransactionsRequest request, CancellationToken cancellationToken)
@@ -82,10 +76,10 @@ namespace Domain.Repositories
             switch (request.Sorting.SortByPrice)
             {
                 case SortType.Ascending:
-                    transactions.ThenBy(x => x.Product.Price*x.Quantity);
+                    transactions.ThenBy(x => x.Product.Price * x.Quantity);
                     break;
                 case SortType.Descending:
-                    transactions.ThenByDescending(x => x.Product.Price*x.Quantity);
+                    transactions.ThenByDescending(x => x.Product.Price * x.Quantity);
                     break;
                 default:
                     break;

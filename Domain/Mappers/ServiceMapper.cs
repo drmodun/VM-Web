@@ -29,7 +29,7 @@ namespace Domain.Mappers
                 ServiceType = request.ServiceType,
             };
         }
-    public Service ToUpdated(PutServiceRequest request)
+        public Service ToUpdated(PutServiceRequest request)
         {
             return new Service
             {

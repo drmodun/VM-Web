@@ -1,17 +1,10 @@
 ﻿using Contracts.Requests.User;
-using Contracts.Responses.User;
 using Data;
 using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -51,7 +44,7 @@ namespace Domain.Repositories
 
         public async Task<User?> GetUser(Guid id)
         {
-            return await _context.Users.FirstOrDefaultAsync(b=>b.Id == id);
+            return await _context.Users.FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task<List<User>> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
@@ -93,7 +86,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                users.Skip(request.Pagination.PageSize*(request.Pagination.PageNumber-1));
+                users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1));
                 users.Take(request.Pagination.PageNumber);
             }
             return await users.ToListAsync();

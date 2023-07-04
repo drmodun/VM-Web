@@ -4,13 +4,7 @@ using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
@@ -18,16 +12,16 @@ namespace Domain.Repositories
     {
         private readonly Context _context;
         private readonly CategoryValidator _validator;
-     public CategoryRepo(Context context, CategoryValidator validator)
+        public CategoryRepo(Context context, CategoryValidator validator)
         {
             _context = context;
             _validator = validator;
-        }   
+        }
 
         public async Task<bool> CreateCategory(Category category, CancellationToken cancellationToken)
         {
-            await _validator.ValidateAndThrowAsync(category, cancellationToken);         
-                await _context.Categories.AddAsync(category, cancellationToken);
+            await _validator.ValidateAndThrowAsync(category, cancellationToken);
+            await _context.Categories.AddAsync(category, cancellationToken);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
@@ -66,13 +60,13 @@ namespace Domain.Repositories
                     categories.ThenBy(x => x.Name); break;
                 case SortType.Descending:
                     categories.ThenByDescending(x => x.Name); break;
-                    default:
+                default:
                     break;
             }
 
             if (request.Pagination != null)
             {
-                categories.Skip((request.Pagination.PageNumber-1)*request.Pagination.PageNumber);
+                categories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
                 categories.Take(request.Pagination.PageSize);
             }
             return await categories.ToListAsync(cancellationToken);
