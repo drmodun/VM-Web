@@ -2,6 +2,6 @@
 {
     public class GetAllProductsResponse
     {
-        public List<GetProductResponse> Products { get; set; }
+        public PageResponse PageInfo { get; set; } public List<GetProductResponse> Products { get; set; }
     }
 }

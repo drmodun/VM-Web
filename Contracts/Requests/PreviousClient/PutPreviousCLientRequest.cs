@@ -1,6 +1,6 @@
 ﻿namespace Contracts.Requests.PreviousClients
 {
-    public class PutPreviousCLientRequest
+    public class PutPreviousClientRequest
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

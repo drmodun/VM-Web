@@ -2,6 +2,6 @@
 {
     public class GetAllPreviousClientsResponse
     {
-        public List<GetPreviousClientResponse> PreviousClients { get; set; }
+        public PageResponse PageInfo { get; set; } public List<GetPreviousClientResponse> PreviousClients { get; set; }
     }
 }

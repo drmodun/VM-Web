@@ -2,6 +2,6 @@
 {
     public class GetAllCompaniesResponse
     {
-        public List<GetCompanyResponse> Companies { get; set; }
+        public PageResponse PageInfo { get; set; } public List<GetCompanyResponse> Companies { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public class GetAllTransactionsResponse
     {
-        public List<GetTransactionResponse> Transactions { get; set; }
+        public PageResponse PageInfo { get; set; } public List<GetTransactionResponse> Transactions { get; set; }
     }
 }
