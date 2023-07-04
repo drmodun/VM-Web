@@ -22,6 +22,8 @@ namespace Contracts.Requests
 
         public SortType? SortByTotalSold { get; set; }
 
+        public SortType? SortByCategoryName { get; set; }
+
         public SortType? SortByNumberOfPurchases { get; set; }
         public SortType? SortByAddress { get; set; }
 
