@@ -74,16 +74,20 @@ namespace Domain.Repositories
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice <= x.Price)
                 .Where(x => request.CompanyId == null || request.CompanyId == x.CompanyId)
-                .Where(x => x.Name.Contains(request.Name));
+                .Where(x => x.Name.Contains(request.Name))
+                .OrderBy(x => Guid.NewGuid());
 
             //this is an improvised way to sort
+            //not sure if it will work this way
+            //will see if I can remove the orerby label, however this should effectively randomize the default sort
+
             switch (request.Sorting.SortByName)
             {
                 case SortType.Ascending:
-                    products.OrderBy(x => x.Name);
+                    products.ThenBy(x => x.Name);
                     break;
                 case SortType.Descending:
-                    products.OrderByDescending(x => x.Name);
+                    products.ThenByDescending(x => x.Name);
                     break;
                 default: break;
             }
@@ -91,10 +95,10 @@ namespace Domain.Repositories
             switch (request.Sorting.SortByQuantity)
             {
                 case SortType.Ascending:
-                    products.OrderBy(x => x.Quantity);
+                    products.ThenBy(x => x.Quantity);
                     break;
                 case SortType.Descending:
-                    products.OrderByDescending(x => x.Quantity);
+                    products.ThenByDescending(x => x.Quantity);
                     break;
                 default: break;
             }
@@ -102,10 +106,10 @@ namespace Domain.Repositories
             switch (request.Sorting.SortByPrice)
             {
                 case SortType.Ascending:
-                    products.OrderBy(x => x.Price);
+                    products.ThenBy(x => x.Price);
                     break;
                 case SortType.Descending:
-                    products.OrderByDescending(x => x.Price);
+                    products.ThenByDescending(x => x.Price);
                     break;
                 default: break;
             }
@@ -113,10 +117,10 @@ namespace Domain.Repositories
             switch (request.Sorting.SortByTotalSold)
             {
                 case SortType.Ascending:
-                    products.OrderBy(x => _context.Transacitons.Where(b=>b.ProductId == x.Id).Count());
+                    products.ThenBy(x => _context.Transacitons.Where(b=>b.ProductId == x.Id).Count());
                     break;
                 case SortType.Descending:
-                    products.OrderByDescending(x => _context.Transacitons.Where(b => b.ProductId == x.Id).Count());
+                    products.ThenByDescending(x => _context.Transacitons.Where(b => b.ProductId == x.Id).Count());
                     break;
                 default: break;
             }
