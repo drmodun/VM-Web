@@ -88,17 +88,6 @@ namespace Domain.Repositories
                     break;
             }
 
-            switch (request.Sorting.SortByNumberOfPurchases)
-            {
-                case SortType.Ascending:
-                    users.ThenBy(x => _context.Transacitons.Where(b=>b.UserId == x.Id));
-                    break;
-                case SortType.Descending:
-                    users.ThenByDescending(x => _context.Transacitons.Where(b => b.UserId == x.Id));
-                    break;
-                default:
-                    break;
-            }
 
             //add sorting for orders later
 

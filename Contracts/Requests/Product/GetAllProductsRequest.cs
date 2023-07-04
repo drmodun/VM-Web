@@ -17,6 +17,5 @@
         public Guid? SubcategoryId { get; set; }
         public Guid? CompanyId { get; set; }
 
-        public pair
     }
 }

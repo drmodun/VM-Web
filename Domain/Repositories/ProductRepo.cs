@@ -114,18 +114,7 @@ namespace Domain.Repositories
                 default: break;
             }
 
-            switch()
 
-            switch (request.Sorting.SortByTotalSold)
-            {
-                case SortType.Ascending:
-                    products.ThenBy(x => _context.Transacitons.Where(b=>b.ProductId == x.Id).Count());
-                    break;
-                case SortType.Descending:
-                    products.ThenByDescending(x => _context.Transacitons.Where(b => b.ProductId == x.Id).Count());
-                    break;
-                default: break;
-            }
 
             //after sorting pagination is implemented
 

@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Validatiors
 {
-    public class SubcategoryValdiator : AbstractValidator<Subcategory>
+    public class SubcategoryValidator : AbstractValidator<Subcategory>
     {
         private readonly Context _context;
-        public SubcategoryValdiator(Context context)
+        public SubcategoryValidator(Context context)
         {
             _context = context;
             RuleFor(x => x.Name).Must(x => x.Length <= 50 && x.Length > 4).WithMessage("Name of subcategory must be between 5 and 50 chaarcters");

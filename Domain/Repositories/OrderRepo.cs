@@ -112,6 +112,5 @@ namespace Domain.Repositories
             return await Orders.ToListAsync();
         }
 
-
     }
 }
