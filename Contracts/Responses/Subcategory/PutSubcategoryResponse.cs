@@ -1,6 +1,6 @@
-﻿namespace Contracts.Responses.Subcategory
+﻿ namespace Contracts.Responses.Subcategory
 {
-    public class PutSubcategoryRequest
+    public class PutSubcategoryResponse
     {
         public bool Success { get; set; }
     }

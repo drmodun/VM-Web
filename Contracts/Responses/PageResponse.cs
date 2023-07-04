@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses
 {
-    internal class PageResponse
+    public class PageResponse
     {
+        public int PageNumber { get; set; }
+
+        public int PageSize { get; set; }
     }
 }
