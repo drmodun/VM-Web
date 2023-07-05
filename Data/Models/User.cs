@@ -17,12 +17,7 @@
         public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         public List<Order> Orders { get; set; } = new List<Order>();
-
-        public User()
-        {
-            Id = Guid.NewGuid();
-        }
-
+    
 
 
     }

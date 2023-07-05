@@ -10,9 +10,5 @@
 
         public List<Product> Products { get; set; } = new List<Product>();
         public List<Subcategory> Subcategories { get; set; } = new List<Subcategory>();
-        public Category()
-        {
-            Id = Guid.NewGuid();
-        }
     }
 }

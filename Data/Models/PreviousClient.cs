@@ -11,9 +11,6 @@
         public int? Rating { get; set; }
 
         public string Image { get; set; }
-        public PreviousClient()
-        {
-            Id = Guid.NewGuid();
-        }
+        
     }
 }

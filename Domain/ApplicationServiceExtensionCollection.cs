@@ -12,7 +12,7 @@ namespace Domain
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
+            services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=drmodunV9"));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
             services.AddScoped<ProductRepo>();
