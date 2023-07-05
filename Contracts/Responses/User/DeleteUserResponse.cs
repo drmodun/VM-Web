@@ -1,6 +1,6 @@
 ﻿namespace Contracts.Responses.User
 {
-    public class DeleteUserRequest
+    public class DeleteUserResponse
     {
         public bool Success { get; set; }
     }

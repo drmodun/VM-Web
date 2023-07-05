@@ -17,21 +17,33 @@ namespace Domain.Services
             _productMapper = productMapper;
         }
 
-        public async Task<bool> CreateProduct(CreateProductRequest request, CancellationToken cancellationToken)
+        public async Task<CreateProductResponse> CreateProduct(CreateProductRequest request, CancellationToken cancellationToken)
         {
             var product = _productMapper.ToEntity(request);
-            return await _productRepo.CreateProduct(product, cancellationToken);
+            var action = await _productRepo.CreateProduct(product, cancellationToken);
+            return new CreateProductResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateProduct(PutProductRequest request, CancellationToken cancellationToken)
+        public async Task<PutProductResponse> UpdateProduct(PutProductRequest request, CancellationToken cancellationToken)
         {
             var product = _productMapper.ToUpdated(request);
-            return await _productRepo.UpdateProduct(product, cancellationToken);
+            var action = await _productRepo.UpdateProduct(product, cancellationToken);
+            return new PutProductResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteProduct(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteProductResponse> DeleteProduct(Guid id, CancellationToken cancellationToken)
         {
-            return await _productRepo.DeleteProduct(id, cancellationToken);
+            var action = await _productRepo.DeleteProduct(id, cancellationToken);
+            return new DeleteProductResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetProductResponse?> GetProduct(Guid id, CancellationToken cancellationToken)

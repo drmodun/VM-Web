@@ -19,21 +19,33 @@ namespace Domain.Services
             _companyMapper = companyMapper;
         }
 
-        public async Task<bool> CreateCompany(CreateCompanyRequest request, CancellationToken cancellationToken)
+        public async Task<CreateCompanyResponse> CreateCompany(CreateCompanyRequest request, CancellationToken cancellationToken)
         {
             var company = _companyMapper.ToEntity(request);
-            return await _companyRepo.CreateCompany(company, cancellationToken);
+            var action = await _companyRepo.CreateCompany(company, cancellationToken);
+            return new CreateCompanyResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateCompany(PutCompanyRequest request, CancellationToken cancellationToken)
+        public async Task<PutCompanyResponse> UpdateCompany(PutCompanyRequest request, CancellationToken cancellationToken)
         {
             var company = _companyMapper.ToUpdated(request);
-            return await _companyRepo.UpdateCompany(company, cancellationToken);
+            var action = await _companyRepo.UpdateCompany(company, cancellationToken);
+            return new PutCompanyResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteCompany(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteCompanyResponse> DeleteCompany(Guid id, CancellationToken cancellationToken)
         {
-            return await _companyRepo.DeleteCompany(id, cancellationToken);
+            var action = await _companyRepo.DeleteCompany(id, cancellationToken);
+            return new DeleteCompanyResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetCompanyResponse?> GetCompany(Guid id, CancellationToken cancellationToken)

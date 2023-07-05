@@ -4,7 +4,7 @@ namespace Contracts.Requests.Transaction
 {
     public class PutTransactionRequest
     {
-        public Guid Id { get; set; }
+        public Guid Id;
         public Guid UserId { get; set; }
 
         public int Quantity { get; set; }

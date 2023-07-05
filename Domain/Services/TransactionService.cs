@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Transaction;
 using Contracts.Responses.Transaction;
 using Contracts.Responses;
-using Contracts.Responses.Transaction;
 using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
@@ -19,21 +18,33 @@ namespace Domain.Services
             _transactionMapper = transactionMapper;
         }
 
-        public async Task<bool> CreateTransaction(CreateTransactionRequest request, CancellationToken cancellationToken)
+        public async Task<CreateTransactionResponse> CreateTransaction(CreateTransactionRequest request, CancellationToken cancellationToken)
         {
             var transaction = _transactionMapper.ToEntity(request);
-            return await _transactionRepo.CreateTransaction(transaction, cancellationToken);
+            var action = await _transactionRepo.CreateTransaction(transaction, cancellationToken);
+            return new CreateTransactionResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateTransaction(PutTransactionRequest request, CancellationToken cancellationToken)
+        public async Task<PutTransactionResponse> UpdateTransaction(PutTransactionRequest request, CancellationToken cancellationToken)
         {
             var transaction = _transactionMapper.ToUpdated(request);
-            return await _transactionRepo.UpdateTransaction(transaction, cancellationToken);
+            var action = await _transactionRepo.UpdateTransaction(transaction, cancellationToken);
+            return new PutTransactionResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteTransaction(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteTransactionResponse> DeleteTransaction(Guid id, CancellationToken cancellationToken)
         {
-            return await _transactionRepo.DeleteTransaction(id, cancellationToken);
+            var action = await _transactionRepo.DeleteTransaction(id, cancellationToken);
+            return new DeleteTransactionResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetTransactionResponse?> GetTransaction(Guid id, CancellationToken cancellationToken)

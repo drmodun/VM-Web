@@ -19,21 +19,33 @@ namespace Domain.Services
             _previousClientMapper = previousClientMapper;
         }
 
-        public async Task<bool> CreatePreviousClient(CreatePreviousClientRequest request, CancellationToken cancellationToken)
+        public async Task<CreatePreviousClientResponse> CreatePreviousClient(CreatePreviousClientRequest request, CancellationToken cancellationToken)
         {
             var previousClient = _previousClientMapper.ToEntity(request);
-            return await _previousClientRepo.CreatePreviousClient(previousClient, cancellationToken);
+            var action = await _previousClientRepo.CreatePreviousClient(previousClient, cancellationToken);
+            return new CreatePreviousClientResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdatePreviousClient(PutPreviousClientRequest request, CancellationToken cancellationToken)
+        public async Task<PutPreviousClientResponse> UpdatePreviousClient(PutPreviousClientRequest request, CancellationToken cancellationToken)
         {
             var previousClient = _previousClientMapper.ToUpdated(request);
-            return await _previousClientRepo.UpdatePreviousClient(previousClient, cancellationToken);
+            var action = await _previousClientRepo.UpdatePreviousClient(previousClient, cancellationToken);
+            return new PutPreviousClientResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeletePreviousClient(Guid id, CancellationToken cancellationToken)
+        public async Task<DeletePreviousClientResponse> DeletePreviousClient(Guid id, CancellationToken cancellationToken)
         {
-            return await _previousClientRepo.DeletePreviousClient(id, cancellationToken);
+            var action = await _previousClientRepo.DeletePreviousClient(id, cancellationToken);
+            return new DeletePreviousClientResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetPreviousClientResponse?> GetPreviousClient(Guid id, CancellationToken cancellationToken)

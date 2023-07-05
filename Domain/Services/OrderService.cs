@@ -3,6 +3,7 @@ using Contracts.Responses;
 using Contracts.Responses.Order;
 using Domain.Mappers;
 using Domain.Repositories;
+using System.Runtime.InteropServices;
 
 namespace Domain.Services
 {
@@ -17,21 +18,33 @@ namespace Domain.Services
             _orderMapper = orderMapper;
         }
 
-        public async Task<bool> CreateOrder(CreateOrderRequest request, CancellationToken cancellationToken)
+        public async Task<CreateOrderResponse> CreateOrder(CreateOrderRequest request, CancellationToken cancellationToken)
         {
             var order = _orderMapper.ToEntity(request);
-            return await _orderRepo.CreateOrder(order, cancellationToken);
+            var action = await _orderRepo.CreateOrder(order, cancellationToken);
+            return new CreateOrderResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateOrder(PutOrderRequest request, CancellationToken cancellationToken)
+        public async Task<PutOrderResponse> UpdateOrder(PutOrderRequest request, CancellationToken cancellationToken)
         {
             var order = _orderMapper.ToUpdated(request);
-            return await _orderRepo.UpdateOrder(order, cancellationToken);
+            var action = await _orderRepo.UpdateOrder(order, cancellationToken);
+            return new PutOrderResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteOrder(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteOrderResponse> DeleteOrder(Guid id, CancellationToken cancellationToken)
         {
-            return await _orderRepo.DeleteOrder(id, cancellationToken);
+            var action = await _orderRepo.DeleteOrder(id, cancellationToken);
+            return new DeleteOrderResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetOrderResponse?> GetOrder(Guid id, CancellationToken cancellationToken)

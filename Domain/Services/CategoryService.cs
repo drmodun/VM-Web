@@ -19,21 +19,34 @@ namespace Domain.Services
             _categoryMapper = categoryMapper;
         }
 
-        public async Task<bool> CreateCategory(CreateCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<CreateCategoryResponse> CreateCategory(CreateCategoryRequest request, CancellationToken cancellationToken)
         {
             var category = _categoryMapper.ToEntity(request);
-            return await _categoryRepo.CreateCategory(category, cancellationToken);
+            var action = await _categoryRepo.CreateCategory(category, cancellationToken);
+            return new CreateCategoryResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateCategory(PutCategoryRequest request, CancellationToken cancellationToken)
+        public async Task<PutCategoryResponse> UpdateCategory(PutCategoryRequest request, CancellationToken cancellationToken)
         {
             var category = _categoryMapper.ToUpdated(request);
-            return await _categoryRepo.UpdateCategory(category, cancellationToken);
+            var action = await _categoryRepo.UpdateCategory(category, cancellationToken);
+            return new PutCategoryResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteCategory(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteCategoryResponse> DeleteCategory(Guid id, CancellationToken cancellationToken)
         {
-            return await _categoryRepo.DeleteCategory(id, cancellationToken);
+            var action = await _categoryRepo.DeleteCategory(id, cancellationToken);
+    return new DeleteCategoryResponse
+    {
+                Success = action
+            };  
+
         }
 
         public async Task<GetCategoryResponse?> GetCategory(Guid id, CancellationToken cancellationToken)

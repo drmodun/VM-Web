@@ -19,21 +19,33 @@ namespace Domain.Services
             _serviceMapper = serviceMapper;
         }
 
-        public async Task<bool> CreateService(CreateServiceRequest request, CancellationToken cancellationToken)
+        public async Task<CreateServiceResponse> CreateService(CreateServiceRequest request, CancellationToken cancellationToken)
         {
             var service = _serviceMapper.ToEntity(request);
-            return await _serviceRepo.CreateService(service, cancellationToken);
+            var action = await _serviceRepo.CreateService(service, cancellationToken);
+            return new CreateServiceResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateService(PutServiceRequest request, CancellationToken cancellationToken)
+        public async Task<PutServiceResponse> UpdateService(PutServiceRequest request, CancellationToken cancellationToken)
         {
             var service = _serviceMapper.ToUpdated(request);
-            return await _serviceRepo.UpdateService(service, cancellationToken);
+            var action = await _serviceRepo.UpdateService(service, cancellationToken);
+            return new PutServiceResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteService(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteServiceResponse> DeleteService(Guid id, CancellationToken cancellationToken)
         {
-            return await _serviceRepo.DeleteService(id, cancellationToken);
+            var action = await _serviceRepo.DeleteService(id, cancellationToken);
+            return new DeleteServiceResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetServiceResponse?> GetService(Guid id, CancellationToken cancellationToken)

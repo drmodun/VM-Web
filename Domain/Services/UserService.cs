@@ -22,18 +22,18 @@ namespace Domain.Services
         public async Task<bool> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
             var user = _userMapper.ToEntity(request);
-            return await _userRepo.CreateUser(user, cancellationToken);
+            var action = await _userRepo.CreateUser(user, cancellationToken);
         }
 
         public async Task<bool> UpdateUser(PutUserRequest request, CancellationToken cancellationToken)
         {
             var user = _userMapper.ToUpdated(request);
-            return await _userRepo.UpdateUser(user, cancellationToken);
+            var action = await _userRepo.UpdateUser(user, cancellationToken);
         }
 
         public async Task<bool> DeleteUser(Guid id, CancellationToken cancellationToken)
         {
-            return await _userRepo.DeleteUser(id, cancellationToken);
+            var action = await _userRepo.DeleteUser(id, cancellationToken);
         }
 
         public async Task<GetUserResponse?> GetUser(Guid id, CancellationToken cancellationToken)

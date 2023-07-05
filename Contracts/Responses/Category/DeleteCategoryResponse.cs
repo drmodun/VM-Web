@@ -1,6 +1,7 @@
 ﻿namespace Contracts.Responses.Category
 {
-    internal class DeleteCategoryResponse
+    public class DeleteCategoryResponse
     {
+        public bool Success { get; set; }
     }
 }

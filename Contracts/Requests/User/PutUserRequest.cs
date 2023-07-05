@@ -2,7 +2,7 @@
 {
     public class PutUserRequest
     {
-        public Guid Id { get; set; }
+        public Guid Id;
         public string Name { get; set; }
 
         public string Email { get; set; }

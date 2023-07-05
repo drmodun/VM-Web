@@ -2,7 +2,7 @@
 {
     public class PutSubcategoryRequest
     {
-        public Guid Id { get; set; }
+        public Guid Id;
         public string Name { get; set; }
         public string Description { get; set; }
         public Guid CategoryId { get; set; }
