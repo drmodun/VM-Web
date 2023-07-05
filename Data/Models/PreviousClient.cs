@@ -11,6 +11,6 @@
         public int? Rating { get; set; }
 
         public string Image { get; set; }
-        
+
     }
 }

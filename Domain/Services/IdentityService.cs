@@ -1,7 +1,6 @@
 ﻿using Contracts.Helpers.Hash;
 using Contracts.Requests;
 using Contracts.Requests.User;
-using Data.Models;
 using Domain.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
