@@ -1,12 +1,6 @@
 ﻿using Contracts.Requests.User;
-using Contracts.Responses.User;
 using Domain.Mappers;
 using Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Services
 {
