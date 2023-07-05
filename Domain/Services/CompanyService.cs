@@ -54,7 +54,7 @@ namespace Domain.Services
             return _companyMapper.ToDTO(company);
         }
 
-        public async Task<GetAllCompaniesResponse> GetAllCompanys(GetAllCompaniesRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllCompaniesResponse> GetAllCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = await _companyRepo.GetAllcompanies(request, cancellationToken);
             var list = companies.Select(x => _companyMapper.ToDTO(x)).ToList();
