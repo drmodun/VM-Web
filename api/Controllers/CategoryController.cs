@@ -27,7 +27,7 @@ namespace api.Controllers
             var response = await _categoryService.GetAllCategorys(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Category.Create)]
+        [HttpPost(Routes.Category.Create)]
         public async Task<ActionResult<CreateCategoryResponse>> CreateCategory([FromBody] CreateCategoryRequest request, CancellationToken cancellationToken)
         {
             var response = await _categoryService.CreateCategory(request, cancellationToken);

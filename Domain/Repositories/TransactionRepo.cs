@@ -61,42 +61,44 @@ namespace Domain.Repositories
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Product.Price * x.Quantity)
                 .OrderBy(x => Guid.NewGuid());
 
-            switch (request.Sorting.SortByDate)
+            if (request.Sorting != null)
             {
-                case SortType.Ascending:
-                    transactions.ThenBy(x => x.CreatedAt);
-                    break;
-                case SortType.Descending:
-                    transactions.ThenByDescending(x => x.CreatedAt);
-                    break;
-                default:
-                    break;
-            }
+                switch (request.Sorting.SortByDate)
+                {
+                    case SortType.Ascending:
+                        transactions.ThenBy(x => x.CreatedAt);
+                        break;
+                    case SortType.Descending:
+                        transactions.ThenByDescending(x => x.CreatedAt);
+                        break;
+                    default:
+                        break;
+                }
 
-            switch (request.Sorting.SortByPrice)
-            {
-                case SortType.Ascending:
-                    transactions.ThenBy(x => x.Product.Price * x.Quantity);
-                    break;
-                case SortType.Descending:
-                    transactions.ThenByDescending(x => x.Product.Price * x.Quantity);
-                    break;
-                default:
-                    break;
-            }
+                switch (request.Sorting.SortByPrice)
+                {
+                    case SortType.Ascending:
+                        transactions.ThenBy(x => x.Product.Price * x.Quantity);
+                        break;
+                    case SortType.Descending:
+                        transactions.ThenByDescending(x => x.Product.Price * x.Quantity);
+                        break;
+                    default:
+                        break;
+                }
 
-            switch (request.Sorting.SortByType)
-            {
-                case SortType.Ascending:
-                    transactions.ThenBy(x => x.Type);
-                    break;
-                case SortType.Descending:
-                    transactions.ThenByDescending(x => x.Type);
-                    break;
-                default:
-                    break;
+                switch (request.Sorting.SortByType)
+                {
+                    case SortType.Ascending:
+                        transactions.ThenBy(x => x.Type);
+                        break;
+                    case SortType.Descending:
+                        transactions.ThenByDescending(x => x.Type);
+                        break;
+                    default:
+                        break;
+                }
             }
-
             if (request.Pagination != null)
             {
                 transactions.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);

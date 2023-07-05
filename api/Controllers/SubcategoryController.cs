@@ -27,7 +27,7 @@ namespace api.Controllers
             var response = await _subcategoryService.GetAllSubcategories(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Subcategory.Create)]
+        [HttpPost(Routes.Subcategory.Create)]
         public async Task<ActionResult<CreateSubcategoryResponse>> CreateSubcategory([FromBody] CreateSubcategoryRequest request, CancellationToken cancellationToken)
         {
             var response = await _subcategoryService.CreateSubcategory(request, cancellationToken);

@@ -61,40 +61,44 @@ namespace Domain.Repositories
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Service.Price)
                 .OrderBy(x => Guid.NewGuid());
 
-            switch (request.Sorting.SortByDate)
+            if (request.Sorting != null)
             {
-                case SortType.Ascending:
-                    Orders.ThenBy(x => x.Created);
-                    break;
-                case SortType.Descending:
-                    Orders.ThenByDescending(x => x.Created);
-                    break;
-                default:
-                    break;
-            }
 
-            switch (request.Sorting.SortByPrice)
-            {
-                case SortType.Ascending:
-                    Orders.ThenBy(x => x.Service.Price);
-                    break;
-                case SortType.Descending:
-                    Orders.ThenByDescending(x => x.Service.Price);
-                    break;
-                default:
-                    break;
-            }
+                switch (request.Sorting.SortByDate)
+                {
+                    case SortType.Ascending:
+                        Orders.ThenBy(x => x.Created);
+                        break;
+                    case SortType.Descending:
+                        Orders.ThenByDescending(x => x.Created);
+                        break;
+                    default:
+                        break;
+                }
 
-            switch (request.Sorting.SortByType)
-            {
-                case SortType.Ascending:
-                    Orders.ThenBy(x => x.Service.ServiceType);
-                    break;
-                case SortType.Descending:
-                    Orders.ThenByDescending(x => x.Service.ServiceType);
-                    break;
-                default:
-                    break;
+                switch (request.Sorting.SortByPrice)
+                {
+                    case SortType.Ascending:
+                        Orders.ThenBy(x => x.Service.Price);
+                        break;
+                    case SortType.Descending:
+                        Orders.ThenByDescending(x => x.Service.Price);
+                        break;
+                    default:
+                        break;
+                }
+
+                switch (request.Sorting.SortByType)
+                {
+                    case SortType.Ascending:
+                        Orders.ThenBy(x => x.Service.ServiceType);
+                        break;
+                    case SortType.Descending:
+                        Orders.ThenByDescending(x => x.Service.ServiceType);
+                        break;
+                    default:
+                        break;
+                }
             }
 
             if (request.Pagination != null)

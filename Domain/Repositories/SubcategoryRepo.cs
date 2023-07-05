@@ -58,29 +58,30 @@ namespace Domain.Repositories
                 .OrderBy(x => Guid.NewGuid());
             //sorting
             //possibly later change logic of sorting to be more dynamic
-
-            switch (request.Sorting.SortByName)
+            if (request.Sorting != null)
             {
-                case SortType.Ascending:
-                    Subcategories.ThenBy(x => x.Name); break;
-                case SortType.Descending:
-                    Subcategories.ThenByDescending(x => x.Name); break;
-                default:
-                    break;
-            }
+                switch (request.Sorting.SortByName)
+                {
+                    case SortType.Ascending:
+                        Subcategories.ThenBy(x => x.Name); break;
+                    case SortType.Descending:
+                        Subcategories.ThenByDescending(x => x.Name); break;
+                    default:
+                        break;
+                }
 
-            switch (request.Sorting.SortByCategoryName)
-            {
-                case SortType.Ascending:
-                    Subcategories.ThenBy(x => x.Category.Name);
-                    break;
-                case SortType.Descending:
-                    Subcategories.ThenByDescending(x => x.Category.Name);
-                    break;
-                default:
-                    break;
+                switch (request.Sorting.SortByCategoryName)
+                {
+                    case SortType.Ascending:
+                        Subcategories.ThenBy(x => x.Category.Name);
+                        break;
+                    case SortType.Descending:
+                        Subcategories.ThenByDescending(x => x.Category.Name);
+                        break;
+                    default:
+                        break;
+                }
             }
-
             if (request.Pagination != null)
             {
                 Subcategories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);

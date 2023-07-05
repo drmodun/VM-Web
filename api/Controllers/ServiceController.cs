@@ -21,7 +21,7 @@ namespace api.Controllers
             var response = await _serviceService.GetAllServices(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Service.Create)]
+        [HttpPost(Routes.Service.Create)]
         public async Task<ActionResult<CreateServiceResponse>> CreateService([FromBody] CreateServiceRequest request, CancellationToken cancellationToken)
         {
             var response = await _serviceService.CreateService(request, cancellationToken);
@@ -40,8 +40,8 @@ namespace api.Controllers
             var response = await _serviceService.DeleteService(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
-        [HttpDelete(Routes.Service.Get)]
-        public async Task<ActionResult<GetServiceResponse>> GetCategory([FromRoute] Guid id, CancellationToken cancellationToken)
+        [HttpGet(Routes.Service.Get)]
+        public async Task<ActionResult<GetServiceResponse>> GetService([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var response = await _serviceService.GetService(id, cancellationToken);
             return response != null ? Ok(response) : BadRequest(response);

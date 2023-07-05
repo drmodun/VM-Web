@@ -73,6 +73,9 @@ namespace Domain.Repositories
             //not sure if it will work this way
             //will see if I can remove the orerby label, however this should effectively randomize the default sort
             //check if this sorting works at all
+
+            if (request.Sorting != null)
+            {
             switch (request.Sorting.SortByName)
             {
                 case SortType.Ascending:
@@ -105,8 +108,8 @@ namespace Domain.Repositories
                     break;
                 default: break;
             }
-
-
+                
+            }
 
             //after sorting pagination is implemented
 

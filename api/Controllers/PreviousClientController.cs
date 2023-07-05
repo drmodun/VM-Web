@@ -27,7 +27,7 @@ namespace api.Controllers
             var response = await _previousClientService.GetAllPreviousClients(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.PreviousClient.Create)]
+        [HttpPost(Routes.PreviousClient.Create)]
         public async Task<ActionResult<CreatePreviousClientResponse>> CreatePreviousClient([FromBody] CreatePreviousClientRequest request, CancellationToken cancellationToken)
         {
             var response = await _previousClientService.CreatePreviousClient(request, cancellationToken);

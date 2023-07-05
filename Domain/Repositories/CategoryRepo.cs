@@ -54,15 +54,19 @@ namespace Domain.Repositories
             //sorting
             //possibly later change logic of sorting to be more dynamic
 
-            switch (request.Sorting.SortByName)
+            if (request.Sorting != null)
             {
-                case SortType.Ascending:
-                    categories.ThenBy(x => x.Name); break;
-                case SortType.Descending:
-                    categories.ThenByDescending(x => x.Name); break;
-                default:
-                    break;
+                switch (request.Sorting.SortByName)
+                {
+                    case SortType.Ascending:
+                        categories.ThenBy(x => x.Name); break;
+                    case SortType.Descending:
+                        categories.ThenByDescending(x => x.Name); break;
+                    default:
+                        break;
+                }
             }
+            //dont like the amount of nesting but this is the most painless way to do it
 
             if (request.Pagination != null)
             {

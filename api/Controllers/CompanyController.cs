@@ -27,7 +27,7 @@ namespace api.Controllers
             var response = await _companyService.GetAllCompanies(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Company.Create)]
+        [HttpPost(Routes.Company.Create)]
         public async Task<ActionResult<CreateCompanyResponse>> CreateCompany([FromBody] CreateCompanyRequest request, CancellationToken cancellationToken)
         {
             var response = await _companyService.CreateCompany(request, cancellationToken);

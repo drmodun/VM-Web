@@ -27,7 +27,7 @@ namespace api.Controllers
             var response = await _transactionService.GetAllTransactions(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Transaction.Create)]
+        [HttpPost(Routes.Transaction.Create)]
         public async Task<ActionResult<CreateTransactionResponse>> CreateTransaction([FromBody] CreateTransactionRequest request, CancellationToken cancellationToken)
         {
             var response = await _transactionService.CreateTransaction(request, cancellationToken);

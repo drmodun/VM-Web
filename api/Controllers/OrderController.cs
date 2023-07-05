@@ -27,7 +27,7 @@ namespace api.Controllers
             var response = await _orderService.GetAllOrders(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Order.Create)]
+        [HttpPost(Routes.Order.Create)]
         public async Task<ActionResult<CreateOrderResponse>> CreateOrder([FromBody] CreateOrderRequest request, CancellationToken cancellationToken)
         {
             var response = await _orderService.CreateOrder(request, cancellationToken);

@@ -56,29 +56,31 @@ namespace Domain.Repositories
                 .OrderBy(x => Guid.NewGuid());
 
             //sorting
-
-            switch (request.Sorting.SortByName)
+            if (request.Sorting != null)
             {
-                case SortType.Ascending:
-                    users.ThenBy(x => x.Name);
-                    break;
-                case SortType.Descending:
-                    users.ThenByDescending(x => x.Name);
-                    break;
-                default:
-                    break;
-            }
+                switch (request.Sorting.SortByName)
+                {
+                    case SortType.Ascending:
+                        users.ThenBy(x => x.Name);
+                        break;
+                    case SortType.Descending:
+                        users.ThenByDescending(x => x.Name);
+                        break;
+                    default:
+                        break;
+                }
 
-            switch (request.Sorting.SortByAddress)
-            {
-                case SortType.Ascending:
-                    users.ThenBy(x => x.Address);
-                    break;
-                case SortType.Descending:
-                    users.ThenByDescending(x => x.Address);
-                    break;
-                default:
-                    break;
+                switch (request.Sorting.SortByAddress)
+                {
+                    case SortType.Ascending:
+                        users.ThenBy(x => x.Address);
+                        break;
+                    case SortType.Descending:
+                        users.ThenByDescending(x => x.Address);
+                        break;
+                    default:
+                        break;
+                }
             }
 
 

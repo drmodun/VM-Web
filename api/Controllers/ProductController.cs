@@ -22,7 +22,7 @@ namespace api.Controllers
             var response = await _productService.GetAllProducts(request, cancellationToken);
             return Ok(response);
         }
-        [HttpGet(Routes.Product.Create)]
+        [HttpPost(Routes.Product.Create)]
         public async Task<ActionResult<CreateProductResponse>> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
         {
             var response = await _productService.CreateProduct(request, cancellationToken);
@@ -43,7 +43,7 @@ namespace api.Controllers
             var response = await _productService.DeleteProduct(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
-        [HttpGet(Routes.Product.Get)]
+        [HttpPost(Routes.Product.Get)]
         public async Task<ActionResult<GetProductResponse>> GetProduct([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var response = await _productService.GetProduct(id, cancellationToken);

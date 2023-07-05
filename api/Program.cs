@@ -1,4 +1,7 @@
 
+using Api.Middleware;
+using Domain;
+
 namespace api
 {
     public class Program
@@ -10,6 +13,7 @@ namespace api
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddApplication();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -26,6 +30,7 @@ namespace api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseMiddleware<ValidationMappingMiddleware>();
 
 
             app.MapControllers();

@@ -53,30 +53,31 @@ namespace Domain.Repositories
                 .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice)
                 .OrderBy(x => x.ServiceType);
             //it makes sense to order by type for default
-
-            switch (request.Sorting.SortByName)
+            if (request.Sorting == null)
             {
-                case SortType.Ascending:
-                    services.ThenBy(x => x.Name);
-                    break;
-                case SortType.Descending:
-                    services.ThenByDescending(x => x.Name);
-                    break;
-                default:
-                    break;
-            }
+                switch (request.Sorting.SortByName)
+                {
+                    case SortType.Ascending:
+                        services.ThenBy(x => x.Name);
+                        break;
+                    case SortType.Descending:
+                        services.ThenByDescending(x => x.Name);
+                        break;
+                    default:
+                        break;
+                }
 
-            switch (request.Sorting.SortByNumberOfPurchases)
-            {
-                case SortType.Ascending:
-                    services.ThenBy(x => _context.Orders.Where(b => b.ServiceId == x.Id));
-                    break;
-                case SortType.Descending:
-                    services.ThenByDescending(x => _context.Orders.Where(b => b.ServiceId == x.Id));
-                    break;
-                default: break;
+                switch (request.Sorting.SortByNumberOfPurchases)
+                {
+                    case SortType.Ascending:
+                        services.ThenBy(x => _context.Orders.Where(b => b.ServiceId == x.Id));
+                        break;
+                    case SortType.Descending:
+                        services.ThenByDescending(x => _context.Orders.Where(b => b.ServiceId == x.Id));
+                        break;
+                    default: break;
+                }
             }
-
             if (request.Pagination != null)
             {
                 services.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize);
