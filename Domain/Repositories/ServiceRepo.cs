@@ -19,30 +19,30 @@ namespace Domain.Repositories
             _validator = validator;
         }
 
-        public async Task<bool> CreateService(Service service)
+        public async Task<bool> CreateService(Service service, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(service);
             await _context.Services.AddAsync(service);
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
-        public async Task<bool> UpdateService(Service service)
+        public async Task<bool> UpdateService(Service service, CancellationToken cancellationToken)
         {
-            await _validator.ValidateAndThrowAsync(service);
+            await _validator.ValidateAndThrowAsync(service, cancellationToken);
             _context.Services.Update(service);
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
-        public async Task<bool> DeleteService(Guid id)
+        public async Task<bool> DeleteService(Guid id, CancellationToken cancellationToken)
         {
-            var serviceToDelete = await _context.Services.FindAsync(id);
+            var serviceToDelete = await _context.Services.FindAsync(id, cancellationToken);
             _context.Services.Remove(serviceToDelete);
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
-        public async Task<Service?> GetService(Guid id)
+        public async Task<Service?> GetService(Guid id, CancellationToken cancellationToken)
         {
-            return await _context.Services.FirstOrDefaultAsync(b => b.Id == id);
+            return await _context.Services.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
         public async Task<List<Service>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
@@ -83,7 +83,7 @@ namespace Domain.Repositories
                 services.Take(request.Pagination.PageSize);
             }
 
-            return await services.ToListAsync();
+            return await services.ToListAsync(cancellationToken);
         }
     }
 }

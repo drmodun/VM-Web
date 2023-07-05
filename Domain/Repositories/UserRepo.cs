@@ -33,18 +33,18 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<bool> DeleteUser(Guid id)
+        public async Task<bool> DeleteUser(Guid id, CancellationToken cancellationToken)
         {
-            var userToDelete = await _context.Users.FindAsync(id);
+            var userToDelete = await _context.Users.FindAsync(id, cancellationToken);
             if (userToDelete == null)
                 return false;
             _context.Users.Remove(userToDelete);
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
-        public async Task<User?> GetUser(Guid id)
+        public async Task<User?> GetUser(Guid id, CancellationToken cancellationToken)
         {
-            return await _context.Users.FirstOrDefaultAsync(b => b.Id == id);
+            return await _context.Users.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
         public async Task<List<User>> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
@@ -89,7 +89,7 @@ namespace Domain.Repositories
                 users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1));
                 users.Take(request.Pagination.PageNumber);
             }
-            return await users.ToListAsync();
+            return await users.ToListAsync(cancellationToken);
         }
 
     }

@@ -32,7 +32,7 @@ namespace Domain.Mappers
             };
         }
 
-        public PreviousClient TuUpdated(PutPreviousClientRequest request)
+        public PreviousClient ToUpdated(PutPreviousClientRequest request)
         {
             return new PreviousClient
             {

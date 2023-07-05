@@ -1,6 +1,6 @@
 ﻿namespace Contracts.Responses.User
 {
-    public class PutUserRequest
+    public class PutUserResponse
     {
         public bool Success { get; set; }
     }
