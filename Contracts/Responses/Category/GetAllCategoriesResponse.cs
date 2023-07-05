@@ -2,7 +2,7 @@
 {
     public class GetAllCategoriesResponse
     {
-        public PageResponse PageInfo { get; set; }
+        public PageResponse? PageInfo { get; set; }
         public List<GetCategoryResponse> Categories { get; set; }
     }
 }

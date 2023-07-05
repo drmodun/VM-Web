@@ -1,5 +1,8 @@
 ﻿using Contracts.Requests.Company;
+using Contracts.Responses;
 using Contracts.Responses.Company;
+using Contracts.Responses.Product;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -41,10 +44,23 @@ namespace Domain.Services
             return _companyMapper.ToDTO(company);
         }
 
-        public async Task<List<GetCompanyResponse>> GetAllCompanys(GetAllCompaniesRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllCompaniesResponse> GetAllCompanys(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = await _companyRepo.GetAllcompanies(request, cancellationToken);
-            return companies.Select(x => _companyMapper.ToDTO(x)).ToList();
+            var list = companies.Select(x => _companyMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllCompaniesResponse
+            {
+                Companies = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }

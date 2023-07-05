@@ -1,5 +1,8 @@
 ﻿using Contracts.Requests.PreviousClients;
+using Contracts.Responses;
 using Contracts.Responses.PreviousClient;
+using Contracts.Responses.Product;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -41,10 +44,23 @@ namespace Domain.Services
             return _previousClientMapper.ToDTO(previousClient);
         }
 
-        public async Task<List<GetPreviousClientResponse>> GetAllPreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllPreviousClientsResponse> GetAllPreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
         {
             var previousClients = await _previousClientRepo.GetAllpreviousClients(request, cancellationToken);
-            return previousClients.Select(x => _previousClientMapper.ToDTO(x)).ToList();
+            var list = previousClients.Select(x => _previousClientMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllPreviousClientsResponse
+            {
+                PreviousClients = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }

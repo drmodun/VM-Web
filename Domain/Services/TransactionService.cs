@@ -1,5 +1,8 @@
 ﻿using Contracts.Requests.Transaction;
 using Contracts.Responses.Transaction;
+using Contracts.Responses;
+using Contracts.Responses.Transaction;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -41,10 +44,23 @@ namespace Domain.Services
             return _transactionMapper.ToDTO(transaction);
         }
 
-        public async Task<List<GetTransactionResponse>> GetAllTransactions(GetAllTransactionsRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllTransactionsResponse> GetAllTransactions(GetAllTransactionsRequest request, CancellationToken cancellationToken)
         {
             var transactions = await _transactionRepo.GetAllTransactions(request, cancellationToken);
-            return transactions.Select(x => _transactionMapper.ToDTO(x)).ToList();
+            var list = transactions.Select(x => _transactionMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllTransactionsResponse
+            {
+                Transactions = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }

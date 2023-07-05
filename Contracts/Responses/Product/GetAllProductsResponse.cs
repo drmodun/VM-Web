@@ -2,7 +2,7 @@
 {
     public class GetAllProductsResponse
     {
-        public PageResponse PageInfo { get; set; }
+        public PageResponse?? PageInfo { get; set; }
         public List<GetProductResponse> Products { get; set; }
     }
 }

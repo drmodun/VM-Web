@@ -1,4 +1,5 @@
 ﻿using Contracts.Requests.Product;
+using Contracts.Responses;
 using Contracts.Responses.Product;
 using Domain.Mappers;
 using Domain.Repositories;
@@ -41,10 +42,24 @@ namespace Domain.Services
             return _productMapper.ToDTO(product);
         }
 
-        public async Task<List<GetProductResponse>> GetAllProducts(GetAllProductsRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllProductsResponse> GetAllProducts(GetAllProductsRequest request, CancellationToken cancellationToken)
         {
+            //might have been better to use a null coalescing operator here
             var products = await _productRepo.GetAllProducts(request, cancellationToken);
-            return products.Select(x => _productMapper.ToDTO(x)).ToList();
+            var list = products.Select(x => _productMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo =  request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllProductsResponse
+            {
+                Products = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Contracts.Requests.Order;
+using Contracts.Responses;
 using Contracts.Responses.Order;
 using Domain.Mappers;
 using Domain.Repositories;
@@ -41,10 +42,25 @@ namespace Domain.Services
             return _orderMapper.ToDTO(order);
         }
 
-        public async Task<List<GetOrderResponse>> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllOrdersResponse> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)
         {
             var orders = await _orderRepo.GetAllOrders(request, cancellationToken);
-            return orders.Select(x => _orderMapper.ToDTO(x)).ToList();
+            var list = orders.Select(x => _orderMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+
+            return new GetAllOrdersResponse
+            {
+                Orders = list,
+                PageInfo = pageInfo
+            };
+
         }
     }
 }

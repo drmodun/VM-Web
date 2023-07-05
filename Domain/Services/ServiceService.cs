@@ -1,5 +1,8 @@
 ﻿using Contracts.Requests.Service;
 using Contracts.Responses.Service;
+using Contracts.Responses;
+using Contracts.Responses.Service;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -41,10 +44,23 @@ namespace Domain.Services
             return _serviceMapper.ToDTO(service);
         }
 
-        public async Task<List<GetServiceResponse>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllServicesResponse> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
         {
             var services = await _serviceRepo.GetAllServices(request, cancellationToken);
-            return services.Select(x => _serviceMapper.ToDTO(x)).ToList();
+            var list = services.Select(x => _serviceMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllServicesResponse
+            {
+                Services = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }

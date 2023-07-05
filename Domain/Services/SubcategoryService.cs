@@ -1,5 +1,8 @@
 ﻿using Contracts.Requests.Subcategory;
+using Contracts.Responses.Subcategorie;
+using Contracts.Responses;
 using Contracts.Responses.Subcategory;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -41,10 +44,23 @@ namespace Domain.Services
             return _subcategoryMapper.ToDTO(subcategory);
         }
 
-        public async Task<List<GetSubcategoryResponse>> GetAllSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllSubcategoriesResponse> GetAllSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)
         {
-            var subcategorys = await _subcategoryRepo.GetAllSubcategories(request, cancellationToken);
-            return subcategorys.Select(x => _subcategoryMapper.ToDTO(x)).ToList();
+            var subcategories = await _subcategoryRepo.GetAllSubcategories(request, cancellationToken);
+            var list = subcategories.Select(x => _subcategoryMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllSubcategoriesResponse
+            {
+                Subcategories = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }

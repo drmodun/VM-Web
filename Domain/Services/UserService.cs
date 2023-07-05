@@ -1,6 +1,10 @@
 ﻿using Contracts.Requests.User;
+using Contracts.Responses.Product;
+using Contracts.Responses;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
+using Contracts.Responses.User;
 
 namespace Domain.Services
 {
@@ -40,10 +44,23 @@ namespace Domain.Services
             return _userMapper.ToDTO(user);
         }
 
-        public async Task<List<GetUserResponse>> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllUsersResponse> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
             var users = await _userRepo.GetAllUsers(request, cancellationToken);
-            return users.Select(x => _userMapper.ToDTO(x)).ToList();
+            var list = users.Select(x => _userMapper.ToDTO(x)).ToList();
+
+
+            var pageInfo = request.Pagination is null ? null
+            : new PageResponse
+            {
+                PageNumber = request.Pagination.PageNumber,
+                PageSize = request.Pagination.PageSize
+            };
+            return new GetAllUsersResponse
+            {
+                Users = list,
+                PageInfo = pageInfo
+            };
         }
     }
 }
