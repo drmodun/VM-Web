@@ -76,39 +76,39 @@ namespace Domain.Repositories
 
             if (request.Sorting != null)
             {
-            switch (request.Sorting.SortByName)
-            {
-                case SortType.Ascending:
-                    products.ThenBy(x => x.Name);
-                    break;
-                case SortType.Descending:
-                    products.ThenByDescending(x => x.Name);
-                    break;
-                default: break;
-            }
+                switch (request.Sorting.SortByName)
+                {
+                    case SortType.Ascending:
+                        products.ThenBy(x => x.Name);
+                        break;
+                    case SortType.Descending:
+                        products.ThenByDescending(x => x.Name);
+                        break;
+                    default: break;
+                }
 
-            switch (request.Sorting.SortByQuantity)
-            {
-                case SortType.Ascending:
-                    products.ThenBy(x => x.Quantity);
-                    break;
-                case SortType.Descending:
-                    products.ThenByDescending(x => x.Quantity);
-                    break;
-                default: break;
-            }
+                switch (request.Sorting.SortByQuantity)
+                {
+                    case SortType.Ascending:
+                        products.ThenBy(x => x.Quantity);
+                        break;
+                    case SortType.Descending:
+                        products.ThenByDescending(x => x.Quantity);
+                        break;
+                    default: break;
+                }
 
-            switch (request.Sorting.SortByPrice)
-            {
-                case SortType.Ascending:
-                    products.ThenBy(x => x.Price);
-                    break;
-                case SortType.Descending:
-                    products.ThenByDescending(x => x.Price);
-                    break;
-                default: break;
-            }
-                
+                switch (request.Sorting.SortByPrice)
+                {
+                    case SortType.Ascending:
+                        products.ThenBy(x => x.Price);
+                        break;
+                    case SortType.Descending:
+                        products.ThenByDescending(x => x.Price);
+                        break;
+                    default: break;
+                }
+
             }
 
             //after sorting pagination is implemented

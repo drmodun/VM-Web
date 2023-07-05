@@ -14,15 +14,15 @@ namespace Domain
         {
             services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
             //gonna hardcode this for now but later this will be editable
-                services.AddScoped<CompanyRepo>();
-                services.AddScoped<ProductRepo>();
-                services.AddScoped<OrderRepo>();
-                services.AddScoped<TransactionRepo>();
-                services.AddScoped<UserRepo>();
-                services.AddScoped<PreviousClientRepo>();
-                services.AddScoped<ServiceRepo>();
-                services.AddScoped<SubcategoryRepo>();
-                services.AddScoped<CategoryRepo>();
+            services.AddScoped<CompanyRepo>();
+            services.AddScoped<ProductRepo>();
+            services.AddScoped<OrderRepo>();
+            services.AddScoped<TransactionRepo>();
+            services.AddScoped<UserRepo>();
+            services.AddScoped<PreviousClientRepo>();
+            services.AddScoped<ServiceRepo>();
+            services.AddScoped<SubcategoryRepo>();
+            services.AddScoped<CategoryRepo>();
 
             services.AddScoped<CompanyValidator>();
             services.AddScoped<ProductValidator>();

@@ -64,7 +64,7 @@ namespace Domain.Repositories
                         previousClients.ThenByDescending(x => x.Name); break;
                     default:
                         break;
-                }  
+                }
             }
 
             if (request.Pagination != null)
