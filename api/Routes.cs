@@ -1,6 +1,4 @@
-﻿using Contracts.Requests.Category;
-
-namespace api
+﻿namespace api
 {
     public static class Routes
     {
@@ -10,7 +8,7 @@ namespace api
         {
             public const string Get = Base + $"/products/{{id:Guid}}";
             public const string Delete = Base + $"/products/{{id:Guid}}";
-            public const string Update  = Base + $"/products/{{id:Guid}}";
+            public const string Update = Base + $"/products/{{id:Guid}}";
             public const string GetAll = Base + $"/products";
             public const string Create = Base + $"/products";
         }

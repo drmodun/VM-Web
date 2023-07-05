@@ -1,8 +1,6 @@
 ﻿using Contracts.Requests.Company;
 using Contracts.Responses;
 using Contracts.Responses.Company;
-using Contracts.Responses.Product;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 

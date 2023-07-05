@@ -61,7 +61,7 @@ namespace Domain.Services
             var list = products.Select(x => _productMapper.ToDTO(x)).ToList();
 
 
-            var pageInfo =  request.Pagination is null ? null
+            var pageInfo = request.Pagination is null ? null
             : new PageResponse
             {
                 PageNumber = request.Pagination.PageNumber,

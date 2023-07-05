@@ -1,8 +1,6 @@
 ﻿using Contracts.Requests.PreviousClients;
 using Contracts.Responses;
 using Contracts.Responses.PreviousClient;
-using Contracts.Responses.Product;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 

@@ -1,6 +1,6 @@
 ﻿namespace Contracts.Responses.Order
 {
-    public class PuutOrderResponse
+    public class PutOrderResponse
     {
         public bool Success { get; set; }
     }

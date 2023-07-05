@@ -1,10 +1,8 @@
 ﻿using Contracts.Requests.User;
-using Contracts.Responses.Product;
 using Contracts.Responses;
-using Data.Models;
+using Contracts.Responses.User;
 using Domain.Mappers;
 using Domain.Repositories;
-using Contracts.Responses.User;
 
 namespace Domain.Services
 {
@@ -19,21 +17,33 @@ namespace Domain.Services
             _userMapper = userMapper;
         }
 
-        public async Task<bool> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
+        public async Task<CreateUserResponse> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
             var user = _userMapper.ToEntity(request);
             var action = await _userRepo.CreateUser(user, cancellationToken);
+            return new CreateUserResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateUser(PutUserRequest request, CancellationToken cancellationToken)
+        public async Task<PutUserResponse> UpdateUser(PutUserRequest request, CancellationToken cancellationToken)
         {
             var user = _userMapper.ToUpdated(request);
             var action = await _userRepo.UpdateUser(user, cancellationToken);
+            return new PutUserResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteUser(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteUserResponse> DeleteUser(Guid id, CancellationToken cancellationToken)
         {
             var action = await _userRepo.DeleteUser(id, cancellationToken);
+            return new DeleteUserResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetUserResponse?> GetUser(Guid id, CancellationToken cancellationToken)

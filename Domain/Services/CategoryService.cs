@@ -1,8 +1,6 @@
 ﻿using Contracts.Requests.Category;
 using Contracts.Responses;
 using Contracts.Responses.Category;
-using Contracts.Responses.Product;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -42,10 +40,10 @@ namespace Domain.Services
         public async Task<DeleteCategoryResponse> DeleteCategory(Guid id, CancellationToken cancellationToken)
         {
             var action = await _categoryRepo.DeleteCategory(id, cancellationToken);
-    return new DeleteCategoryResponse
-    {
+            return new DeleteCategoryResponse
+            {
                 Success = action
-            };  
+            };
 
         }
 

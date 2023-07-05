@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Subcategory;
 using Contracts.Responses;
 using Contracts.Responses.Subcategory;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -18,21 +17,33 @@ namespace Domain.Services
             _subcategoryMapper = subcategoryMapper;
         }
 
-        public async Task<bool> CreateSubcategory(CreateSubcategoryRequest request, CancellationToken cancellationToken)
+        public async Task<CreateSubcategoryResponse> CreateSubcategory(CreateSubcategoryRequest request, CancellationToken cancellationToken)
         {
             var subcategory = _subcategoryMapper.ToEntity(request);
             var action = await _subcategoryRepo.CreateSubcategory(subcategory, cancellationToken);
+            return new CreateSubcategoryResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> UpdateSubcategory(PutSubcategoryRequest request, CancellationToken cancellationToken)
+        public async Task<PutSubcategoryResponse> UpdateSubcategory(PutSubcategoryRequest request, CancellationToken cancellationToken)
         {
             var subcategory = _subcategoryMapper.ToUpdated(request);
             var action = await _subcategoryRepo.UpdateSubcategory(subcategory, cancellationToken);
+            return new PutSubcategoryResponse
+            {
+                Success = action
+            };
         }
 
-        public async Task<bool> DeleteSubcategory(Guid id, CancellationToken cancellationToken)
+        public async Task<DeleteSubcategoryResponse> DeleteSubcategory(Guid id, CancellationToken cancellationToken)
         {
             var action = await _subcategoryRepo.DeleteSubcategory(id, cancellationToken);
+            return new DeleteSubcategoryResponse
+            {
+                Success = action
+            };
         }
 
         public async Task<GetSubcategoryResponse?> GetSubcategory(Guid id, CancellationToken cancellationToken)

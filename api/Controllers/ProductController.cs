@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Domain.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
