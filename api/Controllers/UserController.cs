@@ -10,7 +10,7 @@ namespace api.Controllers
     {
         private readonly UserService _userService;
 
-        public UserController(UserService userService) 
+        public UserController(UserService userService)
         {
             _userService = userService;
         }
