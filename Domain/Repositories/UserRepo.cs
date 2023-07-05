@@ -42,6 +42,11 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
+        public async Task<User?> GetUserByEmail(string email)
+        {
+            return await _context.Users.SingleOrDefaultAsync(x => x.Email == email);
+        }
+
         public async Task<User?> GetUser(Guid id, CancellationToken cancellationToken)
         {
             return await _context.Users.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);

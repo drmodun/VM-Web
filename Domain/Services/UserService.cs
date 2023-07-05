@@ -72,5 +72,14 @@ namespace Domain.Services
                 PageInfo = pageInfo
             };
         }
+
+        public async Task<GetUserResponse?> GetUserByEmail(string email, CancellationToken cancellationToken)
+        {
+            var user = await _userRepo.GetUserByEmail(email);
+            if (user is null)
+                return null;
+            return _userMapper.ToDTO(user);
+        }
+
     }
 }

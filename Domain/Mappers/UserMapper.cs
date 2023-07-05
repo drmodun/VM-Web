@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.User;
+﻿using Contracts.Helpers.Hash;
+using Contracts.Requests.User;
 using Data.Models;
 
 namespace Domain.Mappers
@@ -41,7 +42,7 @@ namespace Domain.Mappers
             {
                 Address = request.Address,
                 Email = request.Email,
-                Password = request.Password,
+                Password = HashHelper.Hash(request.Password),
                 PhoneNumber = request.PhoneNumber,
                 Name = request.Name,
                 Role = "user",

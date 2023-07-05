@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.User;
+﻿using api.Auth;
+using Contracts.Requests.User;
 using Contracts.Responses.User;
 using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,12 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly IdentityService _identityService;
 
-        public UserController(UserService userService)
+        public UserController(UserService userService, IdentityService identityService)
         {
             _userService = userService;
+            _identityService = identityService;
         }
 
         [HttpGet(Routes.User.Get)]
@@ -33,7 +36,7 @@ namespace api.Controllers
             var response = await _userService.CreateUser(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
-        [HttpPost(Routes.User.Update)]
+        [HttpPut(Routes.User.Update)]
         public async Task<ActionResult<PutUserResponse>> UpdateUser([FromRoute] Guid id, [FromBody] PutUserRequest request, CancellationToken cancellationToken)
         {
             request.Id = id;
@@ -45,6 +48,25 @@ namespace api.Controllers
         {
             var response = await _userService.DeleteUser(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
+        }
+
+        [HttpGet(Routes.User.GetMe)]
+        public async Task<ActionResult<GetUserResponse?>> GetMe(CancellationToken cancellationToken)
+        {
+            var id = HttpContext.GetUserId();
+            if (id == null)
+                return NotFound(HttpContext.GetUserId());
+            var user = await _userService.GetUser((Guid)id, cancellationToken);
+            if (user == null)
+                return NotFound(HttpContext.GetUserId());
+            return Ok(user);
+        }
+
+        [HttpPost(Routes.User.Login)]
+        public async Task<ActionResult<string>> LoginUser([FromBody] LoginRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _identityService.LoginUser(request);
+            return response != null ? Ok(response) : BadRequest("Wrong password");
         }
 
 

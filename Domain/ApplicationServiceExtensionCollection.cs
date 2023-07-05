@@ -12,7 +12,7 @@ namespace Domain
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=drmodunV9"));
+            services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
             services.AddScoped<ProductRepo>();
@@ -43,6 +43,7 @@ namespace Domain
             services.AddScoped<ServiceService>();
             services.AddScoped<SubcategoryService>();
             services.AddScoped<CategoryService>();
+            services.AddScoped<IdentityService>();
 
             services.AddScoped<CompanyMapper>();
             services.AddScoped<ProductMapper>();
@@ -54,7 +55,7 @@ namespace Domain
             services.AddScoped<SubcategoryMapper>();
             services.AddScoped<CategoryMapper>();
             //later maybe use interfaces but it will be easier now
-
+            //validation seems to be broken but still works
             return services;
         }
 
