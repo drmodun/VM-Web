@@ -46,11 +46,34 @@ namespace Domain.Mappers
                 PhoneNumber = request.PhoneNumber,
                 Name = request.Name,
                 Role = "user",
+                Claims = new Dictionary<string, string> {
+                    { "user", "true" },
+                },
                 Id = Guid.NewGuid(),
                 LastUpdated = DateTime.UtcNow,
 
             };
 
+        }
+
+        public User ToAdmin(CreateUserRequest request)
+        {
+            return new User
+            {
+                Address = request.Address,
+                Email = request.Email,
+                Password = HashHelper.Hash(request.Password),
+                PhoneNumber = request.PhoneNumber,
+                Name = request.Name,
+                Role = "user",
+                Claims = new Dictionary<string, string> {
+                    { "user", "true" },
+                    { "admin", "true" },
+                },
+                Id = Guid.NewGuid(),
+                LastUpdated = DateTime.UtcNow,
+
+            };
         }
 
 

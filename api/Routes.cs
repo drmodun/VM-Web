@@ -15,13 +15,18 @@
 
         public static class User
         {
+            //later make this make more sense
             public const string Get = Base + $"/users/{{id:Guid}}";
-            public const string Delete = Base + $"/users/{{id:Guid}}";
-            public const string Update = Base + $"/users/{{id:Guid}}";
+            public const string Delete = Base + $"/users/";
+            public const string Update = Base + $"/users/";
             public const string GetAll = Base + $"/users";
             public const string Create = Base + $"/users";
             public const string Login = Base + $"/users/Login";
             public const string GetMe = Base + $"/users/Me";
+            public const string AdminDelete = Base + $"/admin/users/{{id:Guid}}";
+            public const string AdminEdit = Base + $"/admin/users/{{id:Guid}}";
+            public const string AdminCreate = Base + $"/admin/users/";
+
         }
 
         public static class Transaction

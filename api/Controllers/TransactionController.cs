@@ -1,11 +1,15 @@
-﻿using Contracts.Requests.Transaction;
+﻿using api.Auth;
+using Contracts.Constants;
+using Contracts.Requests.Transaction;
 using Contracts.Responses.Transaction;
 using Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [ApiController]
+    
     public class TransactionController : ControllerBase
     {
         private readonly TransactionService _transactionService;
@@ -28,20 +32,27 @@ namespace api.Controllers
             return Ok(response);
         }
         [HttpPost(Routes.Transaction.Create)]
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         public async Task<ActionResult<CreateTransactionResponse>> CreateTransaction([FromBody] CreateTransactionRequest request, CancellationToken cancellationToken)
         {
+            if (request.UserId != HttpContext.GetUserId())
+                return BadRequest("You cannot create or edit a transaction from an account that is not yours");
             var response = await _transactionService.CreateTransaction(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
             //later fix this bug
         }
         [HttpPut(Routes.Transaction.Update)]
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         public async Task<ActionResult<PutTransactionResponse>> UpdateTransaction([FromRoute] Guid id, [FromBody] PutTransactionRequest request, CancellationToken cancellationToken)
         {
             request.Id = id;
+            if (request.UserId != HttpContext.GetUserId())
+                return BadRequest("You cannot create or edit a transaction from an account that is not yours");
             var response = await _transactionService.UpdateTransaction(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
         [HttpDelete(Routes.Transaction.Delete)]
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         public async Task<ActionResult<DeleteTransactionResponse>> DeleteTransaction([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             //later make a desicision wether to have delete and get requests if they are id only

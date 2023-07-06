@@ -1,11 +1,14 @@
-﻿using Contracts.Requests.Service;
+﻿using Contracts.Constants;
+using Contracts.Requests.Service;
 using Contracts.Responses.Service;
 using Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [ApiController]
+    
     public class ServiceController : ControllerBase
     {
         private readonly ServiceService _serviceService;
@@ -27,6 +30,7 @@ namespace api.Controllers
             var response = await _serviceService.CreateService(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPut(Routes.Service.Update)]
         public async Task<ActionResult<PutServiceResponse>> UpdateService([FromRoute] Guid id, [FromBody] PutServiceRequest request, CancellationToken cancellationToken)
         {
@@ -34,6 +38,7 @@ namespace api.Controllers
             var response = await _serviceService.UpdateService(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpDelete(Routes.Service.Delete)]
         public async Task<ActionResult<DeleteServiceResponse>> DeleteService([FromRoute] Guid id, CancellationToken cancellationToken)
         {

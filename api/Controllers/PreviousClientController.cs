@@ -1,11 +1,14 @@
-﻿using Contracts.Requests.PreviousClients;
+﻿using Contracts.Constants;
+using Contracts.Requests.PreviousClients;
 using Contracts.Responses.PreviousClient;
 using Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [ApiController]
+    
     public class PreviousClientController : ControllerBase
     {
         private readonly PreviousClientService _previousClientService;
@@ -27,6 +30,7 @@ namespace api.Controllers
             var response = await _previousClientService.GetAllPreviousClients(request, cancellationToken);
             return Ok(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.PreviousClient.Create)]
         public async Task<ActionResult<CreatePreviousClientResponse>> CreatePreviousClient([FromBody] CreatePreviousClientRequest request, CancellationToken cancellationToken)
         {
@@ -34,6 +38,7 @@ namespace api.Controllers
             return response.Success ? Ok(response) : BadRequest(response);
             //later fix this bug
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPut(Routes.PreviousClient.Update)]
         public async Task<ActionResult<PutPreviousClientResponse>> UpdatePreviousClient([FromRoute] Guid id, [FromBody] PutPreviousClientRequest request, CancellationToken cancellationToken)
         {
@@ -41,6 +46,7 @@ namespace api.Controllers
             var response = await _previousClientService.UpdatePreviousClient(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpDelete(Routes.PreviousClient.Delete)]
         public async Task<ActionResult<DeletePreviousClientResponse>> DeletePreviousClient([FromRoute] Guid id, CancellationToken cancellationToken)
         {

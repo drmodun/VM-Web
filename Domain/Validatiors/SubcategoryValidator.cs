@@ -28,8 +28,8 @@ namespace Domain.Validatiors
             });
             RuleFor(x => x.CategoryId).MustAsync(async (x, cancellationtoken) =>
             {
-                return await _context.Subcategories.AnyAsync(b => b.Id == x, cancellationtoken);
-            });
+                return await _context.Categories.AnyAsync(b => b.Id == x, cancellationtoken);
+            }).WithMessage("Category with this id does not exist");
         }
     }
 }

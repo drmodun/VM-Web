@@ -81,5 +81,15 @@ namespace Domain.Services
             return _userMapper.ToDTO(user);
         }
 
+        public async Task<CreateUserResponse?> CreateAdminUser(CreateUserRequest request, CancellationToken cancellationToken)
+        {
+            var admin = _userMapper.ToAdmin(request);
+            var action = await _userRepo.CreateAdminUser(admin, cancellationToken);
+            return new CreateUserResponse
+            {
+                Success = action
+            };
+        }
+
     }
 }

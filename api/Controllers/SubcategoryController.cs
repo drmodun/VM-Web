@@ -1,10 +1,13 @@
-﻿using Contracts.Requests.Subcategory;
+﻿using Contracts.Constants;
+using Contracts.Requests.Subcategory;
 using Contracts.Responses.Subcategory;
 using Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
+    
     [ApiController]
     public class SubcategoryController : ControllerBase
     {
@@ -27,6 +30,7 @@ namespace api.Controllers
             var response = await _subcategoryService.GetAllSubcategories(request, cancellationToken);
             return Ok(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.Subcategory.Create)]
         public async Task<ActionResult<CreateSubcategoryResponse>> CreateSubcategory([FromBody] CreateSubcategoryRequest request, CancellationToken cancellationToken)
         {
@@ -34,6 +38,7 @@ namespace api.Controllers
             return response.Success ? Ok(response) : BadRequest(response);
             //later fix this bug
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPut(Routes.Subcategory.Update)]
         public async Task<ActionResult<PutSubcategoryResponse>> UpdateSubcategory([FromRoute] Guid id, [FromBody] PutSubcategoryRequest request, CancellationToken cancellationToken)
         {
@@ -41,6 +46,7 @@ namespace api.Controllers
             var response = await _subcategoryService.UpdateSubcategory(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpDelete(Routes.Subcategory.Delete)]
         public async Task<ActionResult<DeleteSubcategoryResponse>> DeleteSubcategory([FromRoute] Guid id, CancellationToken cancellationToken)
         {

@@ -26,6 +26,14 @@ namespace Domain.Repositories
 
         }
 
+        public async Task<bool> CreateAdminUser(User user, CancellationToken cancellationToken)
+        {
+            await _validator.ValidateAndThrowAsync(user, cancellationToken);
+            await _context.Users.AddAsync(user, cancellationToken);
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
+
+        }
+
         public async Task<bool> UpdateUser(User user, CancellationToken cancellationToken)
         {
             _context.Update(user);

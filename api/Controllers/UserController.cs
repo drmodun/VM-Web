@@ -1,12 +1,15 @@
 ﻿using api.Auth;
+using Contracts.Constants;
 using Contracts.Requests.User;
 using Contracts.Responses.User;
 using Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [ApiController]
+    
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
@@ -36,20 +39,41 @@ namespace api.Controllers
             var response = await _userService.CreateUser(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpPut(Routes.User.Update)]
-        public async Task<ActionResult<PutUserResponse>> UpdateUser([FromRoute] Guid id, [FromBody] PutUserRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<PutUserResponse>> UpdateUser([FromBody] PutUserRequest request, CancellationToken cancellationToken)
         {
-            request.Id = id;
+            request.Id = (Guid)HttpContext.GetUserId();
             var response = await _userService.UpdateUser(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpDelete(Routes.User.Delete)]
-        public async Task<ActionResult<DeleteUserResponse>> DeleteUser([FromRoute] Guid id, CancellationToken cancellationToken)
+        public async Task<ActionResult<DeleteUserResponse>> DeleteUser(CancellationToken cancellationToken)
+        {
+            var id = (Guid)HttpContext.GetUserId();
+            var response = await _userService.DeleteUser(id, cancellationToken);
+            return response.Success ? Ok(response) : NotFound(response);
+        }
+
+        [Authorize(AuthConstants.AdminUserPolicyName)]
+        [HttpDelete(Routes.User.AdminDelete)]
+        public async Task<ActionResult<DeleteUserResponse>> DeleteUserByAdmin([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var response = await _userService.DeleteUser(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
 
+        [Authorize(AuthConstants.AdminUserPolicyName)]
+        [HttpPut(Routes.User.AdminDelete)]
+        public async Task<ActionResult<PutUserResponse>> UpdateUserByAdmin([FromRoute] Guid id, [FromBody] PutUserRequest request, CancellationToken cancellationToken)
+        {
+            request.Id = id;
+            var response = await _userService.UpdateUser(request, cancellationToken);
+            return response.Success ? Ok(response) : BadRequest(response);
+        }
+
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpGet(Routes.User.GetMe)]
         public async Task<ActionResult<GetUserResponse?>> GetMe(CancellationToken cancellationToken)
         {
@@ -67,6 +91,13 @@ namespace api.Controllers
         {
             var response = await _identityService.LoginUser(request);
             return response != null ? Ok(response) : BadRequest("Wrong password");
+        }
+//        [Authorize(AuthConstants.AdminUserPolicyName)]
+        [HttpPost(Routes.User.AdminCreate)]
+        public async Task<ActionResult<CreateUserResponse>> AdminCreateUser([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _userService.CreateAdminUser(request, cancellationToken);
+            return response.Success ? Ok(response) : BadRequest(response);
         }
 
 

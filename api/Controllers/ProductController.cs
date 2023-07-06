@@ -1,12 +1,15 @@
-﻿using Contracts.Requests.Product;
+﻿using Contracts.Constants;
+using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
 
     [ApiController]
+    
     public class ProductController : ControllerBase
     {
         private readonly ProductService _productService;
@@ -22,6 +25,7 @@ namespace api.Controllers
             var response = await _productService.GetAllProducts(request, cancellationToken);
             return Ok(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.Product.Create)]
         public async Task<ActionResult<CreateProductResponse>> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
         {
@@ -29,6 +33,7 @@ namespace api.Controllers
             return response.Success ? Ok(response) : BadRequest(response);
             //later fix this bug
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPut(Routes.Product.Update)]
         public async Task<ActionResult<PutProductResponse>> UpdateProduct([FromRoute] Guid id, [FromBody] PutProductRequest request, CancellationToken cancellationToken)
         {
@@ -36,6 +41,7 @@ namespace api.Controllers
             var response = await _productService.UpdateProduct(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpDelete(Routes.Product.Delete)]
         public async Task<ActionResult<DeleteProductResponse>> DeleteProduct([FromRoute] Guid id, CancellationToken cancellationToken)
         {
