@@ -31,8 +31,8 @@ namespace api.Controllers
             var response = await _transactionService.GetAllTransactions(request, cancellationToken);
             return Ok(response);
         }
-        [HttpPost(Routes.Transaction.Create)]
         [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpPost(Routes.Transaction.Create)]
         public async Task<ActionResult<CreateTransactionResponse>> CreateTransaction([FromBody] CreateTransactionRequest request, CancellationToken cancellationToken)
         {
             if (request.UserId != HttpContext.GetUserId())
@@ -41,8 +41,8 @@ namespace api.Controllers
             return response.Success ? Ok(response) : BadRequest(response);
             //later fix this bug
         }
-        [HttpPut(Routes.Transaction.Update)]
         [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpPut(Routes.Transaction.Update)]
         public async Task<ActionResult<PutTransactionResponse>> UpdateTransaction([FromRoute] Guid id, [FromBody] PutTransactionRequest request, CancellationToken cancellationToken)
         {
             request.Id = id;
@@ -51,13 +51,23 @@ namespace api.Controllers
             var response = await _transactionService.UpdateTransaction(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
-        [HttpDelete(Routes.Transaction.Delete)]
         [Authorize(AuthConstants.AdminUserPolicyName)]
+        [HttpDelete(Routes.Transaction.Delete)]
         public async Task<ActionResult<DeleteTransactionResponse>> DeleteTransaction([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             //later make a desicision wether to have delete and get requests if they are id only
             var response = await _transactionService.DeleteTransaction(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
+        }
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpDelete(Routes.Transaction.GetMyTransactions)]
+        public async Task<ActionResult<GetAllTransactionsResponse>> GetMyTransactions([FromQuery] GetAllTransactionsRequest request, CancellationToken cancellationToken)
+        {
+            if (request.UserId != HttpContext.GetUserId() && request.UserId != null)
+                return BadRequest("You cannot get transactions from an account that is not yours");
+            request.UserId = HttpContext.GetUserId();  
+            var response = await _transactionService.GetAllTransactions(request, cancellationToken);
+            return Ok(response);
         }
 
 

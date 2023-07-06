@@ -1,7 +1,9 @@
 ﻿using api.Auth;
 using Contracts.Constants;
 using Contracts.Requests.Order;
+using Contracts.Requests.Transaction;
 using Contracts.Responses.Order;
+using Contracts.Responses.Transaction;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -62,6 +64,19 @@ namespace api.Controllers
             var response = await _orderService.DeleteOrder(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
+
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpDelete(Routes.Order.GetMyOrders)]
+        public async Task<ActionResult<GetAllOrdersResponse>> GetMyOrders([FromQuery] GetAllOrdersRequest request, CancellationToken cancellationToken)
+        {
+            if (request.UserId != HttpContext.GetUserId() && request.UserId != null)
+                return BadRequest("You cannot get orders from an account that is not yours");
+            request.UserId = HttpContext.GetUserId();
+            var response = await _orderService.GetAllOrders(request, cancellationToken);
+            return Ok(response);
+        }
+
+        //later add specific responses for other views
 
 
 

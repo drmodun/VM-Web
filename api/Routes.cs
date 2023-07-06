@@ -36,6 +36,7 @@
             public const string Update = Base + $"/transactions/{{id:Guid}}";
             public const string GetAll = Base + $"/transactions";
             public const string Create = Base + $"/transactions";
+            public const string GetMyTransactions = Base + $"/transactions/Me";
         }
 
         public static class Order
@@ -45,6 +46,7 @@
             public const string Update = Base + $"/orders/{{id:Guid}}";
             public const string GetAll = Base + $"/orders";
             public const string Create = Base + $"/orders";
+            public const string GetMyOrders = Base + $"/orders/Me";
         }
 
         public static class Service
