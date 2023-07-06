@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    
+
     [ApiController]
     public class SubcategoryController : ControllerBase
     {

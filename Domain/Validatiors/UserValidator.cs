@@ -19,8 +19,8 @@ namespace Domain.Validatiors
             RuleFor(x => x.Email).MustAsync(async (x, cancellationToken) =>
             {
                 return !await _context.Users.AnyAsync(b => b.Email == x, cancellationToken);
-            }).WithMessage("Email must be valid"); 
-            
+            }).WithMessage("Email must be valid");
+
             RuleFor(x => x.Name).Must(x => x.Length > 3 && x.Length < 50)
                 .WithMessage("Username muste be between 3 and 50 characters long");
             RuleFor(x => x.Email).Must(x => emailCheck.IsMatch(x));

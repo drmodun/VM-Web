@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers
 {
     [ApiController]
-    
+
     public class ServiceController : ControllerBase
     {
         private readonly ServiceService _serviceService;

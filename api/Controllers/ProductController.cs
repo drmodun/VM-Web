@@ -9,7 +9,7 @@ namespace api.Controllers
 {
 
     [ApiController]
-    
+
     public class ProductController : ControllerBase
     {
         private readonly ProductService _productService;

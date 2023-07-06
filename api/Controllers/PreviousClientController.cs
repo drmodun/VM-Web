@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers
 {
     [ApiController]
-    
+
     public class PreviousClientController : ControllerBase
     {
         private readonly PreviousClientService _previousClientService;
