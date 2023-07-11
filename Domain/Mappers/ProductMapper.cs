@@ -41,7 +41,7 @@ namespace Domain.Mappers
                 SubCategoryId = request.SubCategoryId,
                 Image = request.Image,
                 Quantity = request.Quantity,
-                UpdatedAt = DateTime.Now,
+                UpdatedAt = DateTime.UtcNow,
             };
         }
 
@@ -60,7 +60,7 @@ namespace Domain.Mappers
                 SubCategoryId = request.SubCategoryId,
                 Image = request.Image,
                 Quantity = request.Quantity,
-                UpdatedAt = DateTime.Now,
+                UpdatedAt = DateTime.UtcNow,
 
             };
         }

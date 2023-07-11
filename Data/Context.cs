@@ -6,16 +6,17 @@ namespace Data
     public class Context : DbContext
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
-        public DbSet<Models.Service> Services => Set<Models.Service>();
-        public DbSet<Models.Order> Orders => Set<Models.Order>();
-        public DbSet<Models.Company> Companies => Set<Models.Company>();
-        public DbSet<Models.PreviousClient> PreviousClients => Set<Models.PreviousClient>();
-        public DbSet<Models.Product> Products => Set<Models.Product>();
-        public DbSet<Models.User> Users => Set<Models.User>();
-        public DbSet<Models.Category> Categories => Set<Models.Category>();
-        public DbSet<Models.Subcategory> Subcategories => Set<Models.Subcategory>();
+        public DbSet<Service> Services => Set<Service>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<Company> Companies => Set<Company>();
+        public DbSet<PreviousClient> PreviousClients => Set<PreviousClient>();
+        public DbSet<Product> Products => Set<Product>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<Subcategory> Subcategories => Set<Subcategory>();
 
-        public DbSet<Models.Transaction> Transactions => Set<Models.Transaction>();
+        public DbSet<Transaction> Transactions => Set<Transaction>();
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -66,6 +67,10 @@ namespace Data
                 .HasForeignKey(o => o.ServiceId)
                 .OnDelete(DeleteBehavior.Cascade);
             //handle conversions later  
+
+
+
+
 
 
 

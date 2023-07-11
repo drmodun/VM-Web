@@ -92,13 +92,15 @@ namespace api.Controllers
             var response = await _identityService.LoginUser(request);
             return response != null ? Ok(response) : BadRequest("Wrong password");
         }
-        //        [Authorize(AuthConstants.AdminUserPolicyName)]
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.User.AdminCreate)]
         public async Task<ActionResult<CreateUserResponse>> AdminCreateUser([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
         {
             var response = await _userService.CreateAdminUser(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+
+        //TODO: Make functions for adding and removing admins (makoing normal accounts admin and vice versa)
 
 
     }

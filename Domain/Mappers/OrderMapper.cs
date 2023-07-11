@@ -25,7 +25,7 @@ namespace Domain.Mappers
         {
             return new Order
             {
-                Created = DateTime.Now,
+                Created = DateTime.UtcNow,
                 Id = Guid.NewGuid(),
                 ServiceId = request.ServiceId,
                 UserId = request.UserId,
@@ -37,7 +37,7 @@ namespace Domain.Mappers
         {
             return new Order
             {
-                Created = DateTime.Now,
+                Created = DateTime.UtcNow,
                 Id = request.Id,
                 ServiceId = request.ServiceId,
                 UserId = request.UserId,

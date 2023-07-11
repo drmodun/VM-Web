@@ -15,7 +15,7 @@ namespace Data.Models
 
         public string Image { get; set; }
 
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
@@ -30,7 +30,6 @@ namespace Data.Models
         public JsonDocument Attributes { get; set; }
 
         public JsonDocument SubAttributes { get; set; }
-
 
 
     }

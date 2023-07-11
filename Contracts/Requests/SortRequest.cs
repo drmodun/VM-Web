@@ -24,5 +24,7 @@ namespace Contracts.Requests
 
         public SortType? SortByType { get; set; }
 
+        //TODO: Make sorting different, simpler and only one criteria, maybe two
+
     }
 }

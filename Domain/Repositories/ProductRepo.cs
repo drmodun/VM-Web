@@ -113,9 +113,13 @@ namespace Domain.Repositories
 
             //after sorting pagination is implemented
 
+            if (request.Pagination != null)
+            {
+                products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1));
+                products.Take(request.Pagination.PageSize);
+            }
+
             return await products
-                .Skip(request.Pagination.PageNumber - 1 * request.Pagination.PageSize)
-                .Take(request.Pagination.PageSize)
                 .ToListAsync(cancellationToken);
         }
 
