@@ -12,7 +12,4 @@ declare module "*.svg" {
     const path: string;
     export default path;
 }
-declare module "*.scss" {
-    const path: string;
-    export default path;
-}
+declare module "*.module.scss";

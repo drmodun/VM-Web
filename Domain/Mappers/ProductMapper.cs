@@ -23,7 +23,7 @@ namespace Domain.Mappers
                 Quantity = product.Quantity,
                 SubcategoryName = product.Subcategory.Name,
                 SubcategoryId = product.Subcategory.Id,
-
+                Image = product.Image,
             };
         }
         public Product ToEntity(CreateProductRequest request)

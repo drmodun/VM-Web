@@ -49,7 +49,7 @@ namespace api.Controllers
             var response = await _productService.DeleteProduct(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
-        [HttpPost(Routes.Product.Get)]
+        [HttpGet(Routes.Product.Get)]
         public async Task<ActionResult<GetProductResponse>> GetProduct([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var response = await _productService.GetProduct(id, cancellationToken);
