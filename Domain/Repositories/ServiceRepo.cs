@@ -50,7 +50,7 @@ namespace Domain.Repositories
         {
             var services = _context.Services
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
-                .Where(x => request.Description == null || x.Description.Contains(request.Description))
+                .Where(x => request.MinPrice == null || x.Price >= request.MinPrice)
                 .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice);
             //it makes sense to order by type for default
             if (request.Sorting == null)

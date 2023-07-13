@@ -11,6 +11,5 @@ namespace Contracts.Requests.Order
         public Guid ServiceId { get; set; }
 
         public Guid UserId { get; set; }
-        public Guid OrderId { get; set; }
     }
 }
