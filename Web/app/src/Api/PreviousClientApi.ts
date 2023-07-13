@@ -1,46 +1,31 @@
 import axios from "axios";
-import { ActionResult, Pagination, PaginationResult, Sorting } from "./Shared";
-export interface Product {
+
+import { PaginationResult, ActionResult, Pagination, Sorting } from "./Shared";
+
+export interface PreviousClient {
   id: string;
   name: string;
   image: string;
-  price: number;
-  categoryId: string;
-  subcategoryId: string;
-  companyId: string;
+  rating: number;
+  website: string;
   description: string;
-  date: string;
-  attributes: object;
-  subAttributes: object;
-  categoryName: string;
-  subcategoryName: string;
-  companyName: string;
 }
 
-export interface NewProduct {
+export interface NewPreviousClient {
   id?: string;
   name: string;
   image: string;
-  price: number;
-  categoryId: string;
-  subcategoryId: string;
-  companyId: string;
+  rating: number;
+  website: string;
   description: string;
-  attributes: object;
-  subAttributes: object;
 }
 
 export interface GetAllProps {
   pagination?: Pagination;
   sorting?: Sorting;
+  description?: string;
   name?: string;
-  categoryId?: string;
-  subcategoryId?: string;
-  companyId?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  maxQuantity?: number;
-  minQuantity?: number;
+  minRating?: number;
 }
 
 const api = axios.create({
@@ -77,20 +62,23 @@ api.interceptors.response.use(
   }
 );
 
-export const getProducts = async (props: GetAllProps | {} = {}) => {
+export const getCategories = async (props: GetAllProps | {} = {}) => {
   try {
-    const response = await api.get<PaginationResult<Product>>("/products", {
-      params: props,
-    });
+    const response = await api.get<PaginationResult<PreviousClient>>(
+      "/previousClients",
+      {
+        params: props,
+      }
+    );
     return response;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getProduct = async (id: string) => {
+export const getPreviousClient = async (id: string) => {
   try {
-    const response = await api.get<Product>(`/products/${id}`);
+    const response = await api.get<PreviousClient>(`/previousClients/${id}`);
     return response;
   } catch (error) {
     console.error(error);
@@ -98,21 +86,13 @@ export const getProduct = async (id: string) => {
   }
 };
 
-export const createProduct = async (product: NewProduct): Promise<boolean> => {
+export const createPreviousClient = async (
+  previousClient: NewPreviousClient
+): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post("/products", product);
-    return response.success as boolean;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-};
-
-export const updateProduct = async (product: NewProduct): Promise<boolean> => {
-  try {
-    const response: ActionResult = await api.put(
-      `/products/${product.id!}`,
-      product
+    const response: ActionResult = await api.post(
+      "/previousClients",
+      previousClient
     );
     return response.success as boolean;
   } catch (error) {
@@ -121,9 +101,24 @@ export const updateProduct = async (product: NewProduct): Promise<boolean> => {
   }
 };
 
-export const deleteProduct = async (id: string): Promise<boolean> => {
+export const updatePreviousClient = async (
+  previousClient: NewPreviousClient
+): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`/products/${id}`);
+    const response: ActionResult = await api.put(
+      `/previousClients/${previousClient.id!}`,
+      previousClient
+    );
+    return response.success as boolean;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const deletePreviousClient = async (id: string): Promise<boolean> => {
+  try {
+    const response: ActionResult = await api.delete(`/previousClients/${id}`);
     return response.success as boolean;
   } catch (error) {
     console.error(error);

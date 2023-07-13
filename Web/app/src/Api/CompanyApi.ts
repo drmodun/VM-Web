@@ -1,46 +1,28 @@
 import axios from "axios";
-import { ActionResult, Pagination, PaginationResult, Sorting } from "./Shared";
-export interface Product {
+
+import { PaginationResult, ActionResult, Pagination, Sorting } from "./Shared";
+
+export interface Company {
   id: string;
   name: string;
-  image: string;
-  price: number;
-  categoryId: string;
-  subcategoryId: string;
-  companyId: string;
+  logo: string;
+  website: string;
   description: string;
-  date: string;
-  attributes: object;
-  subAttributes: object;
-  categoryName: string;
-  subcategoryName: string;
-  companyName: string;
 }
 
-export interface NewProduct {
+export interface NewCompany {
   id?: string;
   name: string;
-  image: string;
-  price: number;
-  categoryId: string;
-  subcategoryId: string;
-  companyId: string;
+  logo: string;
   description: string;
-  attributes: object;
-  subAttributes: object;
+  website: string;
 }
 
 export interface GetAllProps {
   pagination?: Pagination;
   sorting?: Sorting;
+  description?: string;
   name?: string;
-  categoryId?: string;
-  subcategoryId?: string;
-  companyId?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  maxQuantity?: number;
-  minQuantity?: number;
 }
 
 const api = axios.create({
@@ -77,9 +59,9 @@ api.interceptors.response.use(
   }
 );
 
-export const getProducts = async (props: GetAllProps | {} = {}) => {
+export const getCategories = async (props: GetAllProps | {} = {}) => {
   try {
-    const response = await api.get<PaginationResult<Product>>("/products", {
+    const response = await api.get<PaginationResult<Company>>("/companies", {
       params: props,
     });
     return response;
@@ -88,9 +70,9 @@ export const getProducts = async (props: GetAllProps | {} = {}) => {
   }
 };
 
-export const getProduct = async (id: string) => {
+export const getCompany = async (id: string) => {
   try {
-    const response = await api.get<Product>(`/products/${id}`);
+    const response = await api.get<Company>(`/companies/${id}`);
     return response;
   } catch (error) {
     console.error(error);
@@ -98,9 +80,9 @@ export const getProduct = async (id: string) => {
   }
 };
 
-export const createProduct = async (product: NewProduct): Promise<boolean> => {
+export const createCompany = async (company: NewCompany): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post("/products", product);
+    const response: ActionResult = await api.post("/companies", company);
     return response.success as boolean;
   } catch (error) {
     console.error(error);
@@ -108,11 +90,11 @@ export const createProduct = async (product: NewProduct): Promise<boolean> => {
   }
 };
 
-export const updateProduct = async (product: NewProduct): Promise<boolean> => {
+export const updateCompany = async (company: NewCompany): Promise<boolean> => {
   try {
     const response: ActionResult = await api.put(
-      `/products/${product.id!}`,
-      product
+      `/companies/${company.id!}`,
+      company
     );
     return response.success as boolean;
   } catch (error) {
@@ -121,9 +103,9 @@ export const updateProduct = async (product: NewProduct): Promise<boolean> => {
   }
 };
 
-export const deleteProduct = async (id: string): Promise<boolean> => {
+export const deleteCompany = async (id: string): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`/products/${id}`);
+    const response: ActionResult = await api.delete(`/companies/${id}`);
     return response.success as boolean;
   } catch (error) {
     console.error(error);
