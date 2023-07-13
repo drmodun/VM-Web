@@ -77,7 +77,7 @@ api.interceptors.response.use(
     }
   );
 
-export const getProducts = async (props: GetAllProps) => {
+export const getProducts = async (props: GetAllProps | {} = {}) => {
     try{
     const response = await api.get<Product[]>("/products", {params: props});
     return response;
@@ -101,11 +101,34 @@ export const getProduct = async (id: string) => {
 export const createProduct = async (product: NewProduct): Promise<boolean> => {
     try{
     const response: ActionResult = await api.post("/products", product);
-    return response.succeess as boolean;
+    return response.success as boolean;
     }
     catch(error){
         console.error(error);
         return false;
     }
 }
+
+export const updateProduct = async (product: NewProduct): Promise<boolean> => {
+    try{
+    const response: ActionResult = await api.put(`/products/${product.id!}`, product);
+    return response.success as boolean;
+    }
+    catch(error){
+        console.error(error);
+        return false;
+    }
+}
+
+export const deleteProduct = async (id: string): Promise<boolean> => {
+    try{
+    const response: ActionResult = await api.delete(`/products/${id}`);
+    return response.success as boolean;
+    }
+    catch(error){
+        console.error(error);
+        return false;
+    }
+}
+
 

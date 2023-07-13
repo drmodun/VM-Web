@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.Order;
+﻿using Contracts.Requests;
+using Contracts.Requests.Order;
 using Data;
 using Data.Enums;
 using Data.Models;
@@ -51,7 +52,7 @@ namespace Domain.Repositories
 
         public async Task<List<Order>> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)
         {
-            var Orders = _context.Orders
+            var orders = _context.Orders
                 .Include(x => x.User)
                 .Include(x => x.Service)
                 .Where(x => request.ServiceId == null || request.ServiceId == x.ServiceId)
@@ -59,55 +60,50 @@ namespace Domain.Repositories
                 .Where(x => request.Type == null || request.Type == x.Service.ServiceType)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Service.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Service.Price)
-                .OrderBy(x => Guid.NewGuid());
-
+;
             if (request.Sorting != null)
             {
 
-                switch (request.Sorting.SortByDate)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        Orders.ThenBy(x => x.Created);
+                    case SortAttributeType.SortByDeadline:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            orders.OrderBy(x => x.Deadline);
+                        else
+                            orders.OrderByDescending(x => x.Deadline);
                         break;
-                    case SortType.Descending:
-                        Orders.ThenByDescending(x => x.Created);
+                    case SortAttributeType.SortByPrice:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            orders.OrderBy(x => x.Service.Price);
+                        else
+                            orders.OrderByDescending(x => x.Service.Price);
                         break;
-                    default:
+                    
+                    case SortAttributeType.SortByType:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            orders.OrderBy(x => x.Service.ServiceType);
+                        else
+                            orders.OrderByDescending(x => x.Service.ServiceType);
+                        break;           
+                    case SortAttributeType.SortByUpdated:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            orders.OrderBy(x => x.Created);
+                        else
+                            orders.OrderByDescending(x => x.Created);
                         break;
-                }
-
-                switch (request.Sorting.SortByPrice)
-                {
-                    case SortType.Ascending:
-                        Orders.ThenBy(x => x.Service.Price);
-                        break;
-                    case SortType.Descending:
-                        Orders.ThenByDescending(x => x.Service.Price);
-                        break;
-                    default:
-                        break;
-                }
-
-                switch (request.Sorting.SortByType)
-                {
-                    case SortType.Ascending:
-                        Orders.ThenBy(x => x.Service.ServiceType);
-                        break;
-                    case SortType.Descending:
-                        Orders.ThenByDescending(x => x.Service.ServiceType);
-                        break;
-                    default:
-                        break;
+                   
+                   
+                    default: break;
                 }
             }
 
             if (request.Pagination != null)
             {
-                Orders.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                Orders.Take(request.Pagination.PageNumber);
+                orders.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
+                orders.Take(request.Pagination.PageNumber);
             }
 
-            return await Orders.ToListAsync();
+            return await orders.ToListAsync();
         }
 
     }

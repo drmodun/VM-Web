@@ -1,7 +1,9 @@
-﻿using Contracts.Requests.Product;
+﻿using Contracts.Requests;
+using Contracts.Requests.Product;
 using Data;
 using Data.Enums;
 using Data.Models;
+using Domain.Services;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -66,8 +68,7 @@ namespace Domain.Repositories
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice <= x.Price)
                 .Where(x => request.CompanyId == null || request.CompanyId == x.CompanyId)
-                .Where(x => x.Name.Contains(request.Name))
-                .OrderBy(x => Guid.NewGuid());
+                .Where(x => x.Name.Contains(request.Name));
 
             //this is an improvised way to sort
             //not sure if it will work this way
@@ -76,39 +77,64 @@ namespace Domain.Repositories
 
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute) 
                 {
-                    case SortType.Ascending:
-                        products.ThenBy(x => x.Name);
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Name);
+                        else
+                            products.OrderByDescending(x => x.Name);
+                    break;
+                    case SortAttributeType.SortByPrice:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Price);
+                        else
+                            products.OrderByDescending(x => x.Price);
                         break;
-                    case SortType.Descending:
-                        products.ThenByDescending(x => x.Name);
+                        case SortAttributeType.SortByQuantity:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Quantity);
+                        else
+                            products.OrderByDescending(x => x.Quantity);
                         break;
-                    default: break;
+                        case SortAttributeType.SortByCategoryName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Category.Name);
+                        else
+                            products.OrderByDescending(x => x.Name);
+                        break;
+                        case SortAttributeType.SortBySubcategoryName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Subcategory.Name);
+                        else
+                            products.OrderByDescending(x => x.Subcategory.Name);
+                        break;
+                        case SortAttributeType.SortByCompanyName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Company.Name);
+                        else
+                            products.OrderByDescending(x => x.Company.Name);
+                        break;
+                        case SortAttributeType.SortByUpdated:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.UpdatedAt);
+                        else
+                            products.OrderByDescending(x => x.UpdatedAt);
+                        break;
+                        case SortAttributeType.SortByProfit:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Transactions.Count * x.Price);
+                        else
+                            products.OrderByDescending(x => x.Transactions.Count * x.Price);
+                        break;
+                        case SortAttributeType.SortByTotalSold:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products.OrderBy(x => x.Transactions.Count);
+                        else
+                            products.OrderByDescending(x => x.Transactions.Count);
+                        break;
+                        default: break;
                 }
-
-                switch (request.Sorting.SortByQuantity)
-                {
-                    case SortType.Ascending:
-                        products.ThenBy(x => x.Quantity);
-                        break;
-                    case SortType.Descending:
-                        products.ThenByDescending(x => x.Quantity);
-                        break;
-                    default: break;
-                }
-
-                switch (request.Sorting.SortByPrice)
-                {
-                    case SortType.Ascending:
-                        products.ThenBy(x => x.Price);
-                        break;
-                    case SortType.Descending:
-                        products.ThenByDescending(x => x.Price);
-                        break;
-                    default: break;
-                }
-
             }
 
             //after sorting pagination is implemented

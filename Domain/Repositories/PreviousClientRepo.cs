@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.PreviousClients;
+﻿using Contracts.Requests;
+using Contracts.Requests.PreviousClients;
 using Data;
 using Data.Enums;
 using Data.Models;
@@ -50,20 +51,22 @@ namespace Domain.Repositories
             var previousClients = _context.PreviousClients
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .OrderBy(x => Guid.NewGuid());
+;
             //sorting
             //possibly later change logic of sorting to be more dynamic
 
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        previousClients.ThenBy(x => x.Name); break;
-                    case SortType.Descending:
-                        previousClients.ThenByDescending(x => x.Name); break;
-                    default:
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            previousClients.OrderBy(x => x.Name);
+                        else
+                            previousClients.OrderByDescending(x => x.Name);
                         break;
+                 
+                    default: break;
                 }
             }
 

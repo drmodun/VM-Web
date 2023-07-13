@@ -3,6 +3,6 @@
     public class GetAllCategoriesResponse
     {
         public PageResponse? PageInfo { get; set; }
-        public List<GetCategoryResponse> Categories { get; set; }
+        public List<GetCategoryResponse> Items { get; set; }
     }
 }

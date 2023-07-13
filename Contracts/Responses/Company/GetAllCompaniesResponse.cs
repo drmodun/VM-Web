@@ -3,6 +3,6 @@
     public class GetAllCompaniesResponse
     {
         public PageResponse? PageInfo { get; set; }
-        public List<GetCompanyResponse> Companies { get; set; }
+        public List<GetCompanyResponse> Items { get; set; }
     }
 }

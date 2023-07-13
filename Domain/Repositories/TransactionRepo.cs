@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.Transaction;
+﻿using Contracts.Requests;
+using Contracts.Requests.Transaction;
 using Data;
 using Data.Enums;
 using Data.Models;
@@ -58,45 +59,44 @@ namespace Domain.Repositories
                 .Where(x => request.UserId == null || request.UserId == x.UserId)
                 .Where(x => request.Type == null || request.Type == x.Type)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Product.Price * x.Quantity)
-                .Where(x => request.MinPrice == null || request.MinPrice >= x.Product.Price * x.Quantity)
-                .OrderBy(x => Guid.NewGuid());
+                .Where(x => request.MinPrice == null || request.MinPrice >= x.Product.Price * x.Quantity);
 
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByDate)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        transactions.ThenBy(x => x.CreatedAt);
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            transactions.OrderBy(x => x.Product.Name);
+                        else
+                            transactions.OrderByDescending(x => x.Product.Name);
                         break;
-                    case SortType.Descending:
-                        transactions.ThenByDescending(x => x.CreatedAt);
+                    case SortAttributeType.SortByProfit:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            transactions.OrderBy(x => x.Product.Price * x.Quantity);
+                        else
+                            transactions.OrderByDescending(x => x.Product.Price * x.Quantity);
                         break;
-                    default:
+                    case SortAttributeType.SortByQuantity:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            transactions.OrderBy(x => x.Quantity);
+                        else
+                            transactions.OrderByDescending(x => x.Quantity);
                         break;
-                }
-
-                switch (request.Sorting.SortByPrice)
-                {
-                    case SortType.Ascending:
-                        transactions.ThenBy(x => x.Product.Price * x.Quantity);
+                   
+                    case SortAttributeType.SortByUpdated:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            transactions.OrderBy(x => x.CreatedAt);
+                        else
+                            transactions.OrderByDescending(x => x.CreatedAt);
                         break;
-                    case SortType.Descending:
-                        transactions.ThenByDescending(x => x.Product.Price * x.Quantity);
+                    case SortAttributeType.SortByType:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            transactions.OrderBy(x => x.Type);
+                        else
+                            transactions.OrderByDescending(x => x.Type);
                         break;
-                    default:
-                        break;
-                }
-
-                switch (request.Sorting.SortByType)
-                {
-                    case SortType.Ascending:
-                        transactions.ThenBy(x => x.Type);
-                        break;
-                    case SortType.Descending:
-                        transactions.ThenByDescending(x => x.Type);
-                        break;
-                    default:
-                        break;
+                    default: break;
                 }
             }
             if (request.Pagination != null)

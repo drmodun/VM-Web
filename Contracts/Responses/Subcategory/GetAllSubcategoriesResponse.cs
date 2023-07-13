@@ -3,6 +3,6 @@
     public class GetAllSubcategoriesResponse
     {
         public PageResponse? PageInfo { get; set; }
-        public List<GetSubcategoryResponse> Subcategories { get; set; }
+        public List<GetSubcategoryResponse> Items { get; set; }
     }
 }

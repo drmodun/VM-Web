@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.Category;
+﻿using Contracts.Requests;
+using Contracts.Requests.Category;
 using Data;
 using Data.Enums;
 using Data.Models;
@@ -50,20 +51,20 @@ namespace Domain.Repositories
             var categories = _context.Categories
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .OrderBy(x => Guid.NewGuid());
-            //sorting
+;            //sorting
             //possibly later change logic of sorting to be more dynamic
 
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        categories.ThenBy(x => x.Name); break;
-                    case SortType.Descending:
-                        categories.ThenByDescending(x => x.Name); break;
-                    default:
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            categories.OrderBy(x => x.Name);
+                        else
+                            categories.OrderByDescending(x => x.Name);
                         break;
+                    default: break;
                 }
             }
             //dont like the amount of nesting but this is the most painless way to do it

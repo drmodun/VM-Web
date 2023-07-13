@@ -1,7 +1,9 @@
-﻿using Contracts.Requests.Company;
+﻿using Contracts.Requests;
+using Contracts.Requests.Company;
 using Data;
 using Data.Enums;
 using Data.Models;
+using Domain.Services;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -50,20 +52,22 @@ namespace Domain.Repositories
             var companies = _context.Companies
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .OrderBy(x => Guid.NewGuid());
+                ;
             //sorting
             //possibly later change logic of sorting to be more dynamic
 
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        companies.ThenBy(x => x.Name); break;
-                    case SortType.Descending:
-                        companies.ThenByDescending(x => x.Name); break;
-                    default:
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            companies.OrderBy(x => x.Name);
+                        else
+                            companies.OrderByDescending(x => x.Name);
                         break;
+                   
+                    default: break;
                 }
             }
 

@@ -64,11 +64,11 @@ namespace Domain.Services
             : new PageResponse
             {
                 PageNumber = request.Pagination.PageNumber,
-                PageSize = request.Pagination.PageSize
+                PageSize = request.Pagination.PageSize, TotalItems = list.Count, TotalPages = (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize
             };
             return new GetAllPreviousClientsResponse
             {
-                PreviousClients = list,
+                Items = list,
                 PageInfo = pageInfo
             };
         }

@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.Service;
+﻿using Contracts.Requests;
+using Contracts.Requests.Service;
 using Data;
 using Data.Enums;
 using Data.Models;
@@ -50,30 +51,29 @@ namespace Domain.Repositories
             var services = _context.Services
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice)
-                .OrderBy(x => x.ServiceType);
+                .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice);
             //it makes sense to order by type for default
             if (request.Sorting == null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        services.ThenBy(x => x.Name);
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            services.OrderBy(x => x.Name);
+                        else
+                            services.OrderByDescending(x => x.Name);
                         break;
-                    case SortType.Descending:
-                        services.ThenByDescending(x => x.Name);
+                    case SortAttributeType.SortByPrice:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            services.OrderBy(x => x.Price);
+                        else
+                            services.OrderByDescending(x => x.Price);
                         break;
-                    default:
-                        break;
-                }
-
-                switch (request.Sorting.SortByNumberOfPurchases)
-                {
-                    case SortType.Ascending:
-                        services.ThenBy(x => _context.Orders.Where(b => b.ServiceId == x.Id));
-                        break;
-                    case SortType.Descending:
-                        services.ThenByDescending(x => _context.Orders.Where(b => b.ServiceId == x.Id));
+                    case SortAttributeType.SortByTotalSold:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            services.OrderBy(x => x.Orders.Count);
+                        else
+                            services.OrderByDescending(x => x.Orders.Count);
                         break;
                     default: break;
                 }

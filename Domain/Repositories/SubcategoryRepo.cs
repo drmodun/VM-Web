@@ -1,4 +1,5 @@
-﻿using Contracts.Requests.Subcategory;
+﻿using Contracts.Requests;
+using Contracts.Requests.Subcategory;
 using Data;
 using Data.Enums;
 using Data.Models;
@@ -50,44 +51,40 @@ namespace Domain.Repositories
 
         public async Task<List<Subcategory>> GetAllSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)
         {
-            var Subcategories = _context.Subcategories
+            var subcategories = _context.Subcategories
                 .Include(x => x.Category)
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId)
-                .OrderBy(x => Guid.NewGuid());
+                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
             //sorting
             //possibly later change logic of sorting to be more dynamic
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        Subcategories.ThenBy(x => x.Name); break;
-                    case SortType.Descending:
-                        Subcategories.ThenByDescending(x => x.Name); break;
-                    default:
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            subcategories.OrderBy(x => x.Name);
+                        else
+                            subcategories.OrderByDescending(x => x.Name);
                         break;
-                }
-
-                switch (request.Sorting.SortByCategoryName)
-                {
-                    case SortType.Ascending:
-                        Subcategories.ThenBy(x => x.Category.Name);
+                
+                    case SortAttributeType.SortByCategoryName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            subcategories.OrderBy(x => x.Category.Name);
+                        else
+                            subcategories.OrderByDescending(x => x.Name);
                         break;
-                    case SortType.Descending:
-                        Subcategories.ThenByDescending(x => x.Category.Name);
-                        break;
-                    default:
-                        break;
+                   
+                    default: break;
                 }
             }
             if (request.Pagination != null)
             {
-                Subcategories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                Subcategories.Take(request.Pagination.PageSize);
+                subcategories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
+                subcategories.Take(request.Pagination.PageSize);
             }
-            return await Subcategories.ToListAsync(cancellationToken);
+            return await subcategories.ToListAsync(cancellationToken);
 
 
         }

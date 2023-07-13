@@ -1,7 +1,9 @@
-﻿using Contracts.Requests.User;
+﻿using Contracts.Requests;
+using Contracts.Requests.User;
 using Data;
 using Data.Enums;
 using Data.Models;
+using Domain.Services;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -57,42 +59,74 @@ namespace Domain.Repositories
 
         public async Task<User?> GetUser(Guid id, CancellationToken cancellationToken)
         {
-            return await _context.Users.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+            return await _context
+                .Users
+                .Include(x => x.Transactions)
+                .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
         public async Task<List<User>> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
             var users = _context.Users
+                .Include(x => x.Transactions)
+                    .ThenInclude(t => t.Product)
+                .Include(x=>x.Orders)
+                    .ThenInclude(x=>x.Service)
+                    //theese are for some views which will be added later, might make it into another function but I see no point for that right now
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Email == null || x.Email.Contains(request.Email))
-                .Where(x => request.Address == null || x.Address.Contains(request.Address))
-                .OrderBy(x => Guid.NewGuid());
+                .Where(x => request.Address == null || x.Address.Contains(request.Address));
 
             //sorting
             if (request.Sorting != null)
             {
-                switch (request.Sorting.SortByName)
+                switch (request.Sorting.Attribute)
                 {
-                    case SortType.Ascending:
-                        users.ThenBy(x => x.Name);
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Name);
+                        else
+                            users.OrderByDescending(x => x.Name);
                         break;
-                    case SortType.Descending:
-                        users.ThenByDescending(x => x.Name);
+                    case SortAttributeType.SortByQuantity:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Transactions.Count);
+                        else
+                            users.OrderByDescending(x => x.Transactions.Count);
                         break;
-                    default:
-                        break;
-                }
+                   
 
-                switch (request.Sorting.SortByAddress)
-                {
-                    case SortType.Ascending:
-                        users.ThenBy(x => x.Address);
+                    case SortAttributeType.SortByUpdated:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.LastUpdated);
+                        else
+                            users.OrderByDescending(x => x.LastUpdated);
                         break;
-                    case SortType.Descending:
-                        users.ThenByDescending(x => x.Address);
+                    case SortAttributeType.SortByProfit:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Transactions.Sum(t=>t.Product.Price*t.Quantity));
+                        else
+                            users.OrderByDescending(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
                         break;
-                    default:
+                    case SortAttributeType.SortByAddress:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Address);
+                        else
+                            users.OrderByDescending(x => x.Address);
                         break;
+                    case SortAttributeType.SortByAmountOfOrders:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Orders.Count);
+                        else
+                            users.OrderByDescending(x => x.Orders.Count);
+                        break;
+                    case SortAttributeType.SortByOrderProfit:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Orders.Sum(t => t.Service.Price));
+                        else
+                            users.OrderByDescending(x => x.Orders.Sum(t => t.Service.Price));
+                        break;
+                    default: break;
                 }
             }
 
