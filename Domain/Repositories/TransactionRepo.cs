@@ -83,7 +83,7 @@ namespace Domain.Repositories
                         else
                             transactions.OrderByDescending(x => x.Quantity);
                         break;
-                   
+
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
                             transactions.OrderBy(x => x.CreatedAt);

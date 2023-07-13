@@ -3,7 +3,6 @@ using Contracts.Requests.Product;
 using Data;
 using Data.Enums;
 using Data.Models;
-using Domain.Services;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -77,63 +76,63 @@ namespace Domain.Repositories
 
             if (request.Sorting != null)
             {
-                switch (request.Sorting.Attribute) 
+                switch (request.Sorting.Attribute)
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Name);
                         else
                             products.OrderByDescending(x => x.Name);
-                    break;
+                        break;
                     case SortAttributeType.SortByPrice:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Price);
                         else
                             products.OrderByDescending(x => x.Price);
                         break;
-                        case SortAttributeType.SortByQuantity:
+                    case SortAttributeType.SortByQuantity:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Quantity);
                         else
                             products.OrderByDescending(x => x.Quantity);
                         break;
-                        case SortAttributeType.SortByCategoryName:
+                    case SortAttributeType.SortByCategoryName:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Category.Name);
                         else
                             products.OrderByDescending(x => x.Name);
                         break;
-                        case SortAttributeType.SortBySubcategoryName:
+                    case SortAttributeType.SortBySubcategoryName:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Subcategory.Name);
                         else
                             products.OrderByDescending(x => x.Subcategory.Name);
                         break;
-                        case SortAttributeType.SortByCompanyName:
+                    case SortAttributeType.SortByCompanyName:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Company.Name);
                         else
                             products.OrderByDescending(x => x.Company.Name);
                         break;
-                        case SortAttributeType.SortByUpdated:
+                    case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.UpdatedAt);
                         else
                             products.OrderByDescending(x => x.UpdatedAt);
                         break;
-                        case SortAttributeType.SortByProfit:
+                    case SortAttributeType.SortByProfit:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Transactions.Count * x.Price);
                         else
                             products.OrderByDescending(x => x.Transactions.Count * x.Price);
                         break;
-                        case SortAttributeType.SortByTotalSold:
+                    case SortAttributeType.SortByTotalSold:
                         if (request.Sorting.SortType == SortType.Ascending)
                             products.OrderBy(x => x.Transactions.Count);
                         else
                             products.OrderByDescending(x => x.Transactions.Count);
                         break;
-                        default: break;
+                    default: break;
                 }
             }
 

@@ -3,7 +3,6 @@ using Contracts.Requests.User;
 using Data;
 using Data.Enums;
 using Data.Models;
-using Domain.Services;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -70,9 +69,9 @@ namespace Domain.Repositories
             var users = _context.Users
                 .Include(x => x.Transactions)
                     .ThenInclude(t => t.Product)
-                .Include(x=>x.Orders)
-                    .ThenInclude(x=>x.Service)
-                    //theese are for some views which will be added later, might make it into another function but I see no point for that right now
+                .Include(x => x.Orders)
+                    .ThenInclude(x => x.Service)
+                //theese are for some views which will be added later, might make it into another function but I see no point for that right now
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
                 .Where(x => request.Email == null || x.Email.Contains(request.Email))
                 .Where(x => request.Address == null || x.Address.Contains(request.Address));
@@ -94,7 +93,7 @@ namespace Domain.Repositories
                         else
                             users.OrderByDescending(x => x.Transactions.Count);
                         break;
-                   
+
 
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
@@ -104,7 +103,7 @@ namespace Domain.Repositories
                         break;
                     case SortAttributeType.SortByProfit:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Transactions.Sum(t=>t.Product.Price*t.Quantity));
+                            users.OrderBy(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
                         else
                             users.OrderByDescending(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
                         break;

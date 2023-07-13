@@ -3,7 +3,6 @@ using Contracts.Requests.Company;
 using Data;
 using Data.Enums;
 using Data.Models;
-using Domain.Services;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -66,7 +65,7 @@ namespace Domain.Repositories
                         else
                             companies.OrderByDescending(x => x.Name);
                         break;
-                   
+
                     default: break;
                 }
             }

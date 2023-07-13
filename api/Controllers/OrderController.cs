@@ -1,9 +1,7 @@
 ﻿using api.Auth;
 using Contracts.Constants;
 using Contracts.Requests.Order;
-using Contracts.Requests.Transaction;
 using Contracts.Responses.Order;
-using Contracts.Responses.Transaction;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

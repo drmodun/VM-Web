@@ -65,7 +65,7 @@ namespace api.Controllers
         {
             if (request.UserId != HttpContext.GetUserId() && request.UserId != null)
                 return BadRequest("You cannot get transactions from an account that is not yours");
-            request.UserId = HttpContext.GetUserId();  
+            request.UserId = HttpContext.GetUserId();
             var response = await _transactionService.GetAllTransactions(request, cancellationToken);
             return Ok(response);
         }

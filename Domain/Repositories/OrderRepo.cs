@@ -78,21 +78,21 @@ namespace Domain.Repositories
                         else
                             orders.OrderByDescending(x => x.Service.Price);
                         break;
-                    
+
                     case SortAttributeType.SortByType:
                         if (request.Sorting.SortType == SortType.Ascending)
                             orders.OrderBy(x => x.Service.ServiceType);
                         else
                             orders.OrderByDescending(x => x.Service.ServiceType);
-                        break;           
+                        break;
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
                             orders.OrderBy(x => x.Created);
                         else
                             orders.OrderByDescending(x => x.Created);
                         break;
-                   
-                   
+
+
                     default: break;
                 }
             }

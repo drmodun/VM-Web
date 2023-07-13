@@ -68,14 +68,14 @@ namespace Domain.Repositories
                         else
                             subcategories.OrderByDescending(x => x.Name);
                         break;
-                
+
                     case SortAttributeType.SortByCategoryName:
                         if (request.Sorting.SortType == SortType.Ascending)
                             subcategories.OrderBy(x => x.Category.Name);
                         else
                             subcategories.OrderByDescending(x => x.Name);
                         break;
-                   
+
                     default: break;
                 }
             }

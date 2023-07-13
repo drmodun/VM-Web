@@ -65,7 +65,7 @@ namespace Domain.Repositories
                         else
                             previousClients.OrderByDescending(x => x.Name);
                         break;
-                 
+
                     default: break;
                 }
             }

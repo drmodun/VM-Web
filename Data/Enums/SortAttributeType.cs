@@ -1,25 +1,23 @@
-﻿using Data.Enums;
-
-namespace Contracts.Requests
+﻿namespace Contracts.Requests
 {
     public enum SortAttributeType
     {
         //this makes it possible to sort by multiple criteria, but it will always be ba this order
-         SortByName ,
-         SortByQuantity ,
+        SortByName,
+        SortByQuantity,
 
-         SortByPrice ,
+        SortByPrice,
 
-         SortByDeadline ,
+        SortByDeadline,
         SortBySubcategoryName,
-         SortByTotalSold ,
+        SortByTotalSold,
 
-         SortByCategoryName ,
+        SortByCategoryName,
 
-         SortByProfit ,
-         SortByAddress ,
+        SortByProfit,
+        SortByAddress,
 
-         SortByType ,
+        SortByType,
         SortByUpdated,
         SortByCompanyName,
         SortByAmountOfOrders,

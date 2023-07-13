@@ -7,7 +7,7 @@ namespace Contracts.Requests
         public SortAttributeType Attribute { get; set; }
         //public SortAttributeType? Secondary { get; set;} 
         //might add second criteria later but now it is just a pain
-        public SortType SortType { get; set; }  
+        public SortType SortType { get; set; }
 
     }
 }
