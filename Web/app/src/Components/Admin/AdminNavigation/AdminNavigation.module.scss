@@ -1,0 +1,36 @@
+.AdminNavigation {
+  padding: 0 0 0 0;
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fed;
+    z-index: 100;
+    ul{
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        margin: 0;
+        li{
+            font-size: 14px;
+            font-weight: 600;
+            list-style: none;
+            transition: background-color, color 0.1s ease-in-out;
+            padding: 0 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            &:hover{
+                background-color: #fdd;
+                font-weight: 900;
+            }            
+        }
+    }
+}
+
+
