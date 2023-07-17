@@ -31,34 +31,33 @@ const CreateForm = ({ categories, subCatgories, companies }: Props) => {
       return;
     }
     if (description.length > 500 || description.length < 3) {
-        setError("Description is not valid");
-        return;
+      setError("Description is not valid");
+      return;
     }
     if (price < 0) {
-        setError("Price is not valid");
-        return;
+      setError("Price is not valid");
+      return;
     }
     if (quantity < 0) {
-        setError("Quantity is not valid");
-        return;
+      setError("Quantity is not valid");
+      return;
     }
     if (category === "") {
-        setError("Category is not valid");
-        return;
+      setError("Category is not valid");
+      return;
     }
     if (subcategory === "") {
-        setError("Subcategory is not valid");
-        return;
+      setError("Subcategory is not valid");
+      return;
     }
     if (image.length > 500 || image.length < 3) {
-        setError("Image is not valid");
-        return;
+      setError("Image is not valid");
+      return;
     }
     if (company === "") {
-        setError("Company is not valid");
-        return;
+      setError("Company is not valid");
+      return;
     }
-
 
     const product = {
       name,
