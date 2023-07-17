@@ -1,14 +1,3 @@
-export enum AdminInputs {
-    Name,
-    Email,
-    Password,
-    Image,
-    Date,
-    SelectCategory,
-    SelectSubCategory,
-    SelectCompany,
-}
-
 export enum ServiceType {
     Network = 0,
     Computer = 1,

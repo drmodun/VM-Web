@@ -12,7 +12,7 @@ export const LargeTextInput = (props: LargeTextInputProps) => {
       <label htmlFor={props.name}>{props.label}</label>
       <textarea
         name={props.name}
-        className={classes.Input}
+        className={classes.TextArea}
         value={props.value}
         onChange={props.onChange}
       />
