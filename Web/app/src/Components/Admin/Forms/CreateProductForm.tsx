@@ -2,6 +2,7 @@ import classes from "./CreateForm.module.scss";
 import React, { FC, useState } from "react";
 import { Category, CreateProps, Subcategory } from "../../../Types/Interfaces";
 import Inputs from "../FormElements";
+import { NewProduct, createProduct } from "../../../Api/ProductApi";
 
 interface Props {
   categories: Category[];
@@ -23,8 +24,9 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
   const [otherAdditionalInfo, setOtherAdditionalInfo] = useState<object>();
   const [company, setCompany] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name.length > 50 || name.length < 3) {
       setError("Name is not valid");
@@ -59,19 +61,29 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
       return;
     }
 
-    const product = {
+    const product: NewProduct = {
       name,
       description,
       price,
       quantity,
-      category,
+      categoryId: category,
       image,
-      additionalInfo,
-      otherAdditionalInfo,
-      company,
+      attributes: additionalInfo,
+      subAttributes: otherAdditionalInfo!,
+      companyId: company,
+      subcategoryId: subcategory,
     };
-    
+
     console.log(product);
+
+    const response = await createProduct(product);
+    response
+      ? setError(
+          "An error occured during the making of the entity, for more details look in log"
+        )
+      : setSuccess("Product created");
+
+    //later should also delete the fields, but for now it's fine and gonna make seeding easier
   };
 
   function handleCategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -218,6 +230,7 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
         <button type="submit">Create</button>
       </form>
       {error && <p>{error}</p>}
+      {success && <p>{success}</p>}
     </div>
   );
 };

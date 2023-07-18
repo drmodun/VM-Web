@@ -4,11 +4,15 @@ import { SelectInput } from "./SelectInput";
 import { NumberInput } from "./NumberInput";
 import { DecimalNumberInput } from "./DecimalNumberInput";
 import { PictureInput } from "./PictureInput";
+import { EmailInput } from "./EmailInput";
+import { CheckboxInput } from "./CheckboxInput";
 export default {
     TextInput,
     LargeTextInput,
     SelectInput,
     NumberInput,
     DecimalNumberInput,
-    PictureInput
+    PictureInput,
+    EmailInput,
+    CheckboxInput,
 };

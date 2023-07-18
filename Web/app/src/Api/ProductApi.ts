@@ -22,6 +22,7 @@ export interface NewProduct {
   name: string;
   image: string;
   price: number;
+  quantity: number;
   categoryId: string;
   subcategoryId: string;
   companyId: string;
