@@ -1,14 +1,14 @@
 import classes from "./FormElements.module.scss";
 
 interface Option{
-    value: string;
+    value: string | number;
     label: string;
 }
 
 interface SelectInputProps {
   label: string;
   name: string;
-  value: string;
+  value: string | number;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   options: Option[];
 }
