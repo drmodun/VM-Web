@@ -50,7 +50,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     if (error.response.status === 401) {
@@ -65,7 +65,7 @@ api.interceptors.response.use(
 export const getAllServices = async (props?: GetAllProps) => {
   try {
     const response = await api.get<Service[]>("services", { params: props });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -74,7 +74,7 @@ export const getAllServices = async (props?: GetAllProps) => {
 export const getService = async (id: string) => {
   try {
     const response = await api.get<Service>(`services/${id}`);
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -82,8 +82,8 @@ export const getService = async (id: string) => {
 
 export const createService = async (props: NewService): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post("services", props);
-    return response.success;
+    const response = await api.post("services", props);
+    return response.data.success;
   } catch (error) {
     console.error(error);
     return false;
@@ -92,8 +92,8 @@ export const createService = async (props: NewService): Promise<boolean> => {
 
 export const updateService = async (props: Service): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.put(`services/${props.id}`, props);
-    return response.success;
+    const response = await api.put(`services/${props.id}`, props);
+    return response.data.success;
   } catch (error) {
     console.error(error);
     return false;
@@ -102,8 +102,8 @@ export const updateService = async (props: Service): Promise<boolean> => {
 
 export const removeService = async (id: string): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`services/${id}`);
-    return response.success;
+    const response = await api.delete(`services/${id}`);
+    return response.data.success;
   } catch (error) {
     console.error(error);
     return false;

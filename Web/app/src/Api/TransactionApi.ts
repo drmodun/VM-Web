@@ -55,7 +55,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     if (error.response.status === 401) {
@@ -75,7 +75,7 @@ export const getCategories = async (props: GetAllProps | {} = {}) => {
         params: props,
       }
     );
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -84,7 +84,7 @@ export const getCategories = async (props: GetAllProps | {} = {}) => {
 export const getTransaction = async (id: string) => {
   try {
     const response = await api.get<Transaction>(`/transactions/${id}`);
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
     return {};
@@ -95,8 +95,9 @@ export const createTransaction = async (
   transaction: NewTransaction
 ): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post("/transactions", transaction);
-    return response.success as boolean;
+    const response = await api.post("/transactions", transaction);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -107,11 +108,12 @@ export const updateTransaction = async (
   transaction: NewTransaction
 ): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.put(
+    const response = await api.put(
       `/transactions/${transaction.id!}`,
       transaction
     );
-    return response.success as boolean;
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -120,8 +122,9 @@ export const updateTransaction = async (
 
 export const deleteTransaction = async (id: string): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`/transactions/${id}`);
-    return response.success as boolean;
+    const response = await api.delete(`/transactions/${id}`);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;

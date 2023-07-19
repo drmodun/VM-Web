@@ -62,7 +62,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     if (error.response.status === 401) {
@@ -79,7 +79,7 @@ export const getCategories = async (props: GetAllProps | {} = {}) => {
     const response = await api.get<PaginationResult<Order>>("/orders", {
       params: props,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -88,7 +88,7 @@ export const getCategories = async (props: GetAllProps | {} = {}) => {
 export const getOrder = async (id: string) => {
   try {
     const response = await api.get<Order>(`/orders/${id}`);
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
     return {};
@@ -97,8 +97,9 @@ export const getOrder = async (id: string) => {
 
 export const createOrder = async (order: NewOrder): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post("/orders", order);
-    return response.success as boolean;
+    const response = await api.post("/orders", order);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -107,8 +108,9 @@ export const createOrder = async (order: NewOrder): Promise<boolean> => {
 
 export const updateOrder = async (order: UpdateOrder): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.put(`/orders/${order.id!}`, order);
-    return response.success as boolean;
+    const response = await api.put(`/orders/${order.id!}`, order);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -117,8 +119,9 @@ export const updateOrder = async (order: UpdateOrder): Promise<boolean> => {
 
 export const deleteOrder = async (id: string): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`/orders/${id}`);
-    return response.success as boolean;
+    const response = await api.delete(`/orders/${id}`);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;

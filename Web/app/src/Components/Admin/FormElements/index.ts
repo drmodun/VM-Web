@@ -6,6 +6,8 @@ import { DecimalNumberInput } from "./DecimalNumberInput";
 import { PictureInput } from "./PictureInput";
 import { EmailInput } from "./EmailInput";
 import { CheckboxInput } from "./CheckboxInput";
+import { SchemaInput } from "./SchemaInput";
+
 export default {
     TextInput,
     LargeTextInput,
@@ -15,4 +17,5 @@ export default {
     PictureInput,
     EmailInput,
     CheckboxInput,
+    SchemaInput
 };

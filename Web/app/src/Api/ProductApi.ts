@@ -66,7 +66,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     if (error.response.status === 401) {
@@ -83,7 +83,7 @@ export const getProducts = async (props: GetAllProps | {} = {}) => {
     const response = await api.get<PaginationResult<Product>>("/products", {
       params: props,
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -92,7 +92,7 @@ export const getProducts = async (props: GetAllProps | {} = {}) => {
 export const getProduct = async (id: string) => {
   try {
     const response = await api.get<Product>(`/products/${id}`);
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
     return {};
@@ -101,8 +101,9 @@ export const getProduct = async (id: string) => {
 
 export const createProduct = async (product: NewProduct): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post("/products", product);
-    return response.success as boolean;
+    const response = await api.post("/products", product);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -111,11 +112,9 @@ export const createProduct = async (product: NewProduct): Promise<boolean> => {
 
 export const updateProduct = async (product: NewProduct): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.put(
-      `/products/${product.id!}`,
-      product
-    );
-    return response.success as boolean;
+    const response = await api.put(`/products/${product.id!}`, product);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -124,8 +123,9 @@ export const updateProduct = async (product: NewProduct): Promise<boolean> => {
 
 export const deleteProduct = async (id: string): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`/products/${id}`);
-    return response.success as boolean;
+    const response = await api.delete(`/products/${id}`);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;

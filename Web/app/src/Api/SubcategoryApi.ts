@@ -48,7 +48,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
     if (error.response.status === 401) {
@@ -66,7 +66,7 @@ export const getSubcategories = async (props: GetAllProps | {} = {}) => {
       "/subcategories",
       { params: props }
     );
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -75,7 +75,7 @@ export const getSubcategories = async (props: GetAllProps | {} = {}) => {
 export const getSubcategory = async (id: string) => {
   try {
     const response = await api.get<Subcategory>(`/subcategories/${id}`);
-    return response;
+    return response.data;
   } catch (error) {
     console.error(error);
     return {};
@@ -86,11 +86,9 @@ export const createSubcategory = async (
   subcategory: NewSubcategory
 ): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.post(
-      "/subcategories",
-      subcategory
-    );
-    return response.success as boolean;
+    const response = await api.post("/subcategories", subcategory);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -101,11 +99,12 @@ export const updateSubcategory = async (
   subcategory: NewSubcategory
 ): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.put(
+    const response = await api.put(
       `/subcategories/${subcategory.id!}`,
       subcategory
     );
-    return response.success as boolean;
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
@@ -114,8 +113,9 @@ export const updateSubcategory = async (
 
 export const deleteSubcategory = async (id: string): Promise<boolean> => {
   try {
-    const response: ActionResult = await api.delete(`/subcategories/${id}`);
-    return response.success as boolean;
+    const response = await api.delete(`/subcategories/${id}`);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
   } catch (error) {
     console.error(error);
     return false;
