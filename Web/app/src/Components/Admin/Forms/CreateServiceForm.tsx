@@ -66,6 +66,9 @@ export const ServiceForm = () => {
         />
         <button type="submit">Create</button>
       </form>
+      {error && <p className={classes.Error}>{error}</p>}
+      {success && <p className={classes.Success}>{success}</p>}
+      {loading && <p>Loading...</p>}
     </div>
   );
 };

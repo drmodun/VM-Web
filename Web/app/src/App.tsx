@@ -1,14 +1,9 @@
-import './App.css';
+import './App.scss';
 import React from 'react';
+import { Router } from './Components/Router';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Hello World!
-        </p>
-      </header>
-    </div>
+    <Router/>
   );
 }
 

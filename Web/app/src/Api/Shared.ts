@@ -10,7 +10,7 @@ export interface ActionResult {
 
 export interface Sorting {
   field: string;
-  order: string;
+  sortType: string;
 }
 
 export interface Pagination {

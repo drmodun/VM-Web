@@ -1,4 +1,4 @@
-import classes from "./CreateForm.module.scss";
+import classes from "./Forms.module.scss";
 import React, { FC, useState } from "react";
 import { Category, CreateProps, Subcategory } from "../../../Types/Interfaces";
 import Inputs from "../FormElements";

@@ -1,4 +1,4 @@
-import classes from "./DecimalNumberInput.module.scss";
+import classes from "./FormElements.module.scss";
 
 interface DecimalNumberInputProps {
   label: string;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { PaginationResult, ActionResult, Pagination, Sorting } from "./Shared";
+import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl } from "./Shared";
 
 export interface PreviousClient {
   id: string;
@@ -29,7 +29,8 @@ export interface GetAllProps {
 }
 
 const api = axios.create({
-  baseURL: "https://localhost:44336/api/",
+  baseURL: 
+baseUrl ,
   headers: {
     "Content-Type": "application/json",
   },
@@ -53,11 +54,9 @@ api.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    if (error.response.status === 401) {
-      console.log("Unauthorized");
-    } else {
+   //later add auth fail log
       console.log(error);
-    }
+    
     return Promise.reject(error);
   }
 );
