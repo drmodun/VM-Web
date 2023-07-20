@@ -1,15 +1,16 @@
 import { User, getUser } from "../../../../Api/UserApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
-import classes from "./UserPage.module.scss";
-export const UserPage = (id: string) => {
+import classes from "../SingleItemPage.module.scss";
+export const UserPage = () => {
+  const { userId } = useParams();
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const tryGetUser = async () => {
-      const tryUser = await getUser(id);
+      const tryUser = await getUser(userId as string);
       if (tryUser) {
         setUser(tryUser);
       }

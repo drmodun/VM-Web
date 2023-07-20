@@ -24,6 +24,7 @@ export const ItemTable = (props: Props) => {
         {props.important.map((key: string) => {
           return <h3>{key}</h3>;
         })}
+        <h3>Actions</h3>
       </div>
       {props.items.map((item: Item) => {
         return (
@@ -57,7 +58,7 @@ export const ItemTable = (props: Props) => {
                 className={classes.DeleteButton}
                 onClick={() => props.deleteItem?.(item.id)}
               >
-                Delete
+                x
               </button>
             </div>
           </div>

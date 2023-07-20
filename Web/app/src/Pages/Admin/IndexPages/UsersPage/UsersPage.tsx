@@ -150,15 +150,18 @@ export const UsersPage = () => {
         </div>
         <ItemTable
           items={users.map((user) => {
+            const date = new Date(user.lastUpdate);
+            const lastUpdate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
             return {
               id: user.id,
               name: user.name,
               address: user.address,
+              lastUpdate: lastUpdate,
               email: user.email,
             };
           })}
           links={[]}
-          important={["name", "lastUpdated", "email"]}
+          important={["name", "lastUpdate", "email"]}
           deleteItem={handleDeleteUser} //TODO
           type="users"
         />

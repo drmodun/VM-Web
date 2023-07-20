@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import AdminLayout from "./Admin/AdminLayout";
 import UsersPage from "../Pages/Admin/IndexPages/UsersPage";
+import { UserPage } from "../Pages/Admin/SingleItemPages/UserPage/UserPage";
 const ProductPage = () => {
   return <div></div>;
 };
@@ -44,7 +45,7 @@ const router = createBrowserRouter(
 
         <Route path="/admin/users">
           <Route index element={<UsersPage />}></Route>
-          <Route path=":userId" element={<UsersPage />}></Route>
+          <Route path=":userId" element={<UserPage />}></Route>
         </Route>
 
         <Route path="/admin/orders">
