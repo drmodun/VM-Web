@@ -51,19 +51,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-api.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-    //later add auth fail log
-    console.log(error);
-
-    return Promise.reject(error);
-  }
-);
-
 export const getSubcategories = async (props: GetAllProps | {} = {}) => {
   try {
     const response = await api.get<PaginationResult<Subcategory>>(

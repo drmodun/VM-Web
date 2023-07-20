@@ -59,17 +59,6 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-    //later add auth fail log
-    console.log(error);
-
-    return Promise.reject(error);
-  }
-);
 
 export const getCategories = async (props: GetAllProps | {} = {}) => {
   try {

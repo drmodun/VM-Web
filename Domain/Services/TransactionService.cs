@@ -60,13 +60,13 @@ namespace Domain.Services
             var list = transactions.Select(x => _transactionMapper.ToDTO(x)).ToList();
 
 
-            var pageInfo = request.Pagination is null ? null
-            : new PageResponse
+            var pageInfo = 
+            new PageResponse
             {
-                PageNumber = request.Pagination.PageNumber,
-                PageSize = request.Pagination.PageSize,
+                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                             PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
                 TotalItems = list.Count,
-                TotalPages = (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize
+                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
             return new GetAllTransactionsResponse
             {

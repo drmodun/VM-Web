@@ -29,23 +29,24 @@ export const UsersPage = () => {
   const userGetter = async () => {
     setLoading(true);
     const users = await getUsers({
-      name: search,
-      address,
-      email,
-      pagination: {
+      name: search ? search : null,
+      address : address ? address : null,
+      email : email ? email : null,
+      pagination: 
+      {
         page,
-        limit,
+        pageSize: limit,
       },
       sorting: {
         attribute: sorting,
-        type: sortingType,
+        sortType: sortingType,
       },
     });
     console.log(users);
     if (users?.items) {
       setUsers(users.items);
-      setTotalPages(users.pageInfo.totalPages!);
-      setTotalItems(users.pageInfo.totalItems!);
+      setTotalPages(users.pageInfo.totalPages || 1);
+      setTotalItems(users.pageInfo.totalItems || 1);
       setPageInfo(
         `Page ${users.pageInfo.page} of ${users.pageInfo.totalPages!}`
       );

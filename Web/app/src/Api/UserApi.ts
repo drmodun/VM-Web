@@ -51,15 +51,6 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-    console.log(error);
-    return Promise.reject(error);
-  }
-);
 
 export const getUsers = async (params: GetAllProps | {} = {}) => {
   try {
