@@ -44,7 +44,7 @@ export const UserForm = () => {
       return;
     }
 
-    if (phoneNumber.length > 50 || phoneNumber.length < 3) {
+    if (phoneNumber.length > 50 || phoneNumber.length < 3 || isNaN(Number(phoneNumber))) {
       setError("Phone Number is not valid");
       setLoading(false);
       return;

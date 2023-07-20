@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from "./UserPage.module.scss";
+import classes from "../UserPage.module.scss";
 import { SortType, SortAttributeType } from "../../../../Types/Enums";
 import { User, deleteUser, getUser, getUsers } from "../../../../Api/UserApi";
 import ItemTable from "../../../../Components/Admin/ItemTable";
@@ -151,7 +151,7 @@ export const UsersPage = () => {
         <ItemTable
           items={users.map((user) => {
             const date = new Date(user.lastUpdate);
-            const lastUpdate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+            const lastUpdate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
             return {
               id: user.id,
               name: user.name,

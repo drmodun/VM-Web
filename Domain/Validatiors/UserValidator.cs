@@ -13,7 +13,7 @@ namespace Domain.Validatiors
         {
             _context = context;
             var emailCheck = new Regex(@"^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$");
-            var phoneNumberCheck = new Regex(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$");
+            var phoneNumberCheck = new Regex(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,8}$");
 
             //most likely a similar check will be on the fronetned too, but it is better to be safe
             RuleFor(x => x.Email).MustAsync(async (x, cancellationToken) =>

@@ -11,7 +11,8 @@ export const UserPage = () => {
   useEffect(() => {
     const tryGetUser = async () => {
       const tryUser = await getUser(userId as string);
-      tryUser?.lastUpdate && (tryUser.lastUpdate = new Date(tryUser.lastUpdate));
+      tryUser?.lastUpdate &&
+        (tryUser.lastUpdate = new Date(tryUser.lastUpdate));
       if (tryUser) {
         setUser(tryUser);
       }
@@ -24,23 +25,27 @@ export const UserPage = () => {
   }, []);
 
   return (
-    <div className={classes.SingleItemPage}>
-      {user && (
-        <ItemView
-          item={{
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            lastUpdate:  `${user.lastUpdate.getDate()}/${user.lastUpdate.getMonth()}/${user.lastUpdate.getFullYear()}`,
-            address: user.address,
-          }}
-          links={[]}
-        />
-      )}
-      <div className={classes.EditAndDelete}>
-        <span>Edit and delete</span>
-        <Forms.UserForm />
-        <button className={classes.DeleteButton}>Delete</button>
+    <div className={classes.Container}>
+      <div className={classes.SingleItemPage}>
+        {user && (<div className={classes.ItemInfo}>
+            <span>User Info:</span>
+            <ItemView
+            item={{
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              lastUpdate: `${user.lastUpdate.getDate()}/${user.lastUpdate.getMonth()}/${user.lastUpdate.getFullYear()}`,
+              address: user.address,
+            }}
+            links={[]}
+          />
+        </div>
+        )}
+        <div className={classes.EditAndDelete}>
+          <span>Edit and delete</span>
+          <Forms.UserForm />
+          <button className={classes.DeleteButton}>Delete</button>
+        </div>
       </div>
     </div>
   );
