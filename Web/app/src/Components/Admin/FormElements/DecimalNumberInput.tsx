@@ -9,7 +9,7 @@ interface DecimalNumberInputProps {
 
 export const DecimalNumberInput = (props: DecimalNumberInputProps) => {
   return (
-    <div className={classes.Input}>
+    <div className={classes.Element}>
       <label htmlFor={props.name}>{props.label}</label>
       <input
         type="number"

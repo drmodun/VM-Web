@@ -13,10 +13,10 @@ export const EmailInput = ({
   onChange,
 }: EmailInputProps) => {
   return (
-    <div className={classes.TextInputContainer}>
+    <div className={classes.Element}>
       <label htmlFor={name}>{label}</label>
       <input
-        className={classes.TextInput}
+        className={classes.Input}
         type="email"
         name={name}
         value={value}

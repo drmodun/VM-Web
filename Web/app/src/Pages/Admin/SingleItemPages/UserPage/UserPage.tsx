@@ -11,6 +11,7 @@ export const UserPage = () => {
   useEffect(() => {
     const tryGetUser = async () => {
       const tryUser = await getUser(userId as string);
+      tryUser?.lastUpdate && (tryUser.lastUpdate = new Date(tryUser.lastUpdate));
       if (tryUser) {
         setUser(tryUser);
       }
@@ -23,13 +24,14 @@ export const UserPage = () => {
   }, []);
 
   return (
-    <div className={classes.ItemPage}>
+    <div className={classes.SingleItemPage}>
       {user && (
         <ItemView
           item={{
             id: user.id,
             name: user.name,
             email: user.email,
+            lastUpdate:  `${user.lastUpdate.getDate()}/${user.lastUpdate.getMonth()}/${user.lastUpdate.getFullYear()}`,
             address: user.address,
           }}
           links={[]}
