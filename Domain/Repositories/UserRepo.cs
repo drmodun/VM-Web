@@ -87,6 +87,14 @@ namespace Domain.Repositories
                         else
                             users.OrderByDescending(x => x.Name);
                         break;
+
+                    case SortAttributeType.SortByEmail:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            users.OrderBy(x => x.Email);
+                        else
+                            users.OrderByDescending(x => x.Email);
+                        break;
+
                     case SortAttributeType.SortByQuantity:
                         if (request.Sorting.SortType == SortType.Ascending)
                             users.OrderBy(x => x.Transactions.Count);

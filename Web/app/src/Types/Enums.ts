@@ -24,7 +24,6 @@ export enum TransactionType {
 export enum SortAttributeType {
   SortByName,
   SortByQuantity,
-
   SortByPrice,
 
   SortByDeadline,
@@ -35,7 +34,7 @@ export enum SortAttributeType {
 
   SortByProfit,
   SortByAddress,
-
+  SortByEmail,
   SortByType,
   SortByUpdated,
   SortByCompanyName,

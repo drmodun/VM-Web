@@ -9,8 +9,8 @@ export interface ActionResult {
 }
 
 export interface Sorting {
-  field: string;
-  sortType: string;
+  attribute: number;
+  sortType: number;
 }
 
 export interface Pagination {

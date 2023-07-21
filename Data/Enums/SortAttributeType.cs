@@ -16,7 +16,7 @@
 
         SortByProfit,
         SortByAddress,
-
+        SortByEmail,
         SortByType,
         SortByUpdated,
         SortByCompanyName,
