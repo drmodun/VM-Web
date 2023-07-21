@@ -43,6 +43,7 @@ export const UsersPage = () => {
     const users = await getUsers(parameters);
     if (users?.items) {
       setUsers(users.items);
+      console.log(users);
       setTotalPages(users.pageInfo.totalPages || 1);
       setTotalItems(users.pageInfo.totalItems || 1);
       setPageInfo(

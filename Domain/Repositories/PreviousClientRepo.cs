@@ -61,9 +61,9 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            previousClients.OrderBy(x => x.Name);
+                            previousClients = previousClients.OrderBy(x => x.Name);
                         else
-                            previousClients.OrderByDescending(x => x.Name);
+                            previousClients = previousClients.OrderByDescending(x => x.Name);
                         break;
 
                     default: break;
@@ -72,8 +72,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                previousClients.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                previousClients.Take(request.Pagination.PageSize);
+                previousClients = previousClients.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber).Take(request.Pagination.PageSize);
             }
             return await previousClients.ToListAsync(cancellationToken);
 

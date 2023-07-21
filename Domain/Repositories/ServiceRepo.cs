@@ -59,29 +59,28 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            services.OrderBy(x => x.Name);
+                            services = services.OrderBy(x => x.Name);
                         else
-                            services.OrderByDescending(x => x.Name);
+                            services = services.OrderByDescending(x => x.Name);
                         break;
                     case SortAttributeType.SortByPrice:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            services.OrderBy(x => x.Price);
+                            services = services.OrderBy(x => x.Price);
                         else
-                            services.OrderByDescending(x => x.Price);
+                            services = services.OrderByDescending(x => x.Price);
                         break;
                     case SortAttributeType.SortByTotalSold:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            services.OrderBy(x => x.Orders.Count);
+                            services = services.OrderBy(x => x.Orders.Count);
                         else
-                            services.OrderByDescending(x => x.Orders.Count);
+                            services = services.OrderByDescending(x => x.Orders.Count);
                         break;
                     default: break;
                 }
             }
             if (request.Pagination != null)
             {
-                services.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize);
-                services.Take(request.Pagination.PageSize);
+                services = services.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
             }
 
             return await services.ToListAsync(cancellationToken);

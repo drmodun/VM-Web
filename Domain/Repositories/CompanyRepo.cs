@@ -61,9 +61,9 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            companies.OrderBy(x => x.Name);
+                           companies  = companies.OrderBy(x => x.Name);
                         else
-                            companies.OrderByDescending(x => x.Name);
+                           companies  = companies.OrderByDescending(x => x.Name);
                         break;
 
                     default: break;
@@ -72,8 +72,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                companies.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                companies.Take(request.Pagination.PageSize);
+                companies = companies.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber).Take(request.Pagination.PageSize);
             }
             return await companies.ToListAsync(cancellationToken);
 

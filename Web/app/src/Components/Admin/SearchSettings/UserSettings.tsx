@@ -37,8 +37,8 @@ export const UserSearch = ({ search }: Props) => {
             } as Sorting)
           : null,
       pagination: {
-        page: 1,
-        pageSize: 10,
+        page: page,
+        pageSize: limit,
       },
     } as GetAllProps);
   };
@@ -89,8 +89,8 @@ export const UserSearch = ({ search }: Props) => {
           value={sortType}
           options={[
             { value: -1, label: "None" },
-            { value: 1, label: "Ascending" },
-            { value: 2, label: "Descending" },
+            { value: 0, label: "Ascending" },
+            { value: 1, label: "Descending" },
           ]}
           onChange={(e) => setSortType(Number(e.target.value))}
         />

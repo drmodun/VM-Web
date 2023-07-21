@@ -68,28 +68,28 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByDeadline:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            orders.OrderBy(x => x.Deadline);
+                            orders = orders.OrderBy(x => x.Deadline);
                         else
-                            orders.OrderByDescending(x => x.Deadline);
+                            orders = orders.OrderByDescending(x => x.Deadline);
                         break;
                     case SortAttributeType.SortByPrice:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            orders.OrderBy(x => x.Service.Price);
+                            orders = orders.OrderBy(x => x.Service.Price);
                         else
-                            orders.OrderByDescending(x => x.Service.Price);
+                            orders = orders.OrderByDescending(x => x.Service.Price);
                         break;
 
                     case SortAttributeType.SortByType:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            orders.OrderBy(x => x.Service.ServiceType);
+                            orders = orders.OrderBy(x => x.Service.ServiceType);
                         else
-                            orders.OrderByDescending(x => x.Service.ServiceType);
+                            orders = orders.OrderByDescending(x => x.Service.ServiceType);
                         break;
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            orders.OrderBy(x => x.Created);
+                            orders = orders.OrderBy(x => x.Created);
                         else
-                            orders.OrderByDescending(x => x.Created);
+                            orders = orders.OrderByDescending(x => x.Created);
                         break;
 
 
@@ -99,8 +99,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                orders.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                orders.Take(request.Pagination.PageNumber);
+                orders = orders.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber).Take(request.Pagination.PageNumber);
             }
 
             return await orders.ToListAsync();

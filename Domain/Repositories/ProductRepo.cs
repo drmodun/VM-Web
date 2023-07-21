@@ -80,57 +80,57 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Name);
+                            products = products.OrderBy(x => x.Name);
                         else
-                            products.OrderByDescending(x => x.Name);
+                            products = products.OrderByDescending(x => x.Name);
                         break;
                     case SortAttributeType.SortByPrice:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Price);
+                            products = products.OrderBy(x => x.Price);
                         else
-                            products.OrderByDescending(x => x.Price);
+                            products = products.OrderByDescending(x => x.Price);
                         break;
                     case SortAttributeType.SortByQuantity:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Quantity);
+                            products = products.OrderBy(x => x.Quantity);
                         else
-                            products.OrderByDescending(x => x.Quantity);
+                            products = products.OrderByDescending(x => x.Quantity);
                         break;
                     case SortAttributeType.SortByCategoryName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Category.Name);
+                            products = products.OrderBy(x => x.Category.Name);
                         else
-                            products.OrderByDescending(x => x.Name);
+                            products = products.OrderByDescending(x => x.Name);
                         break;
                     case SortAttributeType.SortBySubcategoryName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Subcategory.Name);
+                            products = products.OrderBy(x => x.Subcategory.Name);
                         else
-                            products.OrderByDescending(x => x.Subcategory.Name);
+                            products = products.OrderByDescending(x => x.Subcategory.Name);
                         break;
                     case SortAttributeType.SortByCompanyName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Company.Name);
+                            products = products.OrderBy(x => x.Company.Name);
                         else
-                            products.OrderByDescending(x => x.Company.Name);
+                            products = products.OrderByDescending(x => x.Company.Name);
                         break;
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.UpdatedAt);
+                            products = products.OrderBy(x => x.UpdatedAt);
                         else
-                            products.OrderByDescending(x => x.UpdatedAt);
+                            products = products.OrderByDescending(x => x.UpdatedAt);
                         break;
                     case SortAttributeType.SortByProfit:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Transactions.Count * x.Price);
+                            products = products.OrderBy(x => x.Transactions.Count * x.Price);
                         else
-                            products.OrderByDescending(x => x.Transactions.Count * x.Price);
+                            products = products.OrderByDescending(x => x.Transactions.Count * x.Price);
                         break;
                     case SortAttributeType.SortByTotalSold:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            products.OrderBy(x => x.Transactions.Count);
+                            products = products.OrderBy(x => x.Transactions.Count);
                         else
-                            products.OrderByDescending(x => x.Transactions.Count);
+                            products = products.OrderByDescending(x => x.Transactions.Count);
                         break;
                     default: break;
                 }
@@ -140,8 +140,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1));
-                products.Take(request.Pagination.PageSize);
+                products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
 
             return await products

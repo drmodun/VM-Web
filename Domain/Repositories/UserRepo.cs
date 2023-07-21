@@ -79,59 +79,63 @@ namespace Domain.Repositories
             //sorting
             if (request.Sorting != null)
             {
+                Console.WriteLine("found");
                 switch (request.Sorting.Attribute)
                 {
                     case SortAttributeType.SortByName:
-                        if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Name);
+                        Console.WriteLine("found2");
+                        if (request.Sorting.SortType == SortType.Ascending) { 
+                            users = users.OrderBy(x => x.Name);
+                            Console.WriteLine("found3");
+                            }
                         else
-                            users.OrderByDescending(x => x.Name);
+                            users = users.OrderByDescending(x => x.Name);
                         break;
 
                     case SortAttributeType.SortByEmail:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Email);
+                            users = users.OrderBy(x => x.Email);
                         else
-                            users.OrderByDescending(x => x.Email);
+                            users = users.OrderByDescending(x => x.Email);
                         break;
 
                     case SortAttributeType.SortByQuantity:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Transactions.Count);
+                            users = users.OrderBy(x => x.Transactions.Count);
                         else
-                            users.OrderByDescending(x => x.Transactions.Count);
+                            users = users.OrderByDescending(x => x.Transactions.Count);
                         break;
 
 
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.LastUpdated);
+                            users = users.OrderBy(x => x.LastUpdated);
                         else
-                            users.OrderByDescending(x => x.LastUpdated);
+                            users = users.OrderByDescending(x => x.LastUpdated);
                         break;
                     case SortAttributeType.SortByProfit:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
+                            users = users.OrderBy(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
                         else
-                            users.OrderByDescending(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
+                            users = users.OrderByDescending(x => x.Transactions.Sum(t => t.Product.Price * t.Quantity));
                         break;
                     case SortAttributeType.SortByAddress:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Address);
+                            users = users.OrderBy(x => x.Address);
                         else
-                            users.OrderByDescending(x => x.Address);
+                            users = users.OrderByDescending(x => x.Address);
                         break;
                     case SortAttributeType.SortByAmountOfOrders:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Orders.Count);
+                            users = users.OrderBy(x => x.Orders.Count);
                         else
-                            users.OrderByDescending(x => x.Orders.Count);
+                            users = users.OrderByDescending(x => x.Orders.Count);
                         break;
                     case SortAttributeType.SortByOrderProfit:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            users.OrderBy(x => x.Orders.Sum(t => t.Service.Price));
+                            users = users.OrderBy(x => x.Orders.Sum(t => t.Service.Price));
                         else
-                            users.OrderByDescending(x => x.Orders.Sum(t => t.Service.Price));
+                            users = users.OrderByDescending(x => x.Orders.Sum(t => t.Service.Price));
                         break;
                     default: break;
                 }
@@ -142,8 +146,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1));
-                users.Take(request.Pagination.PageNumber);
+               users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageNumber);
             }
             return await users.ToListAsync(cancellationToken);
         }

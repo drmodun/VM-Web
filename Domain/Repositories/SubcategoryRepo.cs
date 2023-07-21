@@ -64,16 +64,16 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            subcategories.OrderBy(x => x.Name);
+                            subcategories = subcategories.OrderBy(x => x.Name);
                         else
-                            subcategories.OrderByDescending(x => x.Name);
+                            subcategories = subcategories.OrderByDescending(x => x.Name);
                         break;
 
                     case SortAttributeType.SortByCategoryName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            subcategories.OrderBy(x => x.Category.Name);
+                            subcategories = subcategories.OrderBy(x => x.Category.Name);
                         else
-                            subcategories.OrderByDescending(x => x.Name);
+                            subcategories = subcategories.OrderByDescending(x => x.Name);
                         break;
 
                     default: break;
@@ -81,8 +81,7 @@ namespace Domain.Repositories
             }
             if (request.Pagination != null)
             {
-                subcategories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                subcategories.Take(request.Pagination.PageSize);
+                subcategories = subcategories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber).Take(request.Pagination.PageSize);
             }
             return await subcategories.ToListAsync(cancellationToken);
 

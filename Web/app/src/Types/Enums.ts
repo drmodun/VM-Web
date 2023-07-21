@@ -43,7 +43,6 @@ export enum SortAttributeType {
 }
 
 export enum SortType {
-  None = 0,
-  Ascending = 1,
-  Descending = 2,
+  Ascending = 0,
+  Descending = 1,
 }

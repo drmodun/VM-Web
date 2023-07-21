@@ -67,42 +67,41 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            transactions.OrderBy(x => x.Product.Name);
+                            transactions = transactions.OrderBy(x => x.Product.Name);
                         else
-                            transactions.OrderByDescending(x => x.Product.Name);
+                            transactions = transactions.OrderByDescending(x => x.Product.Name);
                         break;
                     case SortAttributeType.SortByProfit:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            transactions.OrderBy(x => x.Product.Price * x.Quantity);
+                            transactions = transactions.OrderBy(x => x.Product.Price * x.Quantity);
                         else
-                            transactions.OrderByDescending(x => x.Product.Price * x.Quantity);
+                            transactions = transactions.OrderByDescending(x => x.Product.Price * x.Quantity);
                         break;
                     case SortAttributeType.SortByQuantity:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            transactions.OrderBy(x => x.Quantity);
+                            transactions = transactions.OrderBy(x => x.Quantity);
                         else
-                            transactions.OrderByDescending(x => x.Quantity);
+                            transactions = transactions.OrderByDescending(x => x.Quantity);
                         break;
 
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            transactions.OrderBy(x => x.CreatedAt);
+                            transactions = transactions.OrderBy(x => x.CreatedAt);
                         else
-                            transactions.OrderByDescending(x => x.CreatedAt);
+                            transactions = transactions.OrderByDescending(x => x.CreatedAt);
                         break;
                     case SortAttributeType.SortByType:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            transactions.OrderBy(x => x.Type);
+                            transactions = transactions.OrderBy(x => x.Type);
                         else
-                            transactions.OrderByDescending(x => x.Type);
+                            transactions = transactions.OrderByDescending(x => x.Type);
                         break;
                     default: break;
                 }
             }
             if (request.Pagination != null)
             {
-                transactions.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber);
-                transactions.Take(request.Pagination.PageNumber);
+                transactions = transactions.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber).Take(request.Pagination.PageNumber);
             }
 
             return await transactions.ToListAsync();
