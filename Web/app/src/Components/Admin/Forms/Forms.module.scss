@@ -2,6 +2,12 @@
   align-self: center;
   margin: 30px 0px;
 }
+.Status{
+  color: black;
+  font-size: 16px;
+  min-height: 20px;
+  margin-top: 10px;
+}
 
 .ProductForm > form {
   display: flex;
@@ -30,6 +36,7 @@
 
 .Form > form {
   display: flex;
+  max-width: 800px;
   flex-direction: column;
   background-color: #d0d0d0;
   padding: 30px 40px;

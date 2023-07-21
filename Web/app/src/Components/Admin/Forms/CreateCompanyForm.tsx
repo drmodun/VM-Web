@@ -9,9 +9,7 @@ export const CompanyForm = () => {
   const [website, setWebsite] = useState<string>("");
   const [logo, setLogo] = useState<string>("");
 
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,12 +19,11 @@ export const CompanyForm = () => {
       website,
       logo,
     };
-    setLoading(true);
+    setStatus("Loading...");
     const response = await createCompany(newCompany);
     response
-      ? setSuccess("Company created successfully")
-      : setError("Something went wrong");
-    setLoading(false);
+      ? setStatus("Company created successfully")
+      : setStatus("Something went wrong");
   };
 
   return (
@@ -59,9 +56,7 @@ export const CompanyForm = () => {
         />
         <button type="submit">Create</button>
       </form>
-        {error && <p>{error}</p>}
-        {success && <p>{success}</p>}
-        {loading && <p>Loading...</p>}
+       <div className={classes.Status}>{status}</div >
     </div>
   );
 };

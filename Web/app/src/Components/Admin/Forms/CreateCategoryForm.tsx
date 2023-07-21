@@ -6,26 +6,24 @@ export const CategoryForm = () => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [schema, setSchema] = useState<{ [key: string]: string }>({});
-  const [error, setError] = useState<string>("");
-    const [success, setSuccess] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("");
 
 
     const handleSumbit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (name.length < 3 || name.length > 20) {
-            setError("Name must be between 3 and 20 characters");
+            setStatus("Error: Name must be between 3 and 20 characters");
             return;
         }
         if (description.length < 3 || description.length > 100) {
-            setError("Description must be between 3 and 100 characters");
+            setStatus("Error: Description must be between 3 and 100 characters");
             return;
         }
         if (Object.keys(schema).length < 1) {
-            setError("Schema must have at least one attribute");
+            setStatus("Error: Schema must have at least one attribute");
             return;
         }
-        setLoading(true);
+        setStatus("Loading...");
         const newCategory: NewCategory = {
             name,
             description,
@@ -34,9 +32,8 @@ export const CategoryForm = () => {
 
         const response = await createCategory(newCategory);
         response
-            ? setSuccess("Category created successfully")
-            : setError("Something went wrong");
-        setLoading(false);
+            ? setStatus("Category created successfully")
+            : setStatus("Something went wrong");
         console.log(name, description, schema);
     }
 
@@ -65,6 +62,7 @@ export const CategoryForm = () => {
       />
       <button type="submit">Create</button>
         </form>
+        <div className={classes.Status}>{status}</div >
     </div>
   );
 };

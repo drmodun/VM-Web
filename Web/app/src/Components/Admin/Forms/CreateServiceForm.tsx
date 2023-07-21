@@ -10,9 +10,7 @@ export const ServiceForm = () => {
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [type, setType] = useState<ServiceType>(ServiceType.Computer);
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,12 +20,11 @@ export const ServiceForm = () => {
       price,
       serviceType: type,
     };
-    setLoading(true);
+    setStatus("Loading...");
     const response = await createService(newService);
     response
-      ? setSuccess("Service created successfully")
-      : setError("Something went wrong");
-    setLoading(false);
+      ? setStatus("Service created successfully")
+      : setStatus("Something went wrong");
   };
 
   return (
@@ -66,9 +63,7 @@ export const ServiceForm = () => {
         />
         <button type="submit">Create</button>
       </form>
-      {error && <p className={classes.Error}>{error}</p>}
-      {success && <p className={classes.Success}>{success}</p>}
-      {loading && <p>Loading...</p>}
+      <div className={classes.Status}>{status}</div >
     </div>
   );
 };

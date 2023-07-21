@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from "../UserPage.module.scss";
+import classes from "../IndexPage.module.scss";
 import { SortType, SortAttributeType } from "../../../../Types/Enums";
 import { User, deleteUser, getUser, getUsers } from "../../../../Api/UserApi";
 import ItemTable from "../../../../Components/Admin/ItemTable";
@@ -10,8 +10,7 @@ import { Item } from "../../../../Components/Admin/ItemTable/ItemTable";
 export const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
   const [search, setSearch] = useState<string>("");
   const [filter, setFilter] = useState<string>("");
   const [sort, setSort] = useState<string>("");
@@ -27,13 +26,12 @@ export const UsersPage = () => {
   const [totalItems, setTotalItems] = useState<number>(0);
 
   const userGetter = async () => {
-    setLoading(true);
+    setStatus("Loading...");
     const users = await getUsers({
       name: search ? search : null,
-      address : address ? address : null,
-      email : email ? email : null,
-      pagination: 
-      {
+      address: address ? address : null,
+      email: email ? email : null,
+      pagination: {
         page,
         pageSize: limit,
       },
@@ -50,11 +48,10 @@ export const UsersPage = () => {
       setPageInfo(
         `Page ${users.pageInfo.page} of ${users.pageInfo.totalPages!}`
       );
-      setSuccess("Users fetched successfully");
+      setStatus("Users fetched successfully");
     } else {
-      setError("Something went wrong");
+      setStatus("Something went wrong");
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -69,9 +66,9 @@ export const UsersPage = () => {
     const result = await deleteUser(id);
     if (result) {
       setUsers(users.filter((user) => user.id !== id));
-      setSuccess("User deleted successfully");
+      setStatus("User deleted successfully");
     } else {
-      setError("Something went wrong");
+      setStatus("Something went wrong");
     }
   };
 
@@ -151,7 +148,9 @@ export const UsersPage = () => {
         <ItemTable
           items={users.map((user) => {
             const date = new Date(user.lastUpdate);
-            const lastUpdate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+            const lastUpdate = `${date.getDate()}/${
+              date.getMonth() + 1
+            }/${date.getFullYear()}`;
             return {
               id: user.id,
               name: user.name,

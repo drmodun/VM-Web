@@ -23,41 +23,40 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
   const [additionalInfo, setAdditionalInfo] = useState<object>({});
   const [otherAdditionalInfo, setOtherAdditionalInfo] = useState<object>();
   const [company, setCompany] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name.length > 50 || name.length < 3) {
-      setError("Name is not valid");
+      setStatus("Name is not valid");
       return;
     }
     if (description.length > 500 || description.length < 3) {
-      setError("Description is not valid");
+      setStatus("Description is not valid");
       return;
     }
     if (price < 0) {
-      setError("Price is not valid");
+      setStatus("Price is not valid");
       return;
     }
     if (quantity < 0) {
-      setError("Quantity is not valid");
+      setStatus("Quantity is not valid");
       return;
     }
     if (category === "") {
-      setError("Category is not valid");
+      setStatus("Category is not valid");
       return;
     }
     if (subcategory === "") {
-      setError("Subcategory is not valid");
+      setStatus("Subcategory is not valid");
       return;
     }
     if (image.length > 500 || image.length < 3) {
-      setError("Image is not valid");
+      setStatus("Image is not valid");
       return;
     }
     if (company === "") {
-      setError("Company is not valid");
+      setStatus("Company is not valid");
       return;
     }
 
@@ -78,10 +77,10 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
 
     const response = await createProduct(product);
     response
-      ? setError(
+      ? setStatus(
           "An error occured during the making of the entity, for more details look in log"
         )
-      : setSuccess("Product created");
+      : setStatus("Product created");
 
     //later should also delete the fields, but for now it's fine and gonna make seeding easier
   };
@@ -229,8 +228,7 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
 
         <button type="submit">Create</button>
       </form>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
+      <div className={classes.Status}>{status}</div >
     </div>
   );
 };

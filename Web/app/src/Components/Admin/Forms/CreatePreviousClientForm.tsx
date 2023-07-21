@@ -12,9 +12,7 @@ export const PreviousClientForm = () => {
   const [website, setWebsite] = useState<string>("");
   const [logo, setLogo] = useState<string>("");
   const [rating, setRating] = useState<number>(0);
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,12 +23,11 @@ export const PreviousClientForm = () => {
       image: logo,
       rating,
     };
-    setLoading(true);
+    setStatus("Loading...");
     const response = await createPreviousClient(newPreviousClient);
     response
-      ? setSuccess("Company created successfully")
-      : setError("Something went wrong");
-    setLoading(false);
+      ? setStatus("Company created successfully")
+      : setStatus("Something went wrong");
   };
 
   return (
@@ -69,9 +66,7 @@ export const PreviousClientForm = () => {
         />
         <button type="submit">Create</button>
       </form>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
-      {loading && <p>Loading...</p>}
+      <div className={classes.Status}>{status}</div >
     </div>
   );
 };
