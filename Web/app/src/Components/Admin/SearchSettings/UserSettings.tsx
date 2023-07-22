@@ -29,17 +29,10 @@ export const UserSearch = ({ search }: Props) => {
       name,
       email,
       address,
-      sorting:
-        sortBy !== -1 && sortType !== -1
-          ? ({
-              attribute: sortBy,
-              sortType,
-            } as Sorting)
-          : null,
-      pagination: {
-        page: page,
-        pageSize: limit,
-      },
+      "Sorting.Attribute": (sortBy!==-1 && sortType !== -1) ? sortBy : undefined,
+      "Sorting.SortType": (sortBy!==-1 && sortType !== -1) ? sortType : undefined,
+      "Pagination.PageNumber": page,
+      "Pagination.PageSize": limit,
     } as GetAllProps);
   };
 

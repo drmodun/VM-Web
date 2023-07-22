@@ -9,13 +9,13 @@ export interface ActionResult {
 }
 
 export interface Sorting {
-  attribute: number;
-  sortType: number;
+  Attribute: number;
+  SortType: number;
 }
 
 export interface Pagination {
-  page: number;
-  pageSize: number;
+  Page: number;
+  PageSize: number;
 }
 
 export interface PageInfo {

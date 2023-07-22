@@ -72,7 +72,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-                companies = companies.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageNumber).Take(request.Pagination.PageSize);
+                companies = companies.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
             }
             return await companies.ToListAsync(cancellationToken);
 

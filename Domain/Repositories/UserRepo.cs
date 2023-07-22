@@ -146,7 +146,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-               users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageNumber);
+               users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
             return await users.ToListAsync(cancellationToken);
         }
