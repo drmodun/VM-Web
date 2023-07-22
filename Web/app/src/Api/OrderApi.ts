@@ -28,8 +28,10 @@ export interface UpdateOrder {
 }
 
 export interface GetAllProps {
-  pagination?: Pagination;
-  sorting?: Sorting;
+ "Pagination.PageNumber"? : number;
+  "Pagination.PageSize"? : number;
+  "Sorting.Attribute"? : number;
+  "Sorting.SortType"? : number;
   maxPrice?: number;
   minPrice?: number;
   userId?: string;

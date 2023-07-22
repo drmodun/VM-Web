@@ -7,6 +7,7 @@ import {
   Sorting,
   baseUrl,
 } from "./Shared";
+import { Indexable } from "../Types/Interfaces";
 
 export interface Subcategory {
   id: string;
@@ -19,14 +20,16 @@ export interface Subcategory {
 export interface NewSubcategory {
   id?: string;
   name: string;
-  subSchema: object;
+  subSchema: Indexable;
   description: string;
   categoryId: string;
 }
 
 export interface GetAllProps {
-  pagination?: Pagination;
-  sorting?: Sorting;
+ "Pagination.PageNumber"? : number;
+  "Pagination.PageSize"? : number;
+  "Sorting.Attribute"? : number;
+  "Sorting.SortType"? : number;
   description?: string;
   name?: string;
   categoryId?: string;

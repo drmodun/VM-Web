@@ -32,8 +32,10 @@ export interface NewProduct {
 }
 
 export interface GetAllProps {
-  pagination?: Pagination;
-  sorting?: Sorting;
+ "Pagination.PageNumber"? : number;
+  "Pagination.PageSize"? : number;
+  "Sorting.Attribute"? : number;
+  "Sorting.SortType"? : number;
   name?: string;
   categoryId?: string;
   subcategoryId?: string;

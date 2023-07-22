@@ -96,7 +96,7 @@ export const updateUser = async (user: User): Promise<boolean> => {
 
 export const deleteUser = async (id: string): Promise<boolean> => {
   try {
-    const response = await api.delete(`/users/${id}`);
+    const response = await api.delete(`/admin/users/${id}`);
     return response.data.success;
   } catch (error) {
     console.error(error);

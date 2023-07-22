@@ -22,3 +22,7 @@ export interface Company {
     name: string;
     image: string;
 }
+
+export interface Indexable{
+    [key: string]: string | number;
+}

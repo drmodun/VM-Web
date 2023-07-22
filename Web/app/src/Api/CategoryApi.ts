@@ -1,11 +1,12 @@
 import axios from "axios";
 
-import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl } from "./Shared";
+import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl, jwt } from "./Shared";
+import { Indexable } from "../Types/Interfaces";
 
 export interface Category {
   id: string;
   name: string;
-  schema: object;
+  schema: Indexable;
   description: string;
 }
 
@@ -17,8 +18,10 @@ export interface NewCategory {
 }
 
 export interface GetAllProps {
-  pagination?: Pagination;
-  sorting?: Sorting;
+ "Pagination.PageNumber"? : number;
+  "Pagination.PageSize"? : number;
+  "Sorting.Attribute"? : number;
+  "Sorting.SortType"? : number;
   description?: string;
   name?: string;
 }
@@ -32,7 +35,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = jwt;
     if (token && ["post", "put", "delete"].includes(config.method || "")) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -62,7 +65,7 @@ export const getCategory = async (id: string) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return {};
+    return null;
   }
 };
 

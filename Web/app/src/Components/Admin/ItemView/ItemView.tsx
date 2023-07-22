@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 //still have to decide if I keep ids visible or not
-
 interface Props {
   item: Item;
   links: LinkableItem[];
+  schema?: Item[];
 }
 
 interface Item {

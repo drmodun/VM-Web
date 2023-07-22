@@ -72,10 +72,10 @@ export const UsersPage = () => {
   //TODO: add filters and sorting
 
   return (
-    <div className={classes.UsersPage}>
+    <div className={classes.Page}>
       <h1>Users</h1>
       <p>The page where you can edit, view, delete and create users</p>
-      <div className={classes.UserPageContainer}>
+      <div className={classes.PageContainer}>
         <ItemTable
           items={users.map((user) => {
             const date = new Date(user.lastUpdate);

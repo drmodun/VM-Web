@@ -1,2 +1,6 @@
 import { UserSearch } from "./UserSettings";
-export default {UserSearch};
+import { CategorySearch } from "./CategorySettings";
+export default {
+    UserSearch,
+    CategorySearch
+};

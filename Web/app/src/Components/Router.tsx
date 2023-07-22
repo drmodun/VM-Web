@@ -7,6 +7,8 @@ import {
 import AdminLayout from "./Admin/AdminLayout";
 import UsersPage from "../Pages/Admin/IndexPages/UsersPage";
 import { UserPage } from "../Pages/Admin/SingleItemPages/UserPage/UserPage";
+import CategoriesPage from "../Pages/Admin/IndexPages/CategoriesPage";
+import { CategoryPage } from "../Pages/Admin/SingleItemPages/CategoryPage/CategoryPage";
 const ProductPage = () => {
   return <div></div>;
 };
@@ -29,8 +31,8 @@ const router = createBrowserRouter(
         </Route>
 
         <Route path="/admin/categories">
-          <Route index element={<ProductsPage />}></Route>
-          <Route path=":categoryId" element={<ProductPage />}></Route>
+          <Route index element={<CategoriesPage />}></Route>
+          <Route path=":categoryId" element={<CategoryPage />}></Route>
         </Route>
 
         <Route path="/admin/subcategories">

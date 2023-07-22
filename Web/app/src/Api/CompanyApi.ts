@@ -25,8 +25,10 @@ export interface NewCompany {
 }
 
 export interface GetAllProps {
-  pagination?: Pagination;
-  sorting?: Sorting;
+ "Pagination.PageNumber"? : number;
+  "Pagination.PageSize"? : number;
+  "Sorting.Attribute"? : number;
+  "Sorting.SortType"? : number;
   description?: string;
   name?: string;
 }

@@ -29,8 +29,10 @@ export interface NewTransaction {
 }
 
 export interface GetAllProps {
-  pagination?: Pagination;
-  sorting?: Sorting;
+ "Pagination.PageNumber"? : number;
+  "Pagination.PageSize"? : number;
+  "Sorting.Attribute"? : number;
+  "Sorting.SortType"? : number;
   minPrice?: number;
   maxPrice?: number;
   userId?: string;
