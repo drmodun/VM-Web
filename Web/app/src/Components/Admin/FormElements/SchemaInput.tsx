@@ -54,7 +54,7 @@ export const SchemaInput = (props: SchemaInputProps) => {
             </div>
           );
         })}
-        <button
+        <button type="button"
           className={classes.AddButton}
           onClick={() => {
             const newSchema = { ...props.value };

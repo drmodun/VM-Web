@@ -22,7 +22,9 @@
         width: 100%;
         margin-bottom: 10px;
         h3{
-            width: 100px;
+            width: 200px;
+            height: fit-content;
+            word-wrap: break-word;
             font-weight: bold;
         }
         .AttributeValue{
