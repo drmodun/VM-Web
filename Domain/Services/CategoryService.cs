@@ -61,11 +61,11 @@ namespace Domain.Services
             var list = categories.Select(x => _categoryMapper.ToDTO(x)).ToList();
 
 
-            var pageInfo = 
+            var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                             PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
                 TotalItems = list.Count,
                 TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };

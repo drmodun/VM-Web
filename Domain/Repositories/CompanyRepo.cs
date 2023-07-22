@@ -61,9 +61,9 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         if (request.Sorting.SortType == SortType.Ascending)
-                           companies  = companies.OrderBy(x => x.Name);
+                            companies = companies.OrderBy(x => x.Name);
                         else
-                           companies  = companies.OrderByDescending(x => x.Name);
+                            companies = companies.OrderByDescending(x => x.Name);
                         break;
 
                     default: break;

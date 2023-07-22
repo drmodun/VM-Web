@@ -84,10 +84,11 @@ namespace Domain.Repositories
                 {
                     case SortAttributeType.SortByName:
                         Console.WriteLine("found2");
-                        if (request.Sorting.SortType == SortType.Ascending) { 
+                        if (request.Sorting.SortType == SortType.Ascending)
+                        {
                             users = users.OrderBy(x => x.Name);
                             Console.WriteLine("found3");
-                            }
+                        }
                         else
                             users = users.OrderByDescending(x => x.Name);
                         break;
@@ -146,7 +147,7 @@ namespace Domain.Repositories
 
             if (request.Pagination != null)
             {
-               users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+                users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
             return await users.ToListAsync(cancellationToken);
         }
