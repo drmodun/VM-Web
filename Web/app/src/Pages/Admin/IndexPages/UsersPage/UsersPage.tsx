@@ -21,6 +21,12 @@ export const UsersPage = () => {
   const [pageInfo, setPageInfo] = useState<string>("");
   const [totalItems, setTotalItems] = useState<number>(0);
 
+  //decide wether filters and sorting get reset on page change
+
+  const reload = async() => {
+    userGetter();
+  };
+
   const userGetter = async () => {
     setStatus("Loading...");
     const users = await getUsers();
@@ -115,7 +121,8 @@ export const UsersPage = () => {
         <div className={classes.UserPageCreate}>
           <h2>Create User</h2>
           <Forms.UserForm
-            isEdit={false} 
+            isEdit={false}
+            reload={reload} 
            />
         </div>
       </div>

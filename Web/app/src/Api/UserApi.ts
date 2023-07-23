@@ -85,6 +85,8 @@ export const createUser = async (user: NewUser): Promise<boolean> => {
   }
 };
 
+//TODO: Upadte user apis with new constracts and stuff, also try to make teh editing process make more sense
+
 export const updateUser = async (user: NewUser): Promise<boolean> => {
   try {
     const response = await api.put(`/admin/users/${user.id}`, user);

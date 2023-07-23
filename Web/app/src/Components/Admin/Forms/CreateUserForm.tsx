@@ -6,10 +6,11 @@ import classes from "./Forms.module.scss";
 interface Props {
   isEdit: boolean;
   item?: User | null;
+  reload: Function;
 }
 
 
-export const UserForm = ({isEdit, item} : Props) => {
+export const UserForm = ({isEdit, item, reload} : Props) => {
   const [name, setName] = useState<string>(item?.name || "");
   const [email, setEmail] = useState<string>(item?.email || "");
   const [password, setPassword] = useState<string>("");
@@ -70,8 +71,10 @@ export const UserForm = ({isEdit, item} : Props) => {
     : await updateUser(newUser)
     ;
     response
-      ? setStatus("User created successfully")
+      ? 
+        setStatus("User" + isEdit ? "edited" : "created" +  "successfully")
       : setStatus("User creation failed");
+    response && reload();
   };
 
   return (

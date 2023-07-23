@@ -8,7 +8,10 @@ export const UserPage = () => {
   const { userId } = useParams();
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
+  const reload = async () => {
+    tryGetUser();
+  }
+
     const tryGetUser = async () => {
       const tryUser = await getUser(userId as string);
       tryUser?.lastUpdate &&
@@ -17,6 +20,7 @@ export const UserPage = () => {
         setUser(tryUser);
       }
     };
+  useEffect(() => {
     tryGetUser();
 
     // fetch user data
@@ -46,7 +50,9 @@ export const UserPage = () => {
           { user &&
             <Forms.UserForm
           isEdit={true}
+          reload={reload}
           item={user}
+
            />}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
