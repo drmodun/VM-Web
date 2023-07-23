@@ -34,7 +34,7 @@ export const UserPage = () => {
               id: user.id,
               name: user.name,
               email: user.email,
-              lastUpdate: `${user.lastUpdate.getDate()}/${user.lastUpdate.getMonth()}/${user.lastUpdate.getFullYear()}`,
+              lastUpdate: `${user.lastUpdate.getDate()}/${user.lastUpdate.getMonth() + 1}/${user.lastUpdate.getFullYear()}`,
               address: user.address,
             }}
             links={[]}

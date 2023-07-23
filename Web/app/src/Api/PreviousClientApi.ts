@@ -53,10 +53,10 @@ api.interceptors.request.use(
 
 
 
-export const getCategories = async (props: GetAllProps | {} = {}) => {
+export const getPreviousClients = async (props: GetAllProps | {} = {}) => {
   try {
     const response = await api.get<PaginationResult<PreviousClient>>(
-      "/previousClients",
+      "/previous-clients",
       {
         params: props,
       }
@@ -69,11 +69,11 @@ export const getCategories = async (props: GetAllProps | {} = {}) => {
 
 export const getPreviousClient = async (id: string) => {
   try {
-    const response = await api.get<PreviousClient>(`/previousClients/${id}`);
+    const response = await api.get<PreviousClient>(`/previous-clients/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
-    return {};
+    return null;
   }
 };
 
@@ -81,7 +81,7 @@ export const createPreviousClient = async (
   previousClient: NewPreviousClient
 ): Promise<boolean> => {
   try {
-    const response = await api.post("/previousClients", previousClient);
+    const response = await api.post("/previous-clients", previousClient);
     const result = response.data as ActionResult;
     return result.success as boolean;
   } catch (error) {
@@ -95,7 +95,7 @@ export const updatePreviousClient = async (
 ): Promise<boolean> => {
   try {
     const response = await api.put(
-      `/previousClients/${previousClient.id!}`,
+      `/previous-clients/${previousClient.id!}`,
       previousClient
     );
     const result = response.data as ActionResult;
@@ -108,7 +108,7 @@ export const updatePreviousClient = async (
 
 export const deletePreviousClient = async (id: string): Promise<boolean> => {
   try {
-    const response = await api.delete(`/previousClients/${id}`);
+    const response = await api.delete(`/previous-clients/${id}`);
     const result = response.data as ActionResult;
     return result.success as boolean;
   } catch (error) {

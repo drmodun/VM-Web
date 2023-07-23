@@ -26,13 +26,13 @@ export const PreviousClientForm = () => {
     setStatus("Loading...");
     const response = await createPreviousClient(newPreviousClient);
     response
-      ? setStatus("Company created successfully")
+      ? setStatus("Previous Client created successfully")
       : setStatus("Something went wrong");
   };
 
   return (
-    <div className={classes.FormContainer}>
-      <h1>Create Company</h1>
+    <div className={classes.Form}>
+      <h1>Create Previous Client</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
           label="Name"

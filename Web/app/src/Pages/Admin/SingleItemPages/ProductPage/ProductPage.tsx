@@ -37,7 +37,7 @@ export const ProductPage = () => {
         tempValue["companyName"] = tryProduct.companyName;
         tempValue[
           "date"
-        ] = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+        ] = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
         tempValue["description"] = tryProduct.description;
         tempValue["price"] = tryProduct.price;
         Object.keys(tryProduct.attributes).forEach((key: string) => {

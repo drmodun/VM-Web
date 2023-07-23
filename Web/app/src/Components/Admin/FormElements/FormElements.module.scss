@@ -26,9 +26,9 @@
     max-width: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: center ;
+    justify-content: center;
     align-items: flex-start;
-    >select{
+    > select {
         width: 100%;
         height: 30px;
         border: 1px solid #ccc;
@@ -116,21 +116,21 @@
     }
 }
 
-.SchemaContainer{
+.SchemaContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
-    >.SchemaAttribute{
+    > .SchemaAttribute {
         display: flex;
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
         align-items: flex-start;
-        Input{
+        Input {
             align-self: center;
         }
-        .RemoveButton{
+        .RemoveButton {
             height: 30px;
             width: 30px;
             background-color: crimson;
@@ -143,12 +143,12 @@
             margin-right: 5px;
             cursor: pointer;
             &:hover {
-                background-color:darkred;
+                background-color: darkred;
                 color: #fff;
             }
         }
     }
-    .AddButton{
+    .AddButton {
         width: 100%;
         height: 30px;
         background-color: #231323;
@@ -160,7 +160,7 @@
         border: 1px solid #ccc;
         cursor: pointer;
         &:hover {
-            background-color:darkblue;
+            background-color: darkblue;
             color: #fff;
         }
     }
