@@ -1,6 +1,12 @@
 import classes from "./Forms.module.scss";
-import React, { FC, useState } from "react";
-import { Category, Company, CreateProps, Subcategory } from "../../../Types/Interfaces";
+import React, { FC, useState, useEffect } from "react";
+import {
+  Category,
+  Company,
+  CreateProps,
+  Indexable,
+  Subcategory,
+} from "../../../Types/Interfaces";
 import Inputs from "../FormElements";
 import { NewProduct, createProduct } from "../../../Api/ProductApi";
 
@@ -15,15 +21,50 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
-  const [category, setCategory] = useState<string>("");
-  const [subcategory, setSubcategory] = useState<string>("");
+  const [category, setCategory] = useState<string>(
+    categories[0] ? categories[0].id : ""
+  );
+  const [subcategory, setSubcategory] = useState<string>(
+    subCatgories[0] ? subCatgories[0].id : ""
+  );
   const [schema, setSchema] = useState({});
   const [subSchema, setSubSchema] = useState({});
   const [image, setImage] = useState<string>("");
-  const [additionalInfo, setAdditionalInfo] = useState<object>({});
-  const [otherAdditionalInfo, setOtherAdditionalInfo] = useState<object>();
-  const [company, setCompany] = useState<string>("");
+  const [additionalInfo, setAdditionalInfo] = useState<Indexable>({});
+  const [otherAdditionalInfo, setOtherAdditionalInfo] = useState<Indexable>({});
+  const [company, setCompany] = useState<string>(
+    companies[0] ? companies[0].id : ""
+  );
   const [status, setStatus] = useState<string>("");
+
+  useEffect(() => {
+    const subcategory = subCatgories.filter((sub) => {
+      return sub.categoryId === categories[0]?.id;
+    })[0]
+      ? subCatgories.filter((sub) => {
+          return sub.categoryId === categories[0]?.id;
+        })[0]
+      : null;
+    const schema = categories[0] ? categories[0].schema : {};
+    const tempAdditionalInfo = {} as Indexable;
+    Object.keys(schema).forEach((key: string) => {
+      tempAdditionalInfo[key] = "";
+    });
+    const tempOtherAdditionalInfo = {} as Indexable;
+    Object.keys(subcategory ? subcategory.subSchema : {}).forEach(
+      (key: string) => {
+        tempOtherAdditionalInfo[key] = "";
+      }
+    );
+    setCategory(categories[0] ? categories[0].id : "");
+    setSchema(categories[0] ? categories[0].schema : {});
+    setSubcategory(subcategory ? subcategory.id : "");
+    setSubSchema(subcategory ? subcategory.subSchema : {});
+    setCompany(companies[0] ? companies[0].id : "");
+    setAdditionalInfo(tempAdditionalInfo);
+    setOtherAdditionalInfo(tempOtherAdditionalInfo);
+  }, [categories, subCatgories, companies]);
+  //TODO: think of a better way to do this, now it resets on every new category
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,7 +117,7 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
     console.log(product);
 
     const response = await createProduct(product);
-    response
+    response!
       ? setStatus(
           "An error occured during the making of the entity, for more details look in log"
         )
@@ -87,36 +128,46 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
 
   function handleCategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
+    if (e.target.value === category) {
+      return;
+    }
+    const tempSchema = categories.find(
+      (category: Category) => category.id === e.target.value
+    )?.schema!;
     setCategory(e.target.value);
-    setSchema(
-      categories.find((category: Category) => category.id === e.target.value)!
+    setSchema(tempSchema);
+    const tempSubcategory = subCatgories.find(
+      (subcategory: Subcategory) => subcategory.categoryId === e.target.value
     );
-    const subcategoryChange: boolean =
-      subCatgories.find((sub: Subcategory) => sub.id === subcategory) != null;
-    setSubcategory((prev) => (subcategoryChange ? prev : ""));
-    setSubSchema((prev) => (subcategoryChange ? prev : {}));
-    setAdditionalInfo((prev) =>
-      subcategoryChange
-        ? prev
-        : Object.keys(schema).map((key: string) => {
-            return { [key]: "" };
-          })
-    );
+    setSubcategory(tempSubcategory?.id!);
+    setSubSchema(tempSubcategory?.subSchema!);
+    const tempAdditionalInfo = {} as Indexable;
+    Object.keys(tempSchema).forEach((key: string) => {
+      tempAdditionalInfo[key] = "";
+    });
+    setAdditionalInfo(tempAdditionalInfo);
+    const tempOtherAdditionalInfo = {} as Indexable;
+    Object.keys(tempSubcategory?.subSchema!).forEach((key: string) => {
+      tempOtherAdditionalInfo[key] = "";
+    });
+    setOtherAdditionalInfo(tempOtherAdditionalInfo);
   }
 
   function handleSubcategoryChange(e: React.ChangeEvent<HTMLSelectElement>) {
     e.preventDefault();
+    if (e.target.value === subcategory) {
+      return;
+    }
+    const tempSubSchema = subCatgories.find(
+      (subcategory: Subcategory) => subcategory.id === e.target.value
+    )!.subSchema;
     setSubcategory(e.target.value);
-    setSubSchema(
-      subCatgories.find(
-        (subcategory: Subcategory) => subcategory.id === e.target.value
-      )!.subSchema
-    );
-    setOtherAdditionalInfo(
-      Object.keys(subSchema).map((key: string) => {
-        return { [key]: "" };
-      })
-    );
+    setSubSchema(tempSubSchema);
+    const tempOtherAdditionalInfo = {} as Indexable;
+    Object.keys(tempSubSchema).forEach((key: string) => {
+      tempOtherAdditionalInfo[key] = "";
+    });
+    setOtherAdditionalInfo(tempOtherAdditionalInfo);
   }
   return (
     <div className={classes.Form}>
@@ -140,6 +191,12 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
           onChange={(e) => setPrice(Number(e.target.value))}
         />
 
+        <Inputs.TextInput
+          label="Image"
+          name="image"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+        />
         <Inputs.NumberInput
           label="Quantity"
           name="quantity"
@@ -170,14 +227,6 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
               label: sub.name,
             }))}
         />
-
-        <Inputs.TextInput
-          label="Image"
-          name="image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-
         <Inputs.SelectInput
           label="Company"
           name="company"
@@ -188,13 +237,14 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
             label: company.name,
           }))}
         />
-        {Object.keys(schema).map((key: string, index: number) => {
+
+        {Object.keys(schema).map((key: string) => {
           return (
             <Inputs.TextInput
               key={key}
               label={key}
               name={key}
-              value={additionalInfo ? Object.keys(additionalInfo)[index] : ""}
+              value={additionalInfo ? additionalInfo[key] : ""}
               onChange={(e) =>
                 setAdditionalInfo((prev) => ({
                   ...prev,
@@ -205,19 +255,15 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
           );
         })}
 
-        {Object.keys(subSchema).map((key: string, index: number) => {
+        {Object.keys(subSchema).map((key: string) => {
           return (
             <Inputs.TextInput
               key={key}
               label={key}
               name={key}
-              value={
-                otherAdditionalInfo
-                  ? Object.keys(otherAdditionalInfo)[index]
-                  : ""
-              }
+              value={otherAdditionalInfo ? otherAdditionalInfo[key] : ""}
               onChange={(e) =>
-                setAdditionalInfo((prev) => ({
+                setOtherAdditionalInfo((prev) => ({
                   ...prev,
                   [key]: e.target.value,
                 }))
@@ -228,7 +274,7 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
 
         <button type="submit">Create</button>
       </form>
-      <div className={classes.Status}>{status}</div >
+      <div className={classes.Status}>{status}</div>
     </div>
   );
 };

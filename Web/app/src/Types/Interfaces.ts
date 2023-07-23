@@ -14,7 +14,9 @@ export interface Category {
 export interface Subcategory {
     id: string;
     name: string;
+    description: string;
     categoryId: string;
+    categoryName: string;
     subSchema: Indexable;
 }
 

@@ -15,10 +15,12 @@ import { CompaniesPage } from "../Pages/Admin/IndexPages/CompaniesPage/Companies
 import { CompanyPage } from "../Pages/Admin/SingleItemPages/CompanyPage/CompanyPage";
 import { ServicesPage } from "../Pages/Admin/IndexPages/ServicesPage/ServicesPage";
 import { ServicePage } from "../Pages/Admin/SingleItemPages/ServicePage/ServicePage";
-const ProductPage = () => {
+import { ProductsPage } from "../Pages/Admin/IndexPages/ProductsPage/ProductsPage";
+import { ProductPage } from "../Pages/Admin/SingleItemPages/ProductPage/ProductPage";
+const placeholders = () => {
   return <div></div>;
 };
-const ProductsPage = () => {
+const placeholder = () => {
   return <div></div>;
 };
 // gonna write the admin layout later

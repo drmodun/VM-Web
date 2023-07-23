@@ -13,8 +13,14 @@ export const SubcategoryForm = ({categories} : Props ) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [schema, setSchema] = useState<{ [key: string]: string }>({});
-  const [categoryId, setCategoryId] = useState<string>("");
+  const [categoryId, setCategoryId] = useState<string>(categories[0] ? categories[0].id : "");
   const [status, setStatus] = useState<string>("");
+
+
+  useEffect(() => {
+    setCategoryId(categories[0] ? categories[0].id : "");
+  }, [categories]);
+  //TODO: think of a better way to do this, now it resets on every new category
 
 
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {

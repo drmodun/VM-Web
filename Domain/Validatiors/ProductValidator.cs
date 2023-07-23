@@ -17,7 +17,6 @@ namespace Domain.Validatiors
             RuleFor(x => x.Description).MinimumLength(10).WithMessage("Product description must be 10 or more characters long");
             RuleFor(x => x.Description).MaximumLength(100).WithMessage("Product name cannot be longer than 100 characters");
             RuleFor(x => x.Id).NotEmpty().WithMessage("Product must have valid Id");
-
             RuleFor(x => x.CategoryId).MustAsync(async (x, cancellationtoken) =>
             {
                 return await _context.Categories.AnyAsync(b => b.Id == x, cancellationtoken);
@@ -70,10 +69,9 @@ namespace Domain.Validatiors
                         return false;
                     };
                 }
-
                 //it hurts to write this definetly will do something else later
                 return true;
-            });
+            }).WithMessage("Attributes must match the schema of the category and subcategory");
 
         }
     }

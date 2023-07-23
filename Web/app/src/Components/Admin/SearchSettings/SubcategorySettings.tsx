@@ -65,7 +65,7 @@ export const SubcategorySearch = ({ search, categories }: Props) => {
               label: category.name,
             })),
           ]}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
         />
 
         <Inputs.SelectInput

@@ -27,6 +27,7 @@ export const ProductPage = () => {
         setProduct(tryProduct);
         const date = new Date(tryProduct.lastUpdated);
         const tempValue = {} as Values;
+        tempValue["id"] = tryProduct.id;
         tempValue["name"] = tryProduct.name;
         tempValue["categoryId"] = tryProduct.categoryId;
         tempValue["categoryName"] = tryProduct.categoryName;

@@ -20,6 +20,7 @@ export const CategoryPage = () => {
       if (tryCategory) {
         setCategory(tryCategory);
         const tempValue = {} as Values;
+        tempValue["id"] = tryCategory.id;
         tempValue["name"] = tryCategory.name;
         tempValue["description"] = tryCategory.description;
         Object.keys(tryCategory.schema).forEach((key: string) => {

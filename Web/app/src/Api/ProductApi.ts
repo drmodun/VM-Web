@@ -96,7 +96,8 @@ export const createProduct = async (product: NewProduct): Promise<boolean> => {
   try {
     const response = await api.post("/products", product);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    console.log(response.data);
+    return response.data.success as boolean;
   } catch (error) {
     console.error(error);
     return false;

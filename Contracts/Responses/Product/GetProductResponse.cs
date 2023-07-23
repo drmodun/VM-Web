@@ -8,6 +8,8 @@ namespace Contracts.Responses.Product
         public string Description { get; set; }
         public Guid Id { get; set; }
 
+        public DateTime LastUpdated { get; set; }
+
         public string Image { get; set; } = "";
         public Guid CompanyId { get; set; }
         public string CompanyName { get; set; }

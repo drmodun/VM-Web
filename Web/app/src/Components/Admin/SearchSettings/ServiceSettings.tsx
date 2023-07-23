@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./Settings.module.scss";
 import Inputs from "../FormElements";
-import { SortAttributeType } from "../../../Types/Enums";
+import { ServiceType, SortAttributeType } from "../../../Types/Enums";
 import { GetAllProps } from "../../../Api/ServiceApi";
 import { Sorting } from "../../../Api/Shared";
 
@@ -18,6 +18,7 @@ export const ServiceSearch = ({ search }: Props) => {
   const [sortType, setSortType] = useState<number>(-1);
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
+  const [type, setType] = useState<number>(-1);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ export const ServiceSearch = ({ search }: Props) => {
       description,
       maxPrice: maxPrice <= 1 ? null : maxPrice,
       minPrice,
+      type: type === -1 ? null : type,
       "Sorting.Attribute":
         sortBy !== -1 && sortType !== -1 ? sortBy : undefined,
       "Sorting.SortType":
@@ -67,6 +69,21 @@ export const ServiceSearch = ({ search }: Props) => {
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
         />
+
+        <Inputs.SelectInput
+          label="Type"
+          name="type"
+          value={-1}
+          options={[
+            { value: -1, label: "None" },
+            { value: ServiceType.Other, label: "Other" },
+            { value: ServiceType.Computer, label: "Computer" },
+            { value: ServiceType.Network, label: "Network" },
+            { value: ServiceType.Device, label: "Device" },
+          ]}
+          onChange={(e) => setType(Number(e.target.value))}
+        />
+
 
         <Inputs.SelectInput
           label="Sort By"
