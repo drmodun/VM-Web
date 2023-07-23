@@ -16,13 +16,17 @@ export const ServicePage = () => {
   const { serviceId } = useParams();
   const [service, setService] = useState<Service | null>(null);
 
+  const reload = async () => {
+    tryGetService();
+  };
+
+  const tryGetService = async () => {
+    const tryService = await getService(serviceId as string);
+    if (tryService) {
+      setService(tryService);
+    }
+  };
   useEffect(() => {
-    const tryGetService = async () => {
-      const tryService = await getService(serviceId as string);
-      if (tryService) {
-        setService(tryService);
-      }
-    };
     tryGetService();
 
     // fetch service data
@@ -50,7 +54,9 @@ export const ServicePage = () => {
         )}
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
-          <Forms.ServiceForm />
+          {service && (
+            <Forms.ServiceForm isEdit={true} item={service} reload={reload} />
+          )}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
       </div>

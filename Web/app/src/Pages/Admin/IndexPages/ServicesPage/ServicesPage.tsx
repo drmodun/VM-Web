@@ -29,6 +29,10 @@ export const ServicesPage = () => {
   const [pageInfo, setPageInfo] = useState<string>("");
   const [totalItems, setTotalItems] = useState<number>(0);
 
+  const reload = async () => {
+    serviceGetter();
+  };
+
   const serviceGetter = async () => {
     setStatus("Loading...");
     const services = await getServices();
@@ -87,8 +91,8 @@ export const ServicesPage = () => {
         <ItemTable
           items={services.map((service) => {
             return {
-                id: service.id,
-                name: service.name,
+              id: service.id,
+              name: service.name,
               price: service.price,
               serviceType: serviceTypeDict[service.serviceType],
             };
@@ -117,7 +121,10 @@ export const ServicesPage = () => {
         </div>
         <div className={classes.ServicePageCreate}>
           <h2>Create Service</h2>
-          <Forms.ServiceForm />
+          <Forms.ServiceForm
+            isEdit={false}
+           reload={reload} />
+
         </div>
       </div>
     </div>

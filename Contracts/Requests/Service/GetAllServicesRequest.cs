@@ -1,4 +1,6 @@
-﻿namespace Contracts.Requests.Service
+﻿using Data.Enums;
+
+namespace Contracts.Requests.Service
 {
     public class GetAllServicesRequest
     {
@@ -7,6 +9,8 @@
         public PageRequest? Pagination { get; set; }
 
         public decimal? MaxPrice { get; set; }
+
+        public ServiceType? ServiceType { get; set; }
         public decimal? MinPrice { get; set; }
     }
 }

@@ -1,30 +1,44 @@
-import { NewService, createService } from "../../../Api/ServiceApi";
+import { NewService, Service, createService, updateService } from "../../../Api/ServiceApi";
 import { useState } from "react";
 import classes from "./Forms.module.scss";
 import Inputs from "../FormElements";
 import { ServiceType } from "../../../Types/Enums";
 //later fix all instances of wrong rounding
 //possiblz fix names too
-export const ServiceForm = () => {
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
-  const [type, setType] = useState<ServiceType>(ServiceType.Computer);
+interface Props {
+  isEdit: boolean;
+  item?: Service;
+  reload: Function;
+}
+
+export const ServiceForm = ({ reload, isEdit, item }: Props) => {
+  const [name, setName] = useState<string>(isEdit ? item!.name : "");
+  const [description, setDescription] = useState<string>(
+    isEdit ? item!.description : ""
+  );
+  const [price, setPrice] = useState<number>(isEdit ? item!.price : 0);
+  const [type, setType] = useState<ServiceType>(
+    isEdit ? item!.serviceType : ServiceType.Computer
+  );
   const [status, setStatus] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newService: NewService = {
+      id: isEdit ? item!.id : undefined,
       name,
       description,
       price,
       serviceType: type,
     };
     setStatus("Loading...");
-    const response = await createService(newService);
+    const response = isEdit
+      ? await updateService(newService) :
+     await createService(newService);
     response
       ? setStatus("Service created successfully")
       : setStatus("Something went wrong");
+    response && reload();
   };
 
   return (
@@ -63,7 +77,7 @@ export const ServiceForm = () => {
         />
         <button type="submit">Create</button>
       </form>
-      <div className={classes.Status}>{status}</div >
+      <div className={classes.Status}>{status}</div>
     </div>
   );
 };

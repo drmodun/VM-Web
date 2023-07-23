@@ -82,7 +82,7 @@ export const createService = async (props: NewService): Promise<boolean> => {
   }
 };
 
-export const updateService = async (props: Service): Promise<boolean> => {
+export const updateService = async (props: NewService): Promise<boolean> => {
   try {
     const response = await api.put(`services/${props.id}`, props);
     return response.data.success;

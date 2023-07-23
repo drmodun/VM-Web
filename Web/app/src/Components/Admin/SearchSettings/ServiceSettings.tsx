@@ -30,7 +30,7 @@ export const ServiceSearch = ({ search }: Props) => {
       description,
       maxPrice: maxPrice <= 1 ? null : maxPrice,
       minPrice,
-      type: type === -1 ? null : type,
+      serviceType: type === -1 ? null : type,
       "Sorting.Attribute":
         sortBy !== -1 && sortType !== -1 ? sortBy : undefined,
       "Sorting.SortType":
@@ -73,7 +73,7 @@ export const ServiceSearch = ({ search }: Props) => {
         <Inputs.SelectInput
           label="Type"
           name="type"
-          value={-1}
+          value={type}
           options={[
             { value: -1, label: "None" },
             { value: ServiceType.Other, label: "Other" },
@@ -81,7 +81,7 @@ export const ServiceSearch = ({ search }: Props) => {
             { value: ServiceType.Network, label: "Network" },
             { value: ServiceType.Device, label: "Device" },
           ]}
-          onChange={(e) => setType(Number(e.target.value))}
+          onChange={(e)=>setType(Number(e.target.value))}
         />
 
 
