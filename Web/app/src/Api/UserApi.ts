@@ -11,6 +11,7 @@ export interface User {
   name: string;
   email: string;
   lastUpdate: Date;
+  phoneNumber: string;
   address: string;
 }
 
@@ -84,9 +85,9 @@ export const createUser = async (user: NewUser): Promise<boolean> => {
   }
 };
 
-export const updateUser = async (user: User): Promise<boolean> => {
+export const updateUser = async (user: NewUser): Promise<boolean> => {
   try {
-    const response = await api.put(`/users/${user.id}`, user);
+    const response = await api.put(`/admin/users/${user.id}`, user);
     return response.data.success;
   } catch (error) {
     console.error(error);

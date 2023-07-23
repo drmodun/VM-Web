@@ -43,7 +43,11 @@ export const UserPage = () => {
         )}
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
-          <Forms.UserForm />
+          { user &&
+            <Forms.UserForm
+          isEdit={true}
+          item={user}
+           />}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
       </div>

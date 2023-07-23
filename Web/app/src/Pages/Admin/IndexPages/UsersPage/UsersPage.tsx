@@ -114,7 +114,9 @@ export const UsersPage = () => {
         </div>
         <div className={classes.UserPageCreate}>
           <h2>Create User</h2>
-          <Forms.UserForm />
+          <Forms.UserForm
+            isEdit={false} 
+           />
         </div>
       </div>
     </div>

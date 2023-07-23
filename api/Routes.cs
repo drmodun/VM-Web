@@ -90,7 +90,7 @@
             public const string Get = Base + $"/previous-clients/{{id:Guid}}";
             public const string Delete = Base + $"/previous-clients/{{id:Guid}}";
             public const string Update = Base + $"/previous-clients/{{id:Guid}}";
-            public const string GetAll = Base + $"/previous-clients";
+            public const string GetAll = Base + $"/previous-clients";   
             public const string Create = Base + $"/previous-clients";
         }
 

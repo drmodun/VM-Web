@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { createUser, NewUser } from "../../../Api/UserApi";
+import { createUser, NewUser, updateUser, User} from "../../../Api/UserApi";
 import Inputs from "../FormElements";
 import classes from "./Forms.module.scss";
-export const UserForm = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+
+interface Props {
+  isEdit: boolean;
+  item?: User | null;
+}
+
+
+export const UserForm = ({isEdit, item} : Props) => {
+  const [name, setName] = useState<string>(item?.name || "");
+  const [email, setEmail] = useState<string>(item?.email || "");
   const [password, setPassword] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const [address, setAddress] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [address, setAddress] = useState<string>(item?.address || "");
+  const [phoneNumber, setPhoneNumber] = useState<string>(item?.phoneNumber || "");
   const [status, setStatus] = useState<string>("");
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,6 +56,7 @@ export const UserForm = () => {
     }
 
     const newUser: NewUser = {
+      id: item?.id,
       name,
       email,
       password,
@@ -56,7 +65,10 @@ export const UserForm = () => {
     };
 
     //later add a ternary desision for adding admins
-    const response = await createUser(newUser);
+    const response = !isEdit ?
+    await createUser(newUser)
+    : await updateUser(newUser)
+    ;
     response
       ? setStatus("User created successfully")
       : setStatus("User creation failed");
@@ -64,6 +76,7 @@ export const UserForm = () => {
 
   return (
     <div className={classes.Form}>
+      <h1>{isEdit ? "Edit User" : "Create User"}</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
           label="Name"
