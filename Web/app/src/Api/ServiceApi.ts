@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ServiceType } from "../Types/Enums";
-import { ActionResult, Pagination, Sorting, baseUrl } from "./Shared";
+import { ActionResult, Pagination, PaginationResult, Sorting, baseUrl } from "./Shared";
 import { ActionFunction } from "react-router-dom";
 
 export interface Service {
@@ -53,12 +53,13 @@ api.interceptors.request.use(
 
 
 
-export const getAllServices = async (props?: GetAllProps) => {
+export const getServices = async (props?: GetAllProps) => {
   try {
-    const response = await api.get<Service[]>("services", { params: props });
+    const response = await api.get<PaginationResult<Service>>("services", { params: props });
     return response.data;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 
@@ -91,7 +92,7 @@ export const updateService = async (props: Service): Promise<boolean> => {
   }
 };
 
-export const removeService = async (id: string): Promise<boolean> => {
+export const deleteService = async (id: string): Promise<boolean> => {
   try {
     const response = await api.delete(`services/${id}`);
     return response.data.success;

@@ -13,6 +13,8 @@ import { SubcategoriesPage } from "../Pages/Admin/IndexPages/SubcategoriesPage/S
 import { SubcategoryPage } from "../Pages/Admin/SingleItemPages/SubcategoryPage/SubcategoryPage";
 import { CompaniesPage } from "../Pages/Admin/IndexPages/CompaniesPage/CompaniesPage";
 import { CompanyPage } from "../Pages/Admin/SingleItemPages/CompanyPage/CompanyPage";
+import { ServicesPage } from "../Pages/Admin/IndexPages/ServicesPage/ServicesPage";
+import { ServicePage } from "../Pages/Admin/SingleItemPages/ServicePage/ServicePage";
 const ProductPage = () => {
   return <div></div>;
 };
@@ -70,8 +72,8 @@ const router = createBrowserRouter(
         </Route>
 
         <Route path="/admin/services">
-          <Route index element={<ProductsPage />}></Route>
-          <Route path=":serviceId" element={<ProductPage />}></Route>
+          <Route index element={<ServicesPage />}></Route>
+          <Route path=":serviceId" element={<ServicePage />}></Route>
         </Route>
         <Route path="*" element={<ProductPage />} />
       </Route>

@@ -53,7 +53,7 @@ namespace Domain.Repositories
                 .Where(x => request.MinPrice == null || x.Price >= request.MinPrice)
                 .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice);
             //it makes sense to order by type for default
-            if (request.Sorting == null)
+            if (request.Sorting != null)
             {
                 switch (request.Sorting.Attribute)
                 {

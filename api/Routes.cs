@@ -17,8 +17,8 @@
         {
             //later make this make more sense
             public const string Get = Base + $"/users/{{id:Guid}}";
-            public const string Delete = Base + $"/users/";
-            public const string Update = Base + $"/users/";
+            public const string Delete = Base + $"/users";
+            public const string Update = Base + $"/users";
             public const string GetAll = Base + $"/users";
             public const string Create = Base + $"/users";
             public const string Login = Base + $"/users/Login";

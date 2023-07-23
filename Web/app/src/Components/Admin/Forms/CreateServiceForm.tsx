@@ -28,7 +28,7 @@ export const ServiceForm = () => {
   };
 
   return (
-    <div className={classes.FormContainer}>
+    <div className={classes.Form}>
       <h1>Create Service</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
@@ -59,7 +59,7 @@ export const ServiceForm = () => {
             { value: ServiceType.Network, label: "Network" },
             { value: ServiceType.Other, label: "Other" },
           ]}
-          onChange={(e) => setPrice(Number(e.target.value))}
+          onChange={(e) => setType(Number(e.target.value))}
         />
         <button type="submit">Create</button>
       </form>
