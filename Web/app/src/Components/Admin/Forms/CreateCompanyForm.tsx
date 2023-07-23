@@ -27,7 +27,7 @@ export const CompanyForm = () => {
   };
 
   return (
-    <div className={classes.FormContainer}>
+    <div className={classes.Form}>
       <h1>Create Company</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput

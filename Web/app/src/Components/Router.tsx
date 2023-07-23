@@ -11,6 +11,8 @@ import CategoriesPage from "../Pages/Admin/IndexPages/CategoriesPage";
 import { CategoryPage } from "../Pages/Admin/SingleItemPages/CategoryPage/CategoryPage";
 import { SubcategoriesPage } from "../Pages/Admin/IndexPages/SubcategoriesPage/SubcategoriesPage";
 import { SubcategoryPage } from "../Pages/Admin/SingleItemPages/SubcategoryPage/SubcategoryPage";
+import { CompaniesPage } from "../Pages/Admin/IndexPages/CompaniesPage/CompaniesPage";
+import { CompanyPage } from "../Pages/Admin/SingleItemPages/CompanyPage/CompanyPage";
 const ProductPage = () => {
   return <div></div>;
 };
@@ -43,8 +45,8 @@ const router = createBrowserRouter(
         </Route>
 
         <Route path="/admin/companies">
-          <Route index element={<ProductsPage />}></Route>
-          <Route path=":companyId" element={<ProductPage />}></Route>
+          <Route index element={<CompaniesPage />}></Route>
+          <Route path=":companyId" element={<CompanyPage />}></Route>
         </Route>
 
         <Route path="/admin/users">

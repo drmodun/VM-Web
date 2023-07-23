@@ -73,7 +73,7 @@ export const CategoriesPage = () => {
 
   return (
     <div className={classes.Page}>
-      <h1>Categorys</h1>
+      <h1>Categories</h1>
       <p>The page where you can edit, view, delete and create categories</p>
       <div className={classes.PageContainer}>
         <ItemTable
