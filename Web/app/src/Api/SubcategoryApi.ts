@@ -12,9 +12,10 @@ import { Indexable } from "../Types/Interfaces";
 export interface Subcategory {
   id: string;
   name: string;
-  subSchema: object;
+  subSchema: Indexable;
   description: string;
   categoryId: string;
+  categoryName: string;
 }
 
 export interface NewSubcategory {
@@ -72,7 +73,7 @@ export const getSubcategory = async (id: string) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return {};
+    return null;
   }
 };
 

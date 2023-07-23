@@ -15,6 +15,7 @@ interface Item {
 
 interface LinkableItem extends Item {
   name: string;
+  
   link: string;
 }
 

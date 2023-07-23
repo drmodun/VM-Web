@@ -10,6 +10,7 @@ interface Props {
 
 interface LinkableItem extends Item {
   name: string;
+  type: string;
   link: string;
 }
 
@@ -35,9 +36,17 @@ export const ItemTable = (props: Props) => {
                 return (
                   <div className={classes.Attribute}>
                     <Link
+                    //TODO: make this more efficient and readable
                       to={
-                        props.links.find((item) => item.name === key)
-                          ?.link as string
+                        ((("/admin/" +
+                          props.links.find((item) => item.name === key)
+                            ?.type) as string) +
+                          "/" + item[
+                            props.links.find((item) => item.name === key)
+                            ?.link ? props.links.find((item) => item.name === key)?.link as string : ""
+                          ] as string)
+                          
+                        
                       }
                     >
                       {item[key]}

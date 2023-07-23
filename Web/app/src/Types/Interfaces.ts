@@ -7,14 +7,15 @@ export interface CreateProps {
 export interface Category {
     id: string;
     name: string;
-    schema: object;
+    description: string;
+    schema: Indexable;
 }
 
 export interface Subcategory {
     id: string;
     name: string;
     categoryId: string;
-    schema: object;
+    schema: Indexable;
 }
 
 export interface Company {

@@ -4,21 +4,18 @@ import { Category, getCategories } from "../../../Api/CategoryApi";
 import { useEffect, useState } from "react";
 import Inputs from "../FormElements";
 //TODO: add forms for orders and transactions, but thats for later
-export const SubcategoryForm = () => {
+
+interface Props{
+  categories : Category[]
+}
+
+export const SubcategoryForm = ({categories} : Props ) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [schema, setSchema] = useState<{ [key: string]: string }>({});
   const [categoryId, setCategoryId] = useState<string>("");
   const [status, setStatus] = useState<string>("");
-  const [categories, setCategories] = useState<Category[]>([]);
 
-  useEffect(() => {
-    const categoryGetter = async () => {
-      const response = await getCategories();
-      setCategories(response?.items || []);
-    };
-    categoryGetter();
-  }, []);
 
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
