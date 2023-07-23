@@ -15,13 +15,15 @@ export interface Subcategory {
     id: string;
     name: string;
     categoryId: string;
-    schema: Indexable;
+    subSchema: Indexable;
 }
 
 export interface Company {
     id: string;
     name: string;
-    image: string;
+    logo: string;
+    website: string;
+    description: string;
 }
 
 export interface Indexable{

@@ -1,13 +1,13 @@
 import classes from "./Forms.module.scss";
 import React, { FC, useState } from "react";
-import { Category, CreateProps, Subcategory } from "../../../Types/Interfaces";
+import { Category, Company, CreateProps, Subcategory } from "../../../Types/Interfaces";
 import Inputs from "../FormElements";
 import { NewProduct, createProduct } from "../../../Api/ProductApi";
 
 interface Props {
   categories: Category[];
   subCatgories: Subcategory[];
-  companies: Category[];
+  companies: Company[];
 }
 
 export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
@@ -110,7 +110,7 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
     setSubSchema(
       subCatgories.find(
         (subcategory: Subcategory) => subcategory.id === e.target.value
-      )!.schema
+      )!.subSchema
     );
     setOtherAdditionalInfo(
       Object.keys(subSchema).map((key: string) => {
@@ -183,7 +183,7 @@ export const ProductForm = ({ categories, subCatgories, companies }: Props) => {
           name="company"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          options={companies.map((company: Category) => ({
+          options={companies.map((company: Company) => ({
             value: company.id,
             label: company.name,
           }))}

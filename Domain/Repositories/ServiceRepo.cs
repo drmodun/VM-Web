@@ -67,6 +67,9 @@ namespace Domain.Repositories
                         if (request.Sorting.SortType == SortType.Ascending)
                             services = services.OrderBy(x => x.Price);
                         else
+                        {
+
+                        }
                             services = services.OrderByDescending(x => x.Price);
                         break;
                     case SortAttributeType.SortByTotalSold:

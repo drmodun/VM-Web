@@ -15,6 +15,7 @@ namespace Domain.Mappers
                 SubAttributes = product.SubAttributes,
                 Name = product.Name,
                 CategoryId = product.CategoryId,
+                LastUpdated = product.UpdatedAt,
                 CategoryName = product.Category.Name,
                 CompanyId = product.CompanyId,
                 CompanyName = product.Company.Name,

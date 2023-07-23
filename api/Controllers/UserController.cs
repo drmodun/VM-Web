@@ -92,7 +92,6 @@ namespace api.Controllers
             var response = await _identityService.LoginUser(request);
             return response != null ? Ok(response) : BadRequest("Wrong password");
         }
-        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.User.AdminCreate)]
         public async Task<ActionResult<CreateUserResponse>> AdminCreateUser([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
         {

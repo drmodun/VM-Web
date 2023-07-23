@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ActionResult, Pagination, PaginationResult, Sorting, baseUrl } from "./Shared";
+import { Indexable } from "../Types/Interfaces";
 export interface Product {
   id: string;
   name: string;
@@ -9,9 +10,10 @@ export interface Product {
   subcategoryId: string;
   companyId: string;
   description: string;
-  date: string;
-  attributes: object;
-  subAttributes: object;
+  quantity: number;
+  lastUpdated: Date;
+  attributes: Indexable;
+  subAttributes: Indexable;
   categoryName: string;
   subcategoryName: string;
   companyName: string;
@@ -86,7 +88,7 @@ export const getProduct = async (id: string) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return {};
+    return null;
   }
 };
 
