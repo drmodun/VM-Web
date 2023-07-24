@@ -5,6 +5,8 @@ import {
   PaginationResult,
   Sorting,
   baseUrl,
+  jwt,
+  setJwt,
 } from "./Shared";
 export interface User {
   id: string;
@@ -106,3 +108,15 @@ export const deleteUser = async (id: string): Promise<boolean> => {
     return false;
   }
 };
+
+export const login = async (email: string, password: string) => {
+  try {
+    const response = await api.post("/users/login", { email, password });
+    localStorage.setItem("token", response.data);
+    setJwt(response.data);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}

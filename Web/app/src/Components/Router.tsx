@@ -19,6 +19,7 @@ import { ProductsPage } from "../Pages/Admin/IndexPages/ProductsPage/ProductsPag
 import { ProductPage } from "../Pages/Admin/SingleItemPages/ProductPage/ProductPage";
 import { PreviousClientsPage } from "../Pages/Admin/IndexPages/PreviousClient/PreviousClientsPage";
 import { PreviousClientPage } from "../Pages/Admin/SingleItemPages/PreviousClient/PreviousClientPage";
+import { AdminLoginPage } from "../Pages/Admin/AdminLoginPage/AdminLoginPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -33,8 +34,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<AdminLayout />}>
-        <Route path="/admin" element={<></>}></Route>
-
+        { localStorage.getItem("token") !== null ?
+        ( <>
+          <Route path="/admin" element={<></>}></Route>
         <Route path="/admin/products">
           <Route index element={<ProductsPage />}></Route>
           <Route path=":productId" element={<ProductPage />}></Route>
@@ -78,7 +80,9 @@ const router = createBrowserRouter(
         <Route path="/admin/services">
           <Route index element={<ServicesPage />}></Route>
           <Route path=":serviceId" element={<ServicePage />}></Route>
-        </Route>
+        </Route></>)
+        : <Route path="*" element={<AdminLoginPage />} />
+      }
         <Route path="*" element={<ProductPage />} />
       </Route>
       <Route path="*" element={<ProductPage />} />
