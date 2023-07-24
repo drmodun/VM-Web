@@ -2,21 +2,32 @@ import { useState } from "react";
 import classes from "./Forms.module.scss";
 import {
   NewPreviousClient,
+  PreviousClient,
   createPreviousClient,
+  updatePreviousClient,
 } from "../../../Api/PreviousClientApi";
 import Inputs from "../FormElements";
 
-export const PreviousClientForm = () => {
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [website, setWebsite] = useState<string>("");
-  const [logo, setLogo] = useState<string>("");
-  const [rating, setRating] = useState<number>(0);
+interface Props {
+  isEdit: boolean;
+  item?: PreviousClient;
+  reload: Function;
+}
+
+export const PreviousClientForm = ({ reload, isEdit, item }: Props) => {
+  const [name, setName] = useState<string>(isEdit ? item?.name! : "");
+  const [description, setDescription] = useState<string>(
+    isEdit ? item?.description! : ""
+  );
+  const [website, setWebsite] = useState<string>(isEdit ? item?.website! : "");
+  const [logo, setLogo] = useState<string>(isEdit ? item?.image! : "");
+  const [rating, setRating] = useState<number>(isEdit ? item?.rating! : 0);
   const [status, setStatus] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newPreviousClient: NewPreviousClient = {
+      id: isEdit ? item!.id : undefined,
       name,
       description,
       website,
@@ -24,15 +35,18 @@ export const PreviousClientForm = () => {
       rating,
     };
     setStatus("Loading...");
-    const response = await createPreviousClient(newPreviousClient);
+    const response = isEdit
+      ? await updatePreviousClient(newPreviousClient)
+      : await createPreviousClient(newPreviousClient);
     response
-      ? setStatus("Previous Client created successfully")
+      ? setStatus(`Previous Client ${isEdit ? "edited" : "created"} successfully`)
       : setStatus("Something went wrong");
+    response && reload();
   };
 
   return (
     <div className={classes.Form}>
-      <h1>Create Previous Client</h1>
+      <h1>{isEdit ? "Edit" : "Create"} Previous Client</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
           label="Name"
@@ -64,9 +78,9 @@ export const PreviousClientForm = () => {
           value={rating}
           onChange={(e) => setRating(Number(e.target.value))}
         />
-        <button type="submit">Create</button>
+        <button type="submit">{isEdit ? "Edit" : "Create"}</button>
       </form>
-      <div className={classes.Status}>{status}</div >
+      <div className={classes.Status}>{status}</div>
     </div>
   );
 };

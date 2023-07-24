@@ -7,14 +7,14 @@ import classes from "../SingleItemPage.module.scss";
 export const PreviousClientPage = () => {
   const { previousClientId } = useParams();
   const [previousClient, setPreviousClient] = useState<PreviousClient | null>(null);
-
+  
+  const tryGetPreviousClient = async () => {
+    const tryPreviousClient = await getPreviousClient(previousClientId as string);
+    if (tryPreviousClient) {
+      setPreviousClient(tryPreviousClient);
+    }
+  };
   useEffect(() => {
-    const tryGetPreviousClient = async () => {
-      const tryPreviousClient = await getPreviousClient(previousClientId as string);
-      if (tryPreviousClient) {
-        setPreviousClient(tryPreviousClient);
-      }
-    };
     tryGetPreviousClient();
 
     // fetch previousClient data
@@ -43,7 +43,11 @@ export const PreviousClientPage = () => {
         )}
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
-          <Forms.PreviousClientForm />
+         {previousClient && <Forms.PreviousClientForm
+            isEdit={true}
+            reload={tryGetPreviousClient}
+            item={previousClient}
+          />}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
       </div>

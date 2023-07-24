@@ -122,7 +122,10 @@ export const PreviousClientsPage = () => {
           <Search.PreviousClientSearch search={previousClientSearch} />
         </div>
         <div className={classes.PreviousClientPageCreate}>
-          <Forms.PreviousClientForm />
+          <Forms.PreviousClientForm
+            isEdit={false}
+            reload={previousClientGetter}
+          />
         </div>
       </div>
     </div>

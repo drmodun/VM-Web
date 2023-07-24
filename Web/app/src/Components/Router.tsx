@@ -17,7 +17,7 @@ import { ServicesPage } from "../Pages/Admin/IndexPages/ServicesPage/ServicesPag
 import { ServicePage } from "../Pages/Admin/SingleItemPages/ServicePage/ServicePage";
 import { ProductsPage } from "../Pages/Admin/IndexPages/ProductsPage/ProductsPage";
 import { ProductPage } from "../Pages/Admin/SingleItemPages/ProductPage/ProductPage";
-import { PreviousClientsPage } from "../Pages/Admin/IndexPages/PreviousClient/PreviousClientPage";
+import { PreviousClientsPage } from "../Pages/Admin/IndexPages/PreviousClient/PreviousClientsPage";
 import { PreviousClientPage } from "../Pages/Admin/SingleItemPages/PreviousClient/PreviousClientPage";
 const placeholders = () => {
   return <div></div>;

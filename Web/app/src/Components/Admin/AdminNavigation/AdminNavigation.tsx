@@ -6,34 +6,34 @@ export const AdminNavigation = () => {
         <nav className={classes.AdminNavigation}>
             <ul>
                 <li>
-                    <NavLink to="/admin">Home</NavLink>
+                    <NavLink className={classes.Link} to="/admin">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/products">Products</NavLink>
+                    <NavLink className={classes.Link} to="/admin/products">Products</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/categories">Categories</NavLink>
+                    <NavLink className={classes.Link} to="/admin/categories">Categories</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/subcategories">Subcategories</NavLink>
+                    <NavLink className={classes.Link} to="/admin/subcategories">Subcategories</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/companies">Companies</NavLink>
+                    <NavLink className={classes.Link} to="/admin/companies">Companies</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/users">Users</NavLink>
+                    <NavLink className={classes.Link} to="/admin/users">Users</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/orders">Orders</NavLink>
+                    <NavLink className={classes.Link} to="/admin/orders">Orders</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/transactions">Transactions</NavLink>
+                    <NavLink className={classes.Link} to="/admin/transactions">Transactions</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/previousClients">Previous Clients</NavLink>
+                    <NavLink className={classes.Link} to="/admin/previousClients">Previous Clients</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/services">Services</NavLink>
+                    <NavLink className={classes.Link} to="/admin/services">Services</NavLink>
                 </li>
             </ul>
         </nav>
