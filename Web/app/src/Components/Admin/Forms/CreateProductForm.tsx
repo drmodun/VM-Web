@@ -155,7 +155,7 @@ export const ProductForm = ({
           "An error occured during the making of the entity, for more details look in log"
         )
       : setStatus(
-          "Product " + `${isEdit ? "edited" : "created"}` + "successfully"
+          "Product" + ` ${isEdit ? "edited" : "created"} ` + "successfully"
         );
     response && reload();
 

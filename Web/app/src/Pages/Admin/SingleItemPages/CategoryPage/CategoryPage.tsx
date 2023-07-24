@@ -11,24 +11,24 @@ interface Values {
 
 export const CategoryPage = () => {
   const { categoryId } = useParams();
-  const [category, setCategory] = useState<Category | null>(null);
+  const [category, setCategory] = useState<Category>();
   const [value, setValue] = useState<Values>({});
 
+  const tryGetCategory = async () => {
+    const tryCategory = await getCategory(categoryId as string);
+    if (tryCategory) {
+      setCategory(tryCategory);
+      const tempValue = {} as Values;
+      tempValue["id"] = tryCategory.id;
+      tempValue["name"] = tryCategory.name;
+      tempValue["description"] = tryCategory.description;
+      Object.keys(tryCategory.schema).forEach((key: string) => {
+        tempValue[key] = tryCategory.schema[key] as string;
+      });
+      setValue(tempValue);
+    }
+  };
   useEffect(() => {
-    const tryGetCategory = async () => {
-      const tryCategory = await getCategory(categoryId as string);
-      if (tryCategory) {
-        setCategory(tryCategory);
-        const tempValue = {} as Values;
-        tempValue["id"] = tryCategory.id;
-        tempValue["name"] = tryCategory.name;
-        tempValue["description"] = tryCategory.description;
-        Object.keys(tryCategory.schema).forEach((key: string) => {
-          tempValue[key] = tryCategory.schema[key] as string;
-        });
-        setValue(tempValue);
-      }
-    };
     tryGetCategory();
 
     // fetch category data
@@ -47,7 +47,11 @@ export const CategoryPage = () => {
         )}
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
-          <Forms.CategoryForm />
+         {category && <Forms.CategoryForm
+            isEdit={true}
+            item={category}
+            reload={tryGetCategory}
+           />}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
       </div>

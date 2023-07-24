@@ -108,7 +108,10 @@ export const CategoriesPage = () => {
         </div>
         <div className={classes.CategoryPageCreate}>
           <h2>Create Category</h2>
-          <Forms.CategoryForm />
+          <Forms.CategoryForm
+            isEdit={false}
+            reload={categoryGetter}
+           />
         </div>
       </div>
     </div>

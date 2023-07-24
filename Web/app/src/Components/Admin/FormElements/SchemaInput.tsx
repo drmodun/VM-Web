@@ -1,14 +1,12 @@
+import { Indexable } from "../../../Types/Interfaces";
 import classes from "./FormElements.module.scss";
 interface SchemaInputProps {
   label: string;
   name: string;
-  value: Schema;
+  value: Indexable;
   onChange: Function;
 }
 
-interface Schema {
-  [key: string]: string | undefined;
-}
 
 export const SchemaInput = (props: SchemaInputProps) => {
   return (
