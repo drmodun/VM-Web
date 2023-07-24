@@ -172,11 +172,18 @@ export const ProductsPage = () => {
         </div>
         <div className={classes.ProductPageCreate}>
           <h2>Create Product</h2>
-          <Forms.ProductForm
+          { subcategories && companies && categories &&
+            <Forms.ProductForm
+           isEdit={false}
+           reload={productGetter}
             subCatgories={subcategories}
             companies={companies}
-            categories={categories}
-          />
+            categories={categories
+                .filter((category) => subcategories.filter
+                ((subcategory) => subcategory.categoryId === category.id).length
+                 > 0)
+            }
+          />}
         </div>
       </div>
     </div>

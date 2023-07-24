@@ -36,14 +36,14 @@ export const ServiceForm = ({ reload, isEdit, item }: Props) => {
       ? await updateService(newService) :
      await createService(newService);
     response
-      ? setStatus("Service created successfully")
+      ? setStatus(`Service ${isEdit ? "edited" : "created"} successfully`)
       : setStatus("Something went wrong");
     response && reload();
   };
 
   return (
     <div className={classes.Form}>
-      <h1>Create Service</h1>
+      <h1>{isEdit ? "Edit" : "Create"} Service</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
           label="Name"
