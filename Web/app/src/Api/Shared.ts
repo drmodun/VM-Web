@@ -5,6 +5,7 @@ export let jwt: string = localStorage.getItem("token") || "";
 
 export const setJwt = (token: string) => {
   jwt = token;
+  localStorage.setItem("loginTime", new Date().toString());
 }
 
 export interface ActionResult {
