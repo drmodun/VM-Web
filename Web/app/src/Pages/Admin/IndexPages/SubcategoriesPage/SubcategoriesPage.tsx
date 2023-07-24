@@ -125,7 +125,10 @@ export const SubcategoriesPage = () => {
         </div>
         <div className={classes.SubcategoryPageCreate}>
           <h2>Create Subcategory</h2>
-          <Forms.SubcategoryForm categories={categories} />
+          <Forms.SubcategoryForm
+            isEdit={false}
+            reload={subcategoryGetter}
+           categories={categories} />
         </div>
       </div>
     </div>

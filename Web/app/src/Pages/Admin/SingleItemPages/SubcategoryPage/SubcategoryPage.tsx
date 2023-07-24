@@ -16,32 +16,30 @@ export const SubcategoryPage = () => {
   const [value, setValue] = useState<Values>({});
   const [categories, setCategories] = useState<Category[]>([]);
 
+  const tryGetSubcategory = async () => {
+    const trySubcategory = await getSubcategory(subcategoryId as string);
+    if (trySubcategory) {
+      setSubcategory(trySubcategory);
+      const tempValue = {} as Values;
+      tempValue["name"] = trySubcategory.name;
+      tempValue["categoryId"] = trySubcategory.categoryId;
+      tempValue["categoryName"] = trySubcategory.categoryName;
+      tempValue["description"] = trySubcategory.description;
+      Object.keys(trySubcategory.subSchema).forEach((key: string) => {
+        tempValue[key] = trySubcategory.subSchema[key] as string;
+      });
+      setValue(tempValue);
+    }
+  };
   useEffect(() => {
-    const tryGetSubcategory = async () => {
-      const trySubcategory = await getSubcategory(subcategoryId as string);
-      if (trySubcategory) {
-        setSubcategory(trySubcategory);
-        const tempValue = {} as Values;
-        tempValue["name"] = trySubcategory.name;
-        tempValue["categoryId"] = trySubcategory.categoryId;
-        tempValue["categoryName"] = trySubcategory.categoryName;
-        tempValue["description"] = trySubcategory.description;
-        Object.keys(trySubcategory.subSchema).forEach((key: string) => {
-          tempValue[key] = trySubcategory.subSchema[key] as string;
-        });
-        setValue(tempValue);
-      }
-    };
     tryGetCategories();
     tryGetSubcategory();
 
-
-    
     // fetch category data
     //TODO: add keys later
     //add edit functionality later
   }, []);
-  
+
   const tryGetCategories = async () => {
     const tryCategories = await getCategories();
     if (tryCategories?.items) {
@@ -56,14 +54,27 @@ export const SubcategoryPage = () => {
         {subcategory && (
           <div className={classes.ItemInfo}>
             <span>Subcategory Info:</span>
-            <ItemView item={value} links={[
-              {name: "categoryName", link: `/admin/categories/${subcategory.categoryId}`}
-            ]} />
+            <ItemView
+              item={value}
+              links={[
+                {
+                  name: "categoryName",
+                  link: `/admin/categories/${subcategory.categoryId}`,
+                },
+              ]}
+            />
           </div>
         )}
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
-          <Forms.SubcategoryForm categories={categories} />
+          {subcategory && categories && (
+            <Forms.SubcategoryForm
+              isEdit={true}
+              reload={tryGetSubcategory}
+              item={subcategory!}
+              categories={categories}
+            />
+          )}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
       </div>

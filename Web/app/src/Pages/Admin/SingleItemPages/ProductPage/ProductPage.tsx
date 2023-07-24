@@ -39,12 +39,9 @@ export const ProductPage = () => {
       const tempValue = {} as Values;
       tempValue["id"] = tryProduct.id;
       tempValue["name"] = tryProduct.name;
-      tempValue["categoryId"] = tryProduct.categoryId;
-      tempValue["categoryName"] = tryProduct.categoryName;
-      tempValue["subcategoryId"] = tryProduct.subcategoryId;
-      tempValue["subcategoryName"] = tryProduct.subcategoryName;
-      tempValue["companyId"] = tryProduct.companyId;
-      tempValue["companyName"] = tryProduct.companyName;
+      tempValue["Category"] = tryProduct.categoryName;
+      tempValue["Subcategory"] = tryProduct.subcategoryName;
+      tempValue["Company"] = tryProduct.companyName;
       tempValue["date"] = `${date.getDate()}/${
         date.getMonth() + 1
       }/${date.getFullYear()}`;
@@ -119,7 +116,11 @@ export const ProductPage = () => {
           <span>Edit and delete</span>
           {product && categories && subcategories && companies.length > 0 && (
             <Forms.ProductForm
-              categories={categories}
+              categories={categories
+                .filter((category) => 
+                subcategories.filter((subcategory) => subcategory.categoryId === category.id).length > 0
+                )
+              }
               isEdit={true}
               item={product}
               reload={tryGetProduct}
