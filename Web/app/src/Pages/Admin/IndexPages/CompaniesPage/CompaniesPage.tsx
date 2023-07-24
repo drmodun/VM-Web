@@ -111,7 +111,10 @@ export const CompaniesPage = () => {
         </div>
         <div className={classes.CompanyPageCreate}>
           <h2>Create Company</h2>
-          <Forms.CompanyForm />
+          <Forms.CompanyForm 
+          isEdit={false}
+          reload={companyGetter}
+          />
         </div>
       </div>
     </div>

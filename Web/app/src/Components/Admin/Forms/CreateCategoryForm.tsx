@@ -51,6 +51,7 @@ export const CategoryForm = ({isEdit, item, reload} : Props ) => {
 
   return (
     <div className={classes.Form}>
+      <h1>{isEdit ? "Edit" : "Create"} Category</h1>
       <form onSubmit={handleSumbit}>
         <Inputs.TextInput
           label="Name"
@@ -70,7 +71,9 @@ export const CategoryForm = ({isEdit, item, reload} : Props ) => {
           value={schema}
           onChange={setSchema}
         />
-        <button type="submit">Create</button>
+        <button type="submit">
+          {isEdit ? "Edit" : "Create"} Category
+        </button>
       </form>
       <div className={classes.Status}>{status}</div>
     </div>
