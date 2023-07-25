@@ -21,6 +21,8 @@ import { PreviousClientsPage } from "../Pages/Admin/IndexPages/PreviousClient/Pr
 import { PreviousClientPage } from "../Pages/Admin/SingleItemPages/PreviousClient/PreviousClientPage";
 import { AdminLoginPage } from "../Pages/Admin/AdminLoginPage/AdminLoginPage";
 import AdminHomepage from "../Pages/Admin/AdminHomepage";
+import { TransactionPage } from "../Pages/Admin/SingleItemPages/TransactionPage/TransactionPage";
+import { TransactionsPage } from "../Pages/Admin/IndexPages/TransactionsPage/TransactionsPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -75,8 +77,8 @@ const router = createBrowserRouter(
             </Route>
 
             <Route path="/admin/transactions">
-              <Route index element={<ProductsPage />}></Route>
-              <Route path=":transactionId" element={<ProductPage />}></Route>
+              <Route index element={<TransactionsPage />}></Route>
+              <Route path=":transactionId" element={<TransactionPage />}></Route>
             </Route>
 
             <Route path="/admin/previousClients">

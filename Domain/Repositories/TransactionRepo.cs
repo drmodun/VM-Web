@@ -55,6 +55,10 @@ namespace Domain.Repositories
             var transactions = _context.Transactions
                 .Include(x => x.User)
                 .Include(x => x.Product)
+                .AsNoTracking()
+                .Where(x => request.ProductName == null || request.ProductName == x.Product.Name)
+                .Where(x => request.UserName == null || request.UserName == x.User.Name)
+                .Where(x => request.CreatedAt == null || request.CreatedAt == x.CreatedAt)
                 .Where(x => request.ProductId == null || request.ProductId == x.ProductId)
                 .Where(x => request.UserId == null || request.UserId == x.UserId)
                 .Where(x => request.Type == null || request.Type == x.Type)
