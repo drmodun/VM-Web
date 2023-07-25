@@ -1,8 +1,8 @@
 import { useState } from "react";
 import classes from "./Settings.module.scss";
 import Inputs from "../FormElements";
-import { GetAllProps } from "../../../Api/TransactionApi";
-import { SortAttributeType, SortType, TransactionType } from "../../../Types/Enums";
+import { GetAllProps } from "../../../Api/OrderApi";
+import { SortAttributeType, SortType, StatusType } from "../../../Types/Enums";
 import { Category } from "../../../Types/Interfaces";
 import { Product } from "../../../Api/ProductApi";
 import { User } from "../../../Api/UserApi";
@@ -11,8 +11,8 @@ interface Props {
   search: Function;
 }
 
-export const TransactionSearch = ({ search }: Props) => {
-    const [productName, setProductName] = useState<string>("");
+export const OrderSearch = ({ search }: Props) => {
+    const [serviceName, setServiceName] = useState<string>("");
     const [userName, setUserName] = useState<string>("");
     const [type, setType] = useState<number>(-1);
   const [sortBy, setSortBy] = useState<number>(-1);
@@ -26,9 +26,9 @@ export const TransactionSearch = ({ search }: Props) => {
       return;
     }
     search({
-        productName,
+        serviceName,
         userName,
-        tranasctionType : type !== -1 ? type : undefined,
+        servicetype : type !== -1 ? type : undefined,
       "Sorting.Attribute":
         sortBy !== -1 && sortType !== -1 ? sortBy : undefined,
       "Sorting.SortType":
@@ -45,8 +45,8 @@ export const TransactionSearch = ({ search }: Props) => {
         <Inputs.TextInput
           label="Product"
           name="product"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
+          value={serviceName}
+          onChange={(e) => setServiceName(e.target.value)}
         />
        <Inputs.TextInput
           label="User"
@@ -61,10 +61,11 @@ export const TransactionSearch = ({ search }: Props) => {
             value={type}
             options={[
                 { value: -1, label: "None" },
-                { value: TransactionType.Cash, label: "Cash" },
-                { value: TransactionType.CreditCard, label: "Credit Card" },
-                { value: TransactionType.DebitCard, label: "Debit Card" },
-                { value: TransactionType.Paypal, label: "PayPal" },
+                { value: StatusType.Accepted, label: "Accepted" },
+                { value: StatusType.Pending, label: "Pending" },
+                { value: StatusType.Failed, label: "Failed" },
+                { value: StatusType.InProgress, label: "In Progress" },
+                { value: StatusType.Completed, label: "Completed" },
             ]}
             onChange={(e) => setType(Number(e.target.value))}
         />

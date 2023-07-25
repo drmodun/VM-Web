@@ -65,7 +65,7 @@ api.interceptors.request.use(
 
 
 
-export const getCategories = async (props: GetAllProps | {} = {}) => {
+export const getOrders = async (props: GetAllProps | {} = {}) => {
   try {
     const response = await api.get<PaginationResult<Order>>("/orders", {
       params: props,
@@ -82,7 +82,7 @@ export const getOrder = async (id: string) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return {};
+    return null;
   }
 };
 
