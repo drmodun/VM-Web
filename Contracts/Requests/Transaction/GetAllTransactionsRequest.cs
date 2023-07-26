@@ -9,8 +9,7 @@ namespace Contracts.Requests.Transaction
 
         public string? UserName { get; set; } = string.Empty;
         public string? ProductName { get; set; } = string.Empty;
-
-
+        
         public decimal? MinPrice { get; set; }
 
         public SortRequest? Sorting { get; set; }
