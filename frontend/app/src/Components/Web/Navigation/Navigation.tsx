@@ -36,6 +36,7 @@ export const Navigation = ({
           <input
             type="text"
             name="search"
+            placeholder="Traži..."
             id="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
