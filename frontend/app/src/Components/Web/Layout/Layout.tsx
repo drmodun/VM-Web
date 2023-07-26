@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "../Footer";
 import Navigation from "../Navigation";
 //no point for the footer in the admin layout
 export const Layout = () => {
@@ -10,6 +11,7 @@ export const Layout = () => {
                 isLoggedIn={false}
             />
             <Outlet />
+            <Footer />
         </div>
     )
 }
