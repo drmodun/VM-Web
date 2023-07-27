@@ -1,0 +1,129 @@
+.Container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    .Backdrop{
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        z-index: 1;
+        overflow-x: clip;
+    }
+    .SideMenu {
+        background-color: #fff;
+        z-index: 2;
+        height: 100%;
+        width: 83vw;
+        max-width: 650px;
+        padding: 20px 5vw;
+        @media screen and (min-width: 950px) {
+            padding-left: 40px;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .Close {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+            > img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        .Divider {
+            width: 72vw;
+            max-width: 563px;
+            background: #e4e7ee;
+            height: 1px;
+            margin-bottom: 20px;
+        }
+        .User {
+            width: 72vw;
+            max-width: 563px;
+            height: 45px;
+            margin-bottom: 20px;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            display: flex;
+            border-radius: 10px;
+            background: var(
+                --button-gradient-20,
+                linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
+            );
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-weight: 550;
+            color: var(--text-main, #101828);
+            text-align: center;
+            font-family: Nuckle;
+            font-size: 16px;
+        }
+        .Menu {
+            flex-direction: column;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .Links {
+                flex-direction: column;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                h3 {
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+                .Link {
+                    text-decoration: none;
+                    color: var(--text-main, #101828);
+                    font-family: Nuckle;
+                    font-size: 16px;
+                    font-style: normal;
+                    margin-left: 10px;
+                    font-weight: 653;
+                    margin-bottom: 20px;
+                    line-height: normal;
+                    letter-spacing: 0.32px;
+                    text-transform: none;
+                    &:hover {
+                        color: var(--text-main, #120828);
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                    &:active {
+                        color: var(--text-main, #191f1928);
+                        text-decoration: none;
+                    }
+                }
+            }
+            .Contact{
+                align-self: flex-end;
+                margin-bottom: 20px;
+                flex-direction: column;
+                display: flex;
+                h3{
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                }
+                a{
+                    text-decoration: none;
+                    color: var(--background-main-color, #0D63F3);
+                    font-family: Nuckle;
+                    font-size: 12px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}
