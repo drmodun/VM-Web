@@ -30,6 +30,9 @@ export const Footer = () => {
           <div className={classes.FooterSection}>
             <h3>Što nudimo?</h3>
             <ul>
+              <Link className={classes.Link} to={"/"}>
+                <li>Početna stranica</li>
+              </Link>
               <Link className={classes.Link} to={"/products"}>
                 <li>Svi proizvodi</li>
               </Link>
@@ -45,7 +48,8 @@ export const Footer = () => {
             <h3>Info</h3>
             <ul>
               <li>
-                <a className={classes.Link}
+                <a
+                  className={classes.Link}
                   href="mailto:
                     jan.modun.st@gmail.com?subject=Kontakt sa stranice"
                 >
@@ -53,10 +57,14 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a className={classes.Link} href="tel:+38761548123">+387 61 548 123</a>
+                <a className={classes.Link} href="tel:+38761548123">
+                  +387 61 548 123
+                </a>
               </li>
               <li>
-                <a className={classes.Link} href="tel:+38761548123">+385 99 999 9999</a>
+                <a className={classes.Link} href="tel:+38761548123">
+                  +385 99 999 9999
+                </a>
               </li>
               <li>
                 adresa: <br /> ulica 1 <br /> 71000 Sarajevo <br /> HR

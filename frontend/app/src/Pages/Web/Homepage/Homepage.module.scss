@@ -1,0 +1,9 @@
+.ProductRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    row-gap: 20px;
+    column-gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}

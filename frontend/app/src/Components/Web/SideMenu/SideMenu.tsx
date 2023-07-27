@@ -35,6 +35,9 @@ export const SideMenu = ({
           <div className={classes.Divider}></div>
           <div className={classes.Links}>
             <h3>Stranice</h3>
+            <Link className={classes.Link} to="/">
+              <span>Početna stranica</span>
+            </Link>
             <Link className={classes.Link} to="/products">
               <span>Proizvodi</span>
             </Link>
