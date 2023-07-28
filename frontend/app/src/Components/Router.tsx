@@ -26,6 +26,7 @@ import { TransactionsPage } from "../Pages/Admin/IndexPages/TransactionsPage/Tra
 import { Homepage } from "../Pages/Web/Homepage/Homepage";
 import Layout from "./Web/Layout";
 import { LoginPage } from "../Pages/Web/LoginPage/LoginPage";
+import { RegisterPage } from "../Pages/Web/RegisterPage/RegisterPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -110,6 +111,7 @@ const router = createBrowserRouter(
       <Route element={<Layout/>}>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Route>
       <Route path="*" element={<ProductPage />} />
     </>
