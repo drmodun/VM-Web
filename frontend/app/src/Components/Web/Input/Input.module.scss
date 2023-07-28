@@ -1,0 +1,75 @@
+.Input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 300px;
+    @media screen and (max-width: 750px) {
+        width: 200px;
+    }
+    > label {
+        color: var(--light-base-black, #2c2c2c);
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        font-weight: 600;
+        font-family: Inter;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .InputContainer {
+        border-radius: 8px;
+        border: 1px solid var(--light-gray-30, #d9d9d9);
+        background: var(--light-gray-10, #f6f6f6);
+        width: 100%;
+        padding: 12px 16px;
+        @media screen and (max-width: 750px) {
+            padding: 12px 8px;
+        }
+        height: 48px;
+        color: var(--light-base-black, #2c2c2c);
+        &::placeholder {
+            color: var(--light-gray-base, #979797);
+        }
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 400;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        > input {
+            width: 100%;
+            height: 48px;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--light-base-black, #2c2c2c);
+            &::placeholder {
+                color: var(--light-gray-base, #979797);
+            }
+        }
+        &:hover {
+            border: 1px solid var(--light-gray-base, #979797);
+            background: var(--light-base-white, #fff);
+        }
+        &:focus-within {
+            border: 1px solid var(--light-primary-base, #2952e1);
+            background: var(--light-base-white, #fff);
+        }
+        .Icon {
+            width: 24px;
+            height: 24px;
+            &:hover {
+                cursor: pointer;
+            }
+            > img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

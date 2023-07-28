@@ -5,9 +5,14 @@ import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
 import { useEffect, useState } from "react";
+import { Login } from "../../../Components/Web/Login/Login";
+import Placeholder from "../../../assets/placeholder.png";
+import close from "../../../assets/close.svg";
+import Input from "../../../Components/Web/Input";
 export const Homepage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [name, setName] = useState("");
 
   const productFetcher = async () => {
     const response = await getProducts({
@@ -42,6 +47,9 @@ export const Homepage = () => {
         {categories.map((category) => (
           <CategoryView category={category} isShort={true} />
         ))}
+      </div>
+      <div>
+        <Login/>
       </div>
     </div>
   );
