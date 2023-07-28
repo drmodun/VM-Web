@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Navigation.module.scss";
-import Logo from "../../../assets/image.svg";
+import Logo from "../../../assets/logo.svg";
 import Menu from "../../../assets/menu.svg";
 import Search from "../../../assets/search.svg";
 import Favourites from "../../../assets/favourite.svg";

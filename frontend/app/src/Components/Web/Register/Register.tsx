@@ -1,5 +1,5 @@
 import { NewUser, User, login } from "../../../Api/UserApi";
-import Logo from "../../../assets/image.svg";
+import Logo from "../../../assets/logo.svg";
 import Show from "../../../assets/Show.svg";
 import Hide from "../../../assets/Hide.svg";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     isEdit ? user?.phoneNumber! : ""
   );
   const [error, setError] = useState("");
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError("Passwords do not match");
@@ -107,17 +107,17 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
 
   return (
     <div className={classes.Container}>
-      <div className={classes.Login}>
-        <div className={classes.LoginForm}>
-          <div className={classes.LoginFormHeader}>
+      <div className={classes.Register}>
+        <div className={classes.RegisterForm}>
+          <div className={classes.RegisterFormHeader}>
             <img src={Logo} alt="VM-racunala" />
             <h1>Register</h1>
             <Link to="/login" className={classes.Link}>
               Log in
             </Link>
           </div>
-          <div className={classes.LoginFormBody}>
-            <form className={classes.LoginFormBodyInput} onSubmit={handleLogin}>
+          <div className={classes.RegisterFormBody}>
+            <form className={classes.RegisterFormBodyInput} onSubmit={handleRegister}>
               <Input
                 label="Name"
                 name="name"

@@ -25,15 +25,15 @@
             max-width: 90%;
             row-gap: 30px;
         }
-        
+        //TODO: remove logo background
         display: flex;
         align-items: center;
         justify-content: center;
         align-self: center;
         flex-direction: row;
         .Logo {
-            width: 20px;
-            height: 20px;
+            width: 50px;
+            height: 50px;
             margin-right: 10vw;
             img {
                 width: 100%;

@@ -9,12 +9,12 @@ export const RegisterPage = () => {
         return response;
     }
     return (
-        <div className={classes.LoginPage}>
+        <div className={classes.RegisterPage}>
             <div className={classes.BackgroundImage}>
                 <img src={Background} alt="" />
             </div>
             <div className={classes.Backdrop}></div>
-            <div className={classes.LoginContainer}>
+            <div className={classes.RegisterContainer}>
             <Register
                 isEdit={false}
                 onRegister={CreateAccount}

@@ -1,5 +1,5 @@
 import { login } from "../../../Api/UserApi";
-import Logo from "../../../assets/image.svg";
+import Logo from "../../../assets/logo.svg";
 import Show from "../../../assets/Show.svg";
 import Hide from "../../../assets/Hide.svg";
 import { Link } from "react-router-dom";
