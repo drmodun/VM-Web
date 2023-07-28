@@ -65,7 +65,7 @@ namespace api.Controllers
         }
 
         [Authorize(AuthConstants.AdminUserPolicyName)]
-        [HttpPut(Routes.User.AdminEdit)]
+        [HttpPut(Routes.User    .AdminEdit)]
         public async Task<ActionResult<PutUserResponse>> UpdateUserByAdmin([FromRoute] Guid id, [FromBody] PutUserRequest request, CancellationToken cancellationToken)
         {
             request.Id = id;

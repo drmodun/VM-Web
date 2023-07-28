@@ -35,7 +35,7 @@ namespace Domain.Services
             {
                 Claims = user.Claims,
                 Email = user.Email,
-                Name = user.Email,
+                Name = user.Name,
                 UserId = user.Id,
             };
             return GenerateToken(jwtRequest);

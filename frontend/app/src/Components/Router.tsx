@@ -27,6 +27,7 @@ import { Homepage } from "../Pages/Web/Homepage/Homepage";
 import Layout from "./Web/Layout";
 import { LoginPage } from "../Pages/Web/LoginPage/LoginPage";
 import { RegisterPage } from "../Pages/Web/RegisterPage/RegisterPage";
+import { accountInfo } from "../Api/Shared";
 const placeholders = () => {
   return <div></div>;
 };
@@ -43,7 +44,7 @@ const router = createBrowserRouter(
       <Route element={<AdminLayout />}>
         {
           //make this a lot cleaner later
-          localStorage.getItem("token") !== null &&
+         accountInfo && accountInfo.admin !== undefined &&
           new Date(localStorage.getItem("loginTime") ?? "") >
             new Date(Date.now() - 1000 * 60 * 60 * 8) ? (
             <>
@@ -108,7 +109,7 @@ const router = createBrowserRouter(
         }
         <Route path="*" element={<ProductPage />} />
       </Route>
-      <Route element={<Layout/>}>
+      <Route element={<Layout />}>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

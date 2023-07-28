@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "../../../Api/UserApi";
+import { adminLogin, login } from "../../../Api/UserApi";
 import classes from "./AdminLoginPage.module.scss";
 import Inputs from "../../../Components/Admin/FormElements";
 
@@ -13,7 +13,7 @@ export const AdminLoginPage = () => {
     e.preventDefault();
     setStatus("Loading...");
     setLoading(true);
-    const response = await login(email, password);
+    const response = await adminLogin(email, password);
     if (response) {
       setStatus("Login successful");
       setLoading(false);

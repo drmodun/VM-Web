@@ -6,6 +6,7 @@ import {
   Sorting,
   baseUrl,
   jwt,
+  parseJwt,
   setJwt,
 } from "./Shared";
 export interface User {
@@ -27,10 +28,10 @@ export interface NewUser {
 }
 
 export interface GetAllProps {
-  "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   name?: string;
   email?: string;
   address?: string;
@@ -55,7 +56,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 
 export const getUsers = async (params: GetAllProps | {} = {}) => {
   try {
@@ -119,4 +119,22 @@ export const login = async (email: string, password: string) => {
     console.error(error);
     return false;
   }
+};
+
+export const adminLogin = async (email: string, password: string) => {
+  try {
+    const response = await api.post("/users/login", { email, password });
+    const obj = parseJwt(response.data);
+    if (!obj.admin) {
+      return false;
+    }
+    localStorage.setItem("token", response.data);
+    setJwt(response.data);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
+
+
