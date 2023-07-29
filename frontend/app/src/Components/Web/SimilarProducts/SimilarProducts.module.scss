@@ -5,6 +5,9 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+    @media screen and (max-width: 950px) {
+        width: 88vw;
+    }
     > h3 {
         color: var(--unnamed, #333232);
         /* TODO: meybe fix the displaz on larger resolutions */
@@ -145,7 +148,7 @@
                         color: white;
                     }
                     @media screen and (max-width: 950px) {
-                        width: 100%;
+                        width: 150px;
                         margin-left: 0px;
                         margin-top: 10px;
                     }

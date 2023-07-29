@@ -1,0 +1,78 @@
+.Container {
+    width: 76vw;
+    padding: 40px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--stroke-primary, #e4e7ee);
+    background: var(--background-white, #fff);
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 950px) {
+        width: 88vw;
+    }
+    > h1 {
+        color: var(--text-main, #1e1e1e);
+        font-family: Nuckle;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 591;
+        line-height: 36px;
+        margin-bottom: 40px;
+    }
+    .SpecsContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @media screen and (max-width: 950px) {
+            flex-direction: column;
+        }
+    }
+    .Specs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-right: 20px;
+        &:last-child {
+            margin-right: 0px;
+        }
+        > .Spec {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .Key {
+                color: var(--text-secondary, #6c757d);
+                font-family: Nuckle;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 539;
+                line-height: normal;
+                letter-spacing: 0.16px;
+                @media screen and (max-width: 750px) {
+                    font-size: 12px;
+                }
+            }
+            .Value {
+                color: var(--text-main, #1e1e1e);
+                text-align: right;
+                font-family: Nuckle;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 653;
+                line-height: normal;
+                letter-spacing: 0.32px;
+                @media screen and (max-width: 750px) {
+                    font-size: 12px;
+                    max-width: 160px;
+                    word-wrap: break-word;
+                }
+            }
+            .Divider {
+                width: 100%;
+                height: 1px;
+                background: var(--stroke-primary, #e4e7ee);
+            }
+        }
+    }
+}

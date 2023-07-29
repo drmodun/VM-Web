@@ -8,7 +8,7 @@
         padding: 45px 20px;
         height: fit-content;
         align-items: center;
-    }   
+    }
     display: flex;
     flex-direction: column;
     .Product {
@@ -181,7 +181,8 @@
                     align-items: center;
                 }
                 > button {
-                    width: 230px;
+                    width: 14vw;
+                    min-width: 170px;
                     height: 52px;
                     text-decoration: none;
                     color: #fff;
@@ -198,6 +199,7 @@
                         height: 90px;
                         font-size: 14px;
                         margin-right: 20px;
+                        min-width: 0px;
                     }
                     &:last-child {
                         margin-right: 0px;

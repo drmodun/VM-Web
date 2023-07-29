@@ -10,14 +10,13 @@
     z-index: 10;
     @media screen and (max-width: 950px) {
         position: relative;
-        
     }
     justify-content: center;
     display: flex;
     @media screen and (max-width: 950px) {
         padding: 12px 2vw;
         background-color: transparent;
-        height: fit-content;
+        height: 180px;
     }
     > nav {
         @media screen and (max-width: 950px) {

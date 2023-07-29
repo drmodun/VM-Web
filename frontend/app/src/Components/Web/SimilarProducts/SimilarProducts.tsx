@@ -34,6 +34,10 @@ export const SimilarProducts = ({ prod }: Props) => {
     fetchSimilarProducts();
   }, []);
 
+  useEffect(() => {
+    fetchSimilarProducts();
+  }, [prod]);
+
   return (
     <div className={classes.Container}>
       <h2>Similar Products</h2>
@@ -65,9 +69,9 @@ export const SimilarProducts = ({ prod }: Props) => {
                 >
                   {product.isInStock ? "U ponudi" : "Rasprodano"}
                 </span>
-              <Link className={classes.Link} to={`/products/${product.id}`}>
-                <button>Pogledaj</button>
-              </Link>
+                <Link className={classes.Link} to={`/products/${product.id}`}>
+                  <button>Pogledaj</button>
+                </Link>
               </div>
             </div>
           </>

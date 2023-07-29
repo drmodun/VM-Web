@@ -28,6 +28,7 @@ import Layout from "./Web/Layout";
 import { LoginPage } from "../Pages/Web/LoginPage/LoginPage";
 import { RegisterPage } from "../Pages/Web/RegisterPage/RegisterPage";
 import { accountInfo } from "../Api/Shared";
+import WebProductPage from "../Pages/Web/ProductPage/";
 const placeholders = () => {
   return <div></div>;
 };
@@ -44,7 +45,8 @@ const router = createBrowserRouter(
       <Route element={<AdminLayout />}>
         {
           //make this a lot cleaner later
-         accountInfo && accountInfo.admin !== undefined &&
+          accountInfo &&
+          accountInfo.admin !== undefined &&
           new Date(localStorage.getItem("loginTime") ?? "") >
             new Date(Date.now() - 1000 * 60 * 60 * 8) ? (
             <>
@@ -113,6 +115,10 @@ const router = createBrowserRouter(
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/products">
+          <Route index element={<></>}></Route>
+          <Route path=":productId" element={<WebProductPage />}></Route>
+        </Route>
       </Route>
       <Route path="*" element={<ProductPage />} />
     </>
