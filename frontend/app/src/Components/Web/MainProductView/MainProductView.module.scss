@@ -3,6 +3,12 @@
     padding: 45px 3vw;
     width: 76vw;
     height: 800px;
+    @media screen and (max-width: 750px) {
+        width: 100%;
+        padding: 45px 20px;
+        height: fit-content;
+        align-items: center;
+    }   
     display: flex;
     flex-direction: column;
     .Product {
@@ -10,21 +16,37 @@
         width: 100%;
         display: flex;
         align-items: flex-start;
+        @media screen and (max-width: 750px) {
+            align-self: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
         .Image {
-            width: 33vw;
+            min-width: 33vw;
             height: 33vw;
             display: flex;
             margin-right: 40px;
             justify-content: center;
+            border-radius: 20px;
             align-items: center;
+            @media screen and (max-width: 750px) {
+                width: 320px;
+                height: 320px;
+                margin-bottom: 20px;
+                margin-right: 0px;
+            }
             background-color: #fff;
             &:hover {
                 box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
             }
             img {
-                width: 33vw;
-                height: 33vw;
-                object-fit: cover;
+                width: 23vw;
+                height: 23vw;
+                @media screen and (max-width: 750px) {
+                    width: 220px;
+                    height: 220px;
+                }
             }
         }
         .ProductInfo {
@@ -33,6 +55,10 @@
             width: 100%;
             height: 100%;
             align-items: flex-start;
+            justify-content: flex-start;
+            @media screen and (max-width: 750px) {
+                width: 320px;
+            }
             .Title {
                 font-family: Nuckle;
                 font-size: 30px;
@@ -50,6 +76,10 @@
                 max-width: 18vw;
                 word-wrap: break-word;
                 margin-bottom: 15px;
+                @media screen and (max-width: 750px) {
+                    max-width: 100%;
+                    min-height: 50px;
+                }
             }
             .Price {
                 color: var(--background-main-color, #0d63f3);
@@ -64,6 +94,9 @@
                 font-size: 18px;
                 font-weight: 591;
                 margin-bottom: 35px;
+                @media screen and (max-width: 750px) {
+                    margin-bottom: 10px;
+                }
             }
             .QuantitySelector {
                 display: flex;
@@ -105,6 +138,9 @@
                     background-color: #0d63f3;
                     color: white;
                     display: flex;
+                    @media screen and (max-width: 750px) {
+                        width: 120px;
+                    }
                     height: 70px;
                     &:hover {
                         cursor: pointer;
@@ -138,6 +174,12 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 30px;
+                @media screen and (max-width: 750px) {
+                    width: 100%;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
                 > button {
                     width: 230px;
                     height: 52px;
@@ -151,6 +193,15 @@
                     justify-content: center;
                     align-items: center;
                     border-radius: 8px;
+                    @media screen and (max-width: 750px) {
+                        width: 100%;
+                        height: 90px;
+                        font-size: 14px;
+                        margin-right: 20px;
+                    }
+                    &:last-child {
+                        margin-right: 0px;
+                    }
                     background: var(--background-main-color, #0d63f3);
                     &:hover {
                         cursor: pointer;
