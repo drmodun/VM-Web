@@ -16,9 +16,9 @@ namespace Domain.Validatiors
             var phoneNumberCheck = new Regex(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,8}$");
 
             //most likely a similar check will be on the fronetned too, but it is better to be safe
-            RuleFor(x => new { x.Email, x.Id}).MustAsync(async (x, cancellationToken) =>
+            RuleFor(x => new { x.Email, x.Id }).MustAsync(async (x, cancellationToken) =>
             {
-                return !await _context.Users.AnyAsync(b => b.Email == x.Email && b.Id!=x.Id, cancellationToken);
+                return !await _context.Users.AnyAsync(b => b.Email == x.Email && b.Id != x.Id, cancellationToken);
             }).WithMessage("Email must be valid");
 
             RuleFor(x => x.Name).Must(x => x.Length > 3 && x.Length < 50)

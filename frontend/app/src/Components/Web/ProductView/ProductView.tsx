@@ -46,9 +46,7 @@ export const ProductView = ({ product }: Props) => {
         <div className={classes.ProductInfo}>
           <Link
             //TODO: decide the links for the product
-            to={`
-            /products/${product.id}
-          `}
+            to={`/products/${product.id}`}
             className={classes.Name}
           >
             <span>{product.name}</span>

@@ -44,7 +44,7 @@ export const MainProductView = ({ product }: Props) => {
           </div>
           <span className={classes.Description}>{product.description}</span>
           <span className={classes.Quantity}>{product.quantity} komada</span>
-          <span className={classes.Price}>{product.price} euro</span>
+          <span className={classes.Price}>{product.price} €</span>
           <div className={classes.QuantitySelector}>
             <button
               className={classes.Button}
@@ -55,7 +55,7 @@ export const MainProductView = ({ product }: Props) => {
               }
             >
               -
-            </button> 
+            </button>
             <span className={classes.SelectedQuantity}>{selectedQuantity}</span>
             <button
               className={classes.Button}

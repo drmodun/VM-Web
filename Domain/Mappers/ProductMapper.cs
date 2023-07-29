@@ -78,7 +78,7 @@ namespace Domain.Mappers
                 IsInStock = product.Quantity > 0,
                 Price = product.Price
 
-             };
+            };
         }
     }
 }

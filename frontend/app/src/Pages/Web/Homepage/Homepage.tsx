@@ -53,17 +53,6 @@ export const Homepage = () => {
         ))}
       </div>
       <div>
-        <Register
-          isEdit={false}
-          onRegister={async (data) => {
-            return true;
-          }}
-        />
-      </div>
-      <div>{products[0] && <MainProductView product={products[0]} />} </div>
-      <div> {products[0] && <SimilarProducts prod={products[0]} />}</div>
-      <div> {products[0]  && 
-      <SpecificationView specs={products[0].attributes} subSpecs={products[0].subAttributes} />}
       </div>
     </div>
   );

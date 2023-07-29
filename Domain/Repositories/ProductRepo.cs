@@ -150,10 +150,10 @@ namespace Domain.Repositories
         public async Task<List<Product>> GetSimilar(GetSimilarProductsRequest request, CancellationToken cancellationToken)
         {
             return await _context.Products
-                .Include(x=>x.Company)
-                .Where(x=>x.Id != request.Id)
-                .Where(x=>x.SubCategoryId == request.SubcategoryId)
-                .OrderBy(x=>Math.Abs(x.Price-request.Price))
+                .Include(x => x.Company)
+                .Where(x => x.Id != request.Id)
+                .Where(x => x.SubCategoryId == request.SubcategoryId)
+                .OrderBy(x => Math.Abs(x.Price - request.Price))
                 .Take(10)
                 .ToListAsync(cancellationToken);
 

@@ -18,8 +18,12 @@
 
         public List<Order> Orders { get; set; } = new List<Order>();
 
+        public Guid? CartId { get; set; }
+        public Cart? Cart { get; set; }
+
         public Dictionary<string, string> Claims { get; set; } = new Dictionary<string, string>();
 
+        public List<Favourites> Favourites { get; set; } = new List<Favourites>();
 
 
     }
