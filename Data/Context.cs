@@ -17,6 +17,11 @@ namespace Data
 
         public DbSet<Transaction> Transactions => Set<Transaction>();
 
+        public DbSet<Cart> Carts => Set<Cart>();
+
+
+        public DbSet<Favourites> Favourites => Set<Favourites>();
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

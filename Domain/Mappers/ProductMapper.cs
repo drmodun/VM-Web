@@ -1,6 +1,7 @@
 ﻿using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Data.Models;
+using Microsoft.AspNetCore.Builder;
 
 namespace Domain.Mappers
 {
@@ -78,6 +79,45 @@ namespace Domain.Mappers
                 IsInStock = product.Quantity > 0,
                 Price = product.Price
 
+            };
+        }
+
+        public GetShortProductResponse ToShortProduct(Product product, Guid? userId = null)
+        {
+            return new GetShortProductResponse
+            {
+                Id = product.Id,
+                CompanyId = product.CompanyId,
+                CategoryId = product.CategoryId,
+                CategoryName = product.Category.Name,
+                Image = product.Image,
+                CompanyName = product.Company.Name,
+                Name= product.Name,
+                Price= product.Price,
+                SubcategoryId = product.SubCategoryId,
+                SubcategoryName = product.Subcategory.Name,
+                IsFavourite = userId != null && product.Favourites.Any(x=>x.UserId == userId),
+                IsInCart = false
+                //later change this
+            };
+        }
+
+        public GetShortProductResponse ToFavouriteShortProducts(Product product)
+        {
+            return new GetShortProductResponse
+            {
+                Id = product.Id,
+                CompanyId = product.CompanyId,
+                CategoryId = product.CategoryId,
+                CategoryName = product.Category.Name,
+                Image = product.Image,
+                CompanyName = product.Company.Name,
+                Name = product.Name,
+                Price = product.Price,
+                SubcategoryId = product.SubCategoryId,
+                SubcategoryName = product.Subcategory.Name,
+                IsFavourite = true,
+                IsInCart = false
             };
         }
     }

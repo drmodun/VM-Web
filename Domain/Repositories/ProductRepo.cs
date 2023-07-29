@@ -62,6 +62,7 @@ namespace Domain.Repositories
                 .Include(x => x.Company)
                 .Include(x => x.Category)
                 .Include(x => x.Subcategory)
+                .Include(x => x.Favourites) // possibly inefficient
                 .Where(x => request.SubcategoryId == null || request.SubcategoryId == x.SubCategoryId)
                 .Where(x => request.CategoryId == null || request.CategoryId == x.CategoryId)
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)

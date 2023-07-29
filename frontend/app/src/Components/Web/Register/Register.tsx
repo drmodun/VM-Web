@@ -57,7 +57,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
       setError("Email is not valid");
       return;
     }
-    if (name.length < 3 || name.length > 20 || !name.match(/^[a-zA-Z]+$/)) {
+    if (name.length < 3 || name.length > 20 || !name.toLowerCase().match(/^[a-zA-Z]+$/)) {
       setError(
         "Name must be between 3 and 20 characters and contain only letters"
       );
@@ -66,7 +66,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     if (
       address.length < 3 ||
       address.length > 20 ||
-      !address.match(/^[a-zA-Z]+$/)
+      !address.toLocaleLowerCase().match(/^[a-zA-Z]+$/)
     ) {
       setError(
         "Address must be between 3 and 20 characters and contain only letters"
