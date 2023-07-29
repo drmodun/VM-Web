@@ -65,5 +65,20 @@ namespace Domain.Mappers
 
             };
         }
+
+        public GetSimilarProductsResponse ToSimilar(Product product)
+        {
+            return new GetSimilarProductsResponse
+            {
+                Id = product.Id,
+                CompanyId = product.CompanyId,
+                Image = product.Image,
+                CompanyName = product.Company.Name,
+                Name = product.Name,
+                IsInStock = product.Quantity > 0,
+                Price = product.Price
+
+             };
+        }
     }
 }

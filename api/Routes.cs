@@ -10,6 +10,7 @@
             public const string Delete = Base + $"/products/{{id:Guid}}";
             public const string Update = Base + $"/products/{{id:Guid}}";
             public const string GetAll = Base + $"/products";
+            public const string GetSimilar = Base + $"/products/similar";
             public const string Create = Base + $"/products";
         }
 

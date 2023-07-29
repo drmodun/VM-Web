@@ -54,6 +54,17 @@ namespace Domain.Services
             return _productMapper.ToDTO(product);
         }
 
+        public async Task<GetSimilarResponse> GetSimilar(GetSimilarProductsRequest request, CancellationToken cancellationToken)
+        {
+            var products = await _productRepo.GetSimilar(request, cancellationToken);
+            return new GetSimilarResponse
+            {
+                Items = products.Select(_productMapper.ToSimilar).ToList()
+            };
+
+
+        }
+
         public async Task<GetAllProductsResponse> GetAllProducts(GetAllProductsRequest request, CancellationToken cancellationToken)
         {
             //might have been better to use a null coalescing operator here

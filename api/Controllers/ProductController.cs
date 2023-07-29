@@ -55,5 +55,12 @@ namespace api.Controllers
             var response = await _productService.GetProduct(id, cancellationToken);
             return response != null ? Ok(response) : NotFound("No product with the given paramaters was found");
         }
+
+        [HttpGet(Routes.Product.GetSimilar)]
+        public async Task<ActionResult<GetSimilarResponse>> GetSimilar([FromQuery] GetSimilarProductsRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _productService.GetSimilar(request, cancellationToken);
+            return Ok(response);
+        }
     }
 }
