@@ -10,6 +10,7 @@ import Placeholder from "../../../assets/placeholder.png";
 import close from "../../../assets/close.svg";
 import Input from "../../../Components/Web/Input";
 import Register from "../../../Components/Web/Register";
+import MainProductView from "../../../Components/Web/MainProductView";
 export const Homepage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -50,13 +51,14 @@ export const Homepage = () => {
         ))}
       </div>
       <div>
-        <Register 
+        <Register
           isEdit={false}
           onRegister={async (data) => {
             return true;
-          }
-        }/> 
+          }}
+        />
       </div>
+      <div>{products[0] && <MainProductView product={products[0]} />} </div>
     </div>
   );
 };
