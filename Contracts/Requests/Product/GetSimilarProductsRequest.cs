@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Contracts.Requests.Product
 {
-    internal class GetLimitedProductsRequest
+    public class GetSimilarProductsRequest
     {
+        public Guid Id { get; set; }
+
+        public Guid SubcategoryId { get; set; }
+
+        public decimal Price { get; set; }
+
     }
 }

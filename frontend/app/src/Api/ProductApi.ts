@@ -1,5 +1,11 @@
 import axios from "axios";
-import { ActionResult, Pagination, PaginationResult, Sorting, baseUrl } from "./Shared";
+import {
+  ActionResult,
+  Pagination,
+  PaginationResult,
+  Sorting,
+  baseUrl,
+} from "./Shared";
 import { Indexable } from "../Types/Interfaces";
 export interface Product {
   id: string;
@@ -19,6 +25,26 @@ export interface Product {
   companyName: string;
 }
 
+export interface SimilarProps {
+  subcategoryId: string;
+  id: string;
+  price: number;
+}
+
+export interface SimilarProduct {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  isInStock: boolean;
+  companyId: string;
+  companyName: string;
+}
+
+export interface SimilarResponse {
+  items: SimilarProduct[];
+}
+
 export interface NewProduct {
   id?: string;
   name: string;
@@ -34,10 +60,10 @@ export interface NewProduct {
 }
 
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   name?: string;
   categoryId?: string;
   subcategoryId?: string;
@@ -49,8 +75,7 @@ export interface GetAllProps {
 }
 
 const api = axios.create({
-  baseURL: 
-baseUrl ,
+  baseURL: baseUrl,
   headers: {
     "Content-Type": "application/json",
   },
@@ -68,8 +93,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-
 
 export const getProducts = async (props: GetAllProps | {} = {}) => {
   try {
@@ -123,5 +146,19 @@ export const deleteProduct = async (id: string): Promise<boolean> => {
   } catch (error) {
     console.error(error);
     return false;
+  }
+};
+
+export const getSimilar = async (
+  props: SimilarProps
+): Promise<SimilarResponse | null> => {
+  try {
+    const response = await api.get<SimilarResponse>(`/products/similar`, {
+      params: props,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };

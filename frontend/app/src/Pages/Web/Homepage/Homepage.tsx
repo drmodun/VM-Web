@@ -11,6 +11,7 @@ import close from "../../../assets/close.svg";
 import Input from "../../../Components/Web/Input";
 import Register from "../../../Components/Web/Register";
 import MainProductView from "../../../Components/Web/MainProductView";
+import SimilarProducts from "../../../Components/Web/SimilarProducts";
 export const Homepage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -59,6 +60,8 @@ export const Homepage = () => {
         />
       </div>
       <div>{products[0] && <MainProductView product={products[0]} />} </div>
+      <div> {products[0] && <SimilarProducts prod={products[0]}
+      />}</div>
     </div>
   );
 };
