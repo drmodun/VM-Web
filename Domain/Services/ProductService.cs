@@ -86,5 +86,44 @@ namespace Domain.Services
                 PageInfo = pageInfo
             };
         }
+
+        public async Task<GetShortProductsResponse> GetShortProducts(GetAllProductsRequest request, CancellationToken cancellationToken, Guid? userId = null)
+        {
+            var products = await _productRepo.GetAllProductsWithFavourites(request, cancellationToken);
+            var list = products.Select(x=>_productMapper.ToShortProduct(x,userId)).ToList();
+            var pageInfo =
+            new PageResponse
+            {
+                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
+                TotalItems = list.Count,
+                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
+            };
+            return new GetShortProductsResponse
+            {
+                Items = list,
+                PageInfo = pageInfo
+            };
+        }
+
+        public async Task<GetShortProductsResponse> GetFavouriteShortProducts(Guid userId)
+        {
+            var products = await _productRepo.GetFavourites(userId);
+            var list = products.Select(_productMapper.ToFavouriteShortProducts).ToList();
+            var pageInfo =
+                //TODO: add pagination for this
+            new PageResponse
+            {
+                PageNumber = 1,
+                PageSize = list.Count,
+                TotalItems = list.Count,
+                TotalPages = 1,
+            };
+            return new GetShortProductsResponse
+            {
+                Items = list,
+                PageInfo = pageInfo
+            };
+        }
     }
 }

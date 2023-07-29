@@ -62,7 +62,6 @@ namespace Domain.Repositories
                 .Include(x => x.Company)
                 .Include(x => x.Category)
                 .Include(x => x.Subcategory)
-                .Include(x => x.Favourites) // possibly inefficient
                 .Where(x => request.SubcategoryId == null || request.SubcategoryId == x.SubCategoryId)
                 .Where(x => request.CategoryId == null || request.CategoryId == x.CategoryId)
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
@@ -148,6 +147,100 @@ namespace Domain.Repositories
                 .ToListAsync(cancellationToken);
         }
 
+        public async Task<List<Product>> GetAllProductsWithFavourites(GetAllProductsRequest request, CancellationToken cancellationToken)
+        {
+
+            var products = _context.Products
+                .Include(x => x.Company)
+                .Include(x => x.Category)
+                .Include(x => x.Subcategory)
+                .Include(x => x.Favourites)
+                .Where(x => request.SubcategoryId == null || request.SubcategoryId == x.SubCategoryId)
+                .Where(x => request.CategoryId == null || request.CategoryId == x.CategoryId)
+                .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
+                .Where(x => request.MinPrice == null || request.MinPrice <= x.Price)
+                .Where(x => request.CompanyId == null || request.CompanyId == x.CompanyId)
+                .Where(x => request.Name == null || x.Name.Contains(request.Name));
+
+            //this is an improvised way to sort
+            //not sure if it will work this way
+            //will see if I can remove the orerby label, however this should effectively randomize the default sort
+            //check if this sorting works at all
+
+            if (request.Sorting != null)
+            {
+                switch (request.Sorting.Attribute)
+                {
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Name);
+                        else
+                            products = products.OrderByDescending(x => x.Name);
+                        break;
+                    case SortAttributeType.SortByPrice:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Price);
+                        else
+                            products = products.OrderByDescending(x => x.Price);
+                        break;
+                    case SortAttributeType.SortByQuantity:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Quantity);
+                        else
+                            products = products.OrderByDescending(x => x.Quantity);
+                        break;
+                    case SortAttributeType.SortByCategoryName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Category.Name);
+                        else
+                            products = products.OrderByDescending(x => x.Name);
+                        break;
+                    case SortAttributeType.SortBySubcategoryName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Subcategory.Name);
+                        else
+                            products = products.OrderByDescending(x => x.Subcategory.Name);
+                        break;
+                    case SortAttributeType.SortByCompanyName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Company.Name);
+                        else
+                            products = products.OrderByDescending(x => x.Company.Name);
+                        break;
+                    case SortAttributeType.SortByUpdated:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.UpdatedAt);
+                        else
+                            products = products.OrderByDescending(x => x.UpdatedAt);
+                        break;
+                    case SortAttributeType.SortByProfit:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Transactions.Count * x.Price);
+                        else
+                            products = products.OrderByDescending(x => x.Transactions.Count * x.Price);
+                        break;
+                    case SortAttributeType.SortByTotalSold:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            products = products.OrderBy(x => x.Transactions.Count);
+                        else
+                            products = products.OrderByDescending(x => x.Transactions.Count);
+                        break;
+                    default: break;
+                }
+            }
+
+
+            //after sorting pagination is implemented
+
+            if (request.Pagination != null)
+            {
+                products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+            }
+
+            return await products
+                .ToListAsync(cancellationToken);
+        }
+
         public async Task<List<Product>> GetSimilar(GetSimilarProductsRequest request, CancellationToken cancellationToken)
         {
             return await _context.Products
@@ -160,6 +253,14 @@ namespace Domain.Repositories
 
         }
 
+            public async Task<List<Product>> GetFavourites(Guid userId)
+            {
+                var favourites = await _context.Favourites
+                    .Where(x => x.UserId == userId)
+                    .Select(x => x.Product)
+                    .ToListAsync();
+                return favourites;
+            }
 
 
 

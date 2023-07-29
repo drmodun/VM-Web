@@ -71,6 +71,31 @@ namespace Data
                 .WithOne(o => o.Service)
                 .HasForeignKey(o => o.ServiceId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasOne(x => x.Cart)
+                .WithOne(o => o.User)
+                .HasForeignKey<Cart>(o => o.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.Favourites)
+                .WithOne(o => o.User)
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Favourites>()
+                .HasOne(x => x.Product)
+                .WithMany(o => o.Favourites)
+                .HasForeignKey(o => o.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Favourites>()
+                .HasKey(o => new {o.ProductId, o.UserId});
+
+            modelBuilder.Entity<CartsProducts>()
+                .HasKey(o => new {o.ProductId, o.CartId});
+
             //handle conversions later  
 
 

@@ -41,6 +41,26 @@ export interface SimilarProduct {
   companyName: string;
 }
 
+export interface ShortProduct {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  IsFavourite: boolean;
+  IsInCart: boolean;
+  subcategoryId: string;
+  categoryId: string;
+  subcategoryName: string;
+  categoryName: string;
+  companyId: string;
+  companyName: string;
+}
+
+export interface ShortProductsResponse {
+  items: ShortProduct[];
+  pagination: Pagination;
+}
+
 export interface SimilarResponse {
   items: SimilarProduct[];
 }
@@ -84,7 +104,11 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-    if (token && ["post", "put", "delete"].includes(config.method || "")) {
+    if (
+      (token && ["post", "put", "delete"].includes(config.method || "")) ||
+      (token && config.url?.includes("short")) ||
+      (token && config.url?.includes("favourite"))
+    ) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -162,3 +186,30 @@ export const getSimilar = async (
     return null;
   }
 };
+
+export const getShortProducts = async (
+  props: GetAllProps | {} = {}
+): Promise<ShortProductsResponse | null> => {
+  try {
+    const response = await api.get<ShortProductsResponse>(`/products/short`, {
+      params: props,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getFavouriteProducts =
+  async (): Promise<ShortProductsResponse | null> => {
+    try {
+      const response = await api.get<ShortProductsResponse>(
+        `/products/favourites`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };

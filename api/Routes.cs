@@ -12,6 +12,8 @@
             public const string GetAll = Base + $"/products";
             public const string GetSimilar = Base + $"/products/similar";
             public const string Create = Base + $"/products";
+            public const string GetShort = Base + $"/products/short";
+            public const string GetFavourites = Base + $"/products/favourites";
         }
 
         public static class User

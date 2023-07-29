@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Requests.Product
+namespace Contracts.Responses.Product
 {
     public class GetShortProductResponse
     {
-        public Guid Id { get; set;}
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public decimal Price { get; set; }
 
         public Guid SubcategoryId { get; set; }
-        public string SubcategoryName { get; set;}
+        public string SubcategoryName { get; set; }
 
         public Guid CategoryId { get; set; }
 

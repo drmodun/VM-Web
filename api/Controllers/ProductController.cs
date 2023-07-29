@@ -1,4 +1,5 @@
-﻿using Contracts.Constants;
+﻿using api.Auth;
+using Contracts.Constants;
 using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Domain.Services;
@@ -62,5 +63,28 @@ namespace api.Controllers
             var response = await _productService.GetSimilar(request, cancellationToken);
             return Ok(response);
         }
+
+        [HttpGet(Routes.Product.GetFavourites)]
+        public async Task<ActionResult<GetShortProductsResponse>> GetFavourites(CancellationToken cancellationToken)
+        {
+            var userId = HttpContext.GetUserId();
+            if (userId == null)
+            {
+                return NotFound("You cannot find the favourite products of no user");
+            }
+            var response = await _productService.GetFavouriteShortProducts((Guid)userId);
+            return Ok(response);
+        }
+       
+        [HttpGet(Routes.Product.GetShort)]
+        public async Task<ActionResult<GetShortProductsResponse>> GetProductsWithFavourites(GetAllProductsRequest request, CancellationToken cancellationToken)
+        {
+            var userId = HttpContext.GetUserId();
+            var response = await _productService.GetShortProducts( request,cancellationToken, userId);
+            return Ok(response);
+        }
+
+
+
     }
 }
