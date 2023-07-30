@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Data.Models;
-using Microsoft.AspNetCore.Builder;
 
 namespace Domain.Mappers
 {
@@ -92,11 +91,11 @@ namespace Domain.Mappers
                 CategoryName = product.Category.Name,
                 Image = product.Image,
                 CompanyName = product.Company.Name,
-                Name= product.Name,
-                Price= product.Price,
+                Name = product.Name,
+                Price = product.Price,
                 SubcategoryId = product.SubCategoryId,
                 SubcategoryName = product.Subcategory.Name,
-                IsFavourite = userId != null && product.Favourites.Any(x=>x.UserId == userId),
+                IsFavourite = userId != null && product.Favourites.Any(x => x.UserId == userId),
                 IsInCart = false
                 //later change this
             };

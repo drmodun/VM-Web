@@ -75,17 +75,17 @@ namespace api.Controllers
             var response = await _productService.GetFavouriteShortProducts((Guid)userId);
             return Ok(response);
         }
-       
+
         [HttpGet(Routes.Product.GetShort)]
         public async Task<ActionResult<GetShortProductsResponse>> GetProductsWithFavourites([FromQuery] GetAllProductsRequest request, CancellationToken cancellationToken)
         {
             var userId = HttpContext.GetUserId();
-            var response = await _productService.GetShortProducts( request,cancellationToken, userId);
+            var response = await _productService.GetShortProducts(request, cancellationToken, userId);
             return Ok(response);
         }
 
         [HttpPost(Routes.Product.AddToFavourites)]
-        public async Task<ActionResult<bool>> AddToFavourites([FromRoute] Guid id ,CancellationToken cancellationToken)
+        public async Task<ActionResult<bool>> AddToFavourites([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var userId = HttpContext.GetUserId();
             if (userId == null)
@@ -109,7 +109,7 @@ namespace api.Controllers
                     );
             }
             var action = await _productService.RemoveFromFavourites(id, (Guid)userId, cancellationToken);
-            return action? Ok(true) : BadRequest(false);
+            return action ? Ok(true) : BadRequest(false);
         }
 
 

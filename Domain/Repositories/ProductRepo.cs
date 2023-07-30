@@ -253,17 +253,17 @@ namespace Domain.Repositories
 
         }
 
-            public async Task<List<Product>> GetFavourites(Guid userId)
-            {
-                var favourites = await _context.Favourites
-                    .Include(x=>x.Product.Company)
-                    .Include(x => x.Product.Category)
-                    .Include (x => x.Product.Subcategory)
-                    .Where(x => x.UserId == userId)
-                    .Select(x => x.Product)
-                    .ToListAsync();
-                return favourites;
-            }
+        public async Task<List<Product>> GetFavourites(Guid userId)
+        {
+            var favourites = await _context.Favourites
+                .Include(x => x.Product.Company)
+                .Include(x => x.Product.Category)
+                .Include(x => x.Product.Subcategory)
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Product)
+                .ToListAsync();
+            return favourites;
+        }
 
 
 

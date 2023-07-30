@@ -91,10 +91,10 @@ namespace Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Favourites>()
-                .HasKey(o => new {o.ProductId, o.UserId});
+                .HasKey(o => new { o.ProductId, o.UserId });
 
             modelBuilder.Entity<CartsProducts>()
-                .HasKey(o => new {o.ProductId, o.CartId});
+                .HasKey(o => new { o.ProductId, o.CartId });
 
             //handle conversions later  
 
