@@ -1,10 +1,13 @@
 .Service {
-    width: 50vw;
+    width: 70vw;
     height: 24vw;
     background: #fff;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
+    &:hover {
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
     .Image {
         width: 24vw;
         height: 24vw;
@@ -12,75 +15,94 @@
         > img {
             width: 100%;
             height: 100%;
+            border-right: #2d2d2d 1px solid;
             border-radius: 10px 0px 0px 10px;
         }
     }
     .Info {
+        width: 46vw;
         flex-direction: column;
         display: flex;
         padding: 40px 20px;
         .Name {
             color: #2d2d2d;
             font-family: Inter;
-            font-size: 16px;
+            font-size: 2.8vw;
             font-style: normal;
             font-weight: 700;
-            line-height: 24px;
-            margin-bottom: 5px;
+            margin-bottom: 1vw;
         }
         .Type {
             color: #6d6d6d;
             font-family: Inter;
-            font-size: 14px;
+            font-size: 1.5vw;
             font-style: normal;
-            font-weight: 500;
-            line-height: 24px;
-            margin-bottom: 20px;
+            font-weight: 600;
+            margin-bottom: 1.4vw;
         }
         .Description {
             color: #6d6d6d;
             font-family: Inter;
-            font-size: 14px;
+            font-size: 1vw;
             font-style: normal;
+            max-width: 100%;
+            word-wrap: break-word;
             font-weight: 500;
-            line-height: 24px;
-            margin-bottom: 20px;
         }
+        //TODO: make euro sign better
         .Price {
+            display: flex;
             margin-bottom: 10px;
             width: 100%;
             justify-content: flex-end;
             font-family: Nuckle;
-            font-size: 24px;
+            font-size: 2VW;
             text-decoration: none;
             color: #0d63f3;
         }
-        .Button {
+        .Bottom {
             width: 100%;
-            height: 40px;
+            height: 100%;
             text-decoration: none;
-            color: #fff;
             display: flex;
-            padding: 10px 0px;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            background: var(--background-main-color, #0d63f3);
-            font-family: SF Pro Display;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            letter-spacing: 0.09px;
-            text-align: center;
-            text-decoration: none;
-            text-transform: none;
-            &:hover {
-                cursor: pointer;
-                background: var(--background-main-color-hover, #0d63f3);
-            }
-            &:active {
-                background: var(--background-main-color-active, #0d63f3);
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            > button {
+                min-width: 150px;
+                width: 13vw;
+                min-height: 50px;
+                height: 3.5vw;
+                text-decoration: none;
+                color: #fff;
+                display: flex;
+                padding: 10px 0px;
+                justify-content: center;
+                border: none;
+                align-items: center;
+                border-radius: 8px;
+                background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
+                font-family: SF Pro Display;
+                font-size: 1.8vw;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                letter-spacing: 0.09px;
+                text-align: center;
+                text-decoration: none;
+                text-transform: none;
+                &:hover {
+                    cursor: pointer;
+                    background: var(
+                        --button-gradient-20,
+                        linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
+                    );
+                    color: black
+                }
+                &:active {
+                    background: var(--background-main-color-hover, #0d63f3);
+                    color: #fff;
+                }
             }
         }
     }
