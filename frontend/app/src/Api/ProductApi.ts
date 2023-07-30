@@ -46,8 +46,8 @@ export interface ShortProduct {
   name: string;
   image: string;
   price: number;
-  IsFavourite: boolean;
-  IsInCart: boolean;
+  isFavourite: boolean;
+  isInCart: boolean;
   subcategoryId: string;
   categoryId: string;
   subcategoryName: string;
@@ -194,6 +194,7 @@ export const getShortProducts = async (
     const response = await api.get<ShortProductsResponse>(`/products/short`, {
       params: props,
     });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -213,3 +214,25 @@ export const getFavouriteProducts =
       return null;
     }
   };
+
+export const addToFavourites = async (id: string): Promise<boolean> => {
+  try {
+    const response = await api.post(`/products/favourites/${id}`);
+    const result = response.data;
+    return result as boolean;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const removeFromFavourites = async (id: string): Promise<boolean> => {
+  try {
+    const response = await api.delete(`/products/favourites/${id}`);
+    const result = response.data;
+    return result as boolean;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

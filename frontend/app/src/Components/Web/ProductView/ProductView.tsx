@@ -1,4 +1,9 @@
-import { Product } from "../../../Api/ProductApi";
+import {
+  Product,
+  ShortProduct,
+  addToFavourites,
+  removeFromFavourites,
+} from "../../../Api/ProductApi";
 import classes from "./ProductView.module.scss";
 import Favourite from "../../../assets/favorite_product.svg";
 import Cart from "../../../assets/cart.svg";
@@ -6,23 +11,39 @@ import image from "../../../assets/placeholder.png";
 import favourite_active from "../../../assets/favorite_product_active.svg";
 import shopping_active from "../../../assets/shopping_product_active.svg";
 import shopping from "../../../assets/shopping_product_hover.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { accountInfo } from "../../../Api/Shared";
 interface Props {
-  product: Product;
+  product: ShortProduct;
+  removal?: Function;
 }
 
 //TODO: add image funcionality
 //TODO: add favourite functionality
 //see if cart works
 
-export const ProductView = ({ product }: Props) => {
-  const [isFavourite, setIsFavourite] = useState(false);
+export const ProductView = ({ product, removal }: Props) => {
+  const [isFavourite, setIsFavourite] = useState<boolean>(product.isFavourite);
   const [isInCart, setIsInCart] = useState(false);
 
-  const toggleFavourite = () => {
+  const toggleFavourite = async () => {
+    if (accountInfo)
+      isFavourite
+        ? await removeFromFavourites(product.id) && removal && removal()
+        : await addToFavourites(product.id);
     setIsFavourite((prev) => !prev);
   };
+
+  useEffect(() => {
+    setIsFavourite(product.isFavourite);
+    setIsInCart(product.isInCart);
+  }, [product]);
+
+  useEffect(() => {
+    setIsFavourite(product.isFavourite);
+  }, []);
+
 
   const toggleCart = () => {
     setIsInCart((prev) => !prev);
@@ -80,9 +101,10 @@ export const ProductView = ({ product }: Props) => {
               <span>Pogledaj</span>
             </Link>
 
-            <button className={ isInCart ? classes.CartActive :
-                classes.Cart}
-             onClick={toggleCart}>
+            <button
+              className={isInCart ? classes.CartActive : classes.Cart}
+              onClick={toggleCart}
+            >
               <img src={isInCart ? shopping_active : shopping} alt="cart" />
             </button>
           </div>

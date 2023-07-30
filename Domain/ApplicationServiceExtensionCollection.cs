@@ -19,6 +19,7 @@ namespace Domain
             services.AddScoped<OrderRepo>();
             services.AddScoped<TransactionRepo>();
             services.AddScoped<UserRepo>();
+            services.AddScoped<FavouritesRepo>();
             services.AddScoped<PreviousClientRepo>();
             services.AddScoped<ServiceRepo>();
             services.AddScoped<SubcategoryRepo>();
@@ -33,6 +34,7 @@ namespace Domain
             services.AddScoped<ServiceValidator>();
             services.AddScoped<SubcategoryValidator>();
             services.AddScoped<CategoryValidator>();
+
 
             services.AddScoped<CompanyService>();
             services.AddScoped<ProductService>();

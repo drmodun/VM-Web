@@ -1,5 +1,5 @@
 import { Category, getCategories } from "../../../Api/CategoryApi";
-import { Product, getProducts } from "../../../Api/ProductApi";
+import { Product, ShortProduct, getProducts, getShortProducts } from "../../../Api/ProductApi";
 import CategoryView from "../../../Components/Web/CategoryView";
 import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
@@ -14,12 +14,12 @@ import MainProductView from "../../../Components/Web/MainProductView";
 import SimilarProducts from "../../../Components/Web/SimilarProducts";
 import SpecificationView from "../../../Components/Web/SpecificationView";
 export const Homepage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [name, setName] = useState("");
 
   const productFetcher = async () => {
-    const response = await getProducts({
+    const response = await getShortProducts({
       "Sorting.Attribute": SortAttributeType.SortByProfit,
       "Sorting.SortType": SortType.Descending,
     });
@@ -43,7 +43,7 @@ export const Homepage = () => {
     <div>
       <h1>Homepage</h1>
       <div className={classes.ProductRow}>
-        {products.map((product) => (
+        {products && products.map((product) => (
           <ProductView product={product} />
         ))}
       </div>

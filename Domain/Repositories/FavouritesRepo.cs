@@ -25,8 +25,6 @@ namespace Domain.Repositories
                 return false;
             var favourite = new Favourites
             {
-                User = user,
-                Product = product,
                 UserId = userId,
                 ProductId = productId
             };
@@ -36,9 +34,11 @@ namespace Domain.Repositories
 
         public async Task<bool> RemoveFromFavourites(Guid userId, Guid productId, CancellationToken cancellationToken)
         {
-            var favourite = await _context.Favourites.FindAsync(userId, productId);
+            var favourite = await _context.Favourites.FindAsync(productId, userId);
             if (favourite == null)
+            {
                 return false;
+            }
             _context.Favourites.Remove(favourite);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }

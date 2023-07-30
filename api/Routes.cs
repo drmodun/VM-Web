@@ -14,6 +14,8 @@
             public const string Create = Base + $"/products";
             public const string GetShort = Base + $"/products/short";
             public const string GetFavourites = Base + $"/products/favourites";
+            public const string AddToFavourites = Base + $"/products/favourites/{{id:Guid}}";
+            public const string RemoveFromFavourites = Base + $"/products/favourites/{{id:Guid}}";
         }
 
         public static class User

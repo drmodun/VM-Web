@@ -10,12 +10,15 @@ namespace Domain.Services
     {
         private readonly ProductRepo _productRepo;
         private readonly ProductMapper _productMapper;
+        private readonly FavouritesRepo _favouriteRepo;
 
-        public ProductService(ProductRepo productRepo, ProductMapper productMapper)
+        public ProductService(ProductRepo productRepo, ProductMapper productMapper, FavouritesRepo favouritesRepo)
         {
             _productRepo = productRepo;
             _productMapper = productMapper;
+            _favouriteRepo = favouritesRepo;
         }
+
 
         public async Task<CreateProductResponse> CreateProduct(CreateProductRequest request, CancellationToken cancellationToken)
         {
@@ -124,6 +127,17 @@ namespace Domain.Services
                 Items = list,
                 PageInfo = pageInfo
             };
+        }
+
+        public async Task<bool> AddToFavourites(Guid productId, Guid userId, CancellationToken cancellationToken)
+        {
+            return await _favouriteRepo.AddToFavourites(userId, productId, cancellationToken);
+
+        }
+
+        public async Task<bool> RemoveFromFavourites(Guid productId, Guid userId, CancellationToken cancellationToken)
+        {
+            return await _favouriteRepo.RemoveFromFavourites(userId, productId, cancellationToken);
         }
     }
 }

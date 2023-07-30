@@ -29,6 +29,7 @@ import { LoginPage } from "../Pages/Web/LoginPage/LoginPage";
 import { RegisterPage } from "../Pages/Web/RegisterPage/RegisterPage";
 import { accountInfo } from "../Api/Shared";
 import WebProductPage from "../Pages/Web/ProductPage/";
+import FavouritesPage from "../Pages/Web/FavouritesPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -115,6 +116,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/favourites" element={<FavouritesPage />} />
         <Route path="/products">
           <Route index element={<></>}></Route>
           <Route path=":productId" element={<WebProductPage />}></Route>
