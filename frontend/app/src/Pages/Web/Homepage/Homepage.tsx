@@ -13,9 +13,12 @@ import Register from "../../../Components/Web/Register";
 import MainProductView from "../../../Components/Web/MainProductView";
 import SimilarProducts from "../../../Components/Web/SimilarProducts";
 import SpecificationView from "../../../Components/Web/SpecificationView";
+import { Service, getServices } from "../../../Api/ServiceApi";
+import ServiceView from "../../../Components/Web/Service";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [services, setServices] = useState<Service[]>();
   const [name, setName] = useState("");
 
   const productFetcher = async () => {
@@ -25,6 +28,12 @@ export const Homepage = () => {
     });
     setProducts(response?.items!);
   };
+
+  const serviceFetcher = async () => {
+    const response = await getServices();
+    setServices(response?.items!);
+  };
+
 
   const categoryFetcher = async () => {
     const response = await getCategories({
@@ -37,6 +46,7 @@ export const Homepage = () => {
   useEffect(() => {
     productFetcher();
     categoryFetcher();
+    serviceFetcher();
   }, []);
 
   return (
@@ -52,7 +62,8 @@ export const Homepage = () => {
           <CategoryView category={category} isShort={true} />
         ))}
       </div>
-      <div>
+      <div className={classes.ProductRow}>
+        {services && services.map((service)=>(<ServiceView service={service}></ServiceView>))}
       </div>
     </div>
   );

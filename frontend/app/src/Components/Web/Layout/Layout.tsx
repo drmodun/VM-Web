@@ -5,6 +5,7 @@ import SideMenu from "../SideMenu";
 import { useState } from "react";
 import { accountInfo } from "../../../Api/Shared";
 //no point for the footer in the admin layout
+console.log(accountInfo);
 export const Layout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -21,14 +22,14 @@ export const Layout = () => {
             <Navigation 
                 setMenuOpen={openMenu}
                 menuOpen={false}
-                isLoggedIn={accountInfo !== null}
+                isLoggedIn={accountInfo}
                 userName={accountInfo?.name}
             />
             { menuOpen &&
             <SideMenu
                 closeMenu={closeMenu}
                 menuOpen={menuOpen}
-                isLoggedIn={accountInfo !== null}
+                isLoggedIn={accountInfo}
                 userName={accountInfo?.name}     
             />
             }

@@ -24,49 +24,49 @@ export const SideMenu = ({
         </div>
         <div className={classes.Menu}>
           {isLoggedIn ? (
-            <Link className={classes.User} to="/me">
+            <Link className={classes.User} onClick={closeMenu} to="/me">
               <span>{userName}</span>
             </Link>
           ) : (
-            <Link className={classes.User} to="/login">
+            <Link className={classes.User} onClick={closeMenu} to="/login">
               Login
             </Link>
           )}
           <div className={classes.Divider}></div>
           <div className={classes.Links}>
             <h3>Stranice</h3>
-            <Link className={classes.Link} to="/">
+            <Link className={classes.Link} onClick={closeMenu} to="/">
               <span>Početna stranica</span>
             </Link>
-            <Link className={classes.Link} to="/products">
+            <Link className={classes.Link} onClick={closeMenu} to="/products">
               <span>Proizvodi</span>
             </Link>
-            <Link className={classes.Link} to="/services">
+            <Link className={classes.Link} onClick={closeMenu} to="/services">
               <span>Servisi</span>
             </Link>
-            <Link className={classes.Link} to="/previous-clients">
+            <Link className={classes.Link} onClick={closeMenu} to="/previous-clients">
               <span>Prijašnji klijenti</span>
             </Link>
-            <Link className={classes.Link} to="/categories">
+            <Link className={classes.Link} onClick={closeMenu} to="/categories">
               <span>Kategorije</span>
             </Link>
-            <Link className={classes.Link} to="/brands">
+            <Link className={classes.Link} onClick={closeMenu} to="/brands">
               <span>Brendovi</span>
             </Link>
           </div>
           <div className={classes.Divider}></div>
           <div className={classes.Links}>
             <h3>Info</h3>
-            <Link className={classes.Link} to="/about">
+            <Link className={classes.Link} onClick={closeMenu} to="/about">
               <span>O nama</span>
             </Link>
-            <Link className={classes.Link} to="/contact">
+            <Link className={classes.Link} onClick={closeMenu} to="/contact">
               <span>Kontakt</span>
             </Link>
-            <Link className={classes.Link} to="/faq">
+            <Link className={classes.Link} onClick={closeMenu} to="/faq">
               <span>FAQ</span>
             </Link>
-            <Link className={classes.Link} to="/terms">
+            <Link className={classes.Link} onClick={closeMenu} to="/terms">
               <span>Uslovi korišćenja</span>
             </Link>
           </div>
@@ -74,7 +74,7 @@ export const SideMenu = ({
           <div className={classes.Info}>
             <h3>Contact</h3>
             <a
-              href="mailto:
+              href="mailonClick={closeMenu} to:
                 jan.modun.st@gmail.com
                 ?subject=Kontakt sa stranice"
             >
