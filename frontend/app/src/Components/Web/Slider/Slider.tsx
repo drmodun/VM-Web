@@ -91,12 +91,12 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
           className={classes.SliderFill}
           style={{
             width: `${
-              ((topValue - bottomValue) / (maxValue - minValue)) * 180 + 40
+              ((topValue - bottomValue) / (maxValue - minValue)) * 160 + 40
             }px`,
             left: `${
-              ((bottomValue - minValue) / (maxValue - minValue)) * 180
+              ((bottomValue - minValue) / (maxValue - minValue)) * 160
             }px`,
-            right: `${((maxValue - topValue) / (maxValue - minValue)) * 180}px`,
+            right: `${((maxValue - topValue) / (maxValue - minValue)) * 160}px`,
           }}
         >
           <div
@@ -105,6 +105,9 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
             onDrag={(event) => {
               event.preventDefault();
               event.stopPropagation();
+              const left = Number(
+                getWidth.current?.getBoundingClientRect().left
+              );
               let width = Number(
                 window.getComputedStyle(getWidth.current!).width.split("p")[0]
               );
@@ -112,10 +115,12 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
                 event.currentTarget.parentElement!.style.width.split("p")[0]
               );
               const value =
-                Number(event.clientX) > width ? width : Number(event.clientX);
+                Number(event.clientX) - left > width
+                  ? width
+                  : Number(event.clientX) - left;
               if (value <= 0) return;
               //  console.log(event.clientX);
-              console.log("width", width, midWidth, value);
+              console.log("width", width, midWidth, value, left);
               console.log(
                 event.currentTarget.parentElement!.style.width.split("p")[0]
               );
@@ -139,6 +144,9 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
             onDrag={(event) => {
               event.preventDefault();
               event.stopPropagation();
+              const left = Number(
+                getWidth.current?.getBoundingClientRect().left
+              );
               let width = Number(
                 window.getComputedStyle(getWidth.current!).width.split("p")[0]
               );
@@ -146,10 +154,18 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
                 event.currentTarget.parentElement!.style.width.split("p")[0]
               );
               const value =
-                Number(event.clientX) > width ? width : Number(event.clientX);
+                Number(event.clientX) - left > width
+                  ? width
+                  : Number(event.clientX) - left;
               if (value <= 0) return;
               //  console.log(event.clientX);
-              console.log("width", width, midWidth, value);
+              console.log(
+                "width",
+                width,
+                midWidth,
+                value,
+                getWidth.current?.getBoundingClientRect()
+              );
               console.log(
                 event.currentTarget.parentElement!.style.width.split("p")[0]
               );

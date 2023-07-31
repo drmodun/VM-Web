@@ -1,5 +1,10 @@
 import { Category, getCategories } from "../../../Api/CategoryApi";
-import { Product, ShortProduct, getProducts, getShortProducts } from "../../../Api/ProductApi";
+import {
+  Product,
+  ShortProduct,
+  getProducts,
+  getShortProducts,
+} from "../../../Api/ProductApi";
 import CategoryView from "../../../Components/Web/CategoryView";
 import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
@@ -36,7 +41,6 @@ export const Homepage = () => {
     setServices(response?.items!);
   };
 
-
   const categoryFetcher = async () => {
     const response = await getCategories({
       "Sorting.Attribute": SortAttributeType.SortByName,
@@ -55,9 +59,8 @@ export const Homepage = () => {
     <div>
       <h1>Homepage</h1>
       <div className={classes.ProductRow}>
-        {products && products.map((product) => (
-          <ProductView product={product} />
-        ))}
+        {products &&
+          products.map((product) => <ProductView product={product} />)}
       </div>
       <div className={classes.CategoryRow}>
         {categories.map((category) => (
@@ -65,26 +68,28 @@ export const Homepage = () => {
         ))}
       </div>
       <div className={classes.ProductRow}>
-        {services && services.map((service)=>(<ServiceView service={service}></ServiceView>))}
+        {services &&
+          services.map((service) => (
+            <ServiceView service={service}></ServiceView>
+          ))}
       </div>
       <div>
         <Dropdown
           options={[
             { label: "Option 1", value: "1" },
             { label: "Option 2", value: "2" },
-            { label: "Option 4", value: "4" }
+            { label: "Option 4", value: "4" },
           ]}
           onSelect={(value) => console.log(value)}
         ></Dropdown>
       </div>
-      <div>
+      <div className={classes.Center}>
         <Slider
           label="Price"
           minValue={0}
           maxValue={100}
           onChange={(value) => console.log(value)}
         ></Slider>
-
       </div>
     </div>
   );

@@ -18,3 +18,10 @@
     flex-wrap: wrap;
     margin-top: 20px;
 }
+.Center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
