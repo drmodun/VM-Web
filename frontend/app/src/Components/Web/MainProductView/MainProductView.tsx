@@ -2,7 +2,7 @@ import { Product } from "../../../Api/ProductApi";
 import Placeholder from "../../../assets/placeholder.png";
 import { Link } from "react-router-dom";
 import classes from "./MainProductView.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   product: Product;
@@ -12,6 +12,10 @@ interface Props {
 
 export const MainProductView = ({ product }: Props) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  useEffect(() => {
+    setSelectedQuantity(1);
+  }, [product]);
 
   return (
     <div className={classes.Container}>

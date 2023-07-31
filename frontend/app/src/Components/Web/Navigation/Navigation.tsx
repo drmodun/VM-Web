@@ -25,9 +25,9 @@ export const Navigation = ({
   return (
     <div className={classes.Navigation}>
       <nav>
-        <div className={classes.Logo}>
+        <Link className={classes.Logo} to={"/"}>
           <img src={Logo} alt="vm-logo" />
-        </div>
+        </Link>
         <div className={classes.Menu} onClick={setMenuOpen}>
           <img src={Menu} alt="menu" />
           <span> Menu</span>

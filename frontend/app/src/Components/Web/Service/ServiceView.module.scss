@@ -48,7 +48,7 @@
         }
         .Name {
             color: #2d2d2d;
-            font-family: Inter;
+            font-family: Nuckle;
             font-size: 2.8vw;
             font-style: normal;
             font-weight: 700;
@@ -60,7 +60,7 @@
         }
         .Type {
             color: #6d6d6d;
-            font-family: Inter;
+            font-family: Nuckle;
             font-size: 1.5vw;
             font-style: normal;
             font-weight: 600;
@@ -72,7 +72,7 @@
         }
         .Description {
             color: #6d6d6d;
-            font-family: Inter;
+            font-family: Nuckle;
             font-size: 1vw;
             font-style: normal;
             max-width: 100%;
@@ -93,6 +93,7 @@
             font-size: 2vw;
             text-decoration: none;
             color: #0d63f3;
+            font-weight: 400;
             @media screen and (max-width: 770px) {
                 font-size: 6vw;
                 margin-bottom: 20px;
