@@ -16,15 +16,20 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     event.preventDefault();
-    const value = Number(event.target.value) < minValue ? minValue : Number(event.target.value);
+    const value =
+      Number(event.target.value) < minValue
+        ? minValue
+        : Number(event.target.value);
     setBottomValue(value > topValue ? bottomValue : value);
     onChange(event.target.value);
   };
 
   const handleTopValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const value = Number(event.target.value) > maxValue ? maxValue : Number(event.target.value)
-    ;
+    const value =
+      Number(event.target.value) > maxValue
+        ? maxValue
+        : Number(event.target.value);
     setTopValue(value < bottomValue ? topValue : value);
     onChange(event.target.value);
   };
@@ -94,30 +99,43 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
           }}
         >
           <div
+            draggable={true}
             className={classes.SliderHandle}
-            style={{
-              left: `${
-                ((bottomValue - minValue) / (maxValue - minValue)) * 110
-              }px`,
-            }}
-            onDrag={(event) => {
+            onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
+              console.log(event);
 
-              setBottomValue(Number(event.movementX) + bottomValue);
+              setBottomValue(Number(event) + bottomValue);
             }}
           ></div>
           <div
+            draggable={true}
             className={classes.SliderHandle}
-            style={{
-              right: `${
-                ((maxValue - topValue) / (maxValue - minValue)) * 110
-              }px`,
-            }}
             onDrag={(event) => {
               event.preventDefault();
               event.stopPropagation();
-              setTopValue(-Number(event.movementX) + topValue);
+              console.log(event);
+              event.currentTarget.style.position = "absolute";
+              event.currentTarget.style.right = `${
+                180 - event.clientX > 0 ? 220 - event.clientX : 0
+              }px`;
+              console.log(event.currentTarget.style.right);
+              console.log(event.clientX);
+            }}
+            onDragEnd={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              console.log(event);
+              event.currentTarget.style.position = "absolute";
+              const higher = 180 - event.clientX;
+              const lower = 40;
+              event.currentTarget.style.right = `${
+                180 - event.clientX > 0 ? 220 - event.clientX : 0
+              }px`;
+              console.log(event.currentTarget.style.right);
+              console.log(event.clientX);
+              setTopValue(maxValue);
             }}
           ></div>
         </div>
