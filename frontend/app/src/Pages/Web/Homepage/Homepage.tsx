@@ -16,6 +16,7 @@ import SpecificationView from "../../../Components/Web/SpecificationView";
 import { Service, getServices } from "../../../Api/ServiceApi";
 import ServiceView from "../../../Components/Web/Service";
 import Dropdown from "../../../Components/Web/Dropdown";
+import Slider from "../../../Components/Web/Slider";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -75,6 +76,15 @@ export const Homepage = () => {
           ]}
           onSelect={(value) => console.log(value)}
         ></Dropdown>
+      </div>
+      <div>
+        <Slider
+          label="Price"
+          minValue={0}
+          maxValue={100}
+          onChange={(value) => console.log(value)}
+        ></Slider>
+
       </div>
     </div>
   );
