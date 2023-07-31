@@ -15,6 +15,7 @@ import SimilarProducts from "../../../Components/Web/SimilarProducts";
 import SpecificationView from "../../../Components/Web/SpecificationView";
 import { Service, getServices } from "../../../Api/ServiceApi";
 import ServiceView from "../../../Components/Web/Service";
+import Dropdown from "../../../Components/Web/Dropdown";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -64,6 +65,16 @@ export const Homepage = () => {
       </div>
       <div className={classes.ProductRow}>
         {services && services.map((service)=>(<ServiceView service={service}></ServiceView>))}
+      </div>
+      <div>
+        <Dropdown
+          options={[
+            { label: "Option 1", value: "1" },
+            { label: "Option 2", value: "2" },
+            { label: "Option 4", value: "4" }
+          ]}
+          onSelect={(value) => console.log(value)}
+        ></Dropdown>
       </div>
     </div>
   );
