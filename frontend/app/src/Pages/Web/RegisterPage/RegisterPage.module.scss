@@ -1,10 +1,14 @@
-.RegisterPage{
+.RegisterPage {
     display: flex;
     width: 100%;
     height: 900px;
     justify-content: center;
     align-items: center;
-    .Backdrop{
+    margin-top: 70px;
+    @media screen and (max-width: 950px) {
+        margin-top: 0px;
+    }
+    .Backdrop {
         width: 100%;
         height: 900px;
         background: rgba(0, 0, 0, 0.5);
@@ -12,7 +16,7 @@
         z-index: 1;
         overflow-x: clip;
     }
-    .BackgroundImage{
+    .BackgroundImage {
         width: 100%;
         height: 900px;
         position: absolute;
@@ -24,7 +28,7 @@
             object-fit: cover;
         }
     }
-    .RegisterContainer{
+    .RegisterContainer {
         height: fit-content;
         display: flex;
         width: 100%;
@@ -33,7 +37,4 @@
         align-items: center;
         z-index: 2;
     }
-
-
-
 }
