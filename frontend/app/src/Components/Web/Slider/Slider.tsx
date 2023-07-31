@@ -1,5 +1,5 @@
 import classes from "./Slider.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface Props {
   label: string;
@@ -11,6 +11,7 @@ interface Props {
 export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
   const [bottomValue, setBottomValue] = useState<number>(minValue);
   const [topValue, setTopValue] = useState<number>(maxValue);
+  const getWidth = useRef<HTMLDivElement | null>(null);
 
   const handleBottomValueChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -85,7 +86,7 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
                     onChange(event.target.value);
                 }}
             /> */}
-      <div className={classes.Slider}>
+      <div className={classes.Slider} ref={getWidth}>
         <div
           className={classes.SliderFill}
           style={{
@@ -101,12 +102,35 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
           <div
             draggable={true}
             className={classes.SliderHandle}
-            onClick={(event) => {
+            onDrag={(event) => {
               event.preventDefault();
               event.stopPropagation();
-              console.log(event);
-
-              setBottomValue(Number(event) + bottomValue);
+              let width = Number(
+                window.getComputedStyle(getWidth.current!).width.split("p")[0]
+              );
+              let midWidth = Number(
+                event.currentTarget.parentElement!.style.width.split("p")[0]
+              );
+              const value =
+                Number(event.clientX) > width ? width : Number(event.clientX);
+              if (value <= 0) return;
+              //  console.log(event.clientX);
+              console.log("width", width, midWidth, value);
+              console.log(
+                event.currentTarget.parentElement!.style.width.split("p")[0]
+              );
+              console.log(Math.round((value / midWidth) * topValue));
+              setBottomValue(
+                Math.round((value / width) * maxValue) > topValue
+                  ? topValue
+                  : Math.round((value / width) * maxValue)
+              );
+              //   setTopValue(
+              //     topValue -
+              //       Number (event.clientX) /
+              //         Number(event.currentTarget.parentElement!.style.width.split("p")[0]) *
+              //         (maxValue - minValue)
+              //   );
             }}
           ></div>
           <div
@@ -115,27 +139,36 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
             onDrag={(event) => {
               event.preventDefault();
               event.stopPropagation();
-              console.log(event);
-              event.currentTarget.style.position = "absolute";
-              event.currentTarget.style.right = `${
-                180 - event.clientX > 0 ? 220 - event.clientX : 0
-              }px`;
-              console.log(event.currentTarget.style.right);
-              console.log(event.clientX);
-            }}
-            onDragEnd={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              console.log(event);
-              event.currentTarget.style.position = "absolute";
-              const higher = 180 - event.clientX;
-              const lower = 40;
-              event.currentTarget.style.right = `${
-                180 - event.clientX > 0 ? 220 - event.clientX : 0
-              }px`;
-              console.log(event.currentTarget.style.right);
-              console.log(event.clientX);
-              setTopValue(maxValue);
+              let width = Number(
+                window.getComputedStyle(getWidth.current!).width.split("p")[0]
+              );
+              let midWidth = Number(
+                event.currentTarget.parentElement!.style.width.split("p")[0]
+              );
+              const value =
+                Number(event.clientX) > width ? width : Number(event.clientX);
+              if (value <= 0) return;
+              //  console.log(event.clientX);
+              console.log("width", width, midWidth, value);
+              console.log(
+                event.currentTarget.parentElement!.style.width.split("p")[0]
+              );
+              console.log(
+                Math.round(value / midWidth) * (topValue - bottomValue)
+              );
+              setTopValue(
+                Math.round((value / width) * maxValue) > maxValue
+                  ? maxValue
+                  : Math.round((value / width) * maxValue) < bottomValue
+                  ? bottomValue
+                  : Math.round((value / width) * maxValue)
+              );
+              //   setTopValue(
+              //     topValue -
+              //       Number (event.clientX) /
+              //         Number(event.currentTarget.parentElement!.style.width.split("p")[0]) *
+              //         (maxValue - minValue)
+              //   );
             }}
           ></div>
         </div>

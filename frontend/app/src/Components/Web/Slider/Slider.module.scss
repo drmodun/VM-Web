@@ -1,6 +1,5 @@
 .Container {
     width: 220px;
-    margin-left: 200px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -60,13 +59,11 @@
         margin-bottom: 20px;
     }
     > .Slider {
-        align-items: center;
         display: flex;
-        width: 220px;
+        width: 200px;
         height: 10px;
         background-color: #e4e7ee;
         border-radius: 3px;
-
         .SliderFill {
             display: flex;
             justify-content: space-between;
