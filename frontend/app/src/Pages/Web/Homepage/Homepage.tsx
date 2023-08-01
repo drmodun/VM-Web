@@ -1,5 +1,6 @@
 import { Category, getCategories } from "../../../Api/CategoryApi";
 import {
+  GetAllProps,
   Product,
   ShortProduct,
   getProducts,
@@ -22,16 +23,18 @@ import { Service, getServices } from "../../../Api/ServiceApi";
 import ServiceView from "../../../Components/Web/Service";
 import Dropdown from "../../../Components/Web/Dropdown";
 import Slider from "../../../Components/Web/Slider";
+import Filter from "../../../Components/Web/FIlter";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [services, setServices] = useState<Service[]>();
   const [name, setName] = useState("");
 
-  const productFetcher = async () => {
+  const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
       "Sorting.Attribute": SortAttributeType.SortByProfit,
       "Sorting.SortType": SortType.Descending,
+      ...params,
     });
     setProducts(response?.items!);
   };
@@ -58,6 +61,7 @@ export const Homepage = () => {
   return (
     <div>
       <h1>Homepage</h1>
+      <Filter filter={productFetcher} maxValue={10000} minValue={1} />
       <div className={classes.ProductRow}>
         {products &&
           products.map((product) => <ProductView product={product} />)}
@@ -69,26 +73,19 @@ export const Homepage = () => {
       </div>
       <div className={classes.ProductRow}>
         {services &&
+        //TODO: fix admin product filter
           services.map((service) => (
             <ServiceView service={service}></ServiceView>
           ))}
       </div>
-      <div>
-        <Dropdown
-          options={[
-            { label: "Option 1", value: "1" },
-            { label: "Option 2", value: "2" },
-            { label: "Option 4", value: "4" },
-          ]}
-          onSelect={(value) => console.log(value)}
-        ></Dropdown>
-      </div>
+      <div></div>
       <div className={classes.Center}>
         <Slider
           label="Price"
           minValue={0}
           maxValue={100}
-          onChange={(value) => console.log(value)}
+          onBottomChange={(value) => console.log(value)}
+          onTopChange={(value) => console.log(value)}
         ></Slider>
       </div>
     </div>

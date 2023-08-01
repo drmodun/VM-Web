@@ -5,10 +5,17 @@ interface Props {
   label: string;
   minValue: number;
   maxValue: number;
-  onChange: (value: string) => void;
+  onBottomChange: (value: number) => void;
+  onTopChange: (value: number) => void;
 }
 
-export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
+export const Slider = ({
+  label,
+  minValue,
+  maxValue,
+  onBottomChange,
+  onTopChange,
+}: Props) => {
   const [bottomValue, setBottomValue] = useState<number>(minValue);
   const [topValue, setTopValue] = useState<number>(maxValue);
   const getWidth = useRef<HTMLDivElement | null>(null);
@@ -22,7 +29,6 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
         ? minValue
         : Number(event.target.value);
     setBottomValue(value > topValue ? bottomValue : value);
-    onChange(event.target.value);
   };
 
   const handleTopValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +38,12 @@ export const Slider = ({ label, minValue, maxValue, onChange }: Props) => {
         ? maxValue
         : Number(event.target.value);
     setTopValue(value < bottomValue ? topValue : value);
-    onChange(event.target.value);
   };
+
+  useEffect(() => {
+    onBottomChange(bottomValue);
+    onTopChange(topValue);
+  }, [bottomValue, topValue]);
 
   useEffect(() => {
     setBottomValue(minValue);

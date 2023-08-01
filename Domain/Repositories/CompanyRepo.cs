@@ -49,7 +49,7 @@ namespace Domain.Repositories
         public async Task<List<Company>> GetAllcompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = _context.Companies
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 ;
             //sorting

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Dropdown.module.scss";
 import chevron_down from "../../../assets/chevron-down.svg";
 import chevron_up from "../../../assets/chevron-up.svg";
@@ -10,9 +10,11 @@ interface Option {
 interface Props {
   options: Option[];
   onSelect: (value: string) => void;
+  cancel?: boolean;
+  closer?: Function;
 }
 
-export const Dropdown = ({ options, onSelect }: Props) => {
+export const Dropdown = ({ options, onSelect, cancel, closer }: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selected, setSelected] = useState<string>("");
   const [visible, setVisible] = useState<boolean>(false);
@@ -30,10 +32,19 @@ export const Dropdown = ({ options, onSelect }: Props) => {
     setVisible(false);
   };
 
+  useEffect(() => {
+    setVisible(false);
+  }, [cancel]);
+
   return (
     <div className={classes.Dropdown}>
-      <div className={`${visible ? classes.Active : ""} ${classes.Top} `}
-          onClick={() => setVisible((prev) => !prev)}>
+      <div
+        className={`${visible ? classes.Active : ""} ${classes.Top} `}
+        onClick={() => {
+          closer && closer();
+          setVisible((prev) => !prev);
+        }}
+      >
         <input
           type="text"
           placeholder={placeholder}

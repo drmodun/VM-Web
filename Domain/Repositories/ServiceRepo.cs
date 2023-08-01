@@ -49,7 +49,7 @@ namespace Domain.Repositories
         public async Task<List<Service>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
         {
             var services = _context.Services
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null ||x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.MinPrice == null || x.Price >= request.MinPrice)
                 .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice)
                 .Where(x => request.ServiceType == null || x.ServiceType == request.ServiceType);
