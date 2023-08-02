@@ -1,0 +1,73 @@
+.Container {
+    .Main {
+        display: flex;
+        margin-bottom: 5px;
+        > button {
+            display: inline-flex;
+            height: 40px;
+            padding: 12px 13px;
+            justify-content: center;
+            width: 150px;
+            background-color: #fff;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 8px;
+            display: flex;
+            border: 1px solid var(--light-primary-base, #2952e1);
+            outline: none;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--light-primary-base, #2952e1);
+            text-align: center;
+            font-family: Nuckle;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            > img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+    .Options {
+        display: flex;
+        position: absolute;
+        z-index: 1;
+        flex-direction: column;
+        width: 120px;
+        color: var(--light-base-black, #2c2c2c);
+        font-family: Nuckle;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        background-color: #fff;
+        border-radius: 8px;
+        .Option {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #fff;
+            outline: none;
+            height: 40px;
+            border: none;
+            &:first-child{
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            &:last-child{
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+            &:hover {
+                background: var(--light-primary-10, #f3f8ff);
+            }
+            &:active {
+                background: var(--light-primary-20, #d0def5);
+            }
+        }
+    }
+}

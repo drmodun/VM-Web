@@ -26,6 +26,7 @@ import Slider from "../../../Components/Web/Slider";
 import Filter from "../../../Components/Web/FIlter";
 import { Pagination } from "../../../Components/Web/Pagination/Pagination";
 import { PageInfo } from "../../../Api/Shared";
+import Switch from "../../../Components/Web/Switch";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -33,6 +34,10 @@ export const Homepage = () => {
   const [name, setName] = useState("");
   const [pageInfo, setPageInfo] = useState<PageInfo>();
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [attribute, setAttribute] = useState<SortAttributeType>(
+    SortAttributeType.SortByName
+  );
+  const [type, setType] = useState<SortType>(SortType.Descending);
 
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
@@ -70,7 +75,7 @@ export const Homepage = () => {
   }, [currentPage]);
 
   return (
-    <div>
+    <div className={classes.Center}>
       <h1>Homepage</h1>
       <Filter filter={productFetcher} maxValue={10000} minValue={1} />
       {pageInfo && (
@@ -80,6 +85,25 @@ export const Homepage = () => {
           onPageChange={(page) => setCurrentPage(page)}
         />
       )}
+      <Switch
+        options={[
+          { label: "Name", value: SortAttributeType.SortByName },
+          {
+            label: "Subcategory",
+            value: SortAttributeType.SortBySubcategoryName,
+          },
+          { label: "Profit", value: SortAttributeType.SortByUpdated },
+          { label: "Price", value: SortAttributeType.SortByPrice },
+        ]}
+        onSwitch={(value) => {
+          productFetcher({
+            "Sorting.Attribute": value,
+            "Sorting.SortType": SortType.Descending,
+          });
+        }}
+        closeOthers={() => {}}
+        close={false}
+      />
       <div className={classes.ProductRow}>
         {products &&
           products.map((product) => <ProductView product={product} />)}

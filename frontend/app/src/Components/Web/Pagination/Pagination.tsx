@@ -27,7 +27,7 @@ export const Pagination = ({
       </button>
       <button
         className={classes.Button}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => onPageChange(currentPage - 1 > 0 ? currentPage - 1 : 1)}
         disabled={currentPage === 1}
       >
         {"<"}
@@ -36,7 +36,7 @@ export const Pagination = ({
         .map((i) => i + 1)
         .splice(
           currentPage + 2 > totalPages
-            ? Math.max(currentPage - (5-(totalPages-currentPage)), 0)
+            ? Math.max(currentPage - (5 - (totalPages - currentPage)), 0)
             : Math.max(0, currentPage - 3),
           Math.min(5, totalPages)
         )
@@ -52,7 +52,11 @@ export const Pagination = ({
         ))}
       <button
         className={classes.Button}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() =>
+          onPageChange(
+            currentPage + 1 < totalPages ? currentPage + 1 : totalPages
+          )
+        }
         disabled={currentPage === totalPages}
       >
         {">"}

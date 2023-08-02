@@ -128,7 +128,7 @@ export const Slider = ({
                 Number(event.clientX) - left > width
                   ? width
                   : Number(event.clientX) - left;
-              if (value <= 0) return;
+              if (value < -40) return;
               //  console.log(event.clientX);
               console.log("width", width, midWidth, value, left);
               console.log(
@@ -136,9 +136,12 @@ export const Slider = ({
               );
               console.log(Math.round((value / midWidth) * topValue));
               setBottomValue(
-                Math.round((value / width) * maxValue) > topValue
+                Math.round((value / width) * maxValue) 
+                > 0 ? Math.round((value / width) * maxValue)
+                > topValue
                   ? topValue
                   : Math.round((value / width) * maxValue)
+                  : 0
               );
               //   setTopValue(
               //     topValue -

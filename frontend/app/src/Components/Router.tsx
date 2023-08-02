@@ -31,6 +31,7 @@ import { accountInfo } from "../Api/Shared";
 import WebProductPage from "../Pages/Web/ProductPage/";
 import FavouritesPage from "../Pages/Web/FavouritesPage";
 import WebServicesPage from "../Pages/Web/ServicesPage";
+import WebProductsPage from "../Pages/Web/ProductsPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -120,7 +121,7 @@ const router = createBrowserRouter(
         <Route path="/favourites" element={<FavouritesPage />} />
         <Route path="/services" element={<WebServicesPage />} />
         <Route path="/products">
-          <Route index element={<></>}></Route>
+          <Route index element={<WebProductsPage/>}></Route>
           <Route path=":productId" element={<WebProductPage />}></Route>
         </Route>
       </Route>
