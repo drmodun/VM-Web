@@ -65,6 +65,10 @@ export const Homepage = () => {
     serviceFetcher();
   }, []);
 
+  useEffect(() => {
+    productFetcher();
+  }, [currentPage]);
+
   return (
     <div>
       <h1>Homepage</h1>

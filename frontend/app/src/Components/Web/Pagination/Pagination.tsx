@@ -11,18 +11,9 @@ export const Pagination = ({
   totalPages,
   onPageChange,
 }: Props) => {
-  const [pages, setPages] = useState<number[]>(
-    Array.from(Array(totalPages).keys()).map((i) => i + 1)
-  );
-
   useEffect(() => {
-    setPages(Array.from(Array(totalPages).keys()).map((i) => i + 1));
-  }, [totalPages]);
-
-  useEffect(() => {
-    const temp = Array.from(Array(totalPages).keys()).map((i) => i + 1);
-    setPages(Array.from(Array(totalPages+1).keys()).map((i) => i + 1));
-    console.log(totalPages, pages, temp);
+    onPageChange(1);
+    console.log(totalPages);
   }, []);
 
   return (
@@ -41,10 +32,13 @@ export const Pagination = ({
       >
         {"<"}
       </button>
-      {pages
+      {Array.from(Array(totalPages).keys())
+        .map((i) => i + 1)
         .splice(
-          Math.max(0, currentPage - 3),
-          Math.min(Math.max(6, totalPages), currentPage + 3)
+          currentPage + 2 > totalPages
+            ? Math.max(currentPage - (5-(totalPages-currentPage)), 0)
+            : Math.max(0, currentPage - 3),
+          Math.min(5, totalPages)
         )
         .map((page) => (
           <button
