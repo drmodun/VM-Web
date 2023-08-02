@@ -5,7 +5,6 @@ using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories
 {

@@ -49,7 +49,7 @@ namespace Domain.Repositories
         public async Task<IQueryable<Service>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
         {
             var services = _context.Services
-                .Where(x => request.Name == null ||x.Name.ToLower().Contains(request.Name.ToLower()))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.MinPrice == null || x.Price >= request.MinPrice)
                 .Where(x => request.MaxPrice == null || x.Price < request.MaxPrice)
                 .Where(x => request.ServiceType == null || x.ServiceType == request.ServiceType);
@@ -82,12 +82,8 @@ namespace Domain.Repositories
                     default: break;
                 }
             }
-            if (request.Pagination != null)
-            {
-                services = services.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
-            }
 
-            return await services.ToListAsync(cancellationToken);
+            return services;
         }
     }
 }

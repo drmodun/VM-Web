@@ -104,7 +104,7 @@ namespace Domain.Repositories
                 }
             }
 
-            return  transactions    ;
+            return transactions;
         }
 
 

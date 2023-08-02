@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.User;
 using Contracts.Responses;
 using Contracts.Responses.User;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 

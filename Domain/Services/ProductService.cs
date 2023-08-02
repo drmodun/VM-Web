@@ -93,7 +93,7 @@ namespace Domain.Services
         }
 
         public async Task<GetShortProductsResponse> GetShortProducts(GetAllProductsRequest request, CancellationToken cancellationToken, Guid? userId = null)
-        {       
+        {
             var products = await _productRepo.GetAllProductsWithFavourites(request, cancellationToken);
             var pageInfo =
             new PageResponse

@@ -65,6 +65,8 @@ namespace Domain.Services
                 TotalItems = previousClients.Count(),
                 TotalPages = request.Pagination != null ? (previousClients.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
+            if (request.Pagination != null)
+                previousClients = previousClients.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             var list = previousClients.Select(x => _previousClientMapper.ToDTO(x)).ToList();
             return new GetAllPreviousClientsResponse
             {

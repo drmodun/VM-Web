@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Order;
 using Contracts.Responses;
 using Contracts.Responses.Order;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -68,7 +67,7 @@ namespace Domain.Services
                 TotalItems = orders.Count(),
                 TotalPages = request.Pagination != null ? (orders.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
-            if (request.Pagination!=null)
+            if (request.Pagination != null)
                 orders = orders.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             var list = orders.Select(x => _orderMapper.ToDTO(x)).ToList();
 

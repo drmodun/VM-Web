@@ -137,8 +137,8 @@ namespace Domain.Repositories
             }
 
             //after sorting pagination is implemented
-          return products;
-                
+            return products;
+
         }
 
         public async Task<IQueryable<Product>> GetAllProductsWithFavourites(GetAllProductsRequest request, CancellationToken cancellationToken)

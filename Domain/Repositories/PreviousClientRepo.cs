@@ -5,7 +5,6 @@ using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories
 {
@@ -46,7 +45,7 @@ namespace Domain.Repositories
             return await _context.PreviousClients.FindAsync(id, cancellationToken);
         }
 
-        public async Task<IQueryable<PreviousClient>> GetAllpreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<PreviousClient>> GetAllPreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
         {
             var previousClients = _context.PreviousClients
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
@@ -70,11 +69,7 @@ namespace Domain.Repositories
                 }
             }
 
-            if (request.Pagination != null)
-            {
-                previousClients = previousClients.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
-            }
-            return previousClients
+            return previousClients;
 
 
         }

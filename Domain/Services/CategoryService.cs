@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Category;
 using Contracts.Responses;
 using Contracts.Responses.Category;
-using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
