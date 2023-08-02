@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   ActionResult,
+  PageInfo,
   Pagination,
   PaginationResult,
   Sorting,
@@ -58,7 +59,7 @@ export interface ShortProduct {
 
 export interface ShortProductsResponse {
   items: ShortProduct[];
-  pagination: Pagination;
+  pageInfo: PageInfo;
 }
 
 export interface SimilarResponse {
@@ -189,9 +190,9 @@ export const getSimilar = async (
 
 export const getShortProducts = async (
   props: GetAllProps | {} = {}
-): Promise<ShortProductsResponse | null> => {
+) : Promise<ShortProductsResponse | null> => {
   try {
-    const response = await api.get<ShortProductsResponse>(`/products/short`, {
+    const response = await api.get<PaginationResult<ShortProduct>>(`/products/short`, {
       params: props,
     });
     console.log(response.data);

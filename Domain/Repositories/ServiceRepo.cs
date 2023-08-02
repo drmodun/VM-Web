@@ -46,7 +46,7 @@ namespace Domain.Repositories
             return await _context.Services.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
-        public async Task<List<Service>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Service>> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
         {
             var services = _context.Services
                 .Where(x => request.Name == null ||x.Name.ToLower().Contains(request.Name.ToLower()))

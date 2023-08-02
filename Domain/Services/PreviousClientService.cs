@@ -56,18 +56,16 @@ namespace Domain.Services
 
         public async Task<GetAllPreviousClientsResponse> GetAllPreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
         {
-            var previousClients = await _previousClientRepo.GetAllpreviousClients(request, cancellationToken);
-            var list = previousClients.Select(x => _previousClientMapper.ToDTO(x)).ToList();
-
-
+            var previousClients = await _previousClientRepo.GetAllPreviousClients(request, cancellationToken);
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
-                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : previousClients.Count(),
+                TotalItems = previousClients.Count(),
+                TotalPages = request.Pagination != null ? (previousClients.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
+            var list = previousClients.Select(x => _previousClientMapper.ToDTO(x)).ToList();
             return new GetAllPreviousClientsResponse
             {
                 Items = list,

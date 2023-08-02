@@ -72,17 +72,19 @@ namespace Domain.Services
         {
             //might have been better to use a null coalescing operator here
             var products = await _productRepo.GetAllProducts(request, cancellationToken);
-            var list = products.Select(x => _productMapper.ToDTO(x)).ToList();
-
-
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
-                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : products.Count(),
+                TotalItems = products.Count(),
+                TotalPages = request.Pagination != null ? (products.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
             };
+            if (request.Pagination != null)
+            {
+                products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+            }
+            var list = products.Select(x => _productMapper.ToDTO(x)).ToList();
             return new GetAllProductsResponse
             {
                 Items = list,
@@ -91,17 +93,22 @@ namespace Domain.Services
         }
 
         public async Task<GetShortProductsResponse> GetShortProducts(GetAllProductsRequest request, CancellationToken cancellationToken, Guid? userId = null)
-        {
+        {       
             var products = await _productRepo.GetAllProductsWithFavourites(request, cancellationToken);
-            var list = products.Select(x => _productMapper.ToShortProduct(x, userId)).ToList();
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
-                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : products.Count(),
+                TotalItems = products.Count(),
+                TotalPages = request.Pagination != null ? (products.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
             };
+            if (request.Pagination != null)
+            {
+                products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+            }
+
+            var list = products.Select(x => _productMapper.ToShortProduct(x, userId)).ToList();
             return new GetShortProductsResponse
             {
                 Items = list,

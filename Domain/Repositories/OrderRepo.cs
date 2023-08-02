@@ -50,7 +50,7 @@ namespace Domain.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
-        public async Task<List<Order>> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Order>> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)
         {
             var orders = _context.Orders
                 .Include(x => x.User)
@@ -102,8 +102,9 @@ namespace Domain.Repositories
                 orders = orders.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
             }
 
-            return await orders.ToListAsync();
-        }
+            return orders;
+
+        } 
 
     }
 }

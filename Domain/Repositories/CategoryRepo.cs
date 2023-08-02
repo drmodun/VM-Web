@@ -46,7 +46,7 @@ namespace Domain.Repositories
             return await _context.Categories.FindAsync(id, cancellationToken);
         }
 
-        public async Task<List<Category>> GetAllCategories(GetAllCategoriesRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Category>> GetAllCategories(GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
             var categories = _context.Categories
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
@@ -67,14 +67,7 @@ namespace Domain.Repositories
                     default: break;
                 }
             }
-            //dont like the amount of nesting but this is the most painless way to do it
-
-            if (request.Pagination != null)
-            {
-                categories = categories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
-            }
-            return await categories.ToListAsync(cancellationToken);
-
+            return categories;
 
         }
     }

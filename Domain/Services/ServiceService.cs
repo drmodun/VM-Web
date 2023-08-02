@@ -1,6 +1,7 @@
 ﻿using Contracts.Requests.Service;
 using Contracts.Responses;
 using Contracts.Responses.Service;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -57,17 +58,19 @@ namespace Domain.Services
         public async Task<GetAllServicesResponse> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
         {
             var services = await _serviceRepo.GetAllServices(request, cancellationToken);
-            var list = services.Select(x => _serviceMapper.ToDTO(x)).ToList();
-
-
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
-                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : services.Count(),
+                TotalItems = services.Count(),
+                TotalPages = request.Pagination != null ? (services.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
+            if (request.Pagination != null)
+            {
+                services = services.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+            }
+            var list = services.Select(x => _serviceMapper.ToDTO(x)).ToList();
             return new GetAllServicesResponse
             {
                 Items = list,

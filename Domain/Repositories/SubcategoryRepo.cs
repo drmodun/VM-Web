@@ -49,7 +49,7 @@ namespace Domain.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
-        public async Task<List<Subcategory>> GetAllSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Subcategory>> GetAllSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)
         {
             var subcategories = _context.Subcategories
                 .Include(x => x.Category)
@@ -79,11 +79,7 @@ namespace Domain.Repositories
                     default: break;
                 }
             }
-            if (request.Pagination != null)
-            {
-                subcategories = subcategories.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
-            }
-            return await subcategories.ToListAsync(cancellationToken);
+            return subcategories;
 
 
         }

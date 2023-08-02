@@ -1,6 +1,7 @@
 ﻿using Contracts.Requests.User;
 using Contracts.Responses;
 using Contracts.Responses.User;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -57,19 +58,22 @@ namespace Domain.Services
         public async Task<GetAllUsersResponse> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
             var users = await _userRepo.GetAllUsers(request, cancellationToken);
-            var list = users.Select(x => _userMapper.ToDTO(x)).ToList();
 
 
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : users.Count(),
+                TotalItems = users.Count(),
                 TotalPages = request.Pagination != null ?
-                (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize
+                (users.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize
                 : 1
             };
+            if (request.Pagination != null)
+                users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+
+            var list = users.Select(x => _userMapper.ToDTO(x)).ToList();
             return new GetAllUsersResponse
             {
                 Items = list,

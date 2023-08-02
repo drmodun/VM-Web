@@ -24,19 +24,26 @@ import ServiceView from "../../../Components/Web/Service";
 import Dropdown from "../../../Components/Web/Dropdown";
 import Slider from "../../../Components/Web/Slider";
 import Filter from "../../../Components/Web/FIlter";
+import { Pagination } from "../../../Components/Web/Pagination/Pagination";
+import { PageInfo } from "../../../Api/Shared";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [services, setServices] = useState<Service[]>();
   const [name, setName] = useState("");
+  const [pageInfo, setPageInfo] = useState<PageInfo>();
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
       "Sorting.Attribute": SortAttributeType.SortByProfit,
       "Sorting.SortType": SortType.Descending,
+      "Pagination.PageNumber": currentPage,
+      "Pagination.PageSize": 10,
       ...params,
     });
     setProducts(response?.items!);
+    setPageInfo(response?.pageInfo!);
   };
 
   const serviceFetcher = async () => {
@@ -62,6 +69,13 @@ export const Homepage = () => {
     <div>
       <h1>Homepage</h1>
       <Filter filter={productFetcher} maxValue={10000} minValue={1} />
+      {pageInfo && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={pageInfo!.totalPages!}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      )}
       <div className={classes.ProductRow}>
         {products &&
           products.map((product) => <ProductView product={product} />)}
@@ -73,7 +87,7 @@ export const Homepage = () => {
       </div>
       <div className={classes.ProductRow}>
         {services &&
-        //TODO: fix admin product filter
+          //TODO: fix admin product filter
           services.map((service) => (
             <ServiceView service={service}></ServiceView>
           ))}

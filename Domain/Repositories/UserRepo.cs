@@ -64,7 +64,7 @@ namespace Domain.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
-        public async Task<List<User>> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<User>> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
             var users = _context.Users
                 .Include(x => x.Transactions)
@@ -145,11 +145,7 @@ namespace Domain.Repositories
 
             //add sorting for orders later
 
-            if (request.Pagination != null)
-            {
-                users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
-            }
-            return await users.ToListAsync(cancellationToken);
+            return users;
         }
 
     }

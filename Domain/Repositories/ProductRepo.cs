@@ -55,7 +55,7 @@ namespace Domain.Repositories
             return product;
         }
 
-        public async Task<List<Product>> GetAllProducts(GetAllProductsRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Product>> GetAllProducts(GetAllProductsRequest request, CancellationToken cancellationToken)
         {
 
             var products = _context.Products
@@ -137,17 +137,11 @@ namespace Domain.Repositories
             }
 
             //after sorting pagination is implemented
-
-            if (request.Pagination != null)
-            {
-                products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
-            }
-
-            return await products
-                .ToListAsync(cancellationToken);
+          return products;
+                
         }
 
-        public async Task<List<Product>> GetAllProductsWithFavourites(GetAllProductsRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Product>> GetAllProductsWithFavourites(GetAllProductsRequest request, CancellationToken cancellationToken)
         {
 
             var products = _context.Products
@@ -232,13 +226,7 @@ namespace Domain.Repositories
 
             //after sorting pagination is implemented
 
-            if (request.Pagination != null)
-            {
-                products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
-            }
-
-            return await products
-                .ToListAsync(cancellationToken);
+            return products;
         }
 
         public async Task<List<Product>> GetSimilar(GetSimilarProductsRequest request, CancellationToken cancellationToken)

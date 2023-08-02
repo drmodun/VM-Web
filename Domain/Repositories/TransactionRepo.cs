@@ -50,7 +50,7 @@ namespace Domain.Repositories
                 .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
-        public async Task<List<Transaction>> GetAllTransactions(GetAllTransactionsRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Transaction>> GetAllTransactions(GetAllTransactionsRequest request, CancellationToken cancellationToken)
         {
             var transactions = _context.Transactions
                 .Include(x => x.User)
@@ -103,12 +103,8 @@ namespace Domain.Repositories
                     default: break;
                 }
             }
-            if (request.Pagination != null)
-            {
-                transactions = transactions.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
-            }
 
-            return await transactions.ToListAsync();
+            return  transactions    ;
         }
 
 

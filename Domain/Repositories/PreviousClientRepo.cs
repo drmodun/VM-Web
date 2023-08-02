@@ -46,7 +46,7 @@ namespace Domain.Repositories
             return await _context.PreviousClients.FindAsync(id, cancellationToken);
         }
 
-        public async Task<List<PreviousClient>> GetAllpreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<PreviousClient>> GetAllpreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
         {
             var previousClients = _context.PreviousClients
                 .Where(x => request.Name == null || x.Name.Contains(request.Name))
@@ -74,7 +74,7 @@ namespace Domain.Repositories
             {
                 previousClients = previousClients.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
             }
-            return await previousClients.ToListAsync(cancellationToken);
+            return previousClients
 
 
         }

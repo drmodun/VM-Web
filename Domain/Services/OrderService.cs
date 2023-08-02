@@ -1,6 +1,7 @@
 ﻿using Contracts.Requests.Order;
 using Contracts.Responses;
 using Contracts.Responses.Order;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -57,17 +58,19 @@ namespace Domain.Services
         public async Task<GetAllOrdersResponse> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)
         {
             var orders = await _orderRepo.GetAllOrders(request, cancellationToken);
-            var list = orders.Select(x => _orderMapper.ToDTO(x)).ToList();
 
 
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
-                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : orders.Count(),
+                TotalItems = orders.Count(),
+                TotalPages = request.Pagination != null ? (orders.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
+            if (request.Pagination!=null)
+                orders = orders.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+            var list = orders.Select(x => _orderMapper.ToDTO(x)).ToList();
 
             return new GetAllOrdersResponse
             {

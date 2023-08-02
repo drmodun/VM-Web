@@ -46,7 +46,7 @@ namespace Domain.Repositories
             return await _context.Companies.FindAsync(id, cancellationToken);
         }
 
-        public async Task<List<Company>> GetAllcompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Company>> GetAllcompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = _context.Companies
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
@@ -70,11 +70,8 @@ namespace Domain.Repositories
                 }
             }
 
-            if (request.Pagination != null)
-            {
-                companies = companies.Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize).Take(request.Pagination.PageSize);
-            }
-            return await companies.ToListAsync(cancellationToken);
+
+            return companies;
 
 
         }

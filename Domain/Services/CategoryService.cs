@@ -1,6 +1,7 @@
 ﻿using Contracts.Requests.Category;
 using Contracts.Responses;
 using Contracts.Responses.Category;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -58,17 +59,18 @@ namespace Domain.Services
         public async Task<GetAllCategoriesResponse> GetAllCategorys(GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
             var categories = await _categoryRepo.GetAllCategories(request, cancellationToken);
-            var list = categories.Select(x => _categoryMapper.ToDTO(x)).ToList();
-
-
             var pageInfo =
             new PageResponse
             {
                 PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
-                PageSize = request.Pagination != null ? request.Pagination.PageSize : list.Count,
-                TotalItems = list.Count,
-                TotalPages = request.Pagination != null ? (list.Count + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
+                PageSize = request.Pagination != null ? request.Pagination.PageSize : categories.Count(),
+                TotalItems = categories.Count(),
+                TotalPages = request.Pagination != null ? (categories.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
             };
+            if (request.Pagination != null)
+                categories = categories.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
+
+            var list = categories.Select(x => _categoryMapper.ToDTO(x)).ToList();
             return new GetAllCategoriesResponse
             {
                 Items = list,
