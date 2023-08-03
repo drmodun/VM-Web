@@ -13,6 +13,7 @@ import { SubcategoriesPage } from "../Pages/Admin/IndexPages/SubcategoriesPage/S
 import { SubcategoryPage } from "../Pages/Admin/SingleItemPages/SubcategoryPage/SubcategoryPage";
 import { CompaniesPage } from "../Pages/Admin/IndexPages/CompaniesPage/CompaniesPage";
 import { CompanyPage } from "../Pages/Admin/SingleItemPages/CompanyPage/CompanyPage";
+import WebSubcategoryPage from "../Pages/Web/SubcategoryPage";
 import { ServicesPage } from "../Pages/Admin/IndexPages/ServicesPage/ServicesPage";
 import { ServicePage } from "../Pages/Admin/SingleItemPages/ServicePage/ServicePage";
 import { ProductsPage } from "../Pages/Admin/IndexPages/ProductsPage/ProductsPage";
@@ -23,6 +24,7 @@ import { PreviousClientPage } from "../Pages/Admin/SingleItemPages/PreviousClien
 import { AdminLoginPage } from "../Pages/Admin/AdminLoginPage/AdminLoginPage";
 import AdminHomepage from "../Pages/Admin/AdminHomepage";
 import { TransactionPage } from "../Pages/Admin/SingleItemPages/TransactionPage/TransactionPage";
+import BrandPage from "../Pages/Web/BrandPage";
 import { TransactionsPage } from "../Pages/Admin/IndexPages/TransactionsPage/TransactionsPage";
 import { Homepage } from "../Pages/Web/Homepage/Homepage";
 import Layout from "./Web/Layout";
@@ -121,13 +123,19 @@ const router = createBrowserRouter(
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
         <Route path="/services" element={<WebServicesPage />} />
+        <Route path="/categories">
+          <Route index element={<></>}></Route>
+          <Route path=":categoryId" element={<WebCategoryPage />}></Route>
+        </Route>
         <Route path="/products">
           <Route index element={<WebProductsPage/>}></Route>
           <Route path=":productId" element={<WebProductPage />}></Route>
         </Route>
-        <Route path="/categories">
-          <Route index element={<></>}></Route>
-          <Route path=":categoryId" element={<WebCategoryPage />}></Route>
+        <Route path="/subcategories">
+          <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
+        </Route>
+        <Route path="/brands">
+          <Route path=":companyId" element={<BrandPage />}></Route>
         </Route>
       </Route>
       <Route path="*" element={<ProductPage />} />

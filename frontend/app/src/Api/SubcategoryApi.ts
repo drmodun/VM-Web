@@ -8,6 +8,7 @@ import {
   baseUrl,
 } from "./Shared";
 import { Indexable } from "../Types/Interfaces";
+import { ShortCompany } from "./CompanyApi";
 
 export interface Subcategory {
   id: string;
@@ -31,6 +32,16 @@ export interface ShortSubcategory {
   name: string;
   numberOfProducts: number;
 }
+
+export interface GetLargeSubcategory {
+  id: string;
+  name: string;
+  description: string;
+  categoryId: string;
+  categoryName: string;
+  brands: ShortCompany[];
+}
+  
 
 export interface GetAllProps {
   "Pagination.PageNumber"?: number;
@@ -134,3 +145,16 @@ export const deleteSubcategory = async (id: string): Promise<boolean> => {
     return false;
   }
 };
+
+export const getLargeSubcategory = async (id: string) => {
+  try {
+    const response = await api.get<GetLargeSubcategory>(
+      `/subcategories/large/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
