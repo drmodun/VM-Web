@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Category
 {
-    public class GetLargeCategory
+    public class GetLargeCategoryResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

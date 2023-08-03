@@ -24,8 +24,8 @@ namespace Domain.Mappers
             {
                 Id = company.Id,
                 Logo = company.Logo,
+                NumberOfProducts = company.Products.Count,
                 Name = company.Name,
-
             };
         }
         public static Company ToEntity(CreateCompanyRequest request)

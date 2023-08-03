@@ -9,12 +9,10 @@ namespace Domain.Services
     public class PreviousClientService
     {
         private readonly PreviousClientRepo _previousClientRepo;
-        private readonly PreviousClientMapper PreviousClientMapper;
 
-        public PreviousClientService(PreviousClientRepo previousClientRepo, PreviousClientMapper previousClientMapper)
+        public PreviousClientService(PreviousClientRepo previousClientRepo)
         {
             _previousClientRepo = previousClientRepo;
-            PreviousClientMapper = previousClientMapper;
         }
 
         public async Task<CreatePreviousClientResponse> CreatePreviousClient(CreatePreviousClientRequest request, CancellationToken cancellationToken)

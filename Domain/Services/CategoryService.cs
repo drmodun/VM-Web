@@ -77,7 +77,7 @@ namespace Domain.Services
         }
         public async Task<GetShortCategoriesResponse> GetAllShortCategories(GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
-            var categories = await _categoryRepo.GetAllCategories(request, cancellationToken);
+            var categories = await _categoryRepo.GetShortCategories(request, cancellationToken);
             var pageInfo =
             new PageResponse
             {

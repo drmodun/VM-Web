@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Responses.Category
 {
-    public class GetShortCategories
+    public class GetShortCategoryResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

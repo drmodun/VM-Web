@@ -46,16 +46,6 @@ namespace Domain
             services.AddScoped<SubcategoryService>();
             services.AddScoped<CategoryService>();
             services.AddScoped<IdentityService>();
-
-            services.AddScoped<CompanyMapper>();
-            services.AddScoped<ProductMapper>();
-            services.AddScoped<OrderMapper>();
-            services.AddScoped<TransactionMapper>();
-            services.AddScoped<UserMapper>();
-            services.AddScoped<PreviousClientMapper>();
-            services.AddScoped<ServiceMapper>();
-            services.AddScoped<SubcategoryMapper>();
-            services.AddScoped<CategoryMapper>();
             //later maybe use interfaces but it will be easier now
             //validation seems to be broken but still works
             return services;

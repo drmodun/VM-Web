@@ -49,7 +49,36 @@ namespace Domain.Repositories
         public async Task<IQueryable<Company>> GetAllCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = _context.Companies
-                .Include(x=>x.Products)
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
+                .Where(x => request.Description == null || x.Description.Contains(request.Description))
+                ;
+            //sorting
+            //possibly later change logic of sorting to be more dynamic
+
+            if (request.Sorting != null)
+            {
+                switch (request.Sorting.Attribute)
+                {
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            companies = companies.OrderBy(x => x.Name);
+                        else
+                            companies = companies.OrderByDescending(x => x.Name);
+                        break;
+
+                    default: break;
+                }
+            }
+
+
+            return companies;
+
+
+        }
+        public async Task<IQueryable<Company>> GetAllShortCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
+        {
+            var companies = _context.Companies
+                .Include(x => x.Products)
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 ;

@@ -61,7 +61,7 @@ namespace Domain.Mappers
             {
                 Name = subcategory.Name,
                 Id = subcategory.Id,
-                NumberOfProducts = subcategory.Products.Count,
+                NumberOfProducts = subcategory.Products.Count(),
             };
         }
 
