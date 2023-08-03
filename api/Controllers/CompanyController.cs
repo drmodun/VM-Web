@@ -59,6 +59,12 @@ namespace api.Controllers
             var response = await _companyService.GetAllShortCompanies(request, cancellationToken);
             return Ok(response);
         }
+        [HttpGet(Routes.Company.GetLarge)]
+        public async Task<ActionResult<GetLargeCompanyResponse>> GetLargeCompany([FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            var response = await _companyService.GetLargeCompany(id, cancellationToken);
+            return response == null ? NotFound() : Ok(response);
+        }
 
 
 

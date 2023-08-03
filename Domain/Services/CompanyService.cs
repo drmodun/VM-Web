@@ -3,6 +3,7 @@ using Contracts.Responses;
 using Contracts.Responses.Company;
 using Domain.Mappers;
 using Domain.Repositories;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Domain.Services
 {
@@ -50,6 +51,14 @@ namespace Domain.Services
             if (company is null)
                 return null;
             return CompanyMapper.ToDTO(company);
+        }
+
+        public async Task<GetLargeCompanyResponse> GetLargeCompany(Guid id, CancellationToken cancellationToken)
+        {
+            var company = await _companyRepo.GetLargeCompany(id, cancellationToken);
+            if (company is null)
+                return null;
+            return CompanyMapper.ToLarge(company);
         }
 
         public async Task<GetAllCompaniesResponse> GetAllCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)

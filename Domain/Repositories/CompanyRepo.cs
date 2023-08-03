@@ -69,11 +69,18 @@ namespace Domain.Repositories
                     default: break;
                 }
             }
-
-
             return companies;
+        }
 
-
+        public async Task<Company?> GetLargeCompany(Guid id, CancellationToken cancellationToken)
+        {
+            var company = await _context
+                .Companies
+                .Include(x => x.Products).ThenInclude(x => x.Subcategory)
+                    .Include(x => x.Products)
+                    .ThenInclude(x => x.Category)
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            return company;
         }
         public async Task<IQueryable<Company>> GetAllShortCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {

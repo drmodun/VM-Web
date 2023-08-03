@@ -70,6 +70,7 @@
             public const string Update = Base + $"/companies/{{id:Guid}}";
             public const string GetAll = Base + $"/companies";
             public const string Create = Base + $"/companies";
+            public const string GetLarge = Base + $"/companies/large/{{id:Guid}}";
             public const string GetShort = Base + $"/companies/short";
         }
 

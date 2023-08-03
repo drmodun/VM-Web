@@ -40,6 +40,21 @@ namespace Domain.Mappers
             };
         }
 
+        public static GetLargeCompanyResponse ToLarge(Company company)
+        {
+            return new GetLargeCompanyResponse
+            {
+                Id = company.Id,
+                Name = company.Name,
+                Logo = company.Logo,
+                Categories = company.Products.DistinctBy(x => x.Category).Select(x => CategoryMapper.ToShort(x.Category)).ToList(),
+                Description = company.Description,
+                Subcategories = company.Products.DistinctBy(x => x.Subcategory).Select(x=>SubcategoryMapper.ToShort(x.Subcategory)).ToList()
+                
+            };
+
+        }
+
         public static Company ToUpdated(PutCompanyRequest request)
         {
             return new Company
