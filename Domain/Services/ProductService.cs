@@ -9,20 +9,18 @@ namespace Domain.Services
     public class ProductService
     {
         private readonly ProductRepo _productRepo;
-        private readonly ProductMapper _productMapper;
         private readonly FavouritesRepo _favouriteRepo;
 
-        public ProductService(ProductRepo productRepo, ProductMapper productMapper, FavouritesRepo favouritesRepo)
+        public ProductService(ProductRepo productRepo, FavouritesRepo favouritesRepo)
         {
             _productRepo = productRepo;
-            _productMapper = productMapper;
             _favouriteRepo = favouritesRepo;
         }
 
 
         public async Task<CreateProductResponse> CreateProduct(CreateProductRequest request, CancellationToken cancellationToken)
         {
-            var product = _productMapper.ToEntity(request);
+            var product = ProductMapper.ToEntity(request);
             var action = await _productRepo.CreateProduct(product, cancellationToken);
             return new CreateProductResponse
             {
@@ -32,7 +30,7 @@ namespace Domain.Services
 
         public async Task<PutProductResponse> UpdateProduct(PutProductRequest request, CancellationToken cancellationToken)
         {
-            var product = _productMapper.ToUpdated(request);
+            var product = ProductMapper.ToUpdated(request);
             var action = await _productRepo.UpdateProduct(product, cancellationToken);
             return new PutProductResponse
             {
@@ -54,7 +52,7 @@ namespace Domain.Services
             var product = await _productRepo.GetProduct(id, cancellationToken);
             if (product is null)
                 return null;
-            return _productMapper.ToDTO(product);
+            return ProductMapper.ToDTO(product);
         }
 
         public async Task<GetSimilarResponse> GetSimilar(GetSimilarProductsRequest request, CancellationToken cancellationToken)
@@ -62,7 +60,7 @@ namespace Domain.Services
             var products = await _productRepo.GetSimilar(request, cancellationToken);
             return new GetSimilarResponse
             {
-                Items = products.Select(_productMapper.ToSimilar).ToList()
+                Items = products.Select(ProductMapper.ToSimilar).ToList()
             };
 
 
@@ -84,7 +82,7 @@ namespace Domain.Services
             {
                 products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
-            var list = products.Select(x => _productMapper.ToDTO(x)).ToList();
+            var list = products.Select(x => ProductMapper.ToDTO(x)).ToList();
             return new GetAllProductsResponse
             {
                 Items = list,
@@ -108,7 +106,7 @@ namespace Domain.Services
                 products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
 
-            var list = products.Select(x => _productMapper.ToShortProduct(x, userId)).ToList();
+            var list = products.Select(x => ProductMapper.ToShortProduct(x, userId)).ToList();
             return new GetShortProductsResponse
             {
                 Items = list,
@@ -119,7 +117,7 @@ namespace Domain.Services
         public async Task<GetShortProductsResponse> GetFavouriteShortProducts(Guid userId)
         {
             var products = await _productRepo.GetFavourites(userId);
-            var list = products.Select(_productMapper.ToFavouriteShortProducts).ToList();
+            var list = products.Select(ProductMapper.ToFavouriteShortProducts).ToList();
             var pageInfo =
             //TODO: add pagination for this
             new PageResponse

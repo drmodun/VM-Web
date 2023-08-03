@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class CompanyMapper
+    public static class CompanyMapper
     {
-        public GetCompanyResponse ToDTO(Company company)
+        public static GetCompanyResponse ToDTO(Company company)
         {
             return new GetCompanyResponse
             {
@@ -18,7 +18,17 @@ namespace Domain.Mappers
 
             };
         }
-        public Company ToEntity(CreateCompanyRequest request)
+        public static GetShortCompany ToShort(Company company)
+        {
+            return new GetShortCompany
+            {
+                Id = company.Id,
+                Logo = company.Logo,
+                Name = company.Name,
+
+            };
+        }
+        public static Company ToEntity(CreateCompanyRequest request)
         {
             return new Company
             {
@@ -30,7 +40,7 @@ namespace Domain.Mappers
             };
         }
 
-        public Company ToUpdated(PutCompanyRequest request)
+        public static Company ToUpdated(PutCompanyRequest request)
         {
             return new Company
             {

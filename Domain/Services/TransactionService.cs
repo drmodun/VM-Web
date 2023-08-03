@@ -9,17 +9,15 @@ namespace Domain.Services
     public class TransactionService
     {
         private readonly TransactionRepo _transactionRepo;
-        private readonly TransactionMapper _transactionMapper;
 
-        public TransactionService(TransactionRepo transactionRepo, TransactionMapper transactionMapper)
+        public TransactionService(TransactionRepo transactionRepo)
         {
             _transactionRepo = transactionRepo;
-            _transactionMapper = transactionMapper;
         }
 
         public async Task<CreateTransactionResponse> CreateTransaction(CreateTransactionRequest request, CancellationToken cancellationToken)
         {
-            var transaction = _transactionMapper.ToEntity(request);
+            var transaction = TransactionMapper.ToEntity(request);
             var action = await _transactionRepo.CreateTransaction(transaction, cancellationToken);
             return new CreateTransactionResponse
             {
@@ -29,7 +27,7 @@ namespace Domain.Services
 
         public async Task<PutTransactionResponse> UpdateTransaction(PutTransactionRequest request, CancellationToken cancellationToken)
         {
-            var transaction = _transactionMapper.ToUpdated(request);
+            var transaction = TransactionMapper.ToUpdated(request);
             var action = await _transactionRepo.UpdateTransaction(transaction, cancellationToken);
             return new PutTransactionResponse
             {
@@ -51,7 +49,7 @@ namespace Domain.Services
             var transaction = await _transactionRepo.GetTransaction(id, cancellationToken);
             if (transaction is null)
                 return null;
-            return _transactionMapper.ToDTO(transaction);
+            return TransactionMapper.ToDTO(transaction);
         }
 
         public async Task<GetAllTransactionsResponse> GetAllTransactions(GetAllTransactionsRequest request, CancellationToken cancellationToken)
@@ -68,7 +66,7 @@ namespace Domain.Services
             if (request.Pagination != null)
                 transactions = transactions.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
 
-            var list = transactions.Select(x => _transactionMapper.ToDTO(x)).ToList();
+            var list = transactions.Select(x => TransactionMapper.ToDTO(x)).ToList();
             return new GetAllTransactionsResponse
             {
                 Items = list,

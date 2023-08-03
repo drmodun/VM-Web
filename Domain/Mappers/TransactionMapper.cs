@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class TransactionMapper
+    public static class TransactionMapper
     {
-        public Transaction ToUpdated(PutTransactionRequest request)
+        public static Transaction ToUpdated(PutTransactionRequest request)
         {
             return new Transaction
             {
@@ -18,7 +18,7 @@ namespace Domain.Mappers
                 Id = request.Id
             };
         }
-        public GetTransactionResponse ToDTO(Transaction transaction)
+        public static GetTransactionResponse ToDTO(Transaction transaction)
         {
             return new GetTransactionResponse
             {
@@ -31,7 +31,7 @@ namespace Domain.Mappers
                 Quantity = transaction.Quantity
             };
         }
-        public Transaction ToEntity(CreateTransactionRequest request)
+        public static Transaction ToEntity(CreateTransactionRequest request)
         {
             return new Transaction
             {

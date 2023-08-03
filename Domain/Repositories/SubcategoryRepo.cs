@@ -83,5 +83,50 @@ namespace Domain.Repositories
 
 
         }
+        public async Task<IQueryable<Subcategory>> GetAllShortSubcategories(GetAllSubcategoriesRequest request, CancellationToken cancellationToken)
+        {
+            var subcategories = _context.Subcategories
+                .Include(x => x.Products.Count)
+                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Description == null || x.Description.Contains(request.Description))
+                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
+            //sorting
+            //possibly later change logic of sorting to be more dynamic
+            if (request.Sorting != null)
+            {
+                switch (request.Sorting.Attribute)
+                {
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            subcategories = subcategories.OrderBy(x => x.Name);
+                        else
+                            subcategories = subcategories.OrderByDescending(x => x.Name);
+                        break;
+
+                    case SortAttributeType.SortByCategoryName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            subcategories = subcategories.OrderBy(x => x.Category.Name);
+                        else
+                            subcategories = subcategories.OrderByDescending(x => x.Name);
+                        break;
+
+                    default: break;
+                }
+            }
+            return subcategories;
+        }
+        public async Task<Subcategory> GetLargeSubcategory(Guid id, CancellationToken cancellationToken)
+        {
+            var subcategory = await _context.Subcategories
+                .Include(x => x.Category)
+              .Include(x => x.Products)
+                      .ThenInclude(x => x.Company)
+                          .ThenInclude(x => x.Products.Count())
+                  .Include(x => x.Products)
+                  .FirstOrDefaultAsync(x => x.Id == id);
+            if (subcategory == null)
+                return null;
+            return subcategory;
+        }
     }
 }

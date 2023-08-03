@@ -1,4 +1,6 @@
-﻿namespace api
+﻿using System.Globalization;
+
+namespace api
 {
     public static class Routes
     {
@@ -70,6 +72,7 @@
             public const string Update = Base + $"/companies/{{id:Guid}}";
             public const string GetAll = Base + $"/companies";
             public const string Create = Base + $"/companies";
+            public const string GetShort = Base + $"/companies/short";
         }
 
         public static class Category
@@ -79,15 +82,20 @@
             public const string Update = Base + $"/categories/{{id:Guid}}";
             public const string GetAll = Base + $"/categories";
             public const string Create = Base + $"/categories";
+            public const string GetShort = Base + $"/categories/short";
+            public const string GetLarge = Base + $"/categories/large/{{id:Guid}}";
         }
 
         public static class Subcategory
         {
             public const string Get = Base + $"/subcategories/{{id:Guid}}";
+            public const string GetShort = Base + $"/subcategories/short";
             public const string Delete = Base + $"/subcategories/{{id:Guid}}";
             public const string Update = Base + $"/subcategories/{{id:Guid}}";
             public const string GetAll = Base + $"/subcategories";
             public const string Create = Base + $"/subcategories";
+            public const string GetLarge = Base + $"/subcategories/large/{{id:Guid}}";
+            
         }
 
         public static class PreviousClient

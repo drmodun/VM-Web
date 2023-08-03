@@ -9,17 +9,15 @@ namespace Domain.Services
     public class UserService
     {
         private readonly UserRepo _userRepo;
-        private readonly UserMapper _userMapper;
 
-        public UserService(UserRepo userRepo, UserMapper userMapper)
+        public UserService(UserRepo userRepo)
         {
             _userRepo = userRepo;
-            _userMapper = userMapper;
         }
 
         public async Task<CreateUserResponse> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var user = _userMapper.ToEntity(request);
+            var user = UserMapper.ToEntity(request);
             var action = await _userRepo.CreateUser(user, cancellationToken);
             return new CreateUserResponse
             {
@@ -29,7 +27,7 @@ namespace Domain.Services
 
         public async Task<PutUserResponse> UpdateUser(PutUserRequest request, CancellationToken cancellationToken)
         {
-            var user = _userMapper.ToUpdated(request);
+            var user = UserMapper.ToUpdated(request);
             var action = await _userRepo.UpdateUser(user, cancellationToken);
             return new PutUserResponse
             {
@@ -51,7 +49,7 @@ namespace Domain.Services
             var user = await _userRepo.GetUser(id, cancellationToken);
             if (user is null)
                 return null;
-            return _userMapper.ToDTO(user);
+            return UserMapper.ToDTO(user);
         }
 
         public async Task<GetAllUsersResponse> GetAllUsers(GetAllUsersRequest request, CancellationToken cancellationToken)
@@ -72,7 +70,7 @@ namespace Domain.Services
             if (request.Pagination != null)
                 users = users.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
 
-            var list = users.Select(x => _userMapper.ToDTO(x)).ToList();
+            var list = users.Select(x => UserMapper.ToDTO(x)).ToList();
             return new GetAllUsersResponse
             {
                 Items = list,
@@ -85,12 +83,12 @@ namespace Domain.Services
             var user = await _userRepo.GetUserByEmail(email);
             if (user is null)
                 return null;
-            return _userMapper.ToDTO(user);
+            return UserMapper.ToDTO(user);
         }
 
         public async Task<CreateUserResponse?> CreateAdminUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var admin = _userMapper.ToAdmin(request);
+            var admin = UserMapper.ToAdmin(request);
             var action = await _userRepo.CreateAdminUser(admin, cancellationToken);
             return new CreateUserResponse
             {

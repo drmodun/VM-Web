@@ -4,6 +4,7 @@ using Contracts.Responses.Category;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace api.Controllers
 {
@@ -26,7 +27,7 @@ namespace api.Controllers
         [HttpGet(Routes.Category.GetAll)]
         public async Task<ActionResult<GetAllCategoriesResponse>> GetAllCategories([FromQuery] GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
-            var response = await _categoryService.GetAllCategorys(request, cancellationToken);
+            var response = await _categoryService.GetAllCategories(request, cancellationToken);
             return Ok(response);
         }
 
@@ -54,7 +55,18 @@ namespace api.Controllers
             var response = await _categoryService.DeleteCategory(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
-
+        [HttpGet(Routes.Category.GetShort)]
+        public async Task<ActionResult<GetShortCategoriesResponse>> GetShortCategories([FromQuery] GetAllCategoriesRequest request, CancellationToken cancellationToken)
+        { 
+            var response = await _categoryService.GetAllShortCategories(request, cancellationToken);
+            return Ok(response);
+        }
+        [HttpGet(Routes.Category.GetLarge)]
+        public async Task<ActionResult<GetLargeCategoryResponse>> GetLargeCategory([FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            var response = await _categoryService.GetLargeCategory(id, cancellationToken);
+            return response == null ? NotFound() : Ok(response);
+        }
 
 
 

@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class ServiceMapper
+    public static class ServiceMapper
     {
-        public GetServiceResponse ToDTO(Service service)
+        public static GetServiceResponse ToDTO(Service service)
         {
             return new GetServiceResponse
             {
@@ -18,7 +18,7 @@ namespace Domain.Mappers
 
             };
         }
-        public Service ToEntity(CreateServiceRequest request)
+        public static Service ToEntity(CreateServiceRequest request)
         {
             return new Service
             {
@@ -29,7 +29,7 @@ namespace Domain.Mappers
                 ServiceType = request.ServiceType,
             };
         }
-        public Service ToUpdated(PutServiceRequest request)
+        public static Service ToUpdated(PutServiceRequest request)
         {
             return new Service
             {

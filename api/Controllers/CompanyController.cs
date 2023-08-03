@@ -53,6 +53,13 @@ namespace api.Controllers
             var response = await _companyService.DeleteCompany(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }
+        [HttpGet(Routes.Company.GetShort)]
+        public async Task<ActionResult<GetAllShortCompaniesResponse>> GetShortCompanies([FromQuery] GetAllCompaniesRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _companyService.GetAllShortCompanies(request, cancellationToken);
+            return Ok(response);
+        }
+
 
 
 

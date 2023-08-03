@@ -6,7 +6,7 @@ namespace Domain.Mappers
 {
     public class ProductMapper
     {
-        public GetProductResponse ToDTO(Product product)
+        public static GetProductResponse ToDTO(Product product)
         {
             return new GetProductResponse
             {
@@ -27,7 +27,7 @@ namespace Domain.Mappers
                 Image = product.Image,
             };
         }
-        public Product ToEntity(CreateProductRequest request)
+        public static Product ToEntity(CreateProductRequest request)
         {
             return new Product
             {
@@ -46,7 +46,7 @@ namespace Domain.Mappers
             };
         }
 
-        public Product ToUpdated(PutProductRequest request)
+        public static Product ToUpdated(PutProductRequest request)
         {
             return new Product
             {
@@ -66,7 +66,7 @@ namespace Domain.Mappers
             };
         }
 
-        public GetSimilarProductsResponse ToSimilar(Product product)
+        public static GetSimilarProductsResponse ToSimilar(Product product)
         {
             return new GetSimilarProductsResponse
             {
@@ -81,7 +81,7 @@ namespace Domain.Mappers
             };
         }
 
-        public GetShortProductResponse ToShortProduct(Product product, Guid? userId = null)
+        public static GetShortProductResponse ToShortProduct(Product product, Guid? userId = null)
         {
             return new GetShortProductResponse
             {
@@ -101,7 +101,7 @@ namespace Domain.Mappers
             };
         }
 
-        public GetShortProductResponse ToFavouriteShortProducts(Product product)
+        public static GetShortProductResponse ToFavouriteShortProducts(Product product)
         {
             return new GetShortProductResponse
             {

@@ -1,10 +1,12 @@
 ﻿using Contracts.Requests;
 using Contracts.Requests.Category;
+using Contracts.Requests.Product;
 using Data;
 using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories
 {
@@ -67,6 +69,68 @@ namespace Domain.Repositories
                 }
             }
             return categories;
+
+        }
+
+        public async Task<IQueryable<Category>> GetShortCategories(GetAllCategoriesRequest request, CancellationToken cancellationToken)
+        {
+            var categories = _context.Categories
+                .Include(x => x.Products)
+                .Where(x => request.Name == null || x.Name.Contains(request.Name));
+            if (request.Sorting != null)
+            {
+                switch (request.Sorting.Attribute)
+                {
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            categories = categories.OrderBy(x => x.Name);
+                        else
+                            categories = categories.OrderByDescending(x => x.Name);
+                        break;
+                    default: break;
+                }
+            }
+            return categories;
+        }
+
+        public async Task<IQueryable<Category>> GetCateoriesWithEverything(GetAllProductsRequest request, CancellationToken cancellationToken)
+        {
+            //this call would be way too expensive, probably will be removed later
+            var categories = _context.Categories
+                    .Include(x => x.Products)
+                        .ThenInclude(x=>x.Company)
+                    .Include(x=>x.Products)
+                    .Include(x=>x.Subcategories)
+                    .Where(x => request.Name == null || x.Name.Contains(request.Name));
+            if (request.Sorting != null)
+            {
+                switch (request.Sorting.Attribute)
+                {
+                    case SortAttributeType.SortByName:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            categories = categories.OrderBy(x => x.Name);
+                        else
+                            categories = categories.OrderByDescending(x => x.Name);
+                        break;
+                    default: break;
+                }
+            }
+            return categories;
+        }
+        public async Task<Category?> GetLargeCategory(Guid id, CancellationToken cancellationToken)
+        {
+            //also very expensive might optimise later
+            var category = await _context.Categories
+                .Include(x => x.Products)
+                        .ThenInclude(x => x.Company)
+                            .ThenInclude(x => x.Products.Count())
+                    .Include(x => x.Products)
+                    .Include(x => x.Subcategories)
+                        .ThenInclude(x => x.Products.Count())
+                    .FirstOrDefaultAsync(x => x.Id == id);
+            if (category == null)
+                return null;
+            return category;
 
         }
     }

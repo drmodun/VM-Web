@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class CategoryMapper
+    public static class CategoryMapper
     {
-        public GetCategoryResponse ToDTO(Category category)
+        public static GetCategoryResponse ToDTO(Category category)
         {
             return new GetCategoryResponse
             {
@@ -16,7 +16,7 @@ namespace Domain.Mappers
                 Schema = category.Schema,
             };
         }
-        public Category ToEntity(CreateCategoryRequest request)
+        public static Category ToEntity(CreateCategoryRequest request)
         {
             return new Category
             {
@@ -26,7 +26,7 @@ namespace Domain.Mappers
                 Id = Guid.NewGuid(),
             };
         }
-        public Category ToUpdated(PutCategoryRequest request)
+        public static Category ToUpdated(PutCategoryRequest request)
         {
             return new Category
             {
@@ -34,6 +34,28 @@ namespace Domain.Mappers
                 Name = request.Name,
                 Description = request.Description,
                 Id = request.Id
+            };
+        }
+        public static GetShortCategoryResponse ToShort(Category category)
+        {
+            return new GetShortCategoryResponse
+            {
+                Id = category.Id,
+                Name = category.Name,
+                NumberOfProducts = category.Products.Count(),
+            };
+        }
+        public static GetLargeCategoryResponse ToLarge(Category category)
+        {
+            return new GetLargeCategoryResponse
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Products = category.Products
+                .Select(x => ProductMapper.ToShortProduct(x)).ToList(),
+                Subcategories = category.Subcategories.Select(SubcategoryMapper.ToShort).ToList(),
+                Brands = category.Products.Select(x => CompanyMapper.ToShort(x.Company)).ToList(),
+                //see if i want to implement a product counter for brands and subcategories (possibly will be a very complex call)
             };
         }
 

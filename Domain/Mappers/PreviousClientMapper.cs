@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class PreviousClientMapper
+    public static class PreviousClientMapper
     {
-        public GetPreviousClientResponse ToDTO(PreviousClient previousClient)
+        public static GetPreviousClientResponse ToDTO(PreviousClient previousClient)
         {
             return new GetPreviousClientResponse
             {
@@ -18,7 +18,7 @@ namespace Domain.Mappers
                 Rating = previousClient.Rating,
             };
         }
-        public PreviousClient ToEntity(CreatePreviousClientRequest request)
+        public static PreviousClient ToEntity(CreatePreviousClientRequest request)
         {
             return new PreviousClient
             {
@@ -32,7 +32,7 @@ namespace Domain.Mappers
             };
         }
 
-        public PreviousClient ToUpdated(PutPreviousClientRequest request)
+        public static PreviousClient ToUpdated(PutPreviousClientRequest request)
         {
             return new PreviousClient
             {

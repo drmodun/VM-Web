@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class SubcategoryMapper
+    public static class SubcategoryMapper
     {
-        public Subcategory ToEntity(CreateSubcategoryRequest request)
+        public static Subcategory ToEntity(CreateSubcategoryRequest request)
         {
             return new Subcategory
             {
@@ -17,7 +17,7 @@ namespace Domain.Mappers
                 SubSchema = request.SubSchema,
             };
         }
-        public Subcategory ToUpdated(PutSubcategoryRequest request)
+        public static Subcategory ToUpdated(PutSubcategoryRequest request)
         {
             return new Subcategory
             {
@@ -29,7 +29,7 @@ namespace Domain.Mappers
                 SubSchema = request.SubSchema,
             };
         }
-        public GetSubcategoryResponse ToDTO(Subcategory subcategory)
+        public static GetSubcategoryResponse ToDTO(Subcategory subcategory)
         {
             return new GetSubcategoryResponse
             {
@@ -39,6 +39,29 @@ namespace Domain.Mappers
                 CategoryName = subcategory.Category.Name,
                 SubSchema = subcategory.SubSchema,
                 Id = subcategory.Id
+            };
+        }
+
+        public static GetLargeSubcategoryRssponse ToLarge(Subcategory subcategory)
+        {
+            return new GetLargeSubcategoryRssponse
+            {
+                CategoryId = subcategory.CategoryId,
+                Name = subcategory.Name,
+                CategoryName = subcategory.Category.Name,
+                Id = subcategory.Id,
+                Products = subcategory.Products.Select(x => ProductMapper.ToShortProduct(x)).ToList(),
+                Companies = subcategory.Products.Select(x => CompanyMapper.ToShort(x.Company)).ToList()
+            };
+        }
+
+        public static GetShortSubcategoryResponse ToShort(Subcategory subcategory)
+        {
+            return new GetShortSubcategoryResponse
+            {
+                Name = subcategory.Name,
+                Id = subcategory.Id,
+                NumberOfProducts = subcategory.Products.Count,
             };
         }
 

@@ -9,17 +9,17 @@ namespace Domain.Services
     public class PreviousClientService
     {
         private readonly PreviousClientRepo _previousClientRepo;
-        private readonly PreviousClientMapper _previousClientMapper;
+        private readonly PreviousClientMapper PreviousClientMapper;
 
         public PreviousClientService(PreviousClientRepo previousClientRepo, PreviousClientMapper previousClientMapper)
         {
             _previousClientRepo = previousClientRepo;
-            _previousClientMapper = previousClientMapper;
+            PreviousClientMapper = previousClientMapper;
         }
 
         public async Task<CreatePreviousClientResponse> CreatePreviousClient(CreatePreviousClientRequest request, CancellationToken cancellationToken)
         {
-            var previousClient = _previousClientMapper.ToEntity(request);
+            var previousClient = PreviousClientMapper.ToEntity(request);
             var action = await _previousClientRepo.CreatePreviousClient(previousClient, cancellationToken);
             return new CreatePreviousClientResponse
             {
@@ -29,7 +29,7 @@ namespace Domain.Services
 
         public async Task<PutPreviousClientResponse> UpdatePreviousClient(PutPreviousClientRequest request, CancellationToken cancellationToken)
         {
-            var previousClient = _previousClientMapper.ToUpdated(request);
+            var previousClient = PreviousClientMapper.ToUpdated(request);
             var action = await _previousClientRepo.UpdatePreviousClient(previousClient, cancellationToken);
             return new PutPreviousClientResponse
             {
@@ -51,7 +51,7 @@ namespace Domain.Services
             var previousClient = await _previousClientRepo.GetPreviousClient(id, cancellationToken);
             if (previousClient is null)
                 return null;
-            return _previousClientMapper.ToDTO(previousClient);
+            return PreviousClientMapper.ToDTO(previousClient);
         }
 
         public async Task<GetAllPreviousClientsResponse> GetAllPreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
@@ -67,7 +67,7 @@ namespace Domain.Services
             };
             if (request.Pagination != null)
                 previousClients = previousClients.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
-            var list = previousClients.Select(x => _previousClientMapper.ToDTO(x)).ToList();
+            var list = previousClients.Select(x => PreviousClientMapper.ToDTO(x)).ToList();
             return new GetAllPreviousClientsResponse
             {
                 Items = list,

@@ -5,6 +5,7 @@ using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories
 {
@@ -45,9 +46,10 @@ namespace Domain.Repositories
             return await _context.Companies.FindAsync(id, cancellationToken);
         }
 
-        public async Task<IQueryable<Company>> GetAllcompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Company>> GetAllCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = _context.Companies
+                .Include(x=>x.Products)
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 ;

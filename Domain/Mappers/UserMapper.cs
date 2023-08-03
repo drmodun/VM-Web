@@ -4,9 +4,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class UserMapper
+    public static class UserMapper
     {
-        public GetUserResponse ToDTO(User user)
+        public static GetUserResponse ToDTO(User user)
         {
             return new GetUserResponse
             {
@@ -18,7 +18,7 @@ namespace Domain.Mappers
                 PhoneNumber = user.PhoneNumber
             };
         }
-        public User ToUpdated(PutUserRequest request)
+        public static User ToUpdated(PutUserRequest request)
         {
             return new User
             {
@@ -36,7 +36,7 @@ namespace Domain.Mappers
         }
 
 
-        public User ToEntity(CreateUserRequest request)
+        public static User ToEntity(CreateUserRequest request)
         {
             return new User
             {
@@ -56,7 +56,7 @@ namespace Domain.Mappers
 
         }
 
-        public User ToAdmin(CreateUserRequest request)
+        public static User ToAdmin(CreateUserRequest request)
         {
             return new User
             {

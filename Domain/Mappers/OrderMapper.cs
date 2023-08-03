@@ -5,9 +5,9 @@ using Data.Models;
 
 namespace Domain.Mappers
 {
-    public class OrderMapper
+    public static class OrderMapper
     {
-        public GetOrderResponse ToDTO(Order order)
+        public static GetOrderResponse ToDTO(Order order)
         {
             return new GetOrderResponse
             {
@@ -21,7 +21,7 @@ namespace Domain.Mappers
                 UserName = order.User.Name
             };
         }
-        public Order ToEntity(CreateOrderRequest request)
+        public static Order ToEntity(CreateOrderRequest request)
         {
             return new Order
             {
@@ -33,7 +33,7 @@ namespace Domain.Mappers
             };
         }
 
-        public Order ToUpdated(PutOrderRequest request)
+        public static Order ToUpdated(PutOrderRequest request)
         {
             return new Order
             {

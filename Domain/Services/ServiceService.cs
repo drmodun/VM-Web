@@ -9,17 +9,15 @@ namespace Domain.Services
     public class ServiceService
     {
         private readonly ServiceRepo _serviceRepo;
-        private readonly ServiceMapper _serviceMapper;
 
-        public ServiceService(ServiceRepo serviceRepo, ServiceMapper serviceMapper)
+        public ServiceService(ServiceRepo serviceRepo)
         {
             _serviceRepo = serviceRepo;
-            _serviceMapper = serviceMapper;
         }
 
         public async Task<CreateServiceResponse> CreateService(CreateServiceRequest request, CancellationToken cancellationToken)
         {
-            var service = _serviceMapper.ToEntity(request);
+            var service = ServiceMapper.ToEntity(request);
             var action = await _serviceRepo.CreateService(service, cancellationToken);
             return new CreateServiceResponse
             {
@@ -29,7 +27,7 @@ namespace Domain.Services
 
         public async Task<PutServiceResponse> UpdateService(PutServiceRequest request, CancellationToken cancellationToken)
         {
-            var service = _serviceMapper.ToUpdated(request);
+            var service = ServiceMapper.ToUpdated(request);
             var action = await _serviceRepo.UpdateService(service, cancellationToken);
             return new PutServiceResponse
             {
@@ -51,7 +49,7 @@ namespace Domain.Services
             var service = await _serviceRepo.GetService(id, cancellationToken);
             if (service is null)
                 return null;
-            return _serviceMapper.ToDTO(service);
+            return ServiceMapper.ToDTO(service);
         }
 
         public async Task<GetAllServicesResponse> GetAllServices(GetAllServicesRequest request, CancellationToken cancellationToken)
@@ -69,7 +67,7 @@ namespace Domain.Services
             {
                 services = services.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
-            var list = services.Select(x => _serviceMapper.ToDTO(x)).ToList();
+            var list = services.Select(x => ServiceMapper.ToDTO(x)).ToList();
             return new GetAllServicesResponse
             {
                 Items = list,
