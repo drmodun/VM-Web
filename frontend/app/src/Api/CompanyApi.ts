@@ -24,11 +24,18 @@ export interface NewCompany {
   website: string;
 }
 
+export interface ShortCompany {
+  id: string;
+  logo: string;
+  name: string;
+  numberOfProducts: number;
+}
+
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   description?: string;
   name?: string;
 }
@@ -52,8 +59,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-
 
 export const getCompanies = async (props: GetAllProps | {} = {}) => {
   try {
@@ -108,3 +113,19 @@ export const deleteCompany = async (id: string): Promise<boolean> => {
     return false;
   }
 };
+
+export const getShortCompanies = async (params?: GetAllProps | undefined) => {
+  try {
+    const response = await api.get<PaginationResult<ShortCompany>>(
+      "/companies/short",
+      {
+        params,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+

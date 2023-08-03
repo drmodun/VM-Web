@@ -59,6 +59,7 @@ export const ProductsPage = () => {
       categoryId: category ?? undefined,
       subcategoryId: subcategory ?? undefined,
       companyId: company ?? undefined,
+      //TODO: some styles need improvement
       maxPrice: maxPrice ?? undefined,
       minPrice: minPrice ?? undefined,
     } as GetAllProps);
@@ -67,6 +68,7 @@ export const ProductsPage = () => {
   };
 
   useEffect(() => {
+      window.scrollTo(0, 0);
     productFetcher(undefined, false);
   }, []);
 

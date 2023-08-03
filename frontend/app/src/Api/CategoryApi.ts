@@ -26,6 +26,13 @@ export interface GetAllProps {
   name?: string;
 }
 
+export interface ShortCategory {
+  id: string;
+  name: string;
+  numberOfProducts: number;
+}
+
+
 const api = axios.create({
   baseURL: baseUrl,
   headers: {
@@ -53,6 +60,20 @@ export const getCategories = async (props: GetAllProps | {} = {}) => {
     const response = await api.get<PaginationResult<Category>>("/categories", {
       params: props,
     });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getShortCategories = async (props: GetAllProps | {} = {}) => {
+  try {
+    const response = await api.get<PaginationResult<ShortCategory>>(
+      "/categories/short",
+      {
+        params: props,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error(error);

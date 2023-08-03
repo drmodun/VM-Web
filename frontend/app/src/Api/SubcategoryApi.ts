@@ -26,6 +26,12 @@ export interface NewSubcategory {
   categoryId: string;
 }
 
+export interface ShortrSubcategory {
+  id: string;
+  name: string;
+  numberOfProducts: number;
+}
+
 export interface GetAllProps {
   "Pagination.PageNumber"?: number;
   "Pagination.PageSize"?: number;
@@ -87,6 +93,18 @@ export const createSubcategory = async (
   } catch (error) {
     console.error(error);
     return false;
+  }
+};
+
+export const getShortSubcategories = async ( params: GetAllProps | {} = {}) => {
+  try {
+    const response = await api.get<PaginationResult<ShortrSubcategory>>(
+      "/subcategories/short",
+      { params: params }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
   }
 };
 

@@ -1,4 +1,4 @@
-import { Category, getCategories } from "../../../Api/CategoryApi";
+import { Category, ShortCategory, getCategories, getShortCategories } from "../../../Api/CategoryApi";
 import {
   GetAllProps,
   Product,
@@ -6,7 +6,7 @@ import {
   getProducts,
   getShortProducts,
 } from "../../../Api/ProductApi";
-import CategoryView from "../../../Components/Web/CategoryView";
+import CategoryView from "../../../Components/Web/ShortView";
 import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
@@ -27,9 +27,11 @@ import Filter from "../../../Components/Web/FIlter";
 import { Pagination } from "../../../Components/Web/Pagination/Pagination";
 import { PageInfo } from "../../../Api/Shared";
 import Switch from "../../../Components/Web/Switch";
+import ItemView from "../../../Components/Admin/ItemView";
+import ShortView from "../../../Components/Web/ShortView";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<ShortCategory[]>([]);
   const [services, setServices] = useState<Service[]>();
   const [name, setName] = useState("");
   const [pageInfo, setPageInfo] = useState<PageInfo>();
@@ -57,7 +59,7 @@ export const Homepage = () => {
   };
 
   const categoryFetcher = async () => {
-    const response = await getCategories({
+    const response = await getShortCategories({
       "Sorting.Attribute": SortAttributeType.SortByName,
       "Sorting.SortType": SortType.Descending,
     });
@@ -110,7 +112,11 @@ export const Homepage = () => {
       </div>
       <div className={classes.CategoryRow}>
         {categories.map((category) => (
-          <CategoryView category={category} isShort={true} />
+          <ShortView
+          link={`{categories/${category.id}}`}
+          titlte={category.name}
+          subtitle={category.numberOfProducts.toString()}
+          />
         ))}
       </div>
       <div className={classes.ProductRow}>
