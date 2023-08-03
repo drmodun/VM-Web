@@ -22,7 +22,8 @@ export const ProductsPage = () => {
   const [sortAttribute, setSortAttribute] = useState<SortAttributeType>(
     SortAttributeType.SortByName
   );
-  const [type, setType] = useState<SortType>(SortType.Descending);
+  //TODO: add infinite scroll on mobile
+  const [type, setType] = useState<SortType>(SortType.Ascending);
   const [category, setCategory] = useState<string>();
   const [name, setName] = useState<string>();
   const [subcategory, setSubcategory] = useState<string>();
@@ -66,7 +67,7 @@ export const ProductsPage = () => {
   };
 
   useEffect(() => {
-    productFetcher();
+    productFetcher(undefined, false);
   }, []);
 
   useEffect(() => {
@@ -77,7 +78,49 @@ export const ProductsPage = () => {
     <div className={classes.Container}>
       <div className={classes.Page}>
         <div className={classes.Filter}>
-          <Filter filter={productFetcher} maxValue={10000} minValue={0} />
+          <Filter
+            filter={(params) => productFetcher(params, false)}
+            maxValue={10000}
+            minValue={0}
+          />
+          <div className={classes.Sort}>
+            <div className={classes.SortUnit}>
+              <span>Sort By</span>
+              <Switch
+                options={[
+                  { label: "Name", value: SortAttributeType.SortByName },
+                  {
+                    label: "Subcategory",
+                    value: SortAttributeType.SortBySubcategoryName,
+                  },
+                  {
+                    label: "Company",
+                    value: SortAttributeType.SortByCompanyName,
+                  },
+                  { label: "Price", value: SortAttributeType.SortByPrice },
+                  {
+                    label: "Profit",
+                    value: SortAttributeType.SortByProfit,
+                  },
+                ]}
+                onSwitch={(value) => {
+                  setSortAttribute(value);
+                }}
+              />
+            </div>
+            <div className={classes.SortUnit}>
+              <span>Sort type</span>
+              <Switch
+                options={[
+                  { label: "Ascending", value: SortType.Ascending },
+                  { label: "Descending", value: SortType.Descending },
+                ]}
+                onSwitch={(value) => {
+                  setType(value);
+                }}
+              />
+            </div>
+          </div>
           {products.length > 0 && pageInfo && (
             <Pagination
               currentPage={pageInfo.page ?? 1}
@@ -93,44 +136,6 @@ export const ProductsPage = () => {
             {products.map((product) => (
               <ProductView product={product} />
             ))}
-          </div>
-        </div>
-        <div className={classes.Sort}>
-          <div className={classes.SortUnit}>
-            <span>Sort By</span>
-            <Switch
-              options={[
-                { label: "Name", value: SortAttributeType.SortByName },
-                {
-                  label: "Subcategory",
-                  value: SortAttributeType.SortBySubcategoryName,
-                },
-                {
-                  label: "Company",
-                  value: SortAttributeType.SortByCompanyName,
-                },
-                { label: "Price", value: SortAttributeType.SortByPrice },
-                {
-                  label: "Profit",
-                  value: SortAttributeType.SortByProfit,
-                },
-              ]}
-              onSwitch={(value) => {
-                setSortAttribute(value);
-              }}
-            />
-          </div>
-          <div className={classes.SortUnit}>
-            <span>Sort type</span>
-          <Switch
-            options={[
-              { label: "Ascending", value: SortType.Ascending },
-              { label: "Descending", value: SortType.Descending },
-            ]}
-            onSwitch={(value) => {
-              setType(value);
-            }}
-          />
           </div>
         </div>
       </div>

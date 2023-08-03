@@ -1,7 +1,7 @@
 .Container {
     display: flex;
     margin-top: 70px;
-    padding: 0px 11vw;
+    padding: 0px 5vw;
     @media screen and (max-width: 950px) {
         margin-top: 0px;
         padding: 0px 2vw;
@@ -14,6 +14,7 @@
         display: flex;
         flex-direction: row;
         align-items: flex-start;
+        justify-content: flex-start;
         width: 100%;
         margin-top: 20px;
         margin-bottom: 45px;
@@ -52,7 +53,6 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: flex-start;
-        margin-top: 20px;
         margin-bottom: 20px;
         @media screen and (max-width: 950px) {
             align-items: flex-start;
@@ -67,6 +67,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-bottom: 10px;
         .SortUnit {
             display: flex;
             flex-direction: column;
@@ -94,7 +95,6 @@
         }
         @media screen and (max-width: 950px) {
             margin-bottom: 20px;
-            order: -1;
         }
     }
 }
