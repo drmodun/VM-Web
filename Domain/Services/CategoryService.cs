@@ -3,7 +3,6 @@ using Contracts.Responses;
 using Contracts.Responses.Category;
 using Domain.Mappers;
 using Domain.Repositories;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Domain.Services
 {

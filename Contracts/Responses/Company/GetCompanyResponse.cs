@@ -1,6 +1,4 @@
-﻿using Contracts.Responses.Product;
-
-namespace Contracts.Responses.Company
+﻿namespace Contracts.Responses.Company
 {
     public class GetCompanyResponse
     {

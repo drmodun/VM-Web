@@ -98,9 +98,9 @@ namespace Domain.Repositories
             //this call would be way too expensive, probably will be removed later
             var categories = _context.Categories
                     .Include(x => x.Products)
-                        .ThenInclude(x=>x.Company)
-                    .Include(x=>x.Products)
-                    .Include(x=>x.Subcategories)
+                        .ThenInclude(x => x.Company)
+                    .Include(x => x.Products)
+                    .Include(x => x.Subcategories)
                     .Where(x => request.Name == null || x.Name.Contains(request.Name));
             if (request.Sorting != null)
             {

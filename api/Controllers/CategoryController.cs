@@ -4,7 +4,6 @@ using Contracts.Responses.Category;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 
 namespace api.Controllers
 {
@@ -57,7 +56,7 @@ namespace api.Controllers
         }
         [HttpGet(Routes.Category.GetShort)]
         public async Task<ActionResult<GetShortCategoriesResponse>> GetShortCategories([FromQuery] GetAllCategoriesRequest request, CancellationToken cancellationToken)
-        { 
+        {
             var response = await _categoryService.GetAllShortCategories(request, cancellationToken);
             return Ok(response);
         }

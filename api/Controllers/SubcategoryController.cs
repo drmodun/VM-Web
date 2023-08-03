@@ -1,7 +1,5 @@
 ﻿using Contracts.Constants;
-using Contracts.Requests.Category;
 using Contracts.Requests.Subcategory;
-using Contracts.Responses.Category;
 using Contracts.Responses.Subcategory;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;

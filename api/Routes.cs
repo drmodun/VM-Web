@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace api
+﻿namespace api
 {
     public static class Routes
     {
@@ -95,7 +93,7 @@ namespace api
             public const string GetAll = Base + $"/subcategories";
             public const string Create = Base + $"/subcategories";
             public const string GetLarge = Base + $"/subcategories/large/{{id:Guid}}";
-            
+
         }
 
         public static class PreviousClient
