@@ -68,7 +68,7 @@ export const ProductsPage = () => {
   };
 
   useEffect(() => {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     productFetcher(undefined, false);
   }, []);
 
@@ -133,12 +133,10 @@ export const ProductsPage = () => {
             />
           )}
         </div>
-        <div className={classes.Main}>
-          <div className={classes.Products}>
-            {products.map((product) => (
-              <ProductView product={product} />
-            ))}
-          </div>
+        <div className={classes.Products}>
+          {products.map((product) => (
+            <ProductView product={product} />
+          ))}
         </div>
       </div>
     </div>

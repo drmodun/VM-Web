@@ -1,7 +1,17 @@
 import axios from "axios";
 
-import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl, jwt } from "./Shared";
+import {
+  PaginationResult,
+  ActionResult,
+  Pagination,
+  Sorting,
+  baseUrl,
+  jwt,
+} from "./Shared";
 import { Indexable } from "../Types/Interfaces";
+import { ShortSubcategory } from "./SubcategoryApi";
+import { ShortProduct } from "./ProductApi";
+import { ShortCompany } from "./CompanyApi";
 
 export interface Category {
   id: string;
@@ -17,11 +27,19 @@ export interface NewCategory {
   description: string;
 }
 
+export interface GetLargeCategory {
+  id: string;
+  name: string;
+  description: string;
+  subcategories: ShortCategory[];
+  brands: ShortCompany[];
+}
+
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   description?: string;
   name?: string;
 }
@@ -31,7 +49,6 @@ export interface ShortCategory {
   name: string;
   numberOfProducts: number;
 }
-
 
 const api = axios.create({
   baseURL: baseUrl,
@@ -52,8 +69,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-
 
 export const getCategories = async (props: GetAllProps | {} = {}) => {
   try {
@@ -113,6 +128,18 @@ export const updateCategory = async (
   } catch (error) {
     console.error(error);
     return false;
+  }
+};
+
+export const getLargeCategory = async (id: string) => {
+  try {
+    const response = await api.get<GetLargeCategory>(
+      `/categories/large/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };
 

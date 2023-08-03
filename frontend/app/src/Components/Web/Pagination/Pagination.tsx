@@ -11,10 +11,7 @@ export const Pagination = ({
   totalPages,
   onPageChange,
 }: Props) => {
-  useEffect(() => {
-    onPageChange(1);
-    console.log(totalPages);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className={classes.Container}>

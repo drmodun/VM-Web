@@ -50,7 +50,6 @@ namespace Domain.Mappers
                 Name = subcategory.Name,
                 CategoryName = subcategory.Category.Name,
                 Id = subcategory.Id,
-                Products = subcategory.Products.Select(x => ProductMapper.ToShortProduct(x)).ToList(),
                 Companies = subcategory.Products.Select(x => CompanyMapper.ToShort(x.Company)).ToList()
             };
         }

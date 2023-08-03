@@ -9,8 +9,8 @@ namespace Contracts.Responses.Category
         public Guid Id { get; set; }
         public string Name { get; set; }
         //later add picture
-        public List<GetShortProductResponse> Products { get; set; }
 
+        public string Description { get; set; }
         public List<GetShortSubcategoryResponse> Subcategories { get; set; }
 
         public List<GetShortCompany> Brands { get; set; }

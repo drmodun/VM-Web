@@ -26,7 +26,7 @@ export interface NewSubcategory {
   categoryId: string;
 }
 
-export interface ShortrSubcategory {
+export interface ShortSubcategory {
   id: string;
   name: string;
   numberOfProducts: number;
@@ -98,7 +98,7 @@ export const createSubcategory = async (
 
 export const getShortSubcategories = async ( params: GetAllProps | {} = {}) => {
   try {
-    const response = await api.get<PaginationResult<ShortrSubcategory>>(
+    const response = await api.get<PaginationResult<ShortSubcategory>>(
       "/subcategories/short",
       { params: params }
     );

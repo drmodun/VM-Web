@@ -18,6 +18,7 @@ import { ServicePage } from "../Pages/Admin/SingleItemPages/ServicePage/ServiceP
 import { ProductsPage } from "../Pages/Admin/IndexPages/ProductsPage/ProductsPage";
 import { ProductPage } from "../Pages/Admin/SingleItemPages/ProductPage/ProductPage";
 import { PreviousClientsPage } from "../Pages/Admin/IndexPages/PreviousClient/PreviousClientsPage";
+import WebCategoryPage from "../Pages/Web/CategoryPage";
 import { PreviousClientPage } from "../Pages/Admin/SingleItemPages/PreviousClient/PreviousClientPage";
 import { AdminLoginPage } from "../Pages/Admin/AdminLoginPage/AdminLoginPage";
 import AdminHomepage from "../Pages/Admin/AdminHomepage";
@@ -123,6 +124,10 @@ const router = createBrowserRouter(
         <Route path="/products">
           <Route index element={<WebProductsPage/>}></Route>
           <Route path=":productId" element={<WebProductPage />}></Route>
+        </Route>
+        <Route path="/categories">
+          <Route index element={<></>}></Route>
+          <Route path=":categoryId" element={<WebCategoryPage />}></Route>
         </Route>
       </Route>
       <Route path="*" element={<ProductPage />} />

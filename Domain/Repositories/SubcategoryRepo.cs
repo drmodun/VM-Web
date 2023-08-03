@@ -122,7 +122,6 @@ namespace Domain.Repositories
               .Include(x => x.Products)
                       .ThenInclude(x => x.Company)
                           .ThenInclude(x => x.Products)
-                  .Include(x => x.Products)
                   .FirstOrDefaultAsync(x => x.Id == id);
             if (subcategory == null)
                 return null;
