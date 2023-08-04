@@ -1,4 +1,6 @@
-﻿namespace api
+﻿using System.Globalization;
+
+namespace api
 {
     public static class Routes
     {
@@ -31,6 +33,12 @@
             public const string AdminDelete = Base + $"/admin/users/{{id:Guid}}";
             public const string AdminEdit = Base + $"/admin/users/{{id:Guid}}";
             public const string AdminCreate = Base + $"/admin/users/";
+            public const string AddToCart = Base + $"/users/cart/{{productId:Guid}}";
+            public const string RemoveCart = Base + $"/users/cart";
+            public const string BuyCart = Base + $"/users/cart";
+            public const string GetCart = Base + $"/users/cart";
+            public const string UpdateCart = Base + $"/users/cart/{{productId:Guid}}";
+            public const string RemoveFromCart = Base + $"/users/cart/{{productId:Guid}}";
 
         }
 

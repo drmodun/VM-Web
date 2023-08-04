@@ -96,12 +96,12 @@ namespace Domain.Mappers
                 SubcategoryId = product.SubCategoryId,
                 SubcategoryName = product.Subcategory.Name,
                 IsFavourite = userId != null && product.Favourites.Any(x => x.UserId == userId),
-                IsInCart = false
+                IsInCart = userId != null && product.CartsProducts.Any(x => x.Cart.UserId == userId)
                 //later change this
             };
         }
 
-        public static GetShortProductResponse ToFavouriteShortProducts(Product product)
+        public static GetShortProductResponse ToFavouriteShortProducts(Guid userId, Product product)
         {
             return new GetShortProductResponse
             {
@@ -116,7 +116,7 @@ namespace Domain.Mappers
                 SubcategoryId = product.SubCategoryId,
                 SubcategoryName = product.Subcategory.Name,
                 IsFavourite = true,
-                IsInCart = false
+                IsInCart = product.CartsProducts.Any(x => x.Cart.UserId == userId)
             };
         }
     }

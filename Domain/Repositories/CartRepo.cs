@@ -30,11 +30,16 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<Cart> GetCart(Guid userId, CancellationToken cancellationToken)
+        public async Task<Cart?> GetCart(Guid userId, CancellationToken cancellationToken)
         {
             var cart = await _context.Carts
                 .Include(x => x.CartsProducts)
-                    .ThenInclude(x => x.Product)
+                    .ThenInclude(x => x.Product).ThenInclude(x=>x.Category)
+                    .Include(x => x.CartsProducts)
+                    .ThenInclude(x => x.Product).ThenInclude(x=>x.Subcategory)
+                    .Include(x => x.CartsProducts)
+                    .ThenInclude(x => x.Product).ThenInclude(x=>x.Company)
+                    //decide if this information is neccesary or it just hogs memory
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
             return cart;
         }
@@ -46,8 +51,9 @@ namespace Domain.Repositories
                 await CreateCart(userId);
                 cart = await _context.Carts.FirstOrDefaultAsync(x => x.UserId == userId);
             }
+            var connection = await GetConnection(userId, productId, cancellationToken);
             var product = await _context.Products.FindAsync(productId);
-            if (cart == null || product == null)
+            if (cart == null || product == null || connection != null)
                 return false;
             var cartsProducts = new CartsProducts
             {
@@ -114,10 +120,11 @@ namespace Domain.Repositories
                     Type = Data.Enums.TransactionType.Paypal
                     //later make this actually work of course
                 };
-                transactions.Append(value);
+                transactions.Add(value);
             }
             await _context.Transactions.AddRangeAsync(transactions, cancellationToken);
             _context.Carts.Remove(cart);
+            Console.WriteLine(transactions);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
     }

@@ -60,11 +60,9 @@ namespace api.Controllers
             return response.Success ? Ok(response) : NotFound(response);
         }
         [Authorize(AuthConstants.TrustMemberPolicyName)]
-        [HttpDelete(Routes.Transaction.GetMyTransactions)]
+        [HttpGet(Routes.Transaction.GetMyTransactions)]
         public async Task<ActionResult<GetAllTransactionsResponse>> GetMyTransactions([FromQuery] GetAllTransactionsRequest request, CancellationToken cancellationToken)
         {
-            if (request.UserId != HttpContext.GetUserId() && request.UserId != null)
-                return BadRequest("You cannot get transactions from an account that is not yours");
             request.UserId = HttpContext.GetUserId();
             var response = await _transactionService.GetAllTransactions(request, cancellationToken);
             return Ok(response);

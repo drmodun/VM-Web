@@ -1,6 +1,7 @@
 ﻿using api.Auth;
 using Contracts.Constants;
 using Contracts.Requests.User;
+using Contracts.Responses.Cart;
 using Contracts.Responses.User;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +14,13 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly CartService _cartService;
         private readonly IdentityService _identityService;
 
-        public UserController(UserService userService, IdentityService identityService)
+        public UserController(UserService userService, CartService cartService, IdentityService identityService)
         {
             _userService = userService;
+            _cartService = cartService;
             _identityService = identityService;
         }
 
@@ -98,6 +101,64 @@ namespace api.Controllers
             var response = await _userService.CreateAdminUser(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
         }
+
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpPost(Routes.User.AddToCart)]
+        public async Task<ActionResult<bool>> AddToCart([FromRoute] Guid productId, [FromBody] int quantity, CancellationToken cancellationToken)
+        {
+            if (quantity <= 0)
+                return BadRequest("You cannot buy negative products");
+            var id = HttpContext.GetUserId();
+            var response = await _cartService.AddToCart((Guid)id, productId, quantity, cancellationToken);
+            return response ? Ok(response) : BadRequest(response);
+        }
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpPost(Routes.User.BuyCart)]
+        public async Task<ActionResult<bool>> BuyCart(CancellationToken cancellationToken)
+        {
+            var id = HttpContext.GetUserId();
+            var response = await _cartService.BuyCart((Guid)id, cancellationToken);
+            return response ? Ok(response) : BadRequest(response);
+        }
+
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpDelete(Routes.User.RemoveCart)]
+        public async Task<ActionResult<bool>> RemoveCart(CancellationToken cancellationToken)
+        {
+            var id = HttpContext.GetUserId();
+            var response = await _cartService.RemoveCart((Guid)id, cancellationToken);
+            return response ? Ok(response) : BadRequest(response);
+        }
+
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpDelete(Routes.User.RemoveFromCart)]
+        public async Task<ActionResult<bool>> RemoveFromCart([FromRoute] Guid productId, CancellationToken cancellationToken)
+        {
+            var id = HttpContext.GetUserId();
+            var response = await _cartService.RemoveFromCart((Guid)id, productId, cancellationToken);
+            return response ? Ok(response) : NotFound(response);
+        }
+
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpGet(Routes.User.GetCart)]
+        public async Task<ActionResult<CartResponse>> GetCart(CancellationToken cancellationToken)
+        {
+            var id = HttpContext.GetUserId();
+            var response = await _cartService.GetCart((Guid)id,cancellationToken);
+            return response != null ? Ok(response) : NotFound(response);
+        }
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [HttpPut(Routes.User.UpdateCart)]
+        public async Task<ActionResult<bool>> UpdateConnection([FromRoute] Guid productId, [FromBody] int quantity, CancellationToken cancellationToken)
+        {
+            if (quantity <= 0)
+                return BadRequest("You cannot buy negative products");
+            var id = HttpContext.GetUserId();
+            var response = await _cartService.UpdateConnection((Guid)id, productId, quantity, cancellationToken);
+            return response ? Ok(response) : NotFound(response);
+        }
+
+
 
         //TODO: Make functions for adding and removing admins (makoing normal accounts admin and vice versa)
 

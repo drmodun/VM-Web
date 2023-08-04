@@ -141,7 +141,7 @@ namespace Domain.Repositories
 
         }
 
-        public async Task<IQueryable<Product>> GetAllProductsWithFavourites(GetAllProductsRequest request, CancellationToken cancellationToken)
+        public async Task<IQueryable<Product>> GetAllProductsLarge(GetAllProductsRequest request, CancellationToken cancellationToken)
         {
 
             var products = _context.Products
@@ -149,6 +149,9 @@ namespace Domain.Repositories
                 .Include(x => x.Category)
                 .Include(x => x.Subcategory)
                 .Include(x => x.Favourites)
+                .Include(x=> x.CartsProducts)
+                    .ThenInclude(x=> x.Cart)
+                    //check if this has to be done this way
                 .Where(x => request.SubcategoryId == null || request.SubcategoryId == x.SubCategoryId)
                 .Where(x => request.CategoryId == null || request.CategoryId == x.CategoryId)
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
@@ -247,6 +250,7 @@ namespace Domain.Repositories
                 .Include(x => x.Product.Company)
                 .Include(x => x.Product.Category)
                 .Include(x => x.Product.Subcategory)
+                .Include(x => x.Product.CartsProducts.Where(x=>x.Cart.UserId == userId))
                 .Where(x => x.UserId == userId)
                 .Select(x => x.Product)
                 .ToListAsync();

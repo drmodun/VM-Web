@@ -92,7 +92,7 @@ namespace Domain.Services
 
         public async Task<GetShortProductsResponse> GetShortProducts(GetAllProductsRequest request, CancellationToken cancellationToken, Guid? userId = null)
         {
-            var products = await _productRepo.GetAllProductsWithFavourites(request, cancellationToken);
+            var products = await _productRepo.GetAllProductsLarge(request, cancellationToken);
             var pageInfo =
             new PageResponse
             {
@@ -117,7 +117,7 @@ namespace Domain.Services
         public async Task<GetShortProductsResponse> GetFavouriteShortProducts(Guid userId)
         {
             var products = await _productRepo.GetFavourites(userId);
-            var list = products.Select(ProductMapper.ToFavouriteShortProducts).ToList();
+            var list = products.Select(x=>ProductMapper.ToFavouriteShortProducts(userId,x)).ToList();
             var pageInfo =
             //TODO: add pagination for this
             new PageResponse

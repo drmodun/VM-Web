@@ -22,6 +22,7 @@ namespace Domain
             services.AddScoped<PreviousClientRepo>();
             services.AddScoped<ServiceRepo>();
             services.AddScoped<SubcategoryRepo>();
+            services.AddScoped<CartRepo>();
             services.AddScoped<CategoryRepo>();
 
             services.AddScoped<CompanyValidator>();
@@ -38,6 +39,7 @@ namespace Domain
             services.AddScoped<CompanyService>();
             services.AddScoped<ProductService>();
             services.AddScoped<OrderService>();
+            services.AddScoped<CartService>();
             services.AddScoped<TransactionService>();
             services.AddScoped<UserService>();
             services.AddScoped<PreviousClientService>();
