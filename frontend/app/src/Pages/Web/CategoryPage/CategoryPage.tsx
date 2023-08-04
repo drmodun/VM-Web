@@ -61,6 +61,10 @@ export const CategoryPage = () => {
   }, [sortAttribute, sortType]);
 
   useEffect(() => {
+    const element = document.getElementById("#products");
+    element?.scrollIntoView({
+      behavior: "smooth",
+    });
     fetchCategory();
     fetchProducts(true);
   }, [pageInfo.page]);
@@ -150,11 +154,6 @@ export const CategoryPage = () => {
                 currentPage={pageInfo.page ?? 1}
                 totalPages={pageInfo.totalPages!}
                 onPageChange={(page) => {
-                  const element = document.getElementById("#products");
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
                   setPageInfo((prev) => ({ ...prev, page: page }));
                 }}
               />

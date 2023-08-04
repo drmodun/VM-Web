@@ -64,6 +64,8 @@ export const SubcategoryPage = () => {
   }, [sortAttribute, sortType]);
 
   useEffect(() => {
+    const element = document.getElementById("#products");
+    element?.scrollIntoView({ behavior: "smooth" });
     fetchSubcategory();
     fetchProducts(true);
   }, [pageInfo.page]);
@@ -76,9 +78,11 @@ export const SubcategoryPage = () => {
             <span className={classes.Name}>{Subcategory?.name}</span>
             <span className={classes.Subtitle}>{Subcategory?.description}</span>
             <Link
-              to={"/categories" + Subcategory.categoryId}
+              to={"/categories/" + Subcategory.categoryId}
               className={classes.CategoryName}
-            ></Link>
+            >
+              Part of: {Subcategory.categoryName}
+            </Link>
           </div>
           <div className={classes.SubcategoryImage}>
             <img src={Placeholder} alt={Subcategory?.name} />
@@ -144,11 +148,6 @@ export const SubcategoryPage = () => {
                 currentPage={pageInfo.page ?? 1}
                 totalPages={pageInfo.totalPages!}
                 onPageChange={(page) => {
-                  const element = document.getElementById("#products");
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
                   setPageInfo((prev) => ({ ...prev, page: page }));
                 }}
               />

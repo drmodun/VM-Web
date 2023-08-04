@@ -61,6 +61,11 @@ export const CompanyPage = () => {
   }, [sortAttribute, sortType]);
 
   useEffect(() => {
+    const element = document.getElementById("#products");
+    element?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
     fetchCompany();
     fetchProducts(true);
   }, [pageInfo.page]);
@@ -84,7 +89,7 @@ export const CompanyPage = () => {
             <ShortView
               titlte={category.name}
               subtitle={category.numberOfProducts.toString()}
-              link={`/companies/${category.id}`}
+              link={`/categories/${category.id}`}
             />
           ))}
         </div>
@@ -151,11 +156,6 @@ export const CompanyPage = () => {
                 currentPage={pageInfo.page ?? 1}
                 totalPages={pageInfo.totalPages!}
                 onPageChange={(page) => {
-                  const element = document.getElementById("#products");
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
                   setPageInfo((prev) => ({ ...prev, page: page }));
                 }}
               />
