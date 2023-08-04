@@ -19,6 +19,8 @@ namespace Data
 
         public DbSet<Cart> Carts => Set<Cart>();
 
+        public DbSet<CartsProducts> CartsProducts => Set<CartsProducts>();
+
 
         public DbSet<Favourites> Favourites => Set<Favourites>();
 
