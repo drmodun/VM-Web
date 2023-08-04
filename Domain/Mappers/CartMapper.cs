@@ -24,8 +24,9 @@ namespace Domain.Mappers
                 ProductId = cartsProducts.ProductId,
                 ProductName = cartsProducts.Product.Name,
                 PricePerUnit = cartsProducts.Product.Price,
-                Total = cartsProducts.Product.Price * cartsProducts.Quantity
-            };
+                Total = cartsProducts.Product.Price * cartsProducts.Quantity,
+                MaxQuantity = cartsProducts.Product.Quantity
+            };  
         }
         public static CartResponse ToDTO(Cart cart)
         {

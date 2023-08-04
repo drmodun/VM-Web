@@ -98,6 +98,8 @@ namespace Domain.Repositories
         {
             var connection = await GetConnection(userId, productId, cancellationToken);
             if (connection == null) { return false; };
+            if (quantity < 0) { return false; }
+            //see if quantity is even important for this
             connection.Quantity = quantity;
             _context.CartsProducts.Update(connection);
             return await _context.SaveChangesAsync(cancellationToken) > 0;

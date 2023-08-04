@@ -1,4 +1,9 @@
-import { Category, ShortCategory, getCategories, getShortCategories } from "../../../Api/CategoryApi";
+import {
+  Category,
+  ShortCategory,
+  getCategories,
+  getShortCategories,
+} from "../../../Api/CategoryApi";
 import {
   GetAllProps,
   Product,
@@ -25,10 +30,12 @@ import Dropdown from "../../../Components/Web/Dropdown";
 import Slider from "../../../Components/Web/Slider";
 import Filter from "../../../Components/Web/FIlter";
 import { Pagination } from "../../../Components/Web/Pagination/Pagination";
-import { PageInfo } from "../../../Api/Shared";
+import { PageInfo, accountInfo } from "../../../Api/Shared";
 import Switch from "../../../Components/Web/Switch";
 import ItemView from "../../../Components/Admin/ItemView";
 import ShortView from "../../../Components/Web/ShortView";
+import { CartItem, getCart } from "../../../Api/UserApi";
+import CartItemView from "../../../Components/Web/CartItemView";
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<ShortCategory[]>([]);
@@ -40,6 +47,12 @@ export const Homepage = () => {
     SortAttributeType.SortByName
   );
   const [type, setType] = useState<SortType>(SortType.Descending);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const cartItemFetcher = async () => {
+    const response = await getCart();
+    setCartItems(response?.items!);
+  };
 
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
@@ -70,6 +83,7 @@ export const Homepage = () => {
     productFetcher();
     categoryFetcher();
     serviceFetcher();
+    if (accountInfo) cartItemFetcher();
   }, []);
 
   useEffect(() => {
@@ -113,11 +127,16 @@ export const Homepage = () => {
       <div className={classes.CategoryRow}>
         {categories.map((category) => (
           <ShortView
-          link={`categories/${category.id}`}
-          titlte={category.name}
-          subtitle={category.numberOfProducts.toString()}
+            link={`categories/${category.id}`}
+            titlte={category.name}
+            subtitle={category.numberOfProducts.toString()}
           />
         ))}
+      </div>
+      <div className={classes.ProductRow}>
+        {cartItems &&
+          cartItems.map((item) => <CartItemView item={item} />)
+        }
       </div>
       <div className={classes.ProductRow}>
         {services &&

@@ -18,9 +18,8 @@ namespace Contracts.Responses.Cart
         public Guid SubcategoryId { get; set; }
         public string SubcategoryName { get; set; }
         public decimal PricePerUnit { get; set; }
-
+        public int MaxQuantity { get; set; }
         public decimal Total { get; set; }
-
 
     }
 }

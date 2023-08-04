@@ -1,6 +1,12 @@
 import axios from "axios";
 import { ServiceType } from "../Types/Enums";
-import { ActionResult, Pagination, PaginationResult, Sorting, baseUrl } from "./Shared";
+import {
+  ActionResult,
+  Pagination,
+  PaginationResult,
+  Sorting,
+  baseUrl,
+} from "./Shared";
 import { ActionFunction } from "react-router-dom";
 
 export interface Service {
@@ -20,10 +26,10 @@ export interface NewService {
 }
 
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   name?: string;
   minPrice?: number;
   maxPrice?: number;
@@ -31,8 +37,7 @@ export interface GetAllProps {
 }
 
 const api = axios.create({
-  baseURL: 
-baseUrl ,
+  baseURL: baseUrl,
   headers: {
     "Content-Type": "application/json",
   },
@@ -51,11 +56,11 @@ api.interceptors.request.use(
   }
 );
 
-
-
 export const getServices = async (props?: GetAllProps) => {
   try {
-    const response = await api.get<PaginationResult<Service>>("services", { params: props });
+    const response = await api.get<PaginationResult<Service>>("services", {
+      params: props,
+    });
     return response.data;
   } catch (error) {
     console.error(error);

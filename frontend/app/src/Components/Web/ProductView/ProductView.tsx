@@ -14,6 +14,7 @@ import shopping from "../../../assets/shopping_product_hover.svg";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { accountInfo } from "../../../Api/Shared";
+import { addToCart, removeFromCart } from "../../../Api/UserApi";
 interface Props {
   product: ShortProduct;
   removal?: Function;
@@ -25,14 +26,22 @@ interface Props {
 
 export const ProductView = ({ product, removal }: Props) => {
   const [isFavourite, setIsFavourite] = useState<boolean>(product.isFavourite);
-  const [isInCart, setIsInCart] = useState(false);
+  const [isInCart, setIsInCart] = useState(product.isInCart);
 
   const toggleFavourite = async () => {
     if (accountInfo)
       isFavourite
-        ? await removeFromFavourites(product.id) && removal && removal()
+        ? (await removeFromFavourites(product.id)) && removal && removal()
         : await addToFavourites(product.id);
     setIsFavourite((prev) => !prev);
+  };
+
+  const toggleInCart = async () => {
+    if (accountInfo)
+      isInCart
+        ? await removeFromCart(product.id)
+        : await addToCart(product.id, 1);
+    setIsInCart((prev) => !prev);
   };
 
   useEffect(() => {
@@ -42,12 +51,9 @@ export const ProductView = ({ product, removal }: Props) => {
 
   useEffect(() => {
     setIsFavourite(product.isFavourite);
+    setIsInCart(product.isInCart);
   }, []);
 
-
-  const toggleCart = () => {
-    setIsInCart((prev) => !prev);
-  };
 
   return (
     <div className={classes.Container}>
@@ -103,7 +109,7 @@ export const ProductView = ({ product, removal }: Props) => {
 
             <button
               className={isInCart ? classes.CartActive : classes.Cart}
-              onClick={toggleCart}
+              onClick={toggleInCart}
             >
               <img src={isInCart ? shopping_active : shopping} alt="cart" />
             </button>

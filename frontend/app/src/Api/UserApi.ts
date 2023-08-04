@@ -27,6 +27,26 @@ export interface NewUser {
   phoneNumber: string;
 }
 
+export interface CartItem {
+  pricePerUnit: number;
+  productId: string;
+  categoryId: string;
+  brandId: string;
+  brandName: string;
+  maxQuantity: number;
+  productName: string;
+  subcategoryName: string;
+  subcategoryId: string;
+  categoryName: string;
+  total: number;
+  quantity: number;
+}
+
+export interface Cart {
+  items: CartItem[];
+  total: number;
+}
+
 export interface GetAllProps {
   "Pagination.PageNumber"?: number;
   "Pagination.PageSize"?: number;
@@ -47,7 +67,11 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-    if (token && ["post", "put", "delete"].includes(config.method || "")) {
+    if (
+      (token && ["post", "put", "delete"].includes(config.method || "")) ||
+      (token && config.url?.includes("short")) ||
+      (token && config.url?.includes("cart"))
+    ) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -135,6 +159,54 @@ export const adminLogin = async (email: string, password: string) => {
     console.error(error);
     return false;
   }
-}
+};
 
+export const addToCart = async (productId: string, quantity: number) => {
+  try {
+    const response = await api.post("/users/cart/" + productId, quantity);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
 
+export const getCart = async () => {
+  try {
+    const response = await api.get("/users/cart");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const removeFromCart = async (productId: string) => {
+  try {
+    const response = await api.delete("/users/cart/" + productId);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const updateCart = async (productId: string, quantity: number) => {
+  try {
+    const response = await api.put("/users/cart/" + productId, quantity);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const Checkout = async () => {
+  try {
+    const response = await api.post("/users/cart");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
