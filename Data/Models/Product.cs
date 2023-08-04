@@ -25,6 +25,8 @@ namespace Data.Models
         public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         public List<Favourites> Favourites { get; set; } = new List<Favourites>();
+
+        public List<CartsProducts> CartsProducts { get; set; } = new List<CartsProducts>();
         public Company? Company { get; set; }
         public Subcategory? Subcategory { get; set; }
 

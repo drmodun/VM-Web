@@ -98,6 +98,18 @@ namespace Data
             modelBuilder.Entity<CartsProducts>()
                 .HasKey(o => new { o.ProductId, o.CartId });
 
+            modelBuilder.Entity<CartsProducts>()
+                .HasOne(x => x.Cart)
+                .WithMany(o => o.CartsProducts)
+                .HasForeignKey(o => o.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<CartsProducts>()
+                .HasOne(x => x.Product)
+                .WithMany(o => o.CartsProducts)
+                .HasForeignKey(o => o.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
             //handle conversions later  
 
 

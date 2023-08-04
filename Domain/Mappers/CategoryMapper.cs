@@ -1,7 +1,6 @@
 ﻿using Contracts.Requests.Category;
 using Contracts.Responses.Category;
 using Data.Models;
-using System.Collections.Immutable;
 
 namespace Domain.Mappers
 {
@@ -54,7 +53,7 @@ namespace Domain.Mappers
                 Name = category.Name,
                 Description = category.Description,
                 Subcategories = category.Subcategories.Select(SubcategoryMapper.ToShort).ToList(),
-                Brands = category.Products.DistinctBy(x=>x.CompanyId)
+                Brands = category.Products.DistinctBy(x => x.CompanyId)
                 .Select(x => CompanyMapper.ToShort(x.Company))
                 .ToList(),
                 //see if i want to implement a product counter for brands and subcategories (possibly will be a very complex call)

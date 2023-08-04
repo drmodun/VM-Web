@@ -1,5 +1,4 @@
 ﻿using Contracts.Responses.Company;
-using Contracts.Responses.Product;
 
 namespace Contracts.Responses.Subcategory
 {

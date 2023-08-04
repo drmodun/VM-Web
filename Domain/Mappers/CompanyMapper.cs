@@ -49,8 +49,8 @@ namespace Domain.Mappers
                 Logo = company.Logo,
                 Categories = company.Products.DistinctBy(x => x.Category).Select(x => CategoryMapper.ToShort(x.Category)).ToList(),
                 Description = company.Description,
-                Subcategories = company.Products.DistinctBy(x => x.Subcategory).Select(x=>SubcategoryMapper.ToShort(x.Subcategory)).ToList()
-                
+                Subcategories = company.Products.DistinctBy(x => x.Subcategory).Select(x => SubcategoryMapper.ToShort(x.Subcategory)).ToList()
+
             };
 
         }

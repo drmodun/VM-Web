@@ -51,7 +51,7 @@ namespace Domain.Mappers
                 CategoryName = subcategory.Category.Name,
                 Description = subcategory.Description,
                 Id = subcategory.Id,
-                Brands = subcategory.Products.DistinctBy(x=>x.CompanyId)
+                Brands = subcategory.Products.DistinctBy(x => x.CompanyId)
                 .Select(x => CompanyMapper.ToShort(x.Company)).ToList()
             };
         }

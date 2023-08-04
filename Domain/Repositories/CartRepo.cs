@@ -1,5 +1,4 @@
-﻿using Contracts.Responses;
-using Data;
+﻿using Data;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +29,15 @@ namespace Domain.Repositories
             await _context.Carts.AddAsync(cart);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Cart> GetCart(Guid userId, CancellationToken cancellationToken)
+        {
+            var cart = await _context.Carts
+                .Include(x => x.CartsProducts)
+                    .ThenInclude(x => x.Product)
+                .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
+            return cart;
+        }
         public async Task<bool> AddToCart(Guid userId, Guid productId, int quantity, CancellationToken cancellationToken)
         {
             var cart = await _context.Carts.FirstOrDefaultAsync(x => x.UserId == userId);
@@ -51,6 +59,14 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
+        public async Task<bool> RemoveCart(Guid userId, CancellationToken cancellationToken)
+        {
+            var cart = _context.Carts.FirstOrDefault(x => x.UserId == userId);
+            if (cart == null) { return false; }
+            _context.Carts.Remove(cart);
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
+        }
+
         public async Task<bool> RemoveFromCart(Guid userId, Guid productId, CancellationToken cancellationToken)
         {
             var cart = await _context.Carts.FirstOrDefaultAsync(x => x.UserId == userId);
@@ -69,19 +85,40 @@ namespace Domain.Repositories
         {
             var cart = await _context.Carts.FirstOrDefaultAsync(x => x.UserId == userId);
             if (cart == null) { return false; }
-            return await _context.CartsProducts.AnyAsync(x=>x.CartId == cart.Id && x.ProductId == productId);
+            return await _context.CartsProducts.AnyAsync(x => x.CartId == cart.Id && x.ProductId == productId);
         }
 
         public async Task<bool> UpdateConnection(Guid userId, Guid productId, int quantity, CancellationToken cancellationToken)
         {
             var connection = await GetConnection(userId, productId, cancellationToken);
-            if (connection == null) { return false;};
+            if (connection == null) { return false; };
             connection.Quantity = quantity;
             _context.CartsProducts.Update(connection);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
-
-
+        public async Task<bool> BuyCart(Guid userId, CancellationToken cancellationToken)
+        {
+            var cart = await GetCart(userId, cancellationToken);
+            if (cart == null) { return false; };
+            var transactions = new List<Transaction>();
+            foreach (var item in cart.CartsProducts)
+            {
+                var value = new Transaction
+                {
+                    CreatedAt = DateTime.UtcNow,
+                    Id = Guid.NewGuid(),
+                    ProductId = item.ProductId,
+                    UserId = userId,
+                    Quantity = item.Quantity,
+                    Type = Data.Enums.TransactionType.Paypal
+                    //later make this actually work of course
+                };
+                transactions.Append(value);
+            }
+            await _context.Transactions.AddRangeAsync(transactions, cancellationToken);
+            _context.Carts.Remove(cart);
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
+        }
     }
 }
