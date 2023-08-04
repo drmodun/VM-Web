@@ -113,7 +113,7 @@ export const Homepage = () => {
       <div className={classes.CategoryRow}>
         {categories.map((category) => (
           <ShortView
-          link={`{categories/${category.id}}`}
+          link={`categories/${category.id}`}
           titlte={category.name}
           subtitle={category.numberOfProducts.toString()}
           />

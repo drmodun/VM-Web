@@ -7,6 +7,8 @@ import {
   Sorting,
   baseUrl,
 } from "./Shared";
+import { ShortCategory } from "./CategoryApi";
+import { ShortSubcategory } from "./SubcategoryApi";
 
 export interface Company {
   id: string;
@@ -39,6 +41,17 @@ export interface GetAllProps {
   description?: string;
   name?: string;
 }
+
+export interface GetLargeCompany {
+  id: string;
+  name: string;
+  logo: string;
+  description: string;
+  website: string;
+  subcategories: ShortSubcategory[];
+  categories: ShortCategory[];
+}
+
 
 const api = axios.create({
   baseURL: baseUrl,
@@ -111,6 +124,16 @@ export const deleteCompany = async (id: string): Promise<boolean> => {
   } catch (error) {
     console.error(error);
     return false;
+  }
+};
+
+export const getLargeCompany = async (id: string) => {
+  try {
+    const response = await api.get<GetLargeCompany>(`/companies/large/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };
 

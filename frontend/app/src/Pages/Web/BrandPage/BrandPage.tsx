@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
-import classes from "./CategoryPage.module.scss";
-import { GetLargeCategory, getLargeCategory } from "../../../Api/CategoryApi";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import classes from "./BrandPage.module.scss";
+import { GetLargeCompany, getLargeCompany } from "../../../Api/CompanyApi";
 import { useEffect, useState } from "react";
 import Placeholder from "../../../assets/placeholder.png";
 import ShortView from "../../../Components/Web/ShortView";
@@ -15,18 +15,18 @@ import { PageInfo } from "../../../Api/Shared";
 import Pagination from "../../../Components/Web/Pagination";
 import Switch from "../../../Components/Web/Switch";
 
-export const CategoryPage = () => {
-  const { categoryId } = useParams();
+export const CompanyPage = () => {
+  const { companyId } = useParams();
   const [sortAttribute, setSortAttribute] = useState<SortAttributeType>();
   const [pageInfo, setPageInfo] = useState<PageInfo>({} as PageInfo);
   const [sortType, setSortType] = useState<SortType>();
-  const [category, setCategory] = useState<GetLargeCategory>();
+  const [Company, setCompany] = useState<GetLargeCompany>();
   const [products, setProducts] = useState<ShortProduct[]>();
 
-  const fetchCategory = async () => {
-    const response = await getLargeCategory(categoryId as string);
+  const fetchCompany = async () => {
+    const response = await getLargeCompany(companyId as string);
     if (response == null) return;
-    setCategory(response);
+    setCompany(response);
   };
 
   const fetchProducts = async (pageChange: boolean) => {
@@ -35,7 +35,7 @@ export const CategoryPage = () => {
       "Sorting.SortType": sortType,
       "Pagination.PageNumber": pageInfo?.page ?? 1,
       "Pagination.PageSize": 20,
-      categoryId: categoryId as string,
+      companyId: companyId as string,
     });
     if (response == null) return;
     setProducts(response.items);
@@ -44,56 +44,57 @@ export const CategoryPage = () => {
   };
 
   useEffect(() => {
-    fetchCategory();
+    fetchCompany();
     fetchProducts(false);
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    fetchCategory();
+    fetchCompany();
     fetchProducts(false);
     window.scrollTo(0, 0);
-  }, [categoryId]);
+  }, [companyId]);
 
   useEffect(() => {
-    fetchCategory();
+    fetchCompany();
     fetchProducts(true);
   }, [sortAttribute, sortType]);
 
   useEffect(() => {
-    fetchCategory();
+    fetchCompany();
     fetchProducts(true);
   }, [pageInfo.page]);
 
-  return category ? (
+  return Company ? (
     <div className={classes.Container}>
-      <div className={classes.Category}>
-        <div className={classes.CategoryDetails}>
-          <div className={classes.CategoryInfo}>
-            <span className={classes.Name}>{category?.name}</span>
-            <span className={classes.Subtitle}>{category?.description}</span>
+      <div className={classes.Company}>
+        <div className={classes.CompanyDetails}>
+          <div className={classes.CompanyInfo}>
+            <span className={classes.Name}>{Company?.name}</span>
+            <span className={classes.Subtitle}>{Company?.description}</span>
           </div>
-          <div className={classes.CategoryImage}>
-            <img src={Placeholder} alt={category?.name} />
+          <div className={classes.CompanyImage}>
+            <img src={Placeholder} alt={Company?.name} />
           </div>
+        </div>
+
+        <span className={classes.SubHeader}>Categories</span>
+        <div className={classes.Categories}>
+          {Company?.categories.map((category) => (
+            <ShortView
+              titlte={category.name}
+              subtitle={category.numberOfProducts.toString()}
+              link={`/companies/${category.id}`}
+            />
+          ))}
         </div>
         <span className={classes.SubHeader}>Subcategories</span>
         <div className={classes.Subcategories}>
-          {category?.subcategories.map((subcategory) => (
+          {Company?.subcategories.map((subcategory) => (
             <ShortView
               titlte={subcategory.name}
               subtitle={subcategory.numberOfProducts.toString()}
               link={`/subcategories/${subcategory.id}`}
-            />
-          ))}
-        </div>
-        <span className={classes.SubHeader}>Brands</span>
-        <div className={classes.Companies}>
-          {category?.brands.map((company) => (
-            <ShortView
-              titlte={company.name}
-              subtitle={company.numberOfProducts.toString()}
-              link={`/brands/${company.id}`}
             />
           ))}
         </div>
@@ -109,12 +110,12 @@ export const CategoryPage = () => {
                   options={[
                     { label: "Name", value: SortAttributeType.SortByName },
                     {
-                      label: "Subcategory",
-                      value: SortAttributeType.SortBySubcategoryName,
+                      label: "Category",
+                      value: SortAttributeType.SortByCompanyName,
                     },
                     {
-                      label: "Company",
-                      value: SortAttributeType.SortByCompanyName,
+                      label: "Subcategory",
+                      value: SortAttributeType.SortBySubcategoryName,
                     },
                     { label: "Price", value: SortAttributeType.SortByPrice },
                     {
