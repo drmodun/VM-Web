@@ -142,11 +142,23 @@ namespace Domain.Repositories
                 }
             }
 
-
             //add sorting for orders later
 
             return users;
         }
+        public async Task<bool> UpdateUserInfo(UpdateUserInfoRequest request, CancellationToken cancellationToken)
+        {
+            var user = await _context.Users.FindAsync(request.Id, cancellationToken);
+             if (user == null)
+                return false;
+            user.Address = request.Address;
+            user.Email = request.Email;
+            user.Name = request.Name;
+            user.PhoneNumber = request.PhoneNumber;
+            user.LastUpdated = DateTime.Now;
+            _context.Update(user);
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
 
+        }
     }
 }

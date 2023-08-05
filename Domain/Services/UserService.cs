@@ -96,5 +96,14 @@ namespace Domain.Services
             };
         }
 
+        public async Task<PutUserResponse> UpdateUserInfo(UpdateUserInfoRequest request, CancellationToken cancellationToken)
+        {
+            var action = await _userRepo.UpdateUserInfo(request, cancellationToken);
+            return new PutUserResponse
+            {
+                Success = action
+            };
+        } 
+
     }
 }
