@@ -39,11 +39,13 @@ export const CartPage = () => {
     fetchCart();
   }, []);
 
+  //make things for empty cart
+
   return (
     <div className={classes.Container}>
       <div className={classes.Cart}>
         <div className={classes.CartItems}>
-          {cartItems.map((item, i) => (
+          {cartItems && cartItems.map((item, i) => (
             <CartItemView
               item={item}
               remove={removeTotal}

@@ -25,6 +25,7 @@ namespace Domain.Mappers
                 UserId = transaction.UserId,
                 CreatedAt = transaction.CreatedAt,
                 Id = transaction.Id,
+                UserName = transaction.User.Name,
                 ProductId = transaction.ProductId,
                 ProductName = transaction.Product.Name,
                 TransactionType = transaction.Type,

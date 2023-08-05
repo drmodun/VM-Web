@@ -3,6 +3,7 @@ import Placeholder from "../../../assets/placeholder.png";
 import { Link } from "react-router-dom";
 import classes from "./MainProductView.module.scss";
 import { useEffect, useState } from "react";
+import { addToCart } from "../../../Api/UserApi";
 
 interface Props {
   product: Product;
@@ -12,10 +13,25 @@ interface Props {
 
 export const MainProductView = ({ product }: Props) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-
-  useEffect(() => {
+  // const [isInCart, setIsInCart] = useState(product.isInCart);
+  // const [isFavourite, setIsFavourite] = useState(product.isFavourite);
+  //make product view itself more modular and have isFavourites and isInCart as props
+    useEffect(() => {
     setSelectedQuantity(1);
   }, [product]);
+
+  const toggleFavourite = async () => {
+    // if (accountInfo)
+    //   isFavourite
+    //     ? (await removeFromFavourites(product.id)) && removal && removal()
+    //     : await addToFavourites(product.id);
+    // setIsFavourite((prev) => !prev);
+  };
+
+  const cartAdd = async () => {
+    const action = await addToCart(product.id, selectedQuantity);
+    if (!action) return;
+  };
 
   return (
     <div className={classes.Container}>
@@ -75,7 +91,9 @@ export const MainProductView = ({ product }: Props) => {
             </button>
           </div>
           <div className={classes.Buttons}>
-            <button className={classes.AddToCart}>Dodaj u košaricu</button>
+            <button className={classes.AddToCart} onClick={cartAdd}>
+              Dodaj u košaricu
+            </button>
             <button className={classes.AddToFavourites}>
               Dodaj u favorite
             </button>
