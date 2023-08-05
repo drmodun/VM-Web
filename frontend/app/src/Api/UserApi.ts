@@ -44,7 +44,7 @@ export interface CartItem {
 
 export interface Cart {
   items: CartItem[];
-  total: number;
+  totalPrice: number;
 }
 
 export interface GetAllProps {

@@ -1,0 +1,108 @@
+.Container {
+    margin-top: 70px;
+    padding: 0px 11vw;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: #ecf4ff;
+    .Cart {
+        margin-top: 20px;
+        display: flex;
+        min-height: 800px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .CartItems {
+            width: 50vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+            > div {
+                margin-bottom: 20px;
+            }
+        }
+        .Checkout {
+            width: 25vw;
+            border: 1px solid #0d63f3;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1vw 2vw;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                order: -1;
+                padding: 2vw 2vw;
+                margin-bottom: 20px;
+            }
+            .Total {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                > span {
+                    font-size: 1.5vw;
+                    font-family: Nuckle;
+                    font-weight: 600;
+                    color: var(--neutral-200, #9d9ea2);
+                    @media screen and (max-width: 768px) {
+                        font-size: 3.5vw;
+                    }
+                }
+                .Price {
+                    font-size: 1.5vw;
+                    font-family: Nuckle;
+                    color: black;
+                    font-weight: 600;
+                    @media screen and (max-width: 768px) {
+                        font-size: 3.5vw;
+                    }
+                }
+            }
+            .Button {
+                width: 100%;
+                height: 70px;
+                background-color: #0d63f3;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                outline: none;
+                font-size: 1.5vw;
+                color: #fff;
+                justify-content: center;
+                border: 1px solid #e0e0e0;
+                @media screen and (max-width: 768px) {
+                    width: 100%;
+                    height: 10vw;
+                    font-size: 3.5vw;
+                    min-height: 30px;
+                    min-width: 30px;
+                    border-radius: 1.25vw;
+                }
+                &:hover {
+                    background-color: var(--light-primary-20, #d0def5);
+                    color: #0d63f3;
+                }
+                &:active {
+                    color: #d0def5;
+                    background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
+                }
+            }
+        }
+    }
+}

@@ -35,6 +35,7 @@ import WebProductPage from "../Pages/Web/ProductPage/";
 import FavouritesPage from "../Pages/Web/FavouritesPage";
 import WebServicesPage from "../Pages/Web/ServicesPage";
 import WebProductsPage from "../Pages/Web/ProductsPage";
+import CartPage from "../Pages/Web/CartPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -134,6 +135,7 @@ const router = createBrowserRouter(
         <Route path="/subcategories">
           <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
         </Route>
+        <Route path="/cart" element={<CartPage/>}/>
         <Route path="/brands">
           <Route path=":companyId" element={<BrandPage />}></Route>
         </Route>

@@ -5,8 +5,11 @@ import classes from "./CartItemView.module.scss";
 import { useEffect, useState } from "react";
 interface Props {
   item: CartItem;
+  change?: Function;
+  remove?: Function;
+  index?: number;
 }
-export const CartItemView = ({ item }: Props) => {
+export const CartItemView = ({ item, change, remove, index }: Props) => {
   const [quantity, setQuantity] = useState(item.quantity);
   const [total, setTotal] = useState(item.total);
 
@@ -17,24 +20,22 @@ export const CartItemView = ({ item }: Props) => {
     setQuantity(value);
     const price =
       Math.round((value * item.pricePerUnit + Number.EPSILON) * 100) / 100;
+    change && change(price - total, index);
     setTotal(price);
   };
 
   const removeItem = async () => {
     var action: boolean = await removeFromCart(item.productId);
     if (!action) return;
+    change && remove && remove(total, index);
     setQuantity(0);
     setTotal(0);
   };
 
-  useEffect(() => {
-    changeQuantity(item.quantity);
-  }, [item]);
-
-  useEffect(() => {
-    changeQuantity(item.quantity);
-    console.log(item);
-  }, []);
+  //   useEffect(() => {
+  //     changeQuantity(item.quantity);
+  //     console.log(item);
+  //   }, []);
 
   return (
     <div className={classes.Container}>

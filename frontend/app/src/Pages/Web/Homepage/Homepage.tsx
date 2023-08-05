@@ -133,7 +133,7 @@ export const Homepage = () => {
           />
         ))}
       </div>
-      <div className={classes.ProductRow}>
+      <div className={classes.Center}>
         {cartItems &&
           cartItems.map((item) => <CartItemView item={item} />)
         }
