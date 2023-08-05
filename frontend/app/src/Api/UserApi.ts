@@ -210,3 +210,10 @@ export const Checkout = async () => {
     return false;
   }
 };
+
+export interface updateUserInfo{
+  name: string;
+  email: string;
+  address: string;
+  phoneNumber: string;
+}
