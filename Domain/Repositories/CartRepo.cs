@@ -34,12 +34,12 @@ namespace Domain.Repositories
         {
             var cart = await _context.Carts
                 .Include(x => x.CartsProducts)
-                    .ThenInclude(x => x.Product).ThenInclude(x=>x.Category)
+                    .ThenInclude(x => x.Product).ThenInclude(x => x.Category)
                     .Include(x => x.CartsProducts)
-                    .ThenInclude(x => x.Product).ThenInclude(x=>x.Subcategory)
+                    .ThenInclude(x => x.Product).ThenInclude(x => x.Subcategory)
                     .Include(x => x.CartsProducts)
-                    .ThenInclude(x => x.Product).ThenInclude(x=>x.Company)
-                    //decide if this information is neccesary or it just hogs memory
+                    .ThenInclude(x => x.Product).ThenInclude(x => x.Company)
+                //decide if this information is neccesary or it just hogs memory
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
             return cart;
         }

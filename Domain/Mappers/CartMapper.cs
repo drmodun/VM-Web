@@ -1,10 +1,5 @@
 ﻿using Contracts.Responses.Cart;
 using Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Mappers
 {
@@ -26,7 +21,7 @@ namespace Domain.Mappers
                 PricePerUnit = cartsProducts.Product.Price,
                 Total = cartsProducts.Product.Price * cartsProducts.Quantity,
                 MaxQuantity = cartsProducts.Product.Quantity
-            };  
+            };
         }
         public static CartResponse ToDTO(Cart cart)
         {
@@ -37,4 +32,4 @@ namespace Domain.Mappers
             };
         }
     }
-    }
+}

@@ -144,7 +144,7 @@ namespace api.Controllers
         public async Task<ActionResult<CartResponse>> GetCart(CancellationToken cancellationToken)
         {
             var id = HttpContext.GetUserId();
-            var response = await _cartService.GetCart((Guid)id,cancellationToken);
+            var response = await _cartService.GetCart((Guid)id, cancellationToken);
             return response != null ? Ok(response) : NotFound(response);
         }
         [Authorize(AuthConstants.TrustMemberPolicyName)]

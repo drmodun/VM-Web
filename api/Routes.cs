@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace api
+﻿namespace api
 {
     public static class Routes
     {

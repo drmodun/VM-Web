@@ -117,7 +117,7 @@ namespace Domain.Services
         public async Task<GetShortProductsResponse> GetFavouriteShortProducts(Guid userId)
         {
             var products = await _productRepo.GetFavourites(userId);
-            var list = products.Select(x=>ProductMapper.ToFavouriteShortProducts(userId,x)).ToList();
+            var list = products.Select(x => ProductMapper.ToFavouriteShortProducts(userId, x)).ToList();
             var pageInfo =
             //TODO: add pagination for this
             new PageResponse

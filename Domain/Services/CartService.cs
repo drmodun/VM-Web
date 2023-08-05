@@ -1,11 +1,6 @@
 ﻿using Contracts.Responses.Cart;
 using Domain.Mappers;
 using Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Services
 {
@@ -26,7 +21,7 @@ namespace Domain.Services
 
         public async Task<bool> AddToCart(Guid userId, Guid productId, int quantity, CancellationToken cancellationToken)
         {
-            var action = await _cartRepo.AddToCart(userId, productId, quantity,cancellationToken);
+            var action = await _cartRepo.AddToCart(userId, productId, quantity, cancellationToken);
             return action;
         }
 
@@ -54,8 +49,8 @@ namespace Domain.Services
         }
         public async Task<bool> DeleteCart(Guid userId, CancellationToken cancellationToken)
         {
-                var action = await _cartRepo.RemoveCart(userId, cancellationToken);
-                return action;
+            var action = await _cartRepo.RemoveCart(userId, cancellationToken);
+            return action;
         }
 
     }
