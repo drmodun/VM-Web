@@ -129,13 +129,13 @@ const router = createBrowserRouter(
           <Route path=":categoryId" element={<WebCategoryPage />}></Route>
         </Route>
         <Route path="/products">
-          <Route index element={<WebProductsPage/>}></Route>
+          <Route index element={<WebProductsPage />}></Route>
           <Route path=":productId" element={<WebProductPage />}></Route>
         </Route>
         <Route path="/subcategories">
           <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
         </Route>
-        <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
           <Route path=":companyId" element={<BrandPage />}></Route>
         </Route>
