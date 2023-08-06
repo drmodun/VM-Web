@@ -157,6 +157,15 @@ namespace api.Controllers
             var response = await _cartService.UpdateConnection((Guid)id, productId, quantity, cancellationToken);
             return response ? Ok(response) : NotFound(response);
         }
+        [HttpPut(Routes.User.Edit)]
+        public async Task<ActionResult<bool>> Edit(UpdateUserInfoRequest request, CancellationToken cancellationToken)
+        {
+            var id = HttpContext.GetUserId();
+            request.Id = (Guid)id;
+            var action = await _userService.UpdateUserInfo(request, cancellationToken);
+            return action.Success ? Ok(action) : NotFound(action);
+        }
+
 
 
 

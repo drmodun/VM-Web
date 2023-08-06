@@ -16,7 +16,7 @@ export const MainProductView = ({ product }: Props) => {
   // const [isInCart, setIsInCart] = useState(product.isInCart);
   // const [isFavourite, setIsFavourite] = useState(product.isFavourite);
   //make product view itself more modular and have isFavourites and isInCart as props
-    useEffect(() => {
+  useEffect(() => {
     setSelectedQuantity(1);
   }, [product]);
 

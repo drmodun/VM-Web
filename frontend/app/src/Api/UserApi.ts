@@ -211,9 +211,19 @@ export const Checkout = async () => {
   }
 };
 
-export interface updateUserInfo{
+export interface updateUserInfo {
   name: string;
   email: string;
   address: string;
   phoneNumber: string;
 }
+
+export const EditUser = async (request: updateUserInfo) => {
+  try {
+    const response = await api.put("/users/edit", request);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

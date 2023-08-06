@@ -104,8 +104,9 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               cancel={subcategoryCloser}
               closer={handleSubcategoryCloser}
               options={subcategories
-                .filter((subcategory) =>
-                  subcategory.categoryId === category || !category
+                .filter(
+                  (subcategory) =>
+                    subcategory.categoryId === category || !category
                 )
                 .map((subcategory) => ({
                   label: subcategory.name,

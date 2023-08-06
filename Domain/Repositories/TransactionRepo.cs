@@ -22,6 +22,9 @@ namespace Domain.Repositories
 
         public async Task<bool> CreateTransaction(Transaction transaction, CancellationToken cancellationToken)
         {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == transaction
+            .ProductId);
+            transaction.PricePerUnit = product.Price;
             await _validator.ValidateAndThrowAsync(transaction, cancellationToken);
             await _context.Transactions.AddAsync(transaction, cancellationToken);
             return await _context.SaveChangesAsync(cancellationToken) > 0;

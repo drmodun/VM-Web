@@ -16,6 +16,7 @@ export interface Transaction {
   quantity: number;
   userName: string;
   productName: string;
+  pricePerUnit: number;
   createdAt: Date;
   transactionType: TransactionType;
 }
