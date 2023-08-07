@@ -149,7 +149,7 @@ namespace Domain.Repositories
         public async Task<bool> UpdateUserInfo(UpdateUserInfoRequest request, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FindAsync(request.Id, cancellationToken);
-             if (user == null)
+            if (user == null)
                 return false;
             user.Address = request.Address;
             user.Email = request.Email;
@@ -164,11 +164,11 @@ namespace Domain.Repositories
         public async Task<User?> GetMe(Guid id, CancellationToken cancellationToken)
         {
             var user = await _context.Users
-                .Include(x=>x.Transactions)
-                .ThenInclude(x=>x.Product)
-                .Include(x=>x.Orders)
-                .ThenInclude(x=>x.Service)
-                .FirstOrDefaultAsync(x=>x.Id == id, cancellationToken);
+                .Include(x => x.Transactions)
+                .ThenInclude(x => x.Product)
+                .Include(x => x.Orders)
+                .ThenInclude(x => x.Service)
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
             return user;
         }
     }

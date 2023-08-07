@@ -3,7 +3,6 @@ using Contracts.Responses;
 using Contracts.Responses.User;
 using Domain.Mappers;
 using Domain.Repositories;
-using System.Globalization;
 
 namespace Domain.Services
 {
@@ -89,7 +88,7 @@ namespace Domain.Services
 
         public async Task<GetMeResponse?> GetMe(Guid id, CancellationToken cancellationToken)
         {
-            var user = await  _userRepo.GetMe(id, cancellationToken);
+            var user = await _userRepo.GetMe(id, cancellationToken);
             if (user is null)
                 return null;
             return UserMapper.ToMe(user);
@@ -112,7 +111,7 @@ namespace Domain.Services
             {
                 Success = action
             };
-        } 
+        }
 
     }
 }
