@@ -1,4 +1,4 @@
-import classes from "TransactionView.module.scss";
+import classes from "./TransactionView.module.scss";
 import { Transaction } from "../../../Api/TransactionApi";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export const TransactionView = ({ transaction }: Props) => {
             to={`/products/${transaction.productId}`}
             className={classes.Name}
           >
-            {transaction.productId}
+            {transaction.productName}
           </Link>
           <div className={classes.Price}>
             <span>{transaction.pricePerUnit} €</span>

@@ -44,7 +44,7 @@ export const CartItemView = ({ item, change, remove, index }: Props) => {
           <img src={Placeholder} alt="product" />
         </div>
         <div className={classes.Info}>
-          <span className={classes.Name}>{item.productName}</span>
+          <Link className={classes.Name} to={`/products/${item.productId}`}>{item.productName}</Link>
           <div className={classes.Price}>
             <span>Price: {item.pricePerUnit} €</span>
           </div>

@@ -29,7 +29,7 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
     action && reload();
   };
   return (
-    <div className={classes.EditableUserInfo}>
+    <div className={classes.Container}>
       <LargeInput
         label="Name"
         name="name"
@@ -58,12 +58,9 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
-      <div className={classes.Buttons}>
+      <div className={classes.Button}>
         <button className={classes.Save} onClick={handleSave}>
           Save
-        </button>
-        <button className={classes.Cancel} onClick={handleSave}>
-          Cancel
         </button>
       </div>
     </div>

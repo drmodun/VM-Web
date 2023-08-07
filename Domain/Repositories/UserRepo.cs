@@ -155,7 +155,7 @@ namespace Domain.Repositories
             user.Email = request.Email;
             user.Name = request.Name;
             user.PhoneNumber = request.PhoneNumber;
-            user.LastUpdated = DateTime.Now;
+            user.LastUpdated = DateTime.UtcNow;
             _context.Update(user);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
 
@@ -165,6 +165,7 @@ namespace Domain.Repositories
         {
             var user = await _context.Users
                 .Include(x=>x.Transactions)
+                .ThenInclude(x=>x.Product)
                 .Include(x=>x.Orders)
                 .ThenInclude(x=>x.Service)
                 .FirstOrDefaultAsync(x=>x.Id == id, cancellationToken);

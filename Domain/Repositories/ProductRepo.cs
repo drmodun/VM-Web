@@ -250,7 +250,8 @@ namespace Domain.Repositories
                 .Include(x => x.Product.Company)
                 .Include(x => x.Product.Category)
                 .Include(x => x.Product.Subcategory)
-                .Include(x => x.Product.CartsProducts.Where(x => x.Cart.UserId == userId))
+                .Include(x => x.Product.CartsProducts)
+                .ThenInclude(x => x.Cart)
                 .Where(x => x.UserId == userId)
                 .Select(x => x.Product)
                 .ToListAsync();

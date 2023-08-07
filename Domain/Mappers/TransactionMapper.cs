@@ -29,6 +29,7 @@ namespace Domain.Mappers
                 ProductId = transaction.ProductId,
                 ProductName = transaction.Product.Name,
                 TransactionType = transaction.Type,
+                PricePerUnit = transaction.PricePerUnit,
                 Quantity = transaction.Quantity
             };
         }

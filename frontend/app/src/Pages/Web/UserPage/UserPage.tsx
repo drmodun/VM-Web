@@ -4,7 +4,7 @@ import classes from "./UserPage.module.scss";
 import { Transaction } from "../../../Api/TransactionApi";
 import { Order } from "../../../Api/OrderApi";
 import { Link } from "react-router-dom";
-import userPic from "../../../Assets/user.svg";
+import userPic from "../../../assets/user.svg";
 import EditableUserInfo from "../../../Components/Web/EditableUserInfo";
 import OrderView from "../../../Components/Web/OrderView";
 import TransactionView from "../../../Components/Web/TransactionView";
@@ -21,6 +21,7 @@ export const UserPage = () => {
   const [user, setUser] = useState<User>();
   const [orders, setOrders] = useState<Order[]>([]);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [spent, setSpent] = useState<number>(0);
   const [tab, setTab] = useState<Tabs>(Tabs.Info);
 
   const reload = async () => {
@@ -28,6 +29,7 @@ export const UserPage = () => {
     if (!info) return;
     setUser(info.user);
     setOrders(info.orders);
+    setSpent(info.totalSpent);
     setTransactions(info.transactions);
   };
 
@@ -35,8 +37,8 @@ export const UserPage = () => {
     reload();
   }, []);
 
-  return (
-    <div className={classes.Contaier}>
+  return user ? (
+    <div className={classes.Container}>
       <div className={classes.UserPage}>
         <div className={classes.User}>
           <div className={classes.Info}>
@@ -57,6 +59,10 @@ export const UserPage = () => {
               <div className={classes.Stat}>
                 <span>Transactions: </span>
                 <span>{transactions.length}</span>
+              </div>
+              <div className={classes.Stat}>
+                <span>Total Spent: </span>
+                <span>{spent}€</span>
               </div>
             </div>
           </div>
@@ -92,32 +98,34 @@ export const UserPage = () => {
                 <span>Cart</span>
               </Link>
             </div>
-          </div>
-          <div className={classes.Content}>
-            {tab === Tabs.Info && (
-              <div className={classes.Info}>
-                <EditableUserInfo user={user!} reload={reload} />
-              </div>
-            )}
-            {tab === Tabs.Orders && (
-              <div className={classes.Orders}>
-                {orders.map((order, index) => {
-                  return <OrderView key={index} order={order} />;
-                })}
-              </div>
-            )}
-            {tab === Tabs.Transactions && (
-              <div className={classes.Transactions}>
-                {transactions.map((transaction, index) => {
-                  return (
-                    <TransactionView key={index} transaction={transaction} />
-                  );
-                })}
-              </div>
-            )}
+            <div className={classes.Content}>
+              {tab === Tabs.Info && (
+                <div className={classes.Info}>
+                  <EditableUserInfo user={user!} reload={reload} />
+                </div>
+              )}
+              {tab === Tabs.Orders && (
+                <div className={classes.Orders}>
+                  {orders.map((order, index) => {
+                    return <OrderView key={index} order={order} />;
+                  })}
+                </div>
+              )}
+              {tab === Tabs.Transactions && (
+                <div className={classes.Transactions}>
+                  {transactions.map((transaction, index) => {
+                    return (
+                      <TransactionView key={index} transaction={transaction} />
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
+  ) : (
+    <h1>Error</h1>
   );
 };

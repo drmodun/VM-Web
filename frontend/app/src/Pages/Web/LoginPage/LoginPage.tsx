@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Login from "../../../Components/Web/Login";
 import Background from "../../../assets/background.svg";
 import classes from "./LoginPage.module.scss";
 
 export const LoginPage = () => {
+    useEffect(() => {
+        window.document.title = "Login";
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className={classes.LoginPage}>
             <div className={classes.BackgroundImage}>

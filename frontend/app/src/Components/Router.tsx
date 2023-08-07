@@ -136,7 +136,7 @@ const router = createBrowserRouter(
         <Route path="/subcategories">
           <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
         </Route>
-        <Route path="/user" element={accountInfo && <WebUserPage/>}/>
+        <Route path="/user" element={accountInfo ?  <WebUserPage /> : <LoginPage/>} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
           <Route path=":companyId" element={<BrandPage />}></Route>

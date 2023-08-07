@@ -10,12 +10,12 @@
     > label {
         color: var(--light-base-black, #2c2c2c);
         width: 100%;
-        text-align: center;
-        align-items: center;
+        text-align: start;
+        align-items: flex-start;
         font-weight: 600;
         font-family: Nuckle;
         font-size: 1vw;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
     }
     .InputContainer {
         border-radius: 8px;
@@ -23,10 +23,11 @@
         background: var(--light-gray-10, #f6f6f6);
         width: 100%;
         padding: 12px 1vw;
+        margin-bottom: 20px;
         @media screen and (max-width: 768px) {
             padding: 12px 0.5vw;
         }
-        height: 48px;
+        height: 68px;
         color: var(--light-base-black, #2c2c2c);
         &::placeholder {
             color: var(--light-gray-base, #979797);
@@ -40,7 +41,7 @@
         justify-content: space-between;
         > input {
             width: 100%;
-            height: 48px;
+            height: 68px;
             border: none;
             background: transparent;
             outline: none;

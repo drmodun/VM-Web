@@ -62,7 +62,7 @@ export const Navigation = ({
             <span>Login</span>
           </Link>
         ) : (
-          <Link className={classes.Profile} to="/profile">
+          <Link className={classes.Profile} to="/user">
             <span>{userName}</span>
           </Link>
         )}
