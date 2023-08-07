@@ -30,6 +30,9 @@
                 text-decoration: none;
                 margin-bottom: 10px;
                 width: 100%;
+                @media screen and (max-width: 950px) {
+                    font-size: 16px;
+                }
                 &:hover {
                     text-decoration: underline;
                 }
@@ -46,6 +49,10 @@
                 font-style: normal;
                 font-weight: 591;
                 line-height: normal;
+                @media screen and (max-width: 950px) {
+                    font-size: 12px;
+                }
+                //TODO: make services responseive and see if thy are decently made
                 width: 100%;
                 word-wrap: break-word;
                 word-break: break-all;
@@ -53,7 +60,7 @@
             .Price {
                 color: #0d63f3;
                 font-family: Nuckle;
-                margin-bottom: 10px ;
+                margin-bottom: 10px;
                 font-size: 0.95vw;
                 font-style: normal;
                 font-weight: 591;
@@ -61,6 +68,9 @@
                 width: 100%;
                 word-wrap: break-word;
                 word-break: break-all;
+                @media screen and (max-width: 950px) {
+                    font-size: 12px;
+                }
             }
             .Date {
                 color: var(--text-main, #1e1e1e);
@@ -72,6 +82,9 @@
                 width: 100%;
                 word-wrap: break-word;
                 word-break: break-all;
+                @media screen and (max-width: 950px) {
+                    font-size: 12px;
+                }
             }
         }
         .Total {
@@ -81,6 +94,9 @@
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+            @media screen and (max-width: 950px) {
+                font-size: 16px;
+            }
         }
     }
     &:hover {

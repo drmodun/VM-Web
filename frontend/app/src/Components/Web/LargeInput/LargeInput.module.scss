@@ -4,9 +4,6 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    @media screen and (max-width: 768px) {
-        width: 80%;
-    }
     > label {
         color: var(--light-base-black, #2c2c2c);
         width: 100%;
@@ -15,6 +12,9 @@
         font-weight: 600;
         font-family: Nuckle;
         font-size: 1vw;
+        @media screen and (max-width: 768px) {
+            font-size: 13px;
+        }
         margin-bottom: 15px;
     }
     .InputContainer {
@@ -24,7 +24,8 @@
         width: 100%;
         padding: 12px 1vw;
         margin-bottom: 20px;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 950px) {
+            font-size: 13px;
             padding: 12px 0.5vw;
         }
         height: 68px;
@@ -48,6 +49,9 @@
             font-family: Nuckle;
             font-size: 1vw;
             font-weight: 600;
+            @media screen and (max-width: 950px) {
+                font-size: 13px;
+            }
             color: var(--light-base-black, #2c2c2c);
             &::placeholder {
                 color: var(--light-gray-base, #979797);
