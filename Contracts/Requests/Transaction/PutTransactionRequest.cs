@@ -9,7 +9,6 @@ namespace Contracts.Requests.Transaction
 
         public int Quantity { get; set; }
         public Guid ProductId { get; set; }
-
         public DateTime CreatedAt { get; set; }
         public TransactionType Type { get; set; }
     }

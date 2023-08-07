@@ -1,5 +1,6 @@
 ﻿using Contracts.Helpers.Hash;
 using Contracts.Requests.User;
+using Contracts.Responses.User;
 using Data.Models;
 
 namespace Domain.Mappers
@@ -35,7 +36,19 @@ namespace Domain.Mappers
 
         }
 
-
+        public static GetMeResponse ToMe(User user)
+        {
+            return new GetMeResponse
+            {
+                User = ToDTO(user),
+                OrderCount = user.Orders.Count,
+                TransactionCount = user.Transactions.Count,
+                Orders = user.Orders.Select(OrderMapper.ToDTO).ToList(),
+                Transactions = user.Transactions.Select(TransactionMapper.ToDTO
+                ).ToList(),
+                TotalSpent = user.Orders.Sum(x => x.Service.Price) + user.Transactions.Sum(x => x.Quantity * x.PricePerUnit)
+            };
+        }
         public static User ToEntity(CreateUserRequest request)
         {
             return new User

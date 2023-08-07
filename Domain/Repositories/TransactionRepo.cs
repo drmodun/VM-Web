@@ -24,7 +24,9 @@ namespace Domain.Repositories
         {
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == transaction
             .ProductId);
+            if (product == null) { return  false; }
             transaction.PricePerUnit = product.Price;
+            //check if this is neccesarry (for dynamic prices)
             await _validator.ValidateAndThrowAsync(transaction, cancellationToken);
             await _context.Transactions.AddAsync(transaction, cancellationToken);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
@@ -32,6 +34,10 @@ namespace Domain.Repositories
 
         public async Task<bool> UpdateTransaction(Transaction transaction, CancellationToken cancellationToken)
         {
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == transaction
+            .ProductId);
+            if (product == null) { return false; }
+            transaction.PricePerUnit = product.Price;
             await _validator.ValidateAndThrowAsync(transaction, cancellationToken);
             _context.Transactions.Update(transaction);
             return await _context.SaveChangesAsync(cancellationToken) > 0;

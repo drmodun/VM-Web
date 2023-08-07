@@ -35,6 +35,7 @@
             public const string RemoveCart = Base + $"/users/cart";
             public const string BuyCart = Base + $"/users/cart";
             public const string GetCart = Base + $"/users/cart";
+            public const string Edit = Base + $"/users/edit";
             public const string UpdateCart = Base + $"/users/cart/{{productId:Guid}}";
             public const string RemoveFromCart = Base + $"/users/cart/{{productId:Guid}}";
 

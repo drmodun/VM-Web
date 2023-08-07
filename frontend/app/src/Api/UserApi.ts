@@ -9,6 +9,8 @@ import {
   parseJwt,
   setJwt,
 } from "./Shared";
+import { Order } from "./OrderApi";
+import { Transaction } from "./TransactionApi";
 export interface User {
   id: string;
   name: string;
@@ -25,6 +27,15 @@ export interface NewUser {
   password: string;
   address: string;
   phoneNumber: string;
+}
+
+export interface GetMe {
+  user: User;
+  orders: Order[];
+  transactions: Transaction[];
+  totalSpent: number;
+  transactionCount: number;
+  orderCount: number;
 }
 
 export interface CartItem {
@@ -70,7 +81,8 @@ api.interceptors.request.use(
     if (
       (token && ["post", "put", "delete"].includes(config.method || "")) ||
       (token && config.url?.includes("short")) ||
-      (token && config.url?.includes("cart"))
+      (token && config.url?.includes("cart")) ||
+      (token && config.url?.includes("me"))
     ) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -227,3 +239,13 @@ export const EditUser = async (request: updateUserInfo) => {
     return false;
   }
 };
+
+export const getMe = async () => {
+  try {
+    const response = await api.get<GetMe>("/users/me");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl } from "./Shared";
+import {
+  PaginationResult,
+  ActionResult,
+  Pagination,
+  Sorting,
+  baseUrl,
+} from "./Shared";
 import { ServiceType, StatusType } from "../Types/Enums";
 
 export interface Order {
@@ -9,9 +15,11 @@ export interface Order {
   userId: string;
   serviceName: string;
   userName: string;
+  serviceType: ServiceType;
   statusType: StatusType;
   deadline?: Date;
   craeted: Date;
+  price: number;
 }
 
 export interface NewOrder {
@@ -28,10 +36,10 @@ export interface UpdateOrder {
 }
 
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   maxPrice?: number;
   minPrice?: number;
   userId?: string;
@@ -43,8 +51,7 @@ export interface GetAllProps {
 }
 
 const api = axios.create({
-  baseURL: 
-baseUrl ,
+  baseURL: baseUrl,
   headers: {
     "Content-Type": "application/json",
   },
@@ -62,8 +69,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-
 
 export const getOrders = async (props: GetAllProps | {} = {}) => {
   try {

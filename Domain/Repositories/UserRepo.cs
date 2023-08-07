@@ -160,5 +160,15 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
 
         }
+
+        public async Task<User?> GetMe(Guid id, CancellationToken cancellationToken)
+        {
+            var user = await _context.Users
+                .Include(x=>x.Transactions)
+                .Include(x=>x.Orders)
+                .ThenInclude(x=>x.Service)
+                .FirstOrDefaultAsync(x=>x.Id == id, cancellationToken);
+            return user;
+        }
     }
 }

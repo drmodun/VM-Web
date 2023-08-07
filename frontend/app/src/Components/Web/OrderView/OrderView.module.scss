@@ -5,7 +5,7 @@
     display: flex;
     border-radius: 10px;
     flex-direction: column;
-    .Transaction {
+    .Order {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -34,7 +34,7 @@
                 word-wrap: break-word;
                 word-break: break-all;
             }
-            .Quantity {
+            .Type {
                 color: var(--text-main, #1e1e1e);
                 font-family: Nuckle;
                 font-size: 0.75vw;
@@ -68,7 +68,7 @@
                 word-break: break-all;
             }
         }
-        .Total {
+        .Status {
             color: var(--light-green-base, #20bf86);
             font-family: Nuckle;
             font-size: 1vw;

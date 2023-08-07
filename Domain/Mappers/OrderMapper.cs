@@ -14,9 +14,11 @@ namespace Domain.Mappers
                 Created = order.Created,
                 Deadline = order.Deadline,
                 Id = order.Id,
+                ServiceType = order.Service.ServiceType,
                 ServiceId = order.ServiceId,
                 ServiceName = order.Service.Name,
                 StatusType = order.Status,
+                Price = order.Service.Price,
                 UserId = order.UserId,
                 UserName = order.User.Name
             };

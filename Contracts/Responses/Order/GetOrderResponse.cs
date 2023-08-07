@@ -9,6 +9,9 @@ namespace Contracts.Responses.Order
         public string ServiceName { get; set; }
         public Guid UserId { get; set; }
         public string UserName { get; set; }
+        public ServiceType ServiceType { get; set; }
+        public decimal Price { get; set; }
+        //predicting that the price is not gonna change
 
         public StatusType StatusType { get; set; }
 

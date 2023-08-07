@@ -11,6 +11,9 @@ export const TransactionView = ({ transaction }: Props) => {
     <div className={classes.Container}>
       <div className={classes.Transaction}>
         <div className={classes.Info}>
+          <span className={classes.Date}>
+            {new Date(transaction.createdAt).toLocaleDateString()}
+          </span>
           <Link
             to={`/products/${transaction.productId}`}
             className={classes.Name}

@@ -78,12 +78,12 @@ namespace api.Controllers
 
         [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpGet(Routes.User.GetMe)]
-        public async Task<ActionResult<GetUserResponse?>> GetMe(CancellationToken cancellationToken)
+        public async Task<ActionResult<GetMeResponse?>> GetMe(CancellationToken cancellationToken)
         {
             var id = HttpContext.GetUserId();
             if (id == null)
                 return NotFound(HttpContext.GetUserId());
-            var user = await _userService.GetUser((Guid)id, cancellationToken);
+            var user = await _userService.GetMe((Guid)id, cancellationToken);
             if (user == null)
                 return NotFound(HttpContext.GetUserId());
             return Ok(user);
@@ -157,6 +157,7 @@ namespace api.Controllers
             var response = await _cartService.UpdateConnection((Guid)id, productId, quantity, cancellationToken);
             return response ? Ok(response) : NotFound(response);
         }
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpPut(Routes.User.Edit)]
         public async Task<ActionResult<bool>> Edit(UpdateUserInfoRequest request, CancellationToken cancellationToken)
         {

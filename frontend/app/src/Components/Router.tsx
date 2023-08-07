@@ -28,6 +28,7 @@ import BrandPage from "../Pages/Web/BrandPage";
 import { TransactionsPage } from "../Pages/Admin/IndexPages/TransactionsPage/TransactionsPage";
 import { Homepage } from "../Pages/Web/Homepage/Homepage";
 import Layout from "./Web/Layout";
+import WebUserPage from "../Pages/Web/UserPage";
 import { LoginPage } from "../Pages/Web/LoginPage/LoginPage";
 import { RegisterPage } from "../Pages/Web/RegisterPage/RegisterPage";
 import { accountInfo } from "../Api/Shared";
@@ -135,6 +136,7 @@ const router = createBrowserRouter(
         <Route path="/subcategories">
           <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
         </Route>
+        <Route path="/user" element={accountInfo && <WebUserPage/>}/>
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
           <Route path=":companyId" element={<BrandPage />}></Route>
