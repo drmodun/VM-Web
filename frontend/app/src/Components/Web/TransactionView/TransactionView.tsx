@@ -14,17 +14,19 @@ export const TransactionView = ({ transaction }: Props) => {
           <span className={classes.Date}>
             {new Date(transaction.createdAt).toLocaleDateString()}
           </span>
-          <Link
-            to={`/products/${transaction.productId}`}
-            className={classes.Name}
-          >
-            {transaction.productName}
-          </Link>
-          <div className={classes.Price}>
-            <span>{transaction.pricePerUnit} €</span>
-          </div>
-          <div className={classes.Quantity}>
-            <span>x{transaction.quantity}</span>
+          <div className={classes.Details}>
+            <Link
+              to={`/products/${transaction.productId}`}
+              className={classes.Name}
+            >
+              {transaction.productName}
+            </Link>
+            <div className={classes.Price}>
+              <span>{transaction.pricePerUnit} €</span>
+            </div>
+            <div className={classes.Quantity}>
+              <span>x{transaction.quantity}</span>
+            </div>
           </div>
         </div>
         <div className={classes.Total}>

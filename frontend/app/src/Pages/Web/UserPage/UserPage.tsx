@@ -31,9 +31,11 @@ export const UserPage = () => {
     setOrders(info.orders);
     setSpent(info.totalSpent);
     setTransactions(info.transactions);
+    window.scrollTo(0, 0);
   };
-
+  //later make sorting for transactions and orders
   useEffect(() => {
+    window.document.title = "User";
     reload();
   }, []);
 

@@ -1,6 +1,7 @@
 ﻿using Contracts.Responses.Cart;
 using Domain.Mappers;
 using Domain.Repositories;
+using Stripe.Checkout;
 
 namespace Domain.Services
 {
@@ -44,6 +45,20 @@ namespace Domain.Services
         }
         public async Task<bool> BuyCart(Guid userId, CancellationToken cancellationToken)
         {
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>
+                {
+                  new SessionLineItemOptions
+                  {
+                    // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                    Price = "{{PRICE_ID}}",
+                    Quantity = 1,
+                  },
+                },
+                Mode = "payment",
+                SuccessUrl = ""
+            };
             var action = await _cartRepo.BuyCart(userId, cancellationToken);
             return action;
         }
@@ -51,6 +66,12 @@ namespace Domain.Services
         {
             var action = await _cartRepo.RemoveCart(userId, cancellationToken);
             return action;
+        }
+
+        public async Task<int?> GetTotal(Guid userId, CancellationToken cancellationToken)
+        {
+            var amount = await _cartRepo.GetTotalAmount(userId, cancellationToken);
+            return amount;
         }
 
     }

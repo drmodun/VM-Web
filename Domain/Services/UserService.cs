@@ -94,6 +94,11 @@ namespace Domain.Services
             return UserMapper.ToMe(user);
         }
 
+        public async Task<bool> SaveCustomerToUser(string customerId, Guid userId, CancellationToken cancellationToken)
+        {
+            return await _userRepo.SaveCustomerToUser(customerId, userId, cancellationToken);
+        }
+
         public async Task<CreateUserResponse?> CreateAdminUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
             var admin = UserMapper.ToAdmin(request);
@@ -111,6 +116,13 @@ namespace Domain.Services
             {
                 Success = action
             };
+        }
+
+        public async Task<string?> GetCustomerId(Guid userId, CancellationToken cancellationToken)
+        {
+            var user = await _userRepo.GetUser(userId, cancellationToken);
+            if (user is null) return null;
+            return user.CustomerId;
         }
 
     }

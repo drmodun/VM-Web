@@ -3,14 +3,17 @@ using Domain.Repositories;
 using Domain.Services;
 using Domain.Validatiors;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Stripe;
 
 namespace Domain
 {
     public static class ApplicationServiceExtensionCollection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
+            StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
             services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
@@ -37,7 +40,7 @@ namespace Domain
 
 
             services.AddScoped<CompanyService>();
-            services.AddScoped<ProductService>();
+            services.AddScoped<Services.ProductService>();
             services.AddScoped<OrderService>();
             services.AddScoped<CartService>();
             services.AddScoped<TransactionService>();
@@ -47,6 +50,12 @@ namespace Domain
             services.AddScoped<SubcategoryService>();
             services.AddScoped<CategoryService>();
             services.AddScoped<IdentityService>();
+
+            services.AddScoped<StripeAppService>();
+            services.AddScoped<CustomerService>();
+            services.AddScoped<ChargeService>();
+                services.AddScoped<TokenService>();
+
             //later maybe use interfaces but it will be easier now
             //validation seems to be broken but still works
             return services;

@@ -18,58 +18,65 @@
         .Info {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             word-wrap: break-word;
-            .Name {
-                color: var(--text-main, #1e1e1e);
-                font-family: Nuckle;
-                font-size: 1.25vw;
-                font-style: normal;
-                font-weight: 591;
-                line-height: normal;
-                text-decoration: none;
-                margin-bottom: 10px;
+            width: 85%;
+            .Details {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-around;
                 width: 100%;
-                @media screen and (max-width: 950px) {
-                    font-size: 16px;
+                .Name {
+                    color: var(--text-main, #1e1e1e);
+                    font-family: Nuckle;
+                    font-size: 1.25vw;
+                    font-style: normal;
+                    font-weight: 591;
+                    line-height: normal;
+                    text-decoration: none;
+                    width: 50%;
+                    @media screen and (max-width: 950px) {
+                        font-size: 16px;
+                    }
+                    &:hover {
+                        text-decoration: underline;
+                    }   
+                    &:active {
+                        color: var(--background-main-color, #0d63f3);
+                    }
+                    word-wrap: break-word;
+                    word-break: break-all;
                 }
-                &:hover {
-                    text-decoration: underline;
+                .Quantity {
+                    color: var(--text-main, #1e1e1e);
+                    font-family: Nuckle;
+                    font-size: 0.75vw;
+                    font-style: normal;
+                    font-weight: 591;
+                    line-height: normal;
+                    @media screen and (max-width: 950px) {
+                        font-size: 12px;
+                    }
+                    //TODO: make services responseive and see if thy are decently made
+                    width: 20%;
+                    word-wrap: break-word;
+                    word-break: break-all;
                 }
-                &:active {
-                    color: var(--background-main-color, #0d63f3);
-                }
-                word-wrap: break-word;
-                word-break: break-all;
-            }
-            .Quantity {
-                color: var(--text-main, #1e1e1e);
-                font-family: Nuckle;
-                font-size: 0.75vw;
-                font-style: normal;
-                font-weight: 591;
-                line-height: normal;
-                @media screen and (max-width: 950px) {
-                    font-size: 12px;
-                }
-                //TODO: make services responseive and see if thy are decently made
-                width: 100%;
-                word-wrap: break-word;
-                word-break: break-all;
-            }
-            .Price {
-                color: #0d63f3;
-                font-family: Nuckle;
-                margin-bottom: 10px;
-                font-size: 0.95vw;
-                font-style: normal;
-                font-weight: 591;
-                line-height: normal;
-                width: 100%;
-                word-wrap: break-word;
-                word-break: break-all;
-                @media screen and (max-width: 950px) {
-                    font-size: 12px;
+                .Price {
+                    color: #0d63f3;
+                    font-family: Nuckle;
+                    margin-bottom: 10px;
+                    font-size: 0.95vw;
+                    font-style: normal;
+                    width: 30%;
+                    font-weight: 591;
+                    line-height: normal;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                    @media screen and (max-width: 950px) {
+                        font-size: 12px;
+                    }
                 }
             }
             .Date {

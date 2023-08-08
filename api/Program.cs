@@ -4,6 +4,7 @@ using Contracts.Constants;
 using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
 using System.Text;
 
 namespace api
@@ -14,6 +15,7 @@ namespace api
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
+            StripeConfiguration.ApiKey = config["Stripe:SecretKey"];
             // Add services to the container.
             builder.Services.AddAuthentication(x =>
             {
@@ -44,7 +46,7 @@ namespace api
                         c.User.HasClaim(m => m is { Type: AuthConstants.TrustedMemberClaimName, Value: "true" })));
             });
             builder.Services.AddControllers();
-            builder.Services.AddApplication();
+            builder.Services.AddApplication(config);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

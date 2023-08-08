@@ -25,6 +25,7 @@
 
         public List<Favourites> Favourites { get; set; } = new List<Favourites>();
 
+        public string? CustomerId { get; set; }
 
     }
 }

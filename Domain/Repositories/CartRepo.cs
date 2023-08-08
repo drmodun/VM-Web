@@ -86,6 +86,16 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
+        public async Task<int?> GetTotalAmount(Guid userId, CancellationToken cancellationToken)
+        {
+            var cart = await _context.Carts
+                .Include(x=>x.CartsProducts)
+                    .ThenInclude(x=>x.Product)
+                .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
+            if (cart == null) { return null; }
+            var amount = cart.CartsProducts.Sum(x => x.Product.Price * x.Quantity);
+            return (int)Math.Round(amount, 2)*100;
+        }
 
         public async Task<bool> IsInCart(Guid userId, Guid productId)
         {
@@ -127,7 +137,6 @@ namespace Domain.Repositories
             }
             await _context.Transactions.AddRangeAsync(transactions, cancellationToken);
             _context.Carts.Remove(cart);
-            Console.WriteLine(transactions);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
     }

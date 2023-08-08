@@ -11,6 +11,7 @@ import {
 } from "./Shared";
 import { Order } from "./OrderApi";
 import { Transaction } from "./TransactionApi";
+import { Token } from "react-stripe-checkout";
 export interface User {
   id: string;
   name: string;
@@ -248,4 +249,10 @@ export const getMe = async () => {
     console.error(error);
     return null;
   }
-}
+};
+
+export const handleToken = async (token: Token) => {
+    console.log(token);
+    const response = await api.post("/users/payment", { token});
+    console.log(response.data);
+};
