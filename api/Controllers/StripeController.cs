@@ -22,11 +22,13 @@ namespace api.Controllers
             _stripeService = stripeService;
         }
 
+        [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpPost(Routes.Payment.CreateCustomer)]
         public async Task<ActionResult<StripeCustomer>> AddStripeCustomer(
             [FromBody] AddStripeCustomer customer,
             CancellationToken ct)
         {
+            customer.UserId = (Guid)HttpContext.GetUserId();
             StripeCustomer createdCustomer = await _stripeService.AddStripeCustomerAsnyc(customer,ct);
 
             return createdCustomer != null ?
@@ -45,7 +47,7 @@ namespace api.Controllers
                 ct);
 
             return createdPayment!=null ? StatusCode(StatusCodes.Status200OK, createdPayment)
-                : StatusCode(StatusCodes.Status400BadRequest, "An error happenned during your transaction");
+                : StatusCode(StatusCodes.Status400BadRequest);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Domain.Services
             };
 
             Customer createdCustomer = await _customerService.CreateAsync(customerOptions, null, cancellationToken);
-            
+            await _userService.SaveCustomerToUser(createdCustomer.Id, customer.UserId, cancellationToken);
             return new StripeCustomer
             {
                 CustomerId = createdCustomer.Id,
@@ -52,9 +52,13 @@ namespace Domain.Services
         public async Task<StripePayment?> AddStripePaymentAsync(AddStripePayment payment, CancellationToken cancellationToken)
         {
             var user = await _userService.GetCustomerId(payment.UserId, cancellationToken);
-            if (user == null ) { return null; }
+                Console.Write(user);
+            if (user == null ) {
+                return null; }
             var amount = await _cartsService.GetTotal(payment.UserId, cancellationToken);
-            if (amount == null || amount <= 0) { return null; }
+            if (amount == null || amount <= 0){
+                Console.WriteLine(amount);
+                return null; }
             // Set the options for the payment we would like to create at Stripe
             ChargeCreateOptions paymentOptions = new ChargeCreateOptions
             {
@@ -65,8 +69,8 @@ namespace Domain.Services
                 Amount = amount
             };
             //probably get better error handling later
-            try
-            {
+
+                Console.WriteLine("sougcsgousoucs");
                 // Create the payment
                 var createdPayment = await _chargeService.CreateAsync(paymentOptions, null, cancellationToken);
                 await _cartsService.BuyCart(payment.UserId, cancellationToken);
@@ -81,12 +85,7 @@ namespace Domain.Services
                     PaymentId = createdPayment.Id
                 };
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                return null;
-            }
-        }
+           
 
     }
 }
