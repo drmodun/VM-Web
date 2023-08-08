@@ -54,7 +54,7 @@ namespace Domain
             services.AddScoped<StripeAppService>();
             services.AddScoped<CustomerService>();
             services.AddScoped<ChargeService>();
-                services.AddScoped<TokenService>();
+            services.AddScoped<TokenService>();
 
             //later maybe use interfaces but it will be easier now
             //validation seems to be broken but still works

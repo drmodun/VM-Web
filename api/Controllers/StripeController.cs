@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using api.Auth;
+using Contracts.Constants;
 using Contracts.Stripe;
 using Domain.Services;
-using Microsoft.AspNetCore.Mvc;
-using Contracts.Stripe;
-using api.Auth;
 using Microsoft.AspNetCore.Authorization;
-using Contracts.Constants;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [ApiController]
-    public class StripeController : ControllerBase 
+    public class StripeController : ControllerBase
     {
         private readonly StripeAppService _stripeService;
 
@@ -29,7 +24,7 @@ namespace api.Controllers
             CancellationToken ct)
         {
             customer.UserId = (Guid)HttpContext.GetUserId();
-            StripeCustomer createdCustomer = await _stripeService.AddStripeCustomerAsnyc(customer,ct);
+            StripeCustomer createdCustomer = await _stripeService.AddStripeCustomerAsnyc(customer, ct);
 
             return createdCustomer != null ?
                 StatusCode(StatusCodes.Status200OK, createdCustomer)
@@ -46,7 +41,7 @@ namespace api.Controllers
                 payment,
                 ct);
 
-            return createdPayment!=null ? StatusCode(StatusCodes.Status200OK, createdPayment)
+            return createdPayment != null ? StatusCode(StatusCodes.Status200OK, createdPayment)
                 : StatusCode(StatusCodes.Status400BadRequest);
         }
     }

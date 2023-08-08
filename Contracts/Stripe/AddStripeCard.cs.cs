@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contracts.Stripe
+﻿namespace Contracts.Stripe
 {
     public class AddStripeCard
     {
@@ -13,7 +7,7 @@ namespace Contracts.Stripe
 
         public string ExpirationYear { get; set; }
 
-        public string ExpirationMonth { get; set;}
-        public string Cvc { get; set;}
+        public string ExpirationMonth { get; set; }
+        public string Cvc { get; set; }
     }
 }

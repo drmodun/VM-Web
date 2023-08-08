@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace api
+﻿namespace api
 {
     public static class Routes
     {
@@ -118,7 +116,7 @@ namespace api
         public static class Payment
         {
             public const string CreateCustomer = Base + "/add-customer";
-            public const string MakePayment = Base + "/make-payment";   
+            public const string MakePayment = Base + "/make-payment";
         }
 
     }

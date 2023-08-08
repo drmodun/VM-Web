@@ -1,10 +1,5 @@
 ﻿using Contracts.Stripe;
 using Stripe;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Services
 {
@@ -52,13 +47,17 @@ namespace Domain.Services
         public async Task<StripePayment?> AddStripePaymentAsync(AddStripePayment payment, CancellationToken cancellationToken)
         {
             var user = await _userService.GetCustomerId(payment.UserId, cancellationToken);
-                Console.Write(user);
-            if (user == null ) {
-                return null; }
+            Console.Write(user);
+            if (user == null)
+            {
+                return null;
+            }
             var amount = await _cartsService.GetTotal(payment.UserId, cancellationToken);
-            if (amount == null || amount <= 0){
+            if (amount == null || amount <= 0)
+            {
                 Console.WriteLine(amount);
-                return null; }
+                return null;
+            }
             // Set the options for the payment we would like to create at Stripe
             ChargeCreateOptions paymentOptions = new ChargeCreateOptions
             {
@@ -70,22 +69,22 @@ namespace Domain.Services
             };
             //probably get better error handling later
 
-                Console.WriteLine("sougcsgousoucs");
-                // Create the payment
-                var createdPayment = await _chargeService.CreateAsync(paymentOptions, null, cancellationToken);
-                await _cartsService.BuyCart(payment.UserId, cancellationToken);
-                // Return the payment to requesting method
-                return new StripePayment
-                {
-                    CustomerId = createdPayment.CustomerId,
-                    ReceiptEmail = createdPayment.ReceiptEmail,
-                    Description = createdPayment.Description,
-                    Currency = createdPayment.Currency,
-                    Amount = createdPayment.Amount,
-                    PaymentId = createdPayment.Id
-                };
-            }
-           
+            Console.WriteLine("sougcsgousoucs");
+            // Create the payment
+            var createdPayment = await _chargeService.CreateAsync(paymentOptions, null, cancellationToken);
+            await _cartsService.BuyCart(payment.UserId, cancellationToken);
+            // Return the payment to requesting method
+            return new StripePayment
+            {
+                CustomerId = createdPayment.CustomerId,
+                ReceiptEmail = createdPayment.ReceiptEmail,
+                Description = createdPayment.Description,
+                Currency = createdPayment.Currency,
+                Amount = createdPayment.Amount,
+                PaymentId = createdPayment.Id
+            };
+        }
+
 
     }
 }

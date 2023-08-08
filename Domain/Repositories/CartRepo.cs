@@ -89,12 +89,12 @@ namespace Domain.Repositories
         public async Task<int?> GetTotalAmount(Guid userId, CancellationToken cancellationToken)
         {
             var cart = await _context.Carts
-                .Include(x=>x.CartsProducts)
-                    .ThenInclude(x=>x.Product)
+                .Include(x => x.CartsProducts)
+                    .ThenInclude(x => x.Product)
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
             if (cart == null) { return null; }
             var amount = cart.CartsProducts.Sum(x => x.Product.Price * x.Quantity);
-            return (int)(Math.Round(amount, 2)*100);
+            return (int)(Math.Round(amount, 2) * 100);
         }
 
         public async Task<bool> IsInCart(Guid userId, Guid productId)

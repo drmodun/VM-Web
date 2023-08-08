@@ -163,7 +163,7 @@ namespace Domain.Repositories
 
         public async Task<bool> SaveCustomerToUser(string customerId, Guid userId, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x=>x.Id==userId, cancellationToken);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             user.CustomerId = customerId;
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
