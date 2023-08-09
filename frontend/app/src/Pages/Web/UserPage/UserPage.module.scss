@@ -199,6 +199,11 @@
                         }
                     }
                     margin-bottom: 50px;
+                    .Active{
+                        background-color: #fff;
+                        color: #0d63f3;
+                        border: 1px solid #0d63f3;
+                    }
                 }
                 .Content {
                     display: flex;
@@ -207,6 +212,18 @@
                     flex-direction: column;
                     .Transactions {
                         width: 100%;
+                        .SelectRow{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-end;
+                            align-items: flex-end;
+                            >div{
+                                &:first-child{
+                                    margin-right: 20px;
+                                }
+                            }
+                        }
                     }
                     .Form{
                         width: 100%;
@@ -214,6 +231,7 @@
                         border-radius: 10px;
                         border: 1px #ecf4ff solid;
                         display: flex;
+                        align-items: center;
                         flex-direction: column;
                     }
                 }

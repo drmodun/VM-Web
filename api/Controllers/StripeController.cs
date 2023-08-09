@@ -19,7 +19,7 @@ namespace api.Controllers
 
         [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpPost(Routes.Payment.CreateCustomer)]
-        public async Task<ActionResult<StripeCustomer>> AddStripeCustomer(
+        public async Task<ActionResult<bool>> AddStripeCustomer(
             [FromBody] AddStripeCustomer customer,
             CancellationToken ct)
         {
@@ -27,12 +27,12 @@ namespace api.Controllers
             StripeCustomer createdCustomer = await _stripeService.AddStripeCustomerAsnyc(customer, ct);
 
             return createdCustomer != null ?
-                StatusCode(StatusCodes.Status200OK, createdCustomer)
+                StatusCode(StatusCodes.Status200OK, createdCustomer!=null)
                 : StatusCode(StatusCodes.Status400BadRequest, "An error uccoured during customer creation");
         }
         [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpPost(Routes.Payment.MakePayment)]
-        public async Task<ActionResult<StripePayment>> AddStripePayment(
+        public async Task<ActionResult<bool>> AddStripePayment(
             [FromBody] AddStripePayment payment,
             CancellationToken ct)
         {
@@ -41,7 +41,7 @@ namespace api.Controllers
                 payment,
                 ct);
 
-            return createdPayment != null ? StatusCode(StatusCodes.Status200OK, createdPayment)
+            return createdPayment != null ? StatusCode(StatusCodes.Status200OK, createdPayment!=null)
                 : StatusCode(StatusCodes.Status400BadRequest);
         }
     }

@@ -46,7 +46,8 @@ namespace Domain.Mappers
                 Orders = user.Orders.Select(OrderMapper.ToDTO).ToList(),
                 Transactions = user.Transactions.Select(TransactionMapper.ToDTO
                 ).ToList(),
-                TotalSpent = user.Orders.Sum(x => x.Service.Price) + user.Transactions.Sum(x => x.Quantity * x.PricePerUnit)
+                TotalSpent = user.Orders.Sum(x => x.Service.Price) + user.Transactions.Sum(x => x.Quantity * x.PricePerUnit),
+                HasCardInfo = user.CustomerId != null,
             };
         }
         public static User ToEntity(CreateUserRequest request)

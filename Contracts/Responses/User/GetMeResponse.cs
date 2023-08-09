@@ -10,6 +10,8 @@ namespace Contracts.Responses.User
 
         public int TransactionCount { get; set; }
 
+        public bool HasCardInfo { get; set; }
+
         public int OrderCount { get; set; }
 
         public decimal TotalSpent { get; set; }

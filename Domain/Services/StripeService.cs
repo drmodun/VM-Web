@@ -28,6 +28,7 @@ namespace Domain.Services
             if (user == null) { return null; }
             CustomerCreateOptions customerOptions = new CustomerCreateOptions
             {
+                //later make the name input for everything
                 Name = customer.Name,
                 Email = customer.Email,
                 Source = customer.TokenId

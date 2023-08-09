@@ -38,6 +38,7 @@ export interface GetMe {
   totalSpent: number;
   transactionCount: number;
   orderCount: number;
+  hasCardInfo: boolean;
 }
 
 export interface CartItem {
@@ -261,10 +262,16 @@ export const handleToken = async (token: Token) => {
   if (!accountInfo) {
     return;
   }
-  const response = await api.post("/add-customer", {
-    email: accountInfo.email,
-    name: accountInfo.name,
-    tokenId: token.id,
-  });
-  console.log(response.data);
+  try {
+    const response = await api.post("/add-customer", {
+      email: accountInfo.email,
+      name: accountInfo.name,
+      tokenId: token.id,
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };

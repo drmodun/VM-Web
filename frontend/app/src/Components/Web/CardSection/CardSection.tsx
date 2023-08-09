@@ -17,7 +17,7 @@ const CARD_ELEMENT_OPTIONS = {
       color: "#32325d",
       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
       fontSmoothing: "antialiased",
-      fontSize: "16px",
+      fontSize: "12px",
       "::placeholder": {
         color: "#aab7c4",
       },
@@ -38,7 +38,7 @@ const CARD_ELEMENT_OPTIONS = {
 
 function CardSection() {
   const [focused, setFocused] = React.useState<string | null>(null);
-  const handleSumbit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements) {
       return;
@@ -50,9 +50,13 @@ function CardSection() {
     const result = await stripe.createToken(card!);
     if (result.error) {
       console.log(result.error.message);
+      alert(result.error.message);
     } else {
-      console.log(await handleToken(result.token as Token))
+      const action = await handleToken(result.token as Token);
+      if (!action) alert("Something went wrong");
+      alert("Success");
       console.log(result.token);
+      window.location.reload();
     }
     console.log("CardSection");
   };
@@ -62,7 +66,6 @@ function CardSection() {
 
   return (
     <form onSubmit={handleSumbit}>
-      Card details
       <CardNumberElement
         id="#cardNumber"
         onFocus={() => setFocused("number")}
