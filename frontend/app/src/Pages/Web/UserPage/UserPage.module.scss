@@ -210,20 +210,20 @@
                     height: 100%;
                     width: 100%;
                     flex-direction: column;
-                    .Transactions {
+                    .SelectRow{
                         width: 100%;
-                        .SelectRow{
-                            width: 100%;
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: flex-end;
-                            align-items: flex-end;
-                            >div{
-                                &:first-child{
-                                    margin-right: 20px;
-                                }
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        >div{
+                            &:first-child{
+                                margin-right: 20px;
                             }
                         }
+                    }
+                    .Transactions {
+                        width: 100%;
                     }
                     .Form{
                         width: 100%;

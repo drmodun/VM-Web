@@ -18,7 +18,7 @@ export interface Order {
   serviceType: ServiceType;
   statusType: StatusType;
   deadline?: Date;
-  craeted: Date;
+  created: Date;
   price: number;
 }
 

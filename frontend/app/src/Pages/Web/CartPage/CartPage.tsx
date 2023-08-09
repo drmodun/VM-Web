@@ -7,8 +7,10 @@ import { accountInfo } from "../../../Api/Shared";
 export const CartPage = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState<number>(0);
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const checkout = async () => {
+    setDisabled(true);
     const action = await Checkout();
     if (!action) return;
     //go to the page for transactions
@@ -59,7 +61,8 @@ export const CartPage = () => {
             <span>Total:</span>
             <span className={classes.Price}>{total} €</span>
           </div>
-          <button className={classes.Button} onClick={checkout}>
+          <button className={classes.Button} disabled={disabled}
+          onClick={checkout}>
             Checkout
           </button>
         </div>

@@ -36,6 +36,8 @@ export const UserPage = () => {
   const [sortType, setSortType] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
   const [criteria, setCriteria] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
   const [tab, setTab] = useState<Tabs>(Tabs.Info);
+  const [orderCriteria, setOrderCriteria] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
+  const [orderSortType, setOrderSortType] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
 
   const reload = async () => {
     const info = await getMe();
@@ -168,9 +170,62 @@ export const UserPage = () => {
                 )}
                 {tab === Tabs.Orders && (
                   <div className={classes.Orders}>
-                    {orders.map((order, index) => {
-                      return <OrderView key={index} order={order} />;
-                    })}
+                    <div className={classes.SelectRow}>
+                      <Switch
+                        options={[
+                          { label: "Nijedno", value: 0 },
+                          { label: "Abecedno", value: 1 },
+                          { label: "Cijena", value: 2 },
+                          { label: "Datum", value: 3 },
+                          { label: "Tip", value: 4 },
+                          { label: "Status", value: 5 },
+                        ]}
+                        onSwitch={(value) => {
+                          setCriteria(value);
+                        }}
+                      />
+                      <Switch
+                        options={[
+                          { label: "Rastuće", value: 0 },
+                          { label: "Padajuće", value: 1 },
+                        ]}
+                        onSwitch={(value) => {
+                          setSortType(value);
+                        }}
+                      />
+                    </div>
+                    {orders
+                      .sort((a, b) => {
+                        if (criteria === 0) return 0;
+                        if (criteria === 1) {
+                          if (a.serviceName > b.serviceName) return 1;
+                          else return -1;
+                        }
+                        if (criteria === 2) {
+                          if (a.price > b.price) return 1;
+                          else return -1;
+                        }
+                        if (criteria === 3) {
+                          if (a.created > b.created) return 1;
+                          else return -1;
+                        }
+                        if (criteria === 4) {
+                          if (a.serviceType > b.serviceType) return 1;
+                          else return -1;
+                        }
+                        if (criteria === 5) {
+                          if (a.statusType > b.statusType) return 1;
+                          else return -1;
+                        }
+                        return 0;
+                      })
+                      .sort((a, b) => {
+                        if (sortType === 0) return 0;
+                        return -1;
+                      })
+                      .map((order, index) => {
+                        return <OrderView key={index} order={order} />;
+                      })}
                   </div>
                 )}
                 {tab === Tabs.Transactions && (
@@ -178,6 +233,7 @@ export const UserPage = () => {
                     <div className={classes.SelectRow}>
                       <Switch
                         options={[
+                          { label: "Nijedno", value: 0 },
                           { label: "Abecedno", value: 1 },
                           { label: "Ukupna cijena", value: 2 },
                           { label: "Datum", value: 3 },
@@ -204,7 +260,11 @@ export const UserPage = () => {
                           else return -1;
                         }
                         if (criteria === 2) {
-                          if (a.pricePerUnit*a.quantity > b.quantity*b.pricePerUnit) return 1;
+                          if (
+                            a.pricePerUnit * a.quantity >
+                            b.quantity * b.pricePerUnit
+                          )
+                            return 1;
                           else return -1;
                         }
                         if (criteria === 3) {
@@ -217,14 +277,14 @@ export const UserPage = () => {
                         if (sortType === 0) return 0;
                         return -1;
                       })
-                    .map((transaction, index) => {
-                      return (
-                        <TransactionView
-                          key={index}
-                          transaction={transaction}
-                        />
-                      );
-                    })}
+                      .map((transaction, index) => {
+                        return (
+                          <TransactionView
+                            key={index}
+                            transaction={transaction}
+                          />
+                        );
+                      })}
                   </div>
                 )}
               </div>

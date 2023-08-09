@@ -26,21 +26,23 @@ export const OrderView = ({ order }: Props) => {
     <div className={classes.Container}>
       <div className={classes.Order}>
         <div className={classes.Info}>
-          <span className={classes.Date}>
-            {new Date(order.craeted).toLocaleDateString()}
-          </span>
-          <Link to={`/services`} className={classes.Name}>
-            ¸{order.serviceId}
-          </Link>
-          <div className={classes.Price}>
-            <span>{order.price} €</span>
-          </div>
-          <div className={classes.Type}>
-            <span>x{order.serviceType}</span>
+            <span className={classes.Date}>
+              {new Date(order.created).toLocaleDateString()}
+            </span>
+          <div className={classes.Details}>
+            <Link to={`/services/${order.serviceId}`} className={classes.Name}>
+              {order.serviceName}
+            </Link>
+            <div className={classes.Type}>
+              <span>{TypeDict[order.serviceType]}</span>
+            </div>
+            <div className={classes.Price}>
+              <span>{order.price} €</span>
+            </div>
           </div>
         </div>
-        <div className={classes.Status}>
-          <span>{order.statusType}</span>
+        <div className={classes.Total}>
+          <span>{StatusDict[order.statusType]}</span>
         </div>
       </div>
     </div>
