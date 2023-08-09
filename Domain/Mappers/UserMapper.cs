@@ -46,7 +46,7 @@ namespace Domain.Mappers
                 Orders = user.Orders.Select(OrderMapper.ToDTO).ToList(),
                 Transactions = user.Transactions.Select(TransactionMapper.ToDTO
                 ).ToList(),
-                TotalSpent =user.Transactions.Sum(x => x.Quantity * x.PricePerUnit),
+                TotalSpent = user.Transactions.Sum(x => x.Quantity * x.PricePerUnit),
                 HasCardInfo = user.CustomerId != null,
             };
         }

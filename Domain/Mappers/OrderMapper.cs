@@ -21,7 +21,7 @@ namespace Domain.Mappers
                 Price = order.Service.Price,
                 UserId = order.UserId,
                 Description = order.Description,
-                Email = order.Email,    
+                Email = order.Email,
                 UserName = order.User.Name
             };
         }

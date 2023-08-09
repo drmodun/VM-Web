@@ -27,7 +27,7 @@ namespace api.Controllers
             StripeCustomer createdCustomer = await _stripeService.AddStripeCustomerAsnyc(customer, ct);
 
             return createdCustomer != null ?
-                StatusCode(StatusCodes.Status200OK, createdCustomer!=null)
+                StatusCode(StatusCodes.Status200OK, createdCustomer != null)
                 : StatusCode(StatusCodes.Status400BadRequest, "An error uccoured during customer creation");
         }
         [Authorize(AuthConstants.TrustMemberPolicyName)]
@@ -41,7 +41,7 @@ namespace api.Controllers
                 payment,
                 ct);
 
-            return createdPayment != null ? StatusCode(StatusCodes.Status200OK, createdPayment!=null)
+            return createdPayment != null ? StatusCode(StatusCodes.Status200OK, createdPayment != null)
                 : StatusCode(StatusCodes.Status400BadRequest);
         }
     }

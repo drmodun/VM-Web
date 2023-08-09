@@ -65,7 +65,7 @@ function CardSection() {
   const stripe = useStripe();
 
   return (
-    <form onSubmit={handleSumbit}>
+    <form className={classes.Form} onSubmit={handleSumbit}>
       <CardNumberElement
         id="#cardNumber"
         onFocus={() => setFocused("number")}
