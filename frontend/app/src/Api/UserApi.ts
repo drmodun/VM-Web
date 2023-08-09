@@ -4,6 +4,7 @@ import {
   Pagination,
   PaginationResult,
   Sorting,
+  accountInfo,
   baseUrl,
   jwt,
   parseJwt,
@@ -216,7 +217,9 @@ export const updateCart = async (productId: string, quantity: number) => {
 
 export const Checkout = async () => {
   try {
-    const response = await api.post("/users/cart");
+    const response = await api.post("/make-payment", {receiptEmail: accountInfo.email,
+      description: "Payment to vm-racunala for cart items, see more details at the user dashboard"
+    });
     return response.data;
   } catch (error) {
     console.error(error);

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
 import classes from "../SingleItemPage.module.scss";
+import StripeCheckout from "react-stripe-checkout";
 export const UserPage = () => {
   const { userId } = useParams();
   const [user, setUser] = useState<User | null>(null);
@@ -53,7 +54,7 @@ export const UserPage = () => {
           item={user}
 
            />}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button className={classes.DeleteButton}>Delete</button>            
         </div>
       </div>
     </div>
