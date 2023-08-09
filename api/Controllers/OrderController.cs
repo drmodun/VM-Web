@@ -38,8 +38,7 @@ namespace api.Controllers
         [HttpPost(Routes.Order.Create)]
         public async Task<ActionResult<CreateOrderResponse>> CreateOrder([FromBody] CreateOrderRequest request, CancellationToken cancellationToken)
         {
-            if (request.UserId != HttpContext.GetUserId())
-                return BadRequest("Cannot create or edit an order with anything else than your own account");
+            request.UserId = (Guid)HttpContext.GetUserId();
             var response = await _orderService.CreateOrder(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
             //later fix this bug
@@ -48,8 +47,7 @@ namespace api.Controllers
         [HttpPut(Routes.Order.Update)]
         public async Task<ActionResult<PutOrderResponse>> UpdateOrder([FromRoute] Guid id, [FromBody] PutOrderRequest request, CancellationToken cancellationToken)
         {
-            if (request.UserId != HttpContext.GetUserId())
-                return BadRequest("Cannot create an order with anything else than your own account");
+            request.UserId = (Guid)HttpContext.GetUserId();
             request.Id = id;
             var response = await _orderService.UpdateOrder(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);

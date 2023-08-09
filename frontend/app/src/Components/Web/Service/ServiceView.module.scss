@@ -110,7 +110,7 @@
             @media screen and (max-width: 770px) {
                 align-items: center;
             }
-            > button {
+            > .Button {
                 min-width: 150px;
                 width: 13vw;
                 min-height: 50px;
@@ -120,14 +120,14 @@
                 display: flex;
                 padding: 10px 0px;
                 justify-content: center;
+                font-family: Nuckle;
                 border: none;
                 align-items: center;
                 border-radius: 8px;
                 background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
-                font-family: SF Pro Display;
                 font-size: 1.8vw;
                 font-style: normal;
-                font-weight: 400;
+                font-weight: 600;
                 line-height: normal;
                 letter-spacing: 0.09px;
                 text-align: center;

@@ -24,7 +24,8 @@ export interface Order {
 
 export interface NewOrder {
   serviceId: string;
-  userId: string;
+  email: string;
+  description: string;
 }
 
 export interface UpdateOrder {

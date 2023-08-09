@@ -1,4 +1,5 @@
 ﻿using Data.Enums;
+using System.Web;
 
 namespace Contracts.Requests.Order
 {
@@ -9,6 +10,10 @@ namespace Contracts.Requests.Order
 
         public Guid Id;
         public Guid ServiceId { get; set; }
+
+        public string Description { get; set; }
+
+        public string Email { get; set; }
 
         public Guid UserId { get; set; }
     }

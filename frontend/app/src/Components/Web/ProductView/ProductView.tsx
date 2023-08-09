@@ -54,7 +54,6 @@ export const ProductView = ({ product, removal }: Props) => {
     setIsInCart(product.isInCart);
   }, []);
 
-
   return (
     <div className={classes.Container}>
       <div className={classes.Product}>

@@ -11,6 +11,10 @@ namespace Contracts.Responses.Order
         public string UserName { get; set; }
         public ServiceType ServiceType { get; set; }
         public decimal Price { get; set; }
+
+        public string Description { get; set; }
+
+        public string Email { get; set; }
         //predicting that the price is not gonna change
 
         public StatusType StatusType { get; set; }

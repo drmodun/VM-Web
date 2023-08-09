@@ -57,7 +57,11 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
       setError("Email is not valid");
       return;
     }
-    if (name.length < 3 || name.length > 20 || !name.toLowerCase().match(/^[a-zA-Z]+$/)) {
+    if (
+      name.length < 3 ||
+      name.length > 20 ||
+      !name.toLowerCase().match(/^[a-zA-Z]+$/)
+    ) {
       setError(
         "Name must be between 3 and 20 characters and contain only letters"
       );
@@ -117,7 +121,10 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
             </Link>
           </div>
           <div className={classes.RegisterFormBody}>
-            <form className={classes.RegisterFormBodyInput} onSubmit={handleRegister}>
+            <form
+              className={classes.RegisterFormBodyInput}
+              onSubmit={handleRegister}
+            >
               <Input
                 label="Name"
                 name="name"

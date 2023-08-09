@@ -20,6 +20,8 @@ namespace Domain.Mappers
                 StatusType = order.Status,
                 Price = order.Service.Price,
                 UserId = order.UserId,
+                Description = order.Description,
+                Email = order.Email,    
                 UserName = order.User.Name
             };
         }
@@ -31,6 +33,8 @@ namespace Domain.Mappers
                 Id = Guid.NewGuid(),
                 ServiceId = request.ServiceId,
                 UserId = request.UserId,
+                Email = request.Email,
+                Description = request.Description,
                 Status = StatusType.Pending
             };
         }
@@ -43,7 +47,9 @@ namespace Domain.Mappers
                 Id = request.Id,
                 ServiceId = request.ServiceId,
                 UserId = request.UserId,
-                Status = StatusType.Pending
+                Status = StatusType.Pending,
+                Description = request.Description,
+                Email = request.Email,
             };
         }
     }

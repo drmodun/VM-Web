@@ -9,6 +9,9 @@ namespace Data.Models
         public Service? Service { get; set; }
         public Guid UserId { get; set; }
         public Guid ServiceId { get; set; }
+        public string Description { get; set; }
+
+        public string Email { get; set; }
         public DateTime Created { get; set; }
 
         public StatusType Status { get; set; } = StatusType.Pending;

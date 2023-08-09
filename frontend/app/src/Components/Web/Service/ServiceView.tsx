@@ -1,6 +1,7 @@
 import { Service } from "../../../Api/ServiceApi";
 import classes from "./ServiceView.module.scss";
 import Placeholder from "../../../assets/placeholder.png";
+import { Link } from "react-router-dom";
 
 const serviceTypeDict: { [key: string]: string } = {
   0: "Network",
@@ -33,7 +34,7 @@ export const ServiceView = ({ service }: Props) => {
             <div className={classes.Price}>
               <span>{service.price}€</span>
             </div>
-            <button>Naruči</button>
+            <Link className={classes.Button} to={`/services/${service.id}`} >Naruči</Link>
           </div>
         </div>
       </div>

@@ -1,0 +1,70 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 70px;
+    padding: 20px 11vw;
+    background-color: #ecf4ff;
+    div {
+        display: flex;
+    }
+    .Title {
+        color: var(--light-base-black, #2c2c2c);
+        font-family: Nuckle;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: center;
+        padding-bottom: 50px;
+        @media screen and (max-width: 950px) {
+            font-size: 36px;
+        }
+    }
+    .Form {
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        > div {
+            margin-bottom: 20px;
+        }
+        .Button {
+            border-radius: 10px;
+            background: var(
+                --button-gradient-20,
+                linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
+            );
+            width: 100%;
+            height: 50px;
+            text-decoration: none;
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding: 10px 0px;
+            font-family: Nuckle;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            &:hover{
+                cursor: pointer;
+                background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+            }
+            &:active{
+                background: var(--button-gradient, linear-gradient(220deg, #4d51fa 20%, #f24d4d 100%));
+            }
+        }
+    }
+    .Error{
+        color: red;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 10px;
+        min-height: 60px;
+    }
+}

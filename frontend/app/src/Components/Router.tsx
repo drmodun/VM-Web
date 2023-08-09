@@ -37,6 +37,7 @@ import FavouritesPage from "../Pages/Web/FavouritesPage";
 import WebServicesPage from "../Pages/Web/ServicesPage";
 import WebProductsPage from "../Pages/Web/ProductsPage";
 import CartPage from "../Pages/Web/CartPage";
+import OrderPage from "../Pages/Web/OrderPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -124,7 +125,10 @@ const router = createBrowserRouter(
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
-        <Route path="/services" element={<WebServicesPage />} />
+        <Route path="/services">
+          <Route index element={<WebServicesPage />} />
+          <Route path=":serviceId" element={<OrderPage />} />
+        </Route>
         <Route path="/categories">
           <Route index element={<></>}></Route>
           <Route path=":categoryId" element={<WebCategoryPage />}></Route>
@@ -136,7 +140,10 @@ const router = createBrowserRouter(
         <Route path="/subcategories">
           <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
         </Route>
-        <Route path="/user" element={accountInfo ?  <WebUserPage /> : <LoginPage/>} />
+        <Route
+          path="/user"
+          element={accountInfo ? <WebUserPage /> : <LoginPage />}
+        />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
           <Route path=":companyId" element={<BrandPage />}></Route>
