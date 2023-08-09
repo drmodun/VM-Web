@@ -217,8 +217,10 @@ export const updateCart = async (productId: string, quantity: number) => {
 
 export const Checkout = async () => {
   try {
-    const response = await api.post("/make-payment", {receiptEmail: accountInfo.email,
-      description: "Payment to vm-racunala for cart items, see more details at the user dashboard"
+    const response = await api.post("/make-payment", {
+      receiptEmail: accountInfo.email,
+      description:
+        "Payment to vm-racunala for cart items, see more details at the user dashboard",
     });
     return response.data;
   } catch (error) {
@@ -255,7 +257,14 @@ export const getMe = async () => {
 };
 
 export const handleToken = async (token: Token) => {
-    console.log(token);
-    const response = await api.post("/users/payment", { token});
-    console.log(response.data);
+  console.log(token);
+  if (!accountInfo) {
+    return;
+  }
+  const response = await api.post("/add-customer", {
+    email: accountInfo.email,
+    name: accountInfo.name,
+    tokenId: token.id,
+  });
+  console.log(response.data);
 };

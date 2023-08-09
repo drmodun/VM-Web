@@ -8,6 +8,8 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import classes from "./CardSection.module.scss";
+import { handleToken } from "../../../Api/UserApi";
+import { Token } from "react-stripe-checkout";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -49,6 +51,7 @@ function CardSection() {
     if (result.error) {
       console.log(result.error.message);
     } else {
+      console.log(await handleToken(result.token as Token))
       console.log(result.token);
     }
     console.log("CardSection");

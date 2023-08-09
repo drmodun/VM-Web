@@ -77,19 +77,6 @@ export const UserPage = () => {
                   <span>{spent}€</span>
                 </div>
               </div>
-              <StripeCheckout
-                stripeKey="pk_test_51NcS2vApp5avo5Y6EQBAPyzC9QJBqsb4fB8paxKr2fF5OfmvAiReZhv9vxaoryAGSwwj5r15dRrVhtR53nr8qqSt00V94ZU7zX"
-                token={(token) => console.log(token)}
-                name="Card"
-                currency="EUR"
-                email=""
-                label="Add card info"
-                ComponentClass={classes.StripeButton}
-                shippingAddress
-                billingAddress
-                description="Cart Payment"
-                //add new version of stripe checkout
-              />
             </div>
             <div className={classes.Selection}>
               <div className={classes.Options}>
