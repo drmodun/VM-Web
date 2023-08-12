@@ -1,7 +1,6 @@
 import classes from "./PreviousCLient.module.scss";
 import placeholder from "../../../assets/placeholder.png";
 import { PreviousClient } from "../../../Api/PreviousClientApi";
-import { Link } from "react-router-dom";
 
 export interface Props {
   client: PreviousClient;

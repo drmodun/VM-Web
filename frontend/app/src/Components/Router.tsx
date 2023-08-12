@@ -37,6 +37,7 @@ import FavouritesPage from "../Pages/Web/FavouritesPage";
 import WebServicesPage from "../Pages/Web/ServicesPage";
 import WebPreviousClientPage from "../Pages/Web/PreviousClientsPage";
 import WebProductsPage from "../Pages/Web/ProductsPage";
+import WebCategoriesPage from "../Pages/Web/CategoriesPage";
 import CartPage from "../Pages/Web/CartPage";
 import OrderPage from "../Pages/Web/OrderPage";
 const placeholders = () => {
@@ -131,7 +132,7 @@ const router = createBrowserRouter(
           <Route path=":serviceId" element={<OrderPage />} />
         </Route>
         <Route path="/categories">
-          <Route index element={<></>}></Route>
+          <Route index element={<WebCategoriesPage/>}></Route>
           <Route path=":categoryId" element={<WebCategoryPage />}></Route>
         </Route>
         <Route path="/products">
