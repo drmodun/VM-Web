@@ -69,14 +69,15 @@ namespace Domain.Repositories
                 }
             }
             return categories;
-
+            //add asNoTracking to every query
         }
 
         public async Task<IQueryable<Category>> GetShortCategories(GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
             var categories = _context.Categories
                 .Include(x => x.Products)
-                .Where(x => request.Name == null || x.Name.Contains(request.Name));
+                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                    .AsNoTracking();
             if (request.Sorting != null)
             {
                 switch (request.Sorting.Attribute)
@@ -87,6 +88,13 @@ namespace Domain.Repositories
                         else
                             categories = categories.OrderByDescending(x => x.Name);
                         break;
+                    case SortAttributeType.SortByQuantity:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            categories = categories.OrderBy(x => x.Products.Count);
+                        else
+                            categories = categories.OrderByDescending(x => x.Products.Count);
+                        break;
+                        //think about adding a populraity filter
                     default: break;
                 }
             }
@@ -101,7 +109,8 @@ namespace Domain.Repositories
                         .ThenInclude(x => x.Company)
                     .Include(x => x.Products)
                     .Include(x => x.Subcategories)
-                    .Where(x => request.Name == null || x.Name.Contains(request.Name));
+                    .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                    .AsNoTracking();
             if (request.Sorting != null)
             {
                 switch (request.Sorting.Attribute)
@@ -111,6 +120,12 @@ namespace Domain.Repositories
                             categories = categories.OrderBy(x => x.Name);
                         else
                             categories = categories.OrderByDescending(x => x.Name);
+                        break;
+                    case SortAttributeType.SortByQuantity:
+                        if (request.Sorting.SortType == SortType.Ascending)
+                            categories = categories.OrderBy(x => x.Products.Count);
+                        else
+                            categories = categories.OrderByDescending(x => x.Products.Count);
                         break;
                     default: break;
                 }

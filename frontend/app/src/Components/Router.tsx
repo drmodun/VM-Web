@@ -35,6 +35,7 @@ import { accountInfo } from "../Api/Shared";
 import WebProductPage from "../Pages/Web/ProductPage/";
 import FavouritesPage from "../Pages/Web/FavouritesPage";
 import WebServicesPage from "../Pages/Web/ServicesPage";
+import WebCompaniesPage from "../Pages/Web/CompaniesPage";
 import WebPreviousClientPage from "../Pages/Web/PreviousClientsPage";
 import WebProductsPage from "../Pages/Web/ProductsPage";
 import WebCategoriesPage from "../Pages/Web/CategoriesPage";
@@ -149,6 +150,7 @@ const router = createBrowserRouter(
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
+          <Route index element={<WebCompaniesPage />}></Route>
           <Route path=":companyId" element={<BrandPage />}></Route>
         </Route>
       </Route>
