@@ -44,7 +44,7 @@ export const SideMenu = ({
             <Link className={classes.Link} onClick={closeMenu} to="/services">
               <span>Servisi</span>
             </Link>
-            <Link className={classes.Link} onClick={closeMenu} to="/previous-clients">
+            <Link className={classes.Link} onClick={closeMenu} to="/clients">
               <span>Prijašnji klijenti</span>
             </Link>
             <Link className={classes.Link} onClick={closeMenu} to="/categories">

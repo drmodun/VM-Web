@@ -39,7 +39,7 @@ export const Footer = () => {
               <Link className={classes.Link} to={"/services"}>
                 <li>Servisi</li>
               </Link>
-              <Link className={classes.Link} to={"/previous-clients"}>
+              <Link className={classes.Link} to={"/clients"}>
                 <li>Prijašnji klijenti</li>
               </Link>
             </ul>

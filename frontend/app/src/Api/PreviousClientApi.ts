@@ -3,9 +3,9 @@ import axios from "axios";
 import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl } from "./Shared";
 
 export interface PreviousClient {
-  id: string;
   name: string;
   image: string;
+  id: string;
   rating: number;
   website: string;
   description: string;
@@ -64,6 +64,7 @@ export const getPreviousClients = async (props: GetAllProps | {} = {}) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 

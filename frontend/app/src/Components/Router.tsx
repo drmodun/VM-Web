@@ -35,6 +35,7 @@ import { accountInfo } from "../Api/Shared";
 import WebProductPage from "../Pages/Web/ProductPage/";
 import FavouritesPage from "../Pages/Web/FavouritesPage";
 import WebServicesPage from "../Pages/Web/ServicesPage";
+import WebPreviousClientPage from "../Pages/Web/PreviousClientsPage";
 import WebProductsPage from "../Pages/Web/ProductsPage";
 import CartPage from "../Pages/Web/CartPage";
 import OrderPage from "../Pages/Web/OrderPage";
@@ -144,6 +145,7 @@ const router = createBrowserRouter(
           path="/user"
           element={accountInfo ? <WebUserPage /> : <LoginPage />}
         />
+        <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
           <Route path=":companyId" element={<BrandPage />}></Route>
