@@ -1,39 +1,22 @@
 import {
-  Category,
   ShortCategory,
-  getCategories,
   getShortCategories,
 } from "../../../Api/CategoryApi";
 import {
   GetAllProps,
-  Product,
   ShortProduct,
-  getProducts,
   getShortProducts,
 } from "../../../Api/ProductApi";
 import brands2 from "../../../assets/brands2.svg";
-import CategoryView from "../../../Components/Web/ShortView";
 import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
 import { useEffect, useState } from "react";
-import product1 from "../../../assets/product1.svg";
-import products2 from "../../../assets/products2.svg";
-import products3 from "../../../assets/products3.svg";
+import products2 from "../../../assets/products3.svg";
 import categories1 from "../../../assets/categories1.svg";
 import services1 from "../../../assets/services1.svg";
-import { Service, getServices } from "../../../Api/ServiceApi";
-import ServiceView from "../../../Components/Web/Service";
-import Dropdown from "../../../Components/Web/Dropdown";
-import Slider from "../../../Components/Web/Slider";
-import Filter from "../../../Components/Web/FIlter";
-import { Pagination } from "../../../Components/Web/Pagination/Pagination";
-import { PageInfo, accountInfo } from "../../../Api/Shared";
-import Switch from "../../../Components/Web/Switch";
-import ItemView from "../../../Components/Admin/ItemView";
+//perhaps later do some stuff with pictures again
 import ShortView from "../../../Components/Web/ShortView";
-import { CartItem, getCart } from "../../../Api/UserApi";
-import CartItemView from "../../../Components/Web/CartItemView";
 import { Link } from "react-router-dom";
 import { ShortCompany, getShortCompanies } from "../../../Api/CompanyApi";
 const enum Tabs {
@@ -45,16 +28,10 @@ const enum Tabs {
 export const Homepage = () => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<ShortCategory[]>([]);
-  const [services, setServices] = useState<Service[]>();
-  const [pageInfo, setPageInfo] = useState<PageInfo>();
   const [tab, setTab] = useState<Tabs>(Tabs.Products);
   const [brands, setBrands] = useState<ShortCompany[]>([]);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const cartItemFetcher = async () => {
-    const response = await getCart();
-    setCartItems(response?.items!);
-  };
+ 
 
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
@@ -65,13 +42,9 @@ export const Homepage = () => {
       ...params,
     });
     setProducts(response?.items!);
-    setPageInfo(response?.pageInfo!);
   };
 
-  const serviceFetcher = async () => {
-    const response = await getServices();
-    setServices(response?.items!);
-  };
+  
 
   const categoryFetcher = async () => {
     const response = await getShortCategories({
@@ -86,15 +59,13 @@ export const Homepage = () => {
       "Sorting.Attribute": SortAttributeType.SortByName,
       "Sorting.SortType": SortType.Descending,
     });
-    setCategories(response?.items!);
+    setBrands(response?.items!);
   };
 
   useEffect(() => {
     productFetcher();
     categoryFetcher();
-    serviceFetcher();
     brandFetcher();
-    if (accountInfo) cartItemFetcher();
   }, []);
 
   return (
@@ -218,9 +189,9 @@ export const Homepage = () => {
             View all
           </Link>
         </div>
-        <div className={classes.Products}>
+        <div className={classes.Row}>
           <span>Popularni produkti</span>
-          <div className={classes.List}>
+          <div className={classes.ProductList}>
             {products &&
               products.map((product) => {
                 return <ProductView key={product.id} product={product} />;

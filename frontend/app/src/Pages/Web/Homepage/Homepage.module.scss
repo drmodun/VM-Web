@@ -28,13 +28,15 @@
                 display: flex;
                 width: 42px;
                 height: 42px;
+                padding: 5px;
+                //replace later with chevrons
                 background: var(
                     --button-gradient-20,
                     linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
                 );
                 justify-content: center;
                 align-items: center;
-                font-size: 20px;
+                font-size: 25px;
                 &:hover {
                     cursor: pointer;
                     background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
@@ -83,9 +85,9 @@
                     flex-direction: row;
                     align-items: center;
                     text-decoration: none;
-                    &:hover{
+                    &:hover {
                         cursor: pointer;
-                        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+                        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
                     }
                     justify-content: center;
                     flex-wrap: wrap;
@@ -145,6 +147,131 @@
                     }
                 }
             }
+        }
+    }
+    .Row {
+        flex-direction: column;
+        display: flex;
+        align-items: flex-start;
+        //width: 90vw; possibly will need later
+        @media (max-width: 768px) {
+            align-items: center;
+        }
+        > span {
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: Nuckle;
+            margin-bottom: 20px;
+        }
+        .ProductList {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+            row-gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: center;
+            @media (max-width: 768px) {
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: row;
+                align-items: center;
+                overflow-x: auto;
+                column-gap: 0px;
+                row-gap: 0px;
+                flex-wrap: nowrap;
+                max-width: 90vw;
+                &::-webkit-scrollbar {
+                    position: relative;
+                    top: 20px;
+                    width: 20px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    border-radius: 10px;
+                }
+                &::-webkit-scrollbar-track-piece {
+                    background-color: transparent;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                    border-radius: 10px;
+                }
+                div {
+                    //another dirty css trick
+                    //might work on this later
+                    margin-right: 20px;
+                    margin-bottom: 20px;
+                    > div {
+                        margin-right: 0px;
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+        .List {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow-x: auto;
+            max-width: 78vw;
+            @media screen and (max-width: 768px) {
+                max-width: 90vw;
+            }
+            &::-webkit-scrollbar {
+                position: relative;
+                top: 20px;
+                width: 20px;
+            }
+
+            &::-webkit-scrollbar-track {
+                border-radius: 10px;
+            }
+            &::-webkit-scrollbar-track-piece {
+                background-color: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                border-radius: 10px;
+            }
+            div {
+                //another dirty css trick
+                //might work on this later
+                margin-right: 20px;
+                margin-bottom: 20px;
+                > div {
+                    margin-right: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+        }
+        .ViewAll {
+            width: 100%;
+            border-radius: 15px;
+            background-color: #fff;
+            color: #000;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Nuckle;
+            height: 50px;
+            margin-top: 20px;
+            font-weight: 600;
+            transition:
+                background-color 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            &:active {
+                background-color: #aaa;
+                cursor: pointer;
+                color: #f3f3f3;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: #ccc;
+                color: #f5f5f5;
+            }
+            text-decoration: none;
         }
     }
 }
