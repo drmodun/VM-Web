@@ -1,5 +1,5 @@
-import classes from "./PreviousCLient.module.scss";
-import placeholder from "../../../assets/placeholder.png";
+import classes from "./PreviousClient.module.scss";
+import placeholder from "../../../assets/product1.svg";
 import { PreviousClient } from "../../../Api/PreviousClientApi";
 
 export interface Props {

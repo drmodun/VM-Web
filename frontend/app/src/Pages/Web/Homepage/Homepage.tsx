@@ -1,7 +1,4 @@
-import {
-  ShortCategory,
-  getShortCategories,
-} from "../../../Api/CategoryApi";
+import { ShortCategory, getShortCategories } from "../../../Api/CategoryApi";
 import {
   GetAllProps,
   ShortProduct,
@@ -12,7 +9,8 @@ import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
 import { useEffect, useState } from "react";
-import products2 from "../../../assets/products3.svg";
+import products2 from "../../../assets/products2.svg";
+import products3 from "../../../assets/products3.svg";
 import categories1 from "../../../assets/categories1.svg";
 import services1 from "../../../assets/services1.svg";
 //perhaps later do some stuff with pictures again
@@ -31,8 +29,6 @@ export const Homepage = () => {
   const [tab, setTab] = useState<Tabs>(Tabs.Products);
   const [brands, setBrands] = useState<ShortCompany[]>([]);
 
- 
-
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
       "Sorting.Attribute": SortAttributeType.SortByTotalSold,
@@ -43,8 +39,6 @@ export const Homepage = () => {
     });
     setProducts(response?.items!);
   };
-
-  
 
   const categoryFetcher = async () => {
     const response = await getShortCategories({
@@ -70,6 +64,19 @@ export const Homepage = () => {
 
   return (
     <div className={classes.Container}>
+      <div className={classes.Cover}>
+        <div className={classes.Backdrop}></div>
+        <img src={products2} alt="" />
+        <div
+          className={
+            //TODO: write a brader description
+            classes.CoverText
+          }
+        >
+          <h1>VM računala</h1>
+          <p>Business solutions for IT</p>
+        </div>
+      </div>
       <div className={classes.Homepage}>
         <div className={classes.Cards}>
           <div
@@ -93,7 +100,7 @@ export const Homepage = () => {
                 <div className={classes.Title}>Products</div>
                 <div className={classes.Cover}></div>
                 <div className={classes.Image}>
-                  <img src={products2} alt="kategorije" />
+                  <img src={products3} alt="kategorije" />
                 </div>
               </Link>
             )}
