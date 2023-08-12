@@ -26,6 +26,8 @@ export const CategoriesPage = () => {
 
   useEffect(() => {
     categoriesFetcher();
+    window.scrollTo(0, 0);
+    window.document.title = "Categories";
   }, []);
 
   return (

@@ -41,6 +41,7 @@ import WebProductsPage from "../Pages/Web/ProductsPage";
 import WebCategoriesPage from "../Pages/Web/CategoriesPage";
 import CartPage from "../Pages/Web/CartPage";
 import OrderPage from "../Pages/Web/OrderPage";
+import SearchPage from "../Pages/Web/SearchPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -147,6 +148,7 @@ const router = createBrowserRouter(
           path="/user"
           element={accountInfo ? <WebUserPage /> : <LoginPage />}
         />
+        <Route path="/search" element={<SearchPage/>}/>
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">

@@ -5,7 +5,7 @@ import Menu from "../../../assets/menu.svg";
 import Search from "../../../assets/search.svg";
 import Favourites from "../../../assets/favourite.svg";
 import Cart from "../../../assets/shopping_cart.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
   setMenuOpen: () => void;
@@ -22,6 +22,7 @@ export const Navigation = ({
   userName,
 }: Props) => {
   const [search, setSearch] = useState(propSearch || "");
+  const navigate = useNavigate();
   return (
     <div className={classes.Navigation}>
       <nav>
@@ -44,7 +45,7 @@ export const Navigation = ({
           <button
             className={classes.SearchButton}
             //TODO: add search funcionality
-            onClick={() => {}}
+            onClick={() => navigate(`/search/?name=${search}`)}
           >
             <img src={Search} alt="search" />
           </button>

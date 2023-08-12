@@ -22,6 +22,8 @@ export const CompaniesPage = () => {
 
   useEffect(() => {
     companiesFetcher();
+    window.scrollTo(0, 0);
+    window.document.title = "Brands";
   }, []);
 
   return (
