@@ -49,8 +49,9 @@ namespace Domain.Repositories
 
         public async Task<IQueryable<Category>> GetAllCategories(GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
+            //add to lower on filters here
             var categories = _context.Categories
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
 ;            //sorting
             //possibly later change logic of sorting to be more dynamic
@@ -76,7 +77,7 @@ namespace Domain.Repositories
         {
             var categories = _context.Categories
                 .Include(x => x.Products)
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                     .AsNoTracking();
             if (request.Sorting != null)
             {
@@ -109,7 +110,7 @@ namespace Domain.Repositories
                         .ThenInclude(x => x.Company)
                     .Include(x => x.Products)
                     .Include(x => x.Subcategories)
-                    .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                    .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                     .AsNoTracking();
             if (request.Sorting != null)
             {

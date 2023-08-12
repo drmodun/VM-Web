@@ -103,7 +103,7 @@ export const SearchPage = () => {
               <ShortView
                 subtitle={subcategory.numberOfProducts.toString()}
                 titlte={subcategory.name} //TODO: fix all misspellings
-                link={`/subcateogories/${subcategory.id}`}
+                link={`/subcategories/${subcategory.id}`}
               />
             ))}
           </div>

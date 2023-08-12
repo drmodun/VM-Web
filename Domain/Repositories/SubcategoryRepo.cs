@@ -53,7 +53,7 @@ namespace Domain.Repositories
         {
             var subcategories = _context.Subcategories
                 .Include(x => x.Category)
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
             //sorting
@@ -87,7 +87,7 @@ namespace Domain.Repositories
         {
             var subcategories = _context.Subcategories
                 .Include(x => x.Products)
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
             //sorting

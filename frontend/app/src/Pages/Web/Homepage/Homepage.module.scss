@@ -1,27 +1,150 @@
-.ProductRow{
+.Container {
+    width: 100%;
+    height: 100%;
+    background-color: #ecf4ff;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    row-gap: 20px;
-    column-gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.CategoryRow{
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    row-gap: 20px;
-    column-gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-.Center{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    flex-direction: column;
+    padding: 20px 11vw;
+    @media (max-width: 768px) {
+        padding: 20px 5vw;
+    }
+    margin-top: 70px;
+    .Homepage {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .Cards {
+            flex-direction: row;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-around;
+            .Arrow {
+                display: flex;
+                width: 42px;
+                height: 42px;
+                background: var(
+                    --button-gradient-20,
+                    linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
+                );
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+                &:hover {
+                    cursor: pointer;
+                    background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                    color: white;
+                }
+                &:active {
+                    background: var(--button-gradient, linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%));
+                    color: white;
+                }
+                border-radius: 50%;
+            }
+            .Upper {
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                .DotRow {
+                    flex-direction: row;
+                    display: flex;
+                    width: 200px;
+                    .ActiveDot {
+                        background: var(--button-gradient, linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%));
+                        height: 16px;
+                        width: 16px;
+                        border-radius: 50%;
+                    }
+                    .Dot {
+                        background: var(
+                            --button-gradient-20,
+                            linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
+                        );
+                        height: 16px;
+                        width: 16px;
+                        border-radius: 50%;
+                        &:hover {
+                            cursor: pointer;
+                            background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                        }
+                    }
+                    justify-content: space-around;
+                }
+                .Section {
+                    margin-bottom: 40px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    text-decoration: none;
+                    &:hover{
+                        cursor: pointer;
+                        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+                    }
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    width: 60vw;
+                    border-radius: 15px;
+                    height: 400px;
+                    .Title {
+                        z-index: 2;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        color: white;
+                        font-weight: 600;
+                        text-align: center;
+                        font-size: 3rem;
+                        height: fit-content;
+                        width: 60vw;
+                        height: 400px;
+                        font-weight: 700;
+                        @media (max-width: 768px) {
+                            font-size: 2rem;
+                        }
+                        flex-shrink: 0;
+                        flex-basis: 100%;
+                    }
+                    .Cover {
+                        position: relative;
+                        width: 60vw;
+                        height: 400px;
+                        top: -400px;
+                        flex-shrink: 0;
+                        left: 0;
+                        border-radius: 15px;
+                        display: flex;
+                        opacity: 0.5;
+                        background-color: black;
+                        z-index: 1;
+                        flex-basis: 100%;
+                    }
+                    .Image {
+                        position: relative;
+                        width: 60vw;
+                        height: 400px;
+                        top: -800px;
+                        //horrible way to do this but it will do for now
+                        left: 0;
+                        z-index: 0;
+                        border-radius: 15px;
+                        flex-shrink: 0;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

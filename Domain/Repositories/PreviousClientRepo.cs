@@ -48,7 +48,7 @@ namespace Domain.Repositories
         public async Task<IQueryable<PreviousClient>> GetAllPreviousClients(GetAllPreviousClientsRequest request, CancellationToken cancellationToken)
         {
             var previousClients = _context.PreviousClients
-                .Where(x => request.Name == null || x.Name.Contains(request.Name))
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
 ;
             //sorting
