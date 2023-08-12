@@ -60,6 +60,9 @@ export const Homepage = () => {
     productFetcher();
     categoryFetcher();
     brandFetcher();
+    window.scrollTo(0, 0);
+    //TODO: look into performance issues with pictures
+    window.document.title = "VM | Home";
   }, []);
 
   return (
