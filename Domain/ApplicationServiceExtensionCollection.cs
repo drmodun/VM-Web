@@ -1,8 +1,8 @@
 ﻿using Data;
-using Domain.Email;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.Validatiors;
+using Email;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

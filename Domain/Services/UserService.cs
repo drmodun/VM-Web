@@ -2,9 +2,9 @@
 using Contracts.Requests.User;
 using Contracts.Responses;
 using Contracts.Responses.User;
-using Domain.Email;
 using Domain.Mappers;
 using Domain.Repositories;
+using Email;
 
 namespace Domain.Services
 {

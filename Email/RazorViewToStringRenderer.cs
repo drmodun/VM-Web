@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Hosting.Internal;
 using System.Reflection;
 
-namespace Domain.Email
+namespace Email
 {
     public class RazorViewToStringRenderer : IRazorViewToStringRenderer
     {
@@ -25,7 +25,7 @@ namespace Domain.Email
             ITempDataProvider tempDataProvider,
             IHttpContextAccessor httpContextAccessor,
             IHostingEnvironment environment
-            )
+         )
 
         {
             _viewEngine = viewEngine;
@@ -57,21 +57,9 @@ namespace Domain.Email
         private IView FindView(ActionContext actionContext, string viewName)
         {
             //TODO: fix this reallz dumb temporary solution
-            var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Split("api")[0] + "Domain";
-            Console.WriteLine(dir + viewName);
-            Console.WriteLine(dir + viewName);
-            Console.WriteLine(dir + viewName);
-            var contentRootPath = _environment.ContentRootPath;
-            string executingAssemblyDirectoryAbsolutePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string executingAssemblyDirectoryRelativePath = System.IO.Path.GetRelativePath(contentRootPath, executingAssemblyDirectoryAbsolutePath);
-
-            string executingFilePath = $"{executingAssemblyDirectoryAbsolutePath.Replace('\\', '/')}{viewName}".Replace("api", "Domain");
-            string viewPath = "~" + viewName;
-            string mainViewRelativePath = $"~/{executingAssemblyDirectoryRelativePath.Replace('\\', '/')}{viewName}".Replace("api", "Domain");
-            Console.WriteLine(executingFilePath, mainViewRelativePath, viewPath, viewName);
-            var getViewResult = _viewEngine.GetView(viewPath, viewPath, true);
+            
+            var getViewResult = _viewEngine.GetView(null, viewName, true);
             if (getViewResult.Success) return getViewResult.View;
-            Console.WriteLine(getViewResult.ViewName, getViewResult.SearchedLocations, getViewResult.Success);
 
             var findViewResult = _viewEngine.FindView(actionContext, viewName, true);
             if (findViewResult.Success) return findViewResult.View;

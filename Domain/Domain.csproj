@@ -7,27 +7,6 @@
 	  <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Email\Views\ActivateAccountView.cshtml" />
-    <None Remove="Email\Views\ChangePaswordView.cshtml" />
-    <None Remove="Email\Views\Layout.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Email\Views\Activation\ActivateAccountView.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Email\Views\PasswordReset\ChangePaswordView.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Email\Views\Shared\Layout.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
@@ -48,6 +27,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Contracts\Contracts.csproj" />
 		<ProjectReference Include="..\Data\Data.csproj" />
+		<ProjectReference Include="..\Email\Email.csproj" />
 	</ItemGroup>
 
 </Project>
