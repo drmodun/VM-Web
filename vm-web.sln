@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{0606B192-17C5-4BF1-BB8C-E30505FB6F29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{2CBF5673-B893-49D0-A11E-1E5B26215F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{2CBF5673-B893-49D0-A11E-1E5B26215F43}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0606B192-17C5-4BF1-BB8C-E30505FB6F29} = {0606B192-17C5-4BF1-BB8C-E30505FB6F29}
 	EndProjectSection

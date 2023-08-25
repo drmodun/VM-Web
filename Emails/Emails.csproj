@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Views\ActivateAccountView.cshtml" />
+    <Content Remove="Pages\Views\ChangePasswordView.cshtml" />
+    <Content Remove="Pages\Views\Layout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+    <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Email\" />
+  </ItemGroup>
+
+</Project>

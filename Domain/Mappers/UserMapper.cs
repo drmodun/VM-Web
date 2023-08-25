@@ -64,6 +64,7 @@ namespace Domain.Mappers
                     { "user", "true" },
                 },
                 Id = Guid.NewGuid(),
+                IsEmailConfirmed = false,
                 LastUpdated = DateTime.UtcNow,
 
             };
@@ -85,6 +86,7 @@ namespace Domain.Mappers
                     { "admin", "true" },
                 },
                 Id = Guid.NewGuid(),
+                IsEmailConfirmed = true,
                 LastUpdated = DateTime.UtcNow,
 
             };

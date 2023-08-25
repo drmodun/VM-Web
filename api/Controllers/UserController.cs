@@ -159,7 +159,7 @@ namespace api.Controllers
         }
         [Authorize(AuthConstants.TrustMemberPolicyName)]
         [HttpPut(Routes.User.Edit)]
-        public async Task<ActionResult<bool>> Edit(UpdateUserInfoRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<bool>> Edit([FromBody] UpdateUserInfoRequest request, CancellationToken cancellationToken)
         {
             var id = HttpContext.GetUserId();
             request.Id = (Guid)id;
@@ -167,6 +167,13 @@ namespace api.Controllers
             return action.Success ? Ok(action) : NotFound(action);
         }
 
+        [HttpGet(Routes.User.ActivateUser)]
+        public async Task<ActivateUserResponse> ActivateUser([FromRoute] string code, CancellationToken cancellationToken)
+        {
+            var action = await _userService.ActivateUser(code, cancellationToken);
+            return action;
+
+        }
 
 
 

@@ -11,9 +11,9 @@
         public string? PhoneNumber { get; set; }
 
         public string? Address { get; set; }
-
+        public bool IsEmailConfirmed { get; set; }
         public string Role { get; set; }
-
+        public string ActivationCode { get; set; }
         public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         public List<Order> Orders { get; set; } = new List<Order>();

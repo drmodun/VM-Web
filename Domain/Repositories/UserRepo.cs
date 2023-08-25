@@ -19,12 +19,24 @@ namespace Domain.Repositories
             _validator = validator;
         }
 
-        public async Task<bool> CreateUser(User user, CancellationToken cancellationToken)
+        public async Task<string?> CreateUser(User user, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(user, cancellationToken);
+            var code = Guid.NewGuid().ToString().Substring(1, 6).ToUpper();
+            user.ActivationCode = code;
             await _context.Users.AddAsync(user, cancellationToken);
-            return await _context.SaveChangesAsync(cancellationToken) > 0;
+            return
+                await _context.SaveChangesAsync(cancellationToken) > 0 ?
+                code : null;
 
+        }
+
+        public async Task<bool> ActivateUser(string code, CancellationToken cancellationToken)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.ActivationCode == code, cancellationToken);
+            if (user == null || user.IsEmailConfirmed) { return false; }
+            user.IsEmailConfirmed = true;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
         public async Task<bool> CreateAdminUser(User user, CancellationToken cancellationToken)
@@ -53,7 +65,9 @@ namespace Domain.Repositories
 
         public async Task<User?> GetUserByEmail(string email)
         {
-            return await _context.Users.SingleOrDefaultAsync(x => x.Email == email);
+            return await _context.Users
+                .Where(x => x.IsEmailConfirmed)
+                .SingleOrDefaultAsync(x => x.Email == email);
         }
 
         public async Task<User?> GetUser(Guid id, CancellationToken cancellationToken)
@@ -164,6 +178,7 @@ namespace Domain.Repositories
         public async Task<bool> SaveCustomerToUser(string customerId, Guid userId, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            if (user == null) return false;
             user.CustomerId = customerId;
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }

@@ -1,0 +1,23 @@
+﻿@model Contracts.Email.ChangePasswordModel
+<body class= "Container">
+    <div class= "EmailBody" >
+        <span class= "Title" >
+            Dobar dan @Model.Name,
+        </span>
+    <div class="Divider"></div >
+    <span class= "Description" >
+    Šaljemo ti ovaj mail da možeš promjeniti lozinku za svoj račun.
+    </span>
+    <span class="Warning">
+        Ako nisi ti pokušao prijaviti se na VM-računala, molimo te da zanemariš ovaj mail i provjeriš svoj račun na VM-računala, da se osiguraš da nitko nije pokušao ukrasti tvoj račun.
+    </span>
+    <div class="Divider">
+        </div >
+        <a href = "@Model.Link" class= "Button" > Promjeni lozinku </a >
+        <div class= "Divider" ></div >
+        <span class= "Description" >
+        Ako ne možeš kliknuti na link, kopiraj ga u svoj browser.
+            @Model.Link
+        </span>
+    </div>
+</body>

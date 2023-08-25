@@ -95,7 +95,7 @@ namespace Domain.Repositories
                         else
                             categories = categories.OrderByDescending(x => x.Products.Count);
                         break;
-                        //think about adding a populraity filter
+                    //think about adding a populraity filter
                     default: break;
                 }
             }

@@ -1,6 +1,8 @@
-﻿using Contracts.Requests.User;
+﻿using Contracts.Email;
+using Contracts.Requests.User;
 using Contracts.Responses;
 using Contracts.Responses.User;
+using Domain.Email;
 using Domain.Mappers;
 using Domain.Repositories;
 
@@ -9,19 +11,28 @@ namespace Domain.Services
     public class UserService
     {
         private readonly UserRepo _userRepo;
-
-        public UserService(UserRepo userRepo)
+        private readonly RazorViewToStringRenderer _viewToStringRenderer;
+        public UserService(UserRepo userRepo, RazorViewToStringRenderer viewToStringRenderer)
         {
             _userRepo = userRepo;
+            _viewToStringRenderer = viewToStringRenderer;
         }
 
         public async Task<CreateUserResponse> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
             var user = UserMapper.ToEntity(request);
             var action = await _userRepo.CreateUser(user, cancellationToken);
+            var emailModel = new UserActivationModel
+            {
+                //TODO: change on deploy
+                Name = user.Name,
+                Link = "http://localhost:3000/activate?code=" + action,
+            };
+            var email = await _viewToStringRenderer.RenderViewToStringAsync(Templates.ActivateAccountView, emailModel);
+            var emailSend = await EmailSender.SendEmail(request.Email, "Account creation", email);
             return new CreateUserResponse
             {
-                Success = action
+                Success = action != null && emailSend && email != null
             };
         }
 
@@ -30,6 +41,15 @@ namespace Domain.Services
             var user = UserMapper.ToUpdated(request);
             var action = await _userRepo.UpdateUser(user, cancellationToken);
             return new PutUserResponse
+            {
+                Success = action
+            };
+        }
+
+        public async Task<ActivateUserResponse> ActivateUser(string code, CancellationToken cancellationToken)
+        {
+            var action = await _userRepo.ActivateUser(code, cancellationToken);
+            return new ActivateUserResponse
             {
                 Success = action
             };

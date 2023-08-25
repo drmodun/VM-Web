@@ -1,7 +1,9 @@
 ﻿using Data;
+using Domain.Email;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.Validatiors;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,17 +15,24 @@ namespace Domain
     {
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
+            EmailSender.ApiKey = configuration.GetValue<string>("SendGrid:Key");
             StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
             services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
+            services.Configure<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>(o => {
+                o.ViewLocationFormats.Add("/Email/Views/{0}" + Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewExtension);
+            });
+            services.AddRazorPages();
             services.AddScoped<ProductRepo>();
+            services.AddScoped<RazorViewToStringRenderer>();
             services.AddScoped<OrderRepo>();
             services.AddScoped<TransactionRepo>();
             services.AddScoped<UserRepo>();
             services.AddScoped<FavouritesRepo>();
             services.AddScoped<PreviousClientRepo>();
             services.AddScoped<ServiceRepo>();
+            services.AddHttpContextAccessor();
             services.AddScoped<SubcategoryRepo>();
             services.AddScoped<CartRepo>();
             services.AddScoped<CategoryRepo>();
