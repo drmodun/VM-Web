@@ -5,6 +5,7 @@ using Contracts.Responses.User;
 using Domain.Mappers;
 using Domain.Repositories;
 using Email;
+using System;
 
 namespace Domain.Services
 {
@@ -36,6 +37,28 @@ namespace Domain.Services
             };
         }
 
+        public async Task<bool> ResetPassword(string code, string password, CancellationToken cancellationToken)
+        {
+            var action = await _userRepo.ResetPassword(code, password, cancellationToken);
+            return action;
+
+        }
+
+        public async Task<bool> SendResetEmail(string email, CancellationToken cancellationToken)
+        {
+            var user = await _userRepo.GetUserByEmail(email);
+            if (user == null) { return false; }
+            var emailModel = new ChangePasswordModel
+            {
+                Name = user.Name,
+                Link = "http://localhost:3000/reset?code=" + user.ActivationCode,
+            };
+            //TODO: remove the ption of email change possibly
+            var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.PasswordResetView, emailModel);
+            var emailSend = await EmailSender.SendEmail(email, "Password change", newEmail);
+            return user != null && emailSend && newEmail != null;
+        }
+
         public async Task<PutUserResponse> UpdateUser(PutUserRequest request, CancellationToken cancellationToken)
         {
             var user = UserMapper.ToUpdated(request);
@@ -49,7 +72,6 @@ namespace Domain.Services
         public async Task<ActivateUserResponse> ActivateUser(string code, CancellationToken cancellationToken)
         {
             var action = await _userRepo.ActivateUser(code, cancellationToken);
-            Console.WriteLine("Works?");
             return new ActivateUserResponse
             {
                 Success = action

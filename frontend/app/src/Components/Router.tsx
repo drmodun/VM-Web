@@ -43,6 +43,7 @@ import CartPage from "../Pages/Web/CartPage";
 import OrderPage from "../Pages/Web/OrderPage";
 import SearchPage from "../Pages/Web/SearchPage";
 import ActivationPage from "../Pages/Web/ActivationPage";
+import PasswordChangePage from "../Pages/Web/PasswordChangePage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -152,6 +153,7 @@ const router = createBrowserRouter(
         />
         <Route path="/search" element={<SearchPage/>}/>
         <Route path="/activate" element={<ActivationPage/>}></Route>
+        <Route path="/reset" element={<PasswordChangePage/>}></Route>
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">

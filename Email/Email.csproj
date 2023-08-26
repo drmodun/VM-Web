@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-	    <FrameworkReference  Include="Microsoft.AspNetCore.App" />
+	    <FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -22,6 +22,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\PasswordReset\" />
   </ItemGroup>
 
 </Project>

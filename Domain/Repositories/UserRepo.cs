@@ -1,4 +1,5 @@
-﻿using Contracts.Requests;
+﻿using Contracts.Helpers.Hash;
+using Contracts.Requests;
 using Contracts.Requests.User;
 using Data;
 using Data.Enums;
@@ -40,6 +41,15 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
+        public async Task<bool> ResetPassword(string code, string password, CancellationToken cancellationToken)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.ActivationCode == code, cancellationToken);
+            if (user == null || !user.IsEmailConfirmed) { return false; }
+            user.Password = HashHelper.Hash(password);
+            _context.Update(user);
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
+        }
+
         public async Task<bool> CreateAdminUser(User user, CancellationToken cancellationToken)
         {
             await _validator.ValidateAndThrowAsync(user, cancellationToken);
@@ -47,6 +57,7 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
 
         }
+
 
         public async Task<bool> UpdateUser(User user, CancellationToken cancellationToken)
         {

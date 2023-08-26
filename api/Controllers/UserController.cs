@@ -167,13 +167,26 @@ namespace api.Controllers
             return action.Success ? Ok(action) : NotFound(action);
         }
 
+
         [HttpGet(Routes.User.ActivateUser)]
         public async Task<ActionResult<ActivateUserResponse>> ActivateUser([FromRoute] string code, CancellationToken cancellationToken)
         {
             var action = await _userService.ActivateUser(code, cancellationToken);
             return action.Success ? Ok(action) : NotFound(action);
+        }
 
+        [HttpPost(Routes.User.ResetPasswordEmail)]
+        public async Task<ActionResult<bool>> ResetPasswordEmail([FromBody] string email, CancellationToken cancellationToken)
+        {
+            var action = await _userService.SendResetEmail(email, cancellationToken);
+            return action ? Ok(action) : NotFound(action);
+        }
 
+        [HttpPost(Routes.User.ResetPassword)]
+        public async Task<ActionResult<bool>> ResetPassword([FromRoute] string code, [FromBody] string password, CancellationToken cancellationToken)
+        {
+            var action = await _userService.ResetPassword(code, password, cancellationToken);
+            return action ? Ok(action) : NotFound(action);
         }
 
 

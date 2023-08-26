@@ -276,6 +276,26 @@ export const handleToken = async (token: Token) => {
   }
 };
 
+export const changePassword = async (code: string, password: string) => {
+  try {
+    const response = await api.post("/users/reset-password/" + code, password);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const forgotPassword = async (email: string) => {
+  try {
+    const response = await api.post("/users/reset-password/email", email);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 export const activateUser = async (code: string) => {
   try {
     console.log("/users/activate/" + code);

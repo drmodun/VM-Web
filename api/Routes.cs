@@ -26,6 +26,8 @@
             public const string Update = Base + $"/users";
             public const string GetAll = Base + $"/users";
             public const string ActivateUser = Base + $"/users/activate/{{code}}";
+            public const string ResetPasswordEmail = Base + $"/users/reset-password/email";
+            public const string ResetPassword = Base + $"/users/reset-password/{{code}}";
             public const string Create = Base + $"/users";
             public const string Login = Base + $"/users/Login";
             public const string GetMe = Base + $"/users/Me";

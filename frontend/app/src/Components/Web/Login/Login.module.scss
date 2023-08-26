@@ -63,7 +63,25 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+                min-height: 320px;
                 justify-content: center;
+                .Switch{
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: var(--black-h-1, #2c2c2c);
+                    font-family: Nuckle;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                    &:active {
+                        color: #2352e1;
+                        text-decoration: none;
+                    }
+
+                }
                 > div {
                     margin-bottom: 20px;
                     &:last-child {
@@ -90,6 +108,8 @@
                     letter-spacing: 0.09px;
                     padding: 12px 80px;
                     text-align: center;
+                    outline: none;
+                    border: none;
                     text-decoration: none;
                     text-transform: none;
                     &:hover {
