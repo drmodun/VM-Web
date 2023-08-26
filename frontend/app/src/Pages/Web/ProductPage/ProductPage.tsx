@@ -11,6 +11,7 @@ export const ProductPage = () => {
   const fetchProduct = async () => {
     const response = await getProduct(productId as string);
     if (response == null) return;
+    console.log(response);
     setProduct(response);
   };
 
@@ -19,9 +20,9 @@ export const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-      fetchProduct();
-      window.scrollTo(0, 0);
-    }, [productId]);
+    fetchProduct();
+    window.scrollTo(0, 0);
+  }, [productId]);
 
   return (
     <div className={classes.Container}>

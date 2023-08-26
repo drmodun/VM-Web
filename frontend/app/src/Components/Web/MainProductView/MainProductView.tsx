@@ -1,9 +1,14 @@
-import { Product } from "../../../Api/ProductApi";
+import {
+  Product,
+  addToFavourites,
+  removeFromFavourites,
+} from "../../../Api/ProductApi";
 import Placeholder from "../../../assets/placeholder.png";
 import { Link } from "react-router-dom";
 import classes from "./MainProductView.module.scss";
 import { useEffect, useState } from "react";
 import { addToCart } from "../../../Api/UserApi";
+import { accountInfo } from "../../../Api/Shared";
 
 interface Props {
   product: Product;
@@ -12,20 +17,27 @@ interface Props {
 //TODO: add image funcionality
 
 export const MainProductView = ({ product }: Props) => {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
-  // const [isInCart, setIsInCart] = useState(product.isInCart);
-  // const [isFavourite, setIsFavourite] = useState(product.isFavourite);
-  //make product view itself more modular and have isFavourites and isInCart as props
+  const [selectedQuantity, setSelectedQuantity] = useState(
+    product?.cartQuantity || 1
+  );
+  const [isFavourite, setIsFavourite] = useState(product?.isFavourite || false);
+
   useEffect(() => {
-    setSelectedQuantity(1);
+    setSelectedQuantity(product?.cartQuantity || 1);
+    setIsFavourite(product?.isFavourite || false);
   }, [product]);
 
   const toggleFavourite = async () => {
-    // if (accountInfo)
-    //   isFavourite
-    //     ? (await removeFromFavourites(product.id)) && removal && removal()
-    //     : await addToFavourites(product.id);
-    // setIsFavourite((prev) => !prev);
+    if (accountInfo) {
+      isFavourite
+        ? removeFromFavourites(product.id)
+        : addToFavourites(product.id);
+      isFavourite ? setIsFavourite(false) : setIsFavourite(true);
+      return;
+    }
+    alert(
+      "Morate biti prijavljeni da biste dodali proizvod u favorite, prijavite se ili registrirajte"
+    );
   };
 
   const cartAdd = async () => {
@@ -91,11 +103,23 @@ export const MainProductView = ({ product }: Props) => {
             </button>
           </div>
           <div className={classes.Buttons}>
-            <button className={classes.AddToCart} onClick={cartAdd}>
-              Dodaj u košaricu
+            <button
+              className={
+                product.cartQuantity > 0 ? classes.Update : classes.Active
+              }
+              onClick={cartAdd}
+            >
+              {
+                product.cartQuantity > 0 ? "Ažuriraj u košarici" : "Dodaj u košaricu"
+              }
             </button>
-            <button className={classes.AddToFavourites}>
-              Dodaj u favorite
+            <button
+              className={isFavourite ? classes.Inactive : classes.Active}
+              onClick={toggleFavourite}
+            >
+              {
+                isFavourite ? "Ukloni iz favorita" : "Dodaj u favorite"
+              }
             </button>
           </div>
         </div>

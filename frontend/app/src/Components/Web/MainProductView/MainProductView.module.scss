@@ -182,7 +182,74 @@
                     justify-content: space-between;
                     align-items: center;
                 }
-                > button {
+                > .Update {
+                    width: 14vw;
+                    min-width: 170px;
+                    height: 52px;
+                    text-decoration: none;
+                    color: #fff;
+                    display: flex;
+                    margin-right: 40px;
+                    font-size: 18px;
+                    padding: 15px 0px;
+                    border: none;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 8px;
+                    @media screen and (max-width: 768px) {
+                        width: 100%;
+                        height: 90px;
+                        font-size: 14px;
+                        margin-right: 20px;
+                        min-width: 0px;
+                    }
+                    &:last-child {
+                        margin-right: 0px;
+                    }
+                    background: var(--background-main-color, #75E093);
+                    &:hover {
+                        cursor: pointer;
+                        background: #20BF86;
+                    }
+                    //TOD: add removal on single product page
+                    &:active {
+                        background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                    }
+                }
+                > .Inactive {
+                    width: 14vw;
+                    min-width: 170px;
+                    height: 52px;
+                    text-decoration: none;
+                    color: #fff;
+                    display: flex;
+                    margin-right: 40px;
+                    font-size: 18px;
+                    padding: 15px 0px;
+                    border: none;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 8px;
+                    @media screen and (max-width: 768px) {
+                        width: 100%;
+                        height: 90px;
+                        font-size: 14px;
+                        margin-right: 20px;
+                        min-width: 0px;
+                    }
+                    &:last-child {
+                        margin-right: 0px;
+                    }
+                    background: var(--background-main-color, #d9d9d9);
+                    &:hover {
+                        cursor: pointer;
+                        background: #979797;
+                    }
+                    &:active {
+                        background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                    }
+                }
+                > .Active {
                     width: 14vw;
                     min-width: 170px;
                     height: 52px;

@@ -24,6 +24,8 @@ export interface Product {
   categoryName: string;
   subcategoryName: string;
   companyName: string;
+  cartQuantity: number;
+  isFavourite: boolean;
 }
 
 export interface SimilarProps {
@@ -106,7 +108,7 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (
-      (token && ["post", "put", "delete"].includes(config.method || "")) ||
+      (token && ["post", "put", "delete", "get"].includes(config.method || "")) ||
       (token && config.url?.includes("short")) ||
       (token && config.url?.includes("favourite"))
     ) {

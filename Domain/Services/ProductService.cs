@@ -47,12 +47,12 @@ namespace Domain.Services
             };
         }
 
-        public async Task<GetProductResponse?> GetProduct(Guid id, CancellationToken cancellationToken)
+        public async Task<GetProductResponse?> GetProduct(Guid id, CancellationToken cancellationToken, Guid? userId)
         {
             var product = await _productRepo.GetProduct(id, cancellationToken);
             if (product is null)
                 return null;
-            return ProductMapper.ToDTO(product);
+            return ProductMapper.ToDTO(product, userId);
         }
 
         public async Task<GetSimilarResponse> GetSimilar(GetSimilarProductsRequest request, CancellationToken cancellationToken)
@@ -82,7 +82,7 @@ namespace Domain.Services
             {
                 products = products.Skip(request.Pagination.PageSize * (request.Pagination.PageNumber - 1)).Take(request.Pagination.PageSize);
             }
-            var list = products.Select(x => ProductMapper.ToDTO(x)).ToList();
+            var list = products.Select(x => ProductMapper.ToDTO(x, null)).ToList();
             return new GetAllProductsResponse
             {
                 Items = list,

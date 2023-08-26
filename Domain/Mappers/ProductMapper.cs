@@ -1,12 +1,13 @@
 ﻿using Contracts.Requests.Product;
 using Contracts.Responses.Product;
 using Data.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Domain.Mappers
 {
     public class ProductMapper
     {
-        public static GetProductResponse ToDTO(Product product)
+        public static GetProductResponse ToDTO(Product product, Guid? userId = null)
         {
             return new GetProductResponse
             {
@@ -25,6 +26,13 @@ namespace Domain.Mappers
                 SubcategoryName = product.Subcategory.Name,
                 SubcategoryId = product.Subcategory.Id,
                 Image = product.Image,
+                IsFavourite = userId != null && product.Favourites.Any(x=>x.UserId == userId) ,
+                CartQuantity = userId != null ? 
+                product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId) != null 
+                ? product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId).Quantity 
+                : 0 
+                : 0
+                //TODO: fix this
             };
         }
         public static Product ToEntity(CreateProductRequest request)

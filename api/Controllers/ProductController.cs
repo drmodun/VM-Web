@@ -52,7 +52,8 @@ namespace api.Controllers
         [HttpGet(Routes.Product.Get)]
         public async Task<ActionResult<GetProductResponse>> GetProduct([FromRoute] Guid id, CancellationToken cancellationToken)
         {
-            var response = await _productService.GetProduct(id, cancellationToken);
+            var userId = HttpContext.GetUserId();
+            var response = await _productService.GetProduct(id, cancellationToken, userId);
             return response != null ? Ok(response) : NotFound("No product with the given paramaters was found");
         }
 

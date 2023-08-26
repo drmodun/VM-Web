@@ -20,6 +20,8 @@ namespace Contracts.Responses.Product
         public JsonDocument Attributes { get; set; }
         public JsonDocument SubAttributes { get; set; }
         public int Quantity { get; set; }
+        public int CartQuantity { get; set; }
+        public bool IsFavourite { get; set; }
         public decimal Price { get; set; }
     }
 }
