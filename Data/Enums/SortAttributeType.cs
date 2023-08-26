@@ -23,7 +23,6 @@
         SortByAmountOfOrders,
         SortByOrderProfit,
 
-        //TODO: Make sorting different, simpler and only one criteria, maybe two
 
     }
 }

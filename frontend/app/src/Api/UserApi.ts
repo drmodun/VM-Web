@@ -19,6 +19,7 @@ export interface User {
   email: string;
   lastUpdate: Date;
   phoneNumber: string;
+  isAdmin: boolean;
   address: string;
 }
 
@@ -26,7 +27,7 @@ export interface NewUser {
   id?: string;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   address: string;
   phoneNumber: string;
 }
@@ -55,7 +56,7 @@ export interface CartItem {
   total: number;
   quantity: number;
 }
-
+//TODO: add emails for order updates and stuff
 export interface Cart {
   items: CartItem[];
   totalPrice: number;
@@ -289,6 +290,16 @@ export const changePassword = async (code: string, password: string) => {
 export const forgotPassword = async (email: string) => {
   try {
     const response = await api.post("/users/reset-password/email", email);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const toggleAdmin = async (id: string) => {
+  try {
+    const response = await api.put("/admin/toggle/" + id);
     return response.data;
   } catch (error) {
     console.error(error);

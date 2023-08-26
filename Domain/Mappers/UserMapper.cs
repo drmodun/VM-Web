@@ -16,6 +16,7 @@ namespace Domain.Mappers
                 Email = user.Email,
                 LastUpdate = user.LastUpdated,
                 Name = user.Name,
+                IsAdmin = user.Claims.ContainsKey("admin"),
                 PhoneNumber = user.PhoneNumber
             };
         }
@@ -25,7 +26,6 @@ namespace Domain.Mappers
             {
                 Address = request.Address,
                 Email = request.Email,
-                Password = request.Password,
                 PhoneNumber = request.PhoneNumber,
                 Name = request.Name,
                 Role = "user",

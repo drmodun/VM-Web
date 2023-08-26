@@ -69,6 +69,12 @@ namespace Domain.Services
             };
         }
 
+        public async Task<bool> ToggleAdmin(Guid id, CancellationToken cancellationToken)
+        {
+            var action = await _userRepo.ToggleAdmin(id, cancellationToken);
+            return action;
+        }
+
         public async Task<ActivateUserResponse> ActivateUser(string code, CancellationToken cancellationToken)
         {
             var action = await _userRepo.ActivateUser(code, cancellationToken);

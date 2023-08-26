@@ -95,11 +95,20 @@ namespace api.Controllers
             var response = await _identityService.LoginUser(request);
             return response != null ? Ok(response) : BadRequest("Wrong password");
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.User.AdminCreate)]
         public async Task<ActionResult<CreateUserResponse>> AdminCreateUser([FromBody] CreateUserRequest request, CancellationToken cancellationToken)
         {
             var response = await _userService.CreateAdminUser(request, cancellationToken);
             return response.Success ? Ok(response) : BadRequest(response);
+        }
+
+        [Authorize(AuthConstants.AdminUserPolicyName)]
+        [HttpPut(Routes.User.AdminToggle)]
+        public async Task<ActionResult<bool>> AdminToggle([FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            var response = await _userService.ToggleAdmin(id, cancellationToken);
+            return response ? Ok(response) : BadRequest(response);
         }
 
         [Authorize(AuthConstants.TrustMemberPolicyName)]
@@ -157,7 +166,7 @@ namespace api.Controllers
             var response = await _cartService.UpdateConnection((Guid)id, productId, quantity, cancellationToken);
             return response ? Ok(response) : NotFound(response);
         }
-        [Authorize(AuthConstants.TrustMemberPolicyName)]
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPut(Routes.User.Edit)]
         public async Task<ActionResult<bool>> Edit([FromBody] UpdateUserInfoRequest request, CancellationToken cancellationToken)
         {

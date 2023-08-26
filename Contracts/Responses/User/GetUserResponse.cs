@@ -8,6 +8,8 @@
 
         public Guid Id { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         public DateTime LastUpdate { get; set; }
 
         public string? PhoneNumber { get; set; }

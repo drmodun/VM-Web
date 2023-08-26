@@ -33,6 +33,7 @@
             public const string GetMe = Base + $"/users/Me";
             public const string AdminDelete = Base + $"/admin/users/{{id:Guid}}";
             public const string AdminEdit = Base + $"/admin/users/{{id:Guid}}";
+            public const string AdminToggle = Base + $"/admin/toggle/{{id:Guid}}";
             public const string AdminCreate = Base + $"/admin/users/";
             public const string AddToCart = Base + $"/users/cart/{{productId:Guid}}";
             public const string RemoveCart = Base + $"/users/cart";

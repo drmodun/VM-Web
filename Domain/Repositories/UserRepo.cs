@@ -61,9 +61,27 @@ namespace Domain.Repositories
 
         public async Task<bool> UpdateUser(User user, CancellationToken cancellationToken)
         {
-            _context.Update(user);
+            var userToEdit = await _context.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
+            if (userToEdit == null) { return false; }
+            userToEdit.Name = user.Name;
+            userToEdit.Email = user.Email;
+            userToEdit.Address = user.Address;
+            userToEdit.PhoneNumber = user.PhoneNumber;
+            _context.Update(userToEdit);
             await _validator.ValidateAndThrowAsync(user, cancellationToken);
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> ToggleAdmin(Guid id, CancellationToken cancellationToken)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+            if (user == null) { return false; }
+            if (user.Claims.ContainsKey("admin"))
+                user.Claims.Remove("admin");
+            else
+                user.Claims.Add("admin", "true");
+            _context.Update(user);
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
         public async Task<bool> DeleteUser(Guid id, CancellationToken cancellationToken)
