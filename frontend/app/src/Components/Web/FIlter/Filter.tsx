@@ -63,12 +63,17 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
     setSubcategories(response?.items!);
   };
 
+  useEffect(() => {
+    companyGetter();
+  }, [category, subcategory]);
+
   const companyGetter = async () => {
     //TODO: add special wa to sort companies on backend
     const response = await getCompanies({
+      subcategoryId: subcategory ? subcategory : undefined,
+      categoryId: category ? category : undefined,
       "Sorting.Attribute": SortAttributeType.SortByName,
       "Sorting.SortType": SortType.Ascending,
-      categoryId: category ? category : undefined,
     });
     setCompanies(response?.items!);
   };
@@ -83,6 +88,16 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
     (categories && subcategories && companies && (
       <div className={classes.Container}>
         <div className={classes.Filter}>
+          <div className={classes.Name}>
+            <Input
+              label="Name"
+              name="name"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
           <div className={classes.Category}>
             <span>Category</span>
             <Dropdown
@@ -142,16 +157,6 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
                 onTopChange={(value) => setMaxPrice(value)}
               />
             </div>
-          </div>
-          <div className={classes.Name}>
-            <Input
-              label="Name"
-              name="name"
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
           </div>
           <button
             className={classes.Button}

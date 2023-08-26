@@ -57,6 +57,20 @@ export const Dropdown = ({ options, onSelect, cancel, closer }: Props) => {
         />
       </div>
       <div className={visible ? classes.Menu : classes.Hidden}>
+        {
+          <li
+            key=""
+            onClick={() => {
+              setSelected("");
+              setSearchTerm("");
+              setPlaceholder("Search");
+              onSelect("");
+              setVisible(false);
+            }}
+          >
+            
+          </li>
+        }
         {options
           .filter((option) =>
             option.label.toLowerCase().includes(searchTerm.toLowerCase())

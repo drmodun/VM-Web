@@ -75,38 +75,18 @@ export const Slider = ({
           value={topValue}
         />
       </div>
-      {/* <div className={classes.Range}>
-            <input
-                type="range"
-                min={minValue}
-                max={topValue}
-                value={bottomValue}
-                onChange={(event) => {
-                    setBottomValue(event.target.value);
-                    onChange(event.target.value);
-                }}
-            />
-            <input
-                type="range"
-                min={bottomValue}
-                max={maxValue}
-                value={topValue}
-                onChange={(event) => {
-                    setTopValue(event.target.value);
-                    onChange(event.target.value);
-                }}
-            /> */}
+      
       <div className={classes.Slider} ref={getWidth}>
         <div
           className={classes.SliderFill}
           style={{
             width: `${
-              ((topValue - bottomValue) / (maxValue - minValue)) * 160 + 40
+              ((topValue - bottomValue) / (maxValue - minValue)) * 240 + 40
             }px`,
             left: `${
-              ((bottomValue - minValue) / (maxValue - minValue)) * 160
+              ((bottomValue - minValue) / (maxValue - minValue)) * 240
             }px`,
-            right: `${((maxValue - topValue) / (maxValue - minValue)) * 160}px`,
+            right: `${((maxValue - topValue) / (maxValue - minValue)) * 240}px`,
           }}
         >
           <div

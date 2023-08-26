@@ -1,4 +1,4 @@
-.Container{
+.Container {
     width: 50vw;
     display: flex;
     flex-direction: column;
@@ -8,16 +8,16 @@
     @media screen and (max-width: 950px) {
         width: 100%;
     }
-    .Button{
+    .Button {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         width: 100%;
         margin-top: 20px;
-        .Save{
+        .Save {
             width: 100%;
-            height:60px;
+            height: 60px;
             border: none;
             border-radius: 10px;
             background-color: #0d63f3;
@@ -32,17 +32,44 @@
             @media screen and (max-width: 950px) {
                 font-size: 3.5vw;
             }
-            &:hover{
+            &:hover {
                 background-color: #fff;
                 color: #0d63f3;
                 border: 1px solid #0d63f3;
             }
-            &:active{
+            &:active {
                 background-color: #0d63f3;
                 color: #fff;
                 border: 1px solid #0d63f3;
             }
         }
-
+        .Delete {
+            width: 100%;
+            height: 60px;
+            border: none;
+            border-radius: 10px;
+            background-color: #cc453c;
+            color: #fff;
+            font-family: Nuckle;
+            font-size: 1vw;
+            font-style: normal;
+            font-weight: 591;
+            line-height: normal;
+            cursor: pointer;
+            outline: none;
+            @media screen and (max-width: 950px) {
+                font-size: 3.5vw;
+            }
+            &:hover {
+                background-color: #fff;
+                color: #0d63f3;
+                border: 1px solid #cc453c;
+            }
+            &:active {
+                background-color: #cc453c;
+                color: #fff;
+                border: 1px solid #cc453c;
+            }
+        }
     }
 }

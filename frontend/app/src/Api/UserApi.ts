@@ -139,7 +139,7 @@ export const updateUser = async (user: NewUser): Promise<boolean> => {
   }
 };
 
-export const deleteUser = async (id: string): Promise<boolean> => {
+export const deleteUserAdmin = async (id: string): Promise<boolean> => {
   try {
     const response = await api.delete(`/admin/users/${id}`);
     return response.data.success;
@@ -148,6 +148,17 @@ export const deleteUser = async (id: string): Promise<boolean> => {
     return false;
   }
 };
+
+export const deleteUser = async (): Promise<boolean> => {
+  try {
+    const response = await api.delete(`/users`);
+    return response.data.success;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 
 export const login = async (email: string, password: string) => {
   try {

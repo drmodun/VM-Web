@@ -36,9 +36,7 @@ export const UserPage = () => {
   const [sortType, setSortType] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
   const [criteria, setCriteria] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
   const [tab, setTab] = useState<Tabs>(Tabs.Info);
-  const [orderCriteria, setOrderCriteria] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
-  const [orderSortType, setOrderSortType] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
-
+  //TODO: add stuff for empty searches, empty lists and placeholdets
   const reload = async () => {
     const info = await getMe();
     if (!info) return;
@@ -56,35 +54,46 @@ export const UserPage = () => {
     reload();
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("loginTime");
+    window.location.href = "/";
+  };
+
   return user ? (
     <Elements stripe={stripePromise}>
       <div className={classes.Container}>
         <div className={classes.UserPage}>
           <div className={classes.User}>
-            <div className={classes.Info}>
-              <div className={classes.Image}>
-                <img src={userPic} alt={user?.name} />
-              </div>
-              <div className={classes.Name}>
-                <span>{user?.name}</span>
-              </div>
-              <div className={classes.Email}>
-                <span>{user?.email}</span>
-              </div>
-              <div className={classes.Stats}>
-                <div className={classes.Stat}>
-                  <span>Orders: </span>
-                  <span>{orders.length}</span>
+            <div className={classes.Column}>
+              <div className={classes.Info}>
+                <div className={classes.Image}>
+                  <img src={userPic} alt={user?.name} />
                 </div>
-                <div className={classes.Stat}>
-                  <span>Transactions: </span>
-                  <span>{transactions.length}</span>
+                <div className={classes.Name}>
+                  <span>{user?.name}</span>
                 </div>
-                <div className={classes.Stat}>
-                  <span>Total Spent: </span>
-                  <span>{spent}€</span>
+                <div className={classes.Email}>
+                  <span>{user?.email}</span>
+                </div>
+                <div className={classes.Stats}>
+                  <div className={classes.Stat}>
+                    <span>Orders: </span>
+                    <span>{orders.length}</span>
+                  </div>
+                  <div className={classes.Stat}>
+                    <span>Transactions: </span>
+                    <span>{transactions.length}</span>
+                  </div>
+                  <div className={classes.Stat}>
+                    <span>Total Spent: </span>
+                    <span>{spent}€</span>
+                  </div>
                 </div>
               </div>
+              <button className={classes.Logout} onClick={logout}>
+                Logout  
+              </button>
             </div>
             <div className={classes.Selection}>
               <div className={classes.Options}>

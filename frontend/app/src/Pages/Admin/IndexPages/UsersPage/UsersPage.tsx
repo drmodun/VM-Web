@@ -3,7 +3,7 @@ import classes from "../IndexPage.module.scss";
 import {
   GetAllProps,
   User,
-  deleteUser,
+  deleteUserAdmin,
   getUser,
   getUsers,
 } from "../../../../Api/UserApi";
@@ -66,7 +66,7 @@ export const UsersPage = () => {
   }, []);
 
   const handleDeleteUser = async (id: string) => {
-    const result = await deleteUser(id);
+    const result = await deleteUserAdmin(id);
     if (result) {
       setUsers(users.filter((user) => user.id !== id));
       setStatus("User deleted successfully");

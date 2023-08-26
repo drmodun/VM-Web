@@ -49,7 +49,10 @@ namespace Domain.Repositories
         public async Task<IQueryable<Company>> GetAllCompanies(GetAllCompaniesRequest request, CancellationToken cancellationToken)
         {
             var companies = _context.Companies
+                .Include(x=>x.Products)
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
+                .Where(x=> request.CategoryId == null || x.Products.Any(x=>x.CategoryId == request.CategoryId))
+                .Where(x => request.SubcategoryId == null || x.Products.Any(x => x.SubCategoryId == request.SubcategoryId))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 ;
             //sorting

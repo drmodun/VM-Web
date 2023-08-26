@@ -29,108 +29,151 @@
                 align-items: center;
                 justify-content: center;
             }
-            > .Info {
-                height: 35vw;
+            .Column {
                 display: flex;
-                min-height: 400px;
-                align-items: center;
-                width: 30vw;
-                position: relative;
-                top: -200px;
-                justify-content: space-around;
-                background-color: #fff;
-                border-radius: 20px;
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
                 flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
                 @media screen and (max-width: 950px) {
-                    width: 70%;
-                    height: 100%;
-                    top: 0px;
-                    margin-bottom: 70px;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    
                 }
-                .Image {
-                    width: 13vw;
-                    height: 13vw;
-                    min-width: 150px;
-                    min-height: 150px;
-                    border-radius: 10px;
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-                .Name {
-                    color: var(--text-main, #1e1e1e);
-                    font-family: Nuckle;
-                    font-size: 2vw;
-                    font-style: normal;
-                    font-weight: 591;
-                    line-height: normal;
-                    @media screen and (max-width: 950px) {
-                        font-size: 20px;
-                    }
-                }
-                .Email {
-                    color: var(--text-main, #1e1e1e);
+                > button {
+                    position: relative;
+                    top: -150px;
+                    border: none;
+                    outline: none;
+                    border-radius: 20px;
+                    width: 100%;
+                    height: 60px;
+                    background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
+                    color: #fff;
                     font-family: Nuckle;
                     font-size: 1.25vw;
                     font-style: normal;
                     font-weight: 591;
                     line-height: normal;
                     @media screen and (max-width: 950px) {
+                        position: relative;
+                        top: 0px;
+                        width: 70%;
+                        height: 40px;
+                        margin-bottom: 35px;
                         font-size: 16px;
                     }
+                    &:hover {
+                        cursor: pointer;
+                        background: var(--button-gradient-hover, linear-gradient(230deg, #1d5ef6 20%, #a34d4d 100%));
+                    }
+                    &:active {
+                        background: var(--button-gradient-active, linear-gradient(230deg, #9d5ef6 20%, #c94d4d 100%));
+                    }
                 }
-                .AddCard{
-                    display: none;
-                }
-                .Stats {
+                > .Info {
+                    height: 35vw;
                     display: flex;
-                    flex-direction: column;
+                    min-height: 400px;
                     align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    .Stat {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        justify-content: space-around;
-                        width: 100%;
-                        @media screen and (max-width: 950px) {
-                            padding: 0 20px;
+                    width: 30vw;
+                    position: relative;
+                    top: -200px;
+                    justify-content: space-around;
+                    background-color: #fff;
+                    border-radius: 20px;
+                    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+                    flex-direction: column;
+                    @media screen and (max-width: 950px) {
+                        width: 70%;
+                        height: 100%;
+                        top: 0px;
+                        margin-bottom: 30px;
+                    }
+                    .Image {
+                        width: 13vw;
+                        height: 13vw;
+                        min-width: 150px;
+                        min-height: 150px;
+                        border-radius: 10px;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                         }
-                        > span {
-                            width: 10vw;
+                    }
+                    .Name {
+                        color: var(--text-main, #1e1e1e);
+                        font-family: Nuckle;
+                        font-size: 2vw;
+                        font-style: normal;
+                        font-weight: 591;
+                        line-height: normal;
+                        @media screen and (max-width: 950px) {
+                            font-size: 20px;
+                        }
+                    }
+                    .Email {
+                        color: var(--text-main, #1e1e1e);
+                        font-family: Nuckle;
+                        font-size: 1.25vw;
+                        font-style: normal;
+                        font-weight: 591;
+                        line-height: normal;
+                        @media screen and (max-width: 950px) {
+                            font-size: 16px;
+                        }
+                    }
+                    .AddCard {
+                        display: none;
+                    }
+                    .Stats {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        .Stat {
                             display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: space-around;
+                            width: 100%;
                             @media screen and (max-width: 950px) {
-                                width: 100%;
+                                padding: 0 20px;
                             }
-                            &:last-child {
-                                color: var(--text-main, #1e1e1e);
-                                font-family: Nuckle;
-                                font-size: 1.25vw;
-                                font-style: normal;
-                                font-weight: 691;
-                                line-height: normal;
-                                margin-bottom: 10px;
+                            > span {
+                                width: 10vw;
                                 display: flex;
-                                text-align: right;
-                                justify-content: flex-end;
-                                align-items: center;
                                 @media screen and (max-width: 950px) {
-                                    font-size: 16px;
+                                    width: 100%;
                                 }
-                            }
-                            &:first-child {
-                                color: var(--text-main, #1e1e1e);
-                                font-family: Nuckle;
-                                font-size: 1.25vw;
-                                font-style: normal;
-                                font-weight: 391;
-                                line-height: normal;
-                                @media screen and (max-width: 950px) {
-                                    font-size: 16px;
+                                &:last-child {
+                                    color: var(--text-main, #1e1e1e);
+                                    font-family: Nuckle;
+                                    font-size: 1.25vw;
+                                    font-style: normal;
+                                    font-weight: 691;
+                                    line-height: normal;
+                                    margin-bottom: 10px;
+                                    display: flex;
+                                    text-align: right;
+                                    justify-content: flex-end;
+                                    align-items: center;
+                                    @media screen and (max-width: 950px) {
+                                        font-size: 16px;
+                                    }
+                                }
+                                &:first-child {
+                                    color: var(--text-main, #1e1e1e);
+                                    font-family: Nuckle;
+                                    font-size: 1.25vw;
+                                    font-style: normal;
+                                    font-weight: 391;
+                                    line-height: normal;
+                                    @media screen and (max-width: 950px) {
+                                        font-size: 16px;
+                                    }
                                 }
                             }
                         }
@@ -199,7 +242,7 @@
                         }
                     }
                     margin-bottom: 50px;
-                    .Active{
+                    .Active {
                         background-color: #fff;
                         color: #0d63f3;
                         border: 1px solid #0d63f3;
@@ -210,14 +253,14 @@
                     height: 100%;
                     width: 100%;
                     flex-direction: column;
-                    .SelectRow{
+                    .SelectRow {
                         width: 100%;
                         display: flex;
                         flex-direction: row;
                         justify-content: flex-end;
                         align-items: flex-end;
-                        >div{
-                            &:first-child{
+                        > div {
+                            &:first-child {
                                 margin-right: 20px;
                             }
                         }
@@ -225,7 +268,7 @@
                     .Transactions {
                         width: 100%;
                     }
-                    .Form{
+                    .Form {
                         width: 100%;
                         height: 100%;
                         border-radius: 10px;

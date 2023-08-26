@@ -44,7 +44,7 @@ export const Navigation = ({
           />
           <button
             className={classes.SearchButton}
-            //TODO: add search funcionality
+            //TODO: add elastic search
             onClick={() => navigate(`/search/?name=${search}`)}
           >
             <img src={Search} alt="search" />
