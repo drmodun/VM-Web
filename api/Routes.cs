@@ -25,7 +25,7 @@
             public const string Delete = Base + $"/users";
             public const string Update = Base + $"/users";
             public const string GetAll = Base + $"/users";
-            public const string ActivateUser = Base + $"/users/{{code:alpha}}";
+            public const string ActivateUser = Base + $"/users/activate/{{code}}";
             public const string Create = Base + $"/users";
             public const string Login = Base + $"/users/Login";
             public const string GetMe = Base + $"/users/Me";

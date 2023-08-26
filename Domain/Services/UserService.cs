@@ -49,6 +49,7 @@ namespace Domain.Services
         public async Task<ActivateUserResponse> ActivateUser(string code, CancellationToken cancellationToken)
         {
             var action = await _userRepo.ActivateUser(code, cancellationToken);
+            Console.WriteLine("Works?");
             return new ActivateUserResponse
             {
                 Success = action

@@ -36,6 +36,7 @@ namespace Domain.Repositories
             var user = await _context.Users.FirstOrDefaultAsync(x => x.ActivationCode == code, cancellationToken);
             if (user == null || user.IsEmailConfirmed) { return false; }
             user.IsEmailConfirmed = true;
+            _context.Update(user);
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 

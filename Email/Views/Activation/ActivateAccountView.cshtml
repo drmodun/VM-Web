@@ -44,10 +44,13 @@
             margin: 13px 0;
         }
 
-        body {
+        .Body {
             width: 100%;
             background-color: #F5F5F5;
             justify-content: center;
+            border-radius: 10px;
+            padding: 30px 5%;
+
         }
 
         .EmailBody {
@@ -160,7 +163,7 @@
     </style>
 </head>
 <main>
-    <body>
+    <body class="Body">
         <div class="EmailBody">
             <span class="Title">
                 Dobar dan @Model.Name,
@@ -171,7 +174,7 @@
                 Šaljemo ti ovaj mail da potvrdiš prijavu računa na VM-računala, klikni na link ispod da potvrdiš svoj račun.
             </span>
             <span class="Warning">
-                Ako se nisi pokušao prijaviti se na VM-računala, zanemari ovaj mail.
+                Ako se nisi  pokušao prijaviti se na VM-računala, zanemari ovaj mail.
             </span>
             <div class="Divider">
             </div>

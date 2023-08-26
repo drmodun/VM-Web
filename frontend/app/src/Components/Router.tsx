@@ -42,6 +42,7 @@ import WebCategoriesPage from "../Pages/Web/CategoriesPage";
 import CartPage from "../Pages/Web/CartPage";
 import OrderPage from "../Pages/Web/OrderPage";
 import SearchPage from "../Pages/Web/SearchPage";
+import ActivationPage from "../Pages/Web/ActivationPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -113,6 +114,7 @@ const router = createBrowserRouter(
                 ></Route>
               </Route>
 
+
               <Route path="/admin/services">
                 <Route index element={<ServicesPage />}></Route>
                 <Route path=":serviceId" element={<ServicePage />}></Route>
@@ -120,8 +122,8 @@ const router = createBrowserRouter(
             </>
           ) : (
             <Route path="*" element={<AdminLoginPage />} />
-          )
-        }
+            )
+          }
         <Route path="*" element={<ProductPage />} />
       </Route>
       <Route element={<Layout />}>
@@ -149,6 +151,7 @@ const router = createBrowserRouter(
           element={accountInfo ? <WebUserPage /> : <LoginPage />}
         />
         <Route path="/search" element={<SearchPage/>}/>
+        <Route path="/activate" element={<ActivationPage/>}></Route>
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">

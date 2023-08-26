@@ -275,3 +275,14 @@ export const handleToken = async (token: Token) => {
     return false;
   }
 };
+
+export const activateUser = async (code: string) => {
+  try {
+    console.log("/users/activate/" + code);
+    const response = await api.get("/users/activate/" + code);
+    return response.data.success;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

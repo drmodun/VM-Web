@@ -168,10 +168,11 @@ namespace api.Controllers
         }
 
         [HttpGet(Routes.User.ActivateUser)]
-        public async Task<ActivateUserResponse> ActivateUser([FromRoute] string code, CancellationToken cancellationToken)
+        public async Task<ActionResult<ActivateUserResponse>> ActivateUser([FromRoute] string code, CancellationToken cancellationToken)
         {
             var action = await _userService.ActivateUser(code, cancellationToken);
-            return action;
+            return action.Success ? Ok(action) : NotFound(action);
+
 
         }
 

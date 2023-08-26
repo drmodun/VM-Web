@@ -1,0 +1,84 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    padding: 11vw 70px;
+    background-color: #ecf4ff;
+    .ActivationPage {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        .Title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-family: Nuckle;
+            text-align: center;
+            @media (max-width: 768px) {
+                font-size: 2.25rem;
+            }
+        }
+        .Button {
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 3vw;
+            font-weight: 700;
+            padding: 10px 0px;
+            border-radius: 10px;
+            font-family: Nuckle;
+            outline: none;
+            border: none;
+            background-color: #0d63f3;
+            color: white;
+            cursor: pointer;
+            @media (max-width: 768px) {
+                font-size: 2rem;
+                width: 100%;
+            }
+            &:hover {
+                background-color: #0a13f0;
+            }
+            &:active {
+                background-color: #9d63f3;
+            }
+        }
+        .Success {
+            width: 40vw;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #75e093;
+            border: 2px #75e093 solid;
+            background-color: #fff;
+            @media (max-width: 768px) {
+                width: 80vw;
+            }
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            font-family: Nuckle;
+            text-align: center;
+            @media (max-width: 768px) {
+                font-size: 1.5rem;
+            }
+            .Link {
+                font-size: 2rem;
+                font-weight: 700;
+                text-decoration: none;
+                margin-top: 20px;
+                font-family: Nuckle;
+                text-align: center;
+                @media (max-width: 768px) {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+}
