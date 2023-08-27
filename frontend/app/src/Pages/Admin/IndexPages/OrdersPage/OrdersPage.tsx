@@ -15,6 +15,14 @@ import { getCategories } from "../../../../Api/CategoryApi";
 import { Category } from "../../../../Types/Interfaces";
 //implement filter and sorting TODO
 //TODO: test and fix this page
+const orderTypeDict: { [key: string]: string } = {
+  0: "Pending",
+  1: "Accepted",
+  2: "Rejected",
+  3: "In progress",
+  4: "Completed",
+  5: "Failed",
+};
 export const OrdersPage = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -58,7 +66,6 @@ export const OrdersPage = () => {
     }
   };
 
-
   useEffect(() => {
     orderGetter();
   }, []);
@@ -83,18 +90,22 @@ export const OrdersPage = () => {
         <ItemTable
           items={orders.map((order) => {
             return {
-                id: order.id,
-                Service: order.serviceName,
-                User: order.userName,
-                Type: order.statusType,
-                Deadline : order.deadline ? `${order.deadline?.getDate()}/${order.deadline?.getMonth()+1}/${order.deadline?.getFullYear()}` : "No deadline",
+              id: order.id,
+              Service: order.serviceName,
+              User: order.userName,
+              Type: orderTypeDict[order.statusType],
+              Deadline: order.deadline
+                ? `${order.deadline?.getDate()}/${
+                    order.deadline?.getMonth() + 1
+                  }/${order.deadline?.getFullYear()}`
+                : "No deadline",
             };
           })}
           links={[
-            { name: "Service", link: "productId", type: "products"},
-            { name: "User", link: "userId", type: "users"},
+            { name: "Service", link: "serviceId", type: "services" },
+            { name: "User", link: "userId", type: "users" },
           ]}
-          important={["Product", "User", "Type", "Deadline"]}
+          important={["Service", "User", "Type", "Deadline"]}
           deleteItem={handleDeleteOrder} //TODO
           type="orders"
         />
@@ -113,14 +124,14 @@ export const OrdersPage = () => {
       </div>
       <div className={classes.PageActions}>
         <div className={classes.OrderPageSearch}>
-          <Search.OrderSearch search={orderSearch}/>
+          <Search.OrderSearch search={orderSearch} />
         </div>
         <div className={classes.OrderPageCreate}>
           <h2>Create Order</h2>
-          {//TODO: add create form
+          {
+            //TODO: add create form
           }
           <span>Only users can make orders</span>
-          
         </div>
       </div>
     </div>

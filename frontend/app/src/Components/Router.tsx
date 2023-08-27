@@ -44,6 +44,8 @@ import OrderPage from "../Pages/Web/OrderPage";
 import SearchPage from "../Pages/Web/SearchPage";
 import ActivationPage from "../Pages/Web/ActivationPage";
 import PasswordChangePage from "../Pages/Web/PasswordChangePage";
+import { OrdersPage } from "../Pages/Admin/IndexPages/OrdersPage/OrdersPage";
+import { OrderPageAdmin } from "../Pages/Admin/SingleItemPages/OrderPage/OrderPage";
 const placeholders = () => {
   return <div></div>;
 };
@@ -95,8 +97,8 @@ const router = createBrowserRouter(
               </Route>
 
               <Route path="/admin/orders">
-                <Route index element={<ProductsPage />}></Route>
-                <Route path=":orderId" element={<ProductPage />}></Route>
+                <Route index element={<OrdersPage />}></Route>
+                <Route path=":orderId" element={<OrderPageAdmin />}></Route>
               </Route>
 
               <Route path="/admin/transactions">
@@ -115,7 +117,6 @@ const router = createBrowserRouter(
                 ></Route>
               </Route>
 
-
               <Route path="/admin/services">
                 <Route index element={<ServicesPage />}></Route>
                 <Route path=":serviceId" element={<ServicePage />}></Route>
@@ -123,8 +124,8 @@ const router = createBrowserRouter(
             </>
           ) : (
             <Route path="*" element={<AdminLoginPage />} />
-            )
-          }
+          )
+        }
         <Route path="*" element={<ProductPage />} />
       </Route>
       <Route element={<Layout />}>
@@ -137,7 +138,7 @@ const router = createBrowserRouter(
           <Route path=":serviceId" element={<OrderPage />} />
         </Route>
         <Route path="/categories">
-          <Route index element={<WebCategoriesPage/>}></Route>
+          <Route index element={<WebCategoriesPage />}></Route>
           <Route path=":categoryId" element={<WebCategoryPage />}></Route>
         </Route>
         <Route path="/products">
@@ -151,9 +152,9 @@ const router = createBrowserRouter(
           path="/user"
           element={accountInfo ? <WebUserPage /> : <LoginPage />}
         />
-        <Route path="/search" element={<SearchPage/>}/>
-        <Route path="/activate" element={<ActivationPage/>}></Route>
-        <Route path="/reset" element={<PasswordChangePage/>}></Route>
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/activate" element={<ActivationPage />}></Route>
+        <Route path="/reset" element={<PasswordChangePage />}></Route>
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">

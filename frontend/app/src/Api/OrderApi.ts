@@ -36,6 +36,12 @@ export interface UpdateOrder {
   userId: string;
 }
 
+export interface UpdateOrderInfo{
+  id: string;
+  statusType: StatusType;
+  deadline?: Date;
+}
+
 export interface GetAllProps {
   "Pagination.PageNumber"?: number;
   "Pagination.PageSize"?: number;
@@ -61,7 +67,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-    if (token && ["post", "put", "delete"].includes(config.method || "")) {
+    if (token && ["post", "put", "delete", "get"].includes(config.method || "")) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -124,3 +130,14 @@ export const deleteOrder = async (id: string): Promise<boolean> => {
     return false;
   }
 };
+
+export const updateOrderInfo = async (order: UpdateOrderInfo): Promise<boolean> => {
+  try {
+    const response = await api.put(`/orders/${order.id!}/info`, order);
+    const result = response.data as ActionResult;
+    return result.success as boolean;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}

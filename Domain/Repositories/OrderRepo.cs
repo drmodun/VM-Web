@@ -6,6 +6,7 @@ using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Domain.Repositories
 {
@@ -57,7 +58,10 @@ namespace Domain.Repositories
                 .Include(x => x.Service)
                 .Where(x => request.ServiceId == null || request.ServiceId == x.ServiceId)
                 .Where(x => request.UserId == null || request.UserId == x.UserId)
-                .Where(x => request.Type == null || request.Type == x.Service.ServiceType)
+                .Where(x=>request.UserName == null || x.User.Name.Contains(request.UserName))
+                .Where(x=>request.ServiceName == null || x.Service.Name.Contains(request.ServiceName))
+                .Where(x=> request.Status == null || request.Status==x.Status)
+                .Where(x => request.ServiceType == null || request.ServiceType == x.Service.ServiceType)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Service.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Service.Price)
 ;
@@ -81,9 +85,9 @@ namespace Domain.Repositories
 
                     case SortAttributeType.SortByType:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            orders = orders.OrderBy(x => x.Service.ServiceType);
+                            orders = orders.OrderBy(x=>x.Status);
                         else
-                            orders = orders.OrderByDescending(x => x.Service.ServiceType);
+                            orders = orders.OrderByDescending(x => x.Status);
                         break;
                     case SortAttributeType.SortByUpdated:
                         if (request.Sorting.SortType == SortType.Ascending)

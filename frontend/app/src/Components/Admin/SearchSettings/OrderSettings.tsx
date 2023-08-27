@@ -2,7 +2,7 @@ import { useState } from "react";
 import classes from "./Settings.module.scss";
 import Inputs from "../FormElements";
 import { GetAllProps } from "../../../Api/OrderApi";
-import { SortAttributeType, SortType, StatusType } from "../../../Types/Enums";
+import { ServiceType, SortAttributeType, SortType, StatusType } from "../../../Types/Enums";
 import { Category } from "../../../Types/Interfaces";
 import { Product } from "../../../Api/ProductApi";
 import { User } from "../../../Api/UserApi";
@@ -12,9 +12,10 @@ interface Props {
 }
 
 export const OrderSearch = ({ search }: Props) => {
-    const [serviceName, setServiceName] = useState<string>("");
-    const [userName, setUserName] = useState<string>("");
-    const [type, setType] = useState<number>(-1);
+  const [serviceName, setServiceName] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
+  const [type, setType] = useState<number>(-1);
+  const [serviceType, setServiceType] = useState<number>(-1);
   const [sortBy, setSortBy] = useState<number>(-1);
   const [sortType, setSortType] = useState<number>(-1);
   const [page, setPage] = useState<number>(1);
@@ -22,13 +23,14 @@ export const OrderSearch = ({ search }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (page < 0 || limit < 0 ) {
+    if (page < 0 || limit < 0) {
       return;
     }
     search({
-        serviceName,
-        userName,
-        servicetype : type !== -1 ? type : undefined,
+      serviceName,
+      userName,
+      serviceType: serviceType !== -1 ? serviceType : undefined,
+      status: type !== -1 ? type : undefined,
       "Sorting.Attribute":
         sortBy !== -1 && sortType !== -1 ? sortBy : undefined,
       "Sorting.SortType":
@@ -40,15 +42,15 @@ export const OrderSearch = ({ search }: Props) => {
 
   return (
     <div className={classes.FormContainer}>
-      <h1>Search Categories</h1>
+      <h1>Search orders</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
-          label="Product"
-          name="product"
+          label="Service"
+          name="service"
           value={serviceName}
           onChange={(e) => setServiceName(e.target.value)}
         />
-       <Inputs.TextInput
+        <Inputs.TextInput
           label="User"
           name="user"
           value={userName}
@@ -56,21 +58,33 @@ export const OrderSearch = ({ search }: Props) => {
         />
 
         <Inputs.SelectInput
-            label="Type"
-            name="type"
-            value={type}
-            options={[
-                { value: -1, label: "None" },
-                { value: StatusType.Accepted, label: "Accepted" },
-                { value: StatusType.Pending, label: "Pending" },
-                { value: StatusType.Failed, label: "Failed" },
-                { value: StatusType.InProgress, label: "In Progress" },
-                { value: StatusType.Completed, label: "Completed" },
-            ]}
-            onChange={(e) => setType(Number(e.target.value))}
+          label="Type"
+          name="type"
+          value={type}
+          options={[
+            { value: -1, label: "None" },
+            { value: StatusType.Accepted, label: "Accepted" },
+            { value: StatusType.Pending, label: "Pending" },
+            { value: StatusType.Failed, label: "Failed" },
+            { value: StatusType.InProgress, label: "In Progress" },
+            { value: StatusType.Completed, label: "Completed" },
+          ]}
+          onChange={(e) => setType(Number(e.target.value))}
         />
 
-       
+        <Inputs.SelectInput
+          label="Service Type"
+          name="service type"
+          value={serviceType}
+          options={[
+            { value: -1, label: "None" },
+            { value: ServiceType.Network, label: "Network" },
+            { value: ServiceType.Computer, label: "Computer" },
+            { value: ServiceType.Device, label: "Device" },
+            { value: ServiceType.Other, label: "Other" },
+          ]}
+          onChange={(e) => setType(Number(e.target.value))}
+        />
 
         <Inputs.SelectInput
           label="Sort By"
@@ -83,6 +97,7 @@ export const OrderSearch = ({ search }: Props) => {
               value: SortAttributeType.SortByCategoryName,
               label: "Category Name",
             },
+            { value: SortAttributeType.SortByType, label: "Type" },
           ]}
           onChange={(e) => setSortBy(Number(e.target.value))}
         />

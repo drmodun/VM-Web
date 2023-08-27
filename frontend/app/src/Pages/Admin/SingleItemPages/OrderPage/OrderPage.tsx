@@ -6,13 +6,15 @@ import Forms from "../../../../Components/Admin/Forms";
 import classes from "../SingleItemPage.module.scss";
 //TODO: later add types
 const orderTypeDict: { [key: string]: string } = {
-  0: "Cash",
-  1: "Credit Card",
-  2: "Debit Card",
-  3: "Paypal",
+  0: "Pending",
+  1: "Accepted",
+  2: "Rejected",
+  3: "In progress",
+  4: "Completed",
+  5: "Failed",
 };
 
-export const OrderPage = () => {
+export const OrderPageAdmin = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState<Order | null>(null);
 
@@ -41,9 +43,11 @@ export const OrderPage = () => {
                 Id: order.id,
                 Service: order.serviceName,
                 User: order.userName,
-                Deadline: order.deadline ? `${order.deadline.getDate()}/${
-                    order.deadline.getMonth() + 1
-                }/${order.deadline.getFullYear()}` : "No deadline",
+                Deadline: order.deadline
+                  ? `${order.deadline.getDate()}/${
+                      order.deadline.getMonth() + 1
+                    }/${order.deadline.getFullYear()}`
+                  : "No deadline",
                 Type: orderTypeDict[order.statusType],
               }}
               links={[

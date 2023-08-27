@@ -7,7 +7,7 @@ import Placeholder from "../../../assets/placeholder.png";
 import { Link } from "react-router-dom";
 import classes from "./MainProductView.module.scss";
 import { useEffect, useState } from "react";
-import { addToCart } from "../../../Api/UserApi";
+import { addToCart, updateCart } from "../../../Api/UserApi";
 import { accountInfo } from "../../../Api/Shared";
 
 interface Props {
@@ -20,6 +20,7 @@ export const MainProductView = ({ product }: Props) => {
   const [selectedQuantity, setSelectedQuantity] = useState(
     product?.cartQuantity || 1
   );
+  const [isInCart, setIsInCart] = useState(product?.cartQuantity > 0 || false);
   const [isFavourite, setIsFavourite] = useState(product?.isFavourite || false);
 
   useEffect(() => {
@@ -41,8 +42,10 @@ export const MainProductView = ({ product }: Props) => {
   };
 
   const cartAdd = async () => {
-    const action = await addToCart(product.id, selectedQuantity);
+    const action = isInCart ? await updateCart(product.id, selectedQuantity) :
+    await addToCart(product.id, selectedQuantity);
     if (!action) return;
+    setIsInCart(true);
   };
 
   return (
@@ -104,22 +107,16 @@ export const MainProductView = ({ product }: Props) => {
           </div>
           <div className={classes.Buttons}>
             <button
-              className={
-                product.cartQuantity > 0 ? classes.Update : classes.Active
-              }
+              className={isInCart ? classes.Update : classes.Active}
               onClick={cartAdd}
             >
-              {
-                product.cartQuantity > 0 ? "Ažuriraj u košarici" : "Dodaj u košaricu"
-              }
+              {isInCart ? "Ažuriraj u košarici" : "Dodaj u košaricu"}
             </button>
             <button
               className={isFavourite ? classes.Inactive : classes.Active}
               onClick={toggleFavourite}
             >
-              {
-                isFavourite ? "Ukloni iz favorita" : "Dodaj u favorite"
-              }
+              {isFavourite ? "Ukloni iz favorita" : "Dodaj u favorite"}
             </button>
           </div>
         </div>
