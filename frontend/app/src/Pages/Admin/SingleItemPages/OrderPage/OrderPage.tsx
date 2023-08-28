@@ -23,15 +23,17 @@ export const OrderPageAdmin = () => {
     if (tryOrder) {
       setOrder(tryOrder);
     }
+    console.log(tryOrder);
   };
   useEffect(() => {
     tryGetOrder();
+    console.log(order);
 
     // fetch order data
     //TODO: add keys later
     //add edit functionality later
   }, []);
-
+  
   return (
     <div className={classes.Container}>
       <div className={classes.SingleItemPage}>
@@ -44,25 +46,28 @@ export const OrderPageAdmin = () => {
                 Service: order.serviceName,
                 User: order.userName,
                 Deadline: order.deadline
-                  ? `${order.deadline.getDate()}/${
-                      order.deadline.getMonth() + 1
-                    }/${order.deadline.getFullYear()}`
+                  ? `${new Date(order.deadline).getDate()}/${
+                    new Date(order.deadline).getMonth() + 1
+                  }/${new Date(order.deadline).getFullYear()}`
                   : "No deadline",
-                Type: orderTypeDict[order.statusType],
-              }}
-              links={[
-                {
-                  name: "Product",
-                  link: `/admin/product/${order.serviceId}`,
-                },
-                { name: "User", link: `/admin/user/${order.userId}` },
-              ]}
-            />
+                  Type: orderTypeDict[order.statusType],
+                }}
+                links={[
+                  {
+                    name: "Service",
+                    link: `/admin/services/${order.serviceId}`,
+                  },
+                  { name: "User", link: `/admin/user/${order.userId}` },
+                ]}
+                />
           </div>
         )}
         <div className={classes.EditAndDelete}>
-          <span>Edit and delete</span>
-          <span>You cannot edit user orders</span>
+          {order && <Forms.ChangeOrderForm
+            isEdit={true}
+            item={order!}
+            reload={tryGetOrder}
+          />}
           <button className={classes.DeleteButton}>Delete</button>
         </div>
       </div>

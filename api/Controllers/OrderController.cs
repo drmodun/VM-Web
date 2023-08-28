@@ -5,6 +5,7 @@ using Contracts.Responses.Order;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace api.Controllers
 {
@@ -71,9 +72,15 @@ namespace api.Controllers
             var response = await _orderService.GetAllOrders(request, cancellationToken);
             return Ok(response);
         }
+        [Authorize(AuthConstants.AdminUserClaimName)]
+        [HttpPut(Routes.Order.UpdateInfo)]
+        public async Task<ActionResult<PutOrderResponse>> UpdateOrderInfo([FromRoute] Guid id, [FromBody] UpdateOrderInfoRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _orderService.UpdateOrderInfo(id, request, cancellationToken);
+            return response.Success ? Ok(response) : NotFound(response);
+        }
 
         //later add specific responses for other views
-
 
 
 

@@ -1,18 +1,46 @@
-﻿using Contracts.Requests.Order;
+﻿using Contracts.Email;
+using Contracts.Requests.Order;
 using Contracts.Responses;
 using Contracts.Responses.Order;
+using Data.Enums;
+using Data.Models;
 using Domain.Mappers;
 using Domain.Repositories;
+using Email;
 
 namespace Domain.Services
 {
     public class OrderService
     {
         private readonly OrderRepo _orderRepo;
+        private readonly RazorViewToStringRenderer _viewToStringRenderer;
 
-        public OrderService(OrderRepo orderRepo)
+        public Dictionary<StatusType, string> StatusDictionary { get; set; } = new Dictionary<StatusType, string>() {
+            {
+                StatusType.InProgress, "In progress"
+            },
+            {
+                StatusType.Pending, "Pending"
+            },
+            {
+                StatusType.Accepted, "Accepted"
+            },
+            {
+                StatusType.Failed, "Failed"
+            },
+            {
+                StatusType.Rejected, "Rejected"
+            },
+            {
+                StatusType.Completed, "Completed"
+            },
+        };
+
+        public OrderService(OrderRepo orderRepo, RazorViewToStringRenderer razorViewToStringRenderer)
         {
             _orderRepo = orderRepo;
+            _viewToStringRenderer = razorViewToStringRenderer;
+
         }
 
         public async Task<CreateOrderResponse> CreateOrder(CreateOrderRequest request, CancellationToken cancellationToken)
@@ -50,6 +78,32 @@ namespace Domain.Services
             if (order is null)
                 return null;
             return OrderMapper.ToDTO(order);
+        }
+
+        public async Task<PutOrderResponse> UpdateOrderInfo(Guid id, UpdateOrderInfoRequest request, CancellationToken cancellationToken)
+        {
+            var order = await _orderRepo.UpdateAndGetOrder(id, request, cancellationToken);
+            if (order == null)
+            {
+                return new PutOrderResponse { Success = false };
+            }
+            var model = new OrderUpdateModel
+            {
+                ServiceName = order.Service.Name,
+                Note = request.Note,
+                UserName = order.User.Name,
+                Status = StatusDictionary[request.Status],
+                Link = "http://localhost:3000/user"
+            };
+            var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.OrderUpdateView, model);
+            var emailSend = await EmailSender.SendEmail(order.Email, "Order update", newEmail);
+            return new PutOrderResponse
+            {
+                Success =
+                order != null && emailSend && newEmail != null
+            };
+
+
         }
 
         public async Task<GetAllOrdersResponse> GetAllOrders(GetAllOrdersRequest request, CancellationToken cancellationToken)

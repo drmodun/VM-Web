@@ -9,6 +9,16 @@
   margin-top: 10px;
 }
 
+.DateSpan{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .ProductForm > form {
   display: flex;
   width: 700px;

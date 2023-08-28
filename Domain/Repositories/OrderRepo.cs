@@ -43,6 +43,26 @@ namespace Domain.Repositories
             return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
 
+        public async Task<Order?> UpdateAndGetOrder(Guid id, UpdateOrderInfoRequest request, CancellationToken cancellationToken)
+        {
+            var order = await _context.Orders
+                .Include(x=>x.Service)
+                .Include(x=>x.User)
+                .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            if (order == null) { return null; };
+            order.Status = request.Status;
+            Console.WriteLine(order.Status.ToString());
+            if (request.Deadline != null)
+            {
+                order.Deadline = request.Deadline;
+            }
+            _context.Update(order);
+            var action = await _context.SaveChangesAsync(cancellationToken) > 0;
+            if (!action)
+                return null;
+            return order;
+        }
+
         public async Task<Order?> GetOrder(Guid id, CancellationToken cancellationToken)
         {
             return await _context.Orders

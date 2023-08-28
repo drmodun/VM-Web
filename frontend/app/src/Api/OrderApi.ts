@@ -37,9 +37,9 @@ export interface UpdateOrder {
 }
 
 export interface UpdateOrderInfo{
-  id: string;
-  statusType: StatusType;
+  status: StatusType;
   deadline?: Date;
+  note?: string;
 }
 
 export interface GetAllProps {
@@ -131,9 +131,9 @@ export const deleteOrder = async (id: string): Promise<boolean> => {
   }
 };
 
-export const updateOrderInfo = async (order: UpdateOrderInfo): Promise<boolean> => {
+export const updateOrderInfo = async (id: string, order: UpdateOrderInfo): Promise<boolean> => {
   try {
-    const response = await api.put(`/orders/${order.id!}/info`, order);
+    const response = await api.put(`/orders/info/${id!}`, order);
     const result = response.data as ActionResult;
     return result.success as boolean;
   } catch (error) {

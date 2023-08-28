@@ -95,9 +95,9 @@ export const OrdersPage = () => {
               User: order.userName,
               Type: orderTypeDict[order.statusType],
               Deadline: order.deadline
-                ? `${order.deadline?.getDate()}/${
-                    order.deadline?.getMonth() + 1
-                  }/${order.deadline?.getFullYear()}`
+                ? `${new Date(order.deadline).getDate()}/${
+                  new Date(order.deadline).getMonth() + 1
+                  }/${new Date(order.deadline).getFullYear()}`
                 : "No deadline",
             };
           })}

@@ -10,6 +10,7 @@ import {
 import { Indexable } from "../../../Types/Interfaces";
 import { Order, UpdateOrderInfo, updateOrderInfo } from "../../../Api/OrderApi";
 import { StatusType } from "../../../Types/Enums";
+import Input from "../../Web/Input";
 
 interface Props {
   isEdit?: boolean;
@@ -17,11 +18,15 @@ interface Props {
   reload: Function;
 }
 
-export const CategoryForm = ({ isEdit, item, reload }: Props) => {
+export const ChangeOrderForm = ({ isEdit, item, reload }: Props) => {
   const [type, setType] = useState<StatusType>(item!.statusType);
+  const [note, setNote] = useState<string>("");
   const [deadline, setDeadline] = useState<Date | undefined>(
-    isEdit ? item!.deadline : new Date()
+    item!.deadline != null
+      ? new Date(new Date(item?.deadline!).toString().substring(0, 10))
+      : undefined
   );
+  //TODO: add info about dates
   const [status, setStatus] = useState<string>("");
 
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,21 +34,23 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
 
     setStatus("Loading...");
     const newOrder: UpdateOrderInfo = {
-      id: item!.id,
-      statusType: type,
+      status: type,
       deadline,
+      note,
     };
 
-    const response = await updateOrderInfo(newOrder);
+    const response = await updateOrderInfo(item?.id!, newOrder);
     response
       ? setStatus("Action performed successfully")
       : setStatus("Something went wrong");
+    response && alert("Email attempted");
+    response && reload();
   };
   //gotta fix the resizing problem
 
   return (
     <div className={classes.Form}>
-      <h1>{isEdit ? "Edit" : "Create"} Category</h1>
+      <h1>Update order</h1>
       <form onSubmit={handleSumbit}>
         <Inputs.SelectInput
           label="Status"
@@ -57,8 +64,28 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
             { value: Number(StatusType.Failed), label: "Failed" },
             { value: Number(StatusType.Rejected), label: "Rejected" },
             { value: Number(StatusType.Accepted), label: "Accepted" },
-          ]}/>
-        <button type="submit">{isEdit ? "Edit" : "Create"} Category</button>
+          ]}
+        />
+        <Inputs.LargeTextInput
+          label="Note"
+          name="note"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+        />
+        <span className={classes.DateSpan}>Update deadline</span>
+        <input
+          type="date"
+          name="deadline"
+          value={String(deadline)}
+          onChange={(e) => setDeadline(new Date(e.target.value))}
+        />
+        {deadline && (
+          <span className={classes.DateSpan}>
+            Current deadline: {deadline!.toISOString()
+            .toString().substring(0, 10)}
+          </span>
+        )}{" "}
+        <button type="submit">{"Send email and update"} Order</button>
       </form>
       <div className={classes.Status}>{status}</div>
     </div>

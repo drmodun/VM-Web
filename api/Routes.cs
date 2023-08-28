@@ -62,6 +62,7 @@
             public const string Update = Base + $"/orders/{{id:Guid}}";
             public const string GetAll = Base + $"/orders";
             public const string Create = Base + $"/orders";
+            public const string UpdateInfo = Base + $"/orders/info/{{id:Guid}}";
             public const string GetMyOrders = Base + $"/orders/Me";
         }
 
