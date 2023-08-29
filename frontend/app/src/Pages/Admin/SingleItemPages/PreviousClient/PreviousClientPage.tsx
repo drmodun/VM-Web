@@ -1,4 +1,4 @@
-import { PreviousClient, getPreviousClient } from "../../../../Api/PreviousClientApi";
+import { PreviousClient, deletePreviousClient, getPreviousClient } from "../../../../Api/PreviousClientApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -13,6 +13,16 @@ export const PreviousClientPage = () => {
     if (tryPreviousClient) {
       setPreviousClient(tryPreviousClient);
     }
+  };
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this client?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deletePreviousClient(previousClientId as string);
+    if (!tryAction) return;
+    alert("Previous Client successfully deleted");
+    window.location.href = "/admin/previous-clients";
   };
   useEffect(() => {
     tryGetPreviousClient();
@@ -34,7 +44,6 @@ export const PreviousClientPage = () => {
                 Name: previousClient.name,
                 Description: previousClient.description,
                 Rating: previousClient.rating,
-                Logo: previousClient.image,
                 Website: previousClient.website,
               }}
               links={[]}
@@ -48,7 +57,7 @@ export const PreviousClientPage = () => {
             reload={tryGetPreviousClient}
             item={previousClient}
           />}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

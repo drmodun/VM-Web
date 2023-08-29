@@ -28,14 +28,14 @@ namespace api.Controllers
         }
 
         [HttpPost(Routes.Files.Create)]
-        public async Task<ActionResult> PostBlob([FromRoute] string path, IFormFile file)
+        public async Task<ActionResult> PostBlob([FromRoute] string path, IFormFile formFile, [FromQuery] string directory)
         {
-            var action = await _blobService.Upload(path, file);
+            var action = await _blobService.Upload(path, formFile, directory);
             if (action == null)
             {
                 return BadRequest();
             }
-            return action ? Ok(action) : NotFound();
+            return action ? Ok(action) : BadRequest();
         }
 
         [HttpDelete(Routes.Files.Delete)]
@@ -50,14 +50,14 @@ namespace api.Controllers
         }
 
         [HttpPut(Routes.Files.Update)]
-        public async Task<ActionResult> UpdateBlob([FromRoute] string path, IFormFile file)
+        public async Task<ActionResult> UpdateBlob([FromRoute] string path, IFormFile formFile, [FromQuery] string directory)
         {
-            var action = await _blobService.HandleImageEditAsync(file, path);
+            var action = await _blobService.HandleImageEditAsync(formFile, path, directory);
             if (action == null)
             {
                 return BadRequest();
             }
-            return action ? Ok(action) : NotFound();
+            return action ? Ok(action) : BadRequest();
         }
     }
 }

@@ -23,7 +23,6 @@ export interface Subcategory {
 export interface Company {
     id: string;
     name: string;
-    logo: string;
     website: string;
     description: string;
 }

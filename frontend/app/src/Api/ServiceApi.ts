@@ -77,23 +77,23 @@ export const getService = async (id: string) => {
   }
 };
 
-export const createService = async (props: NewService): Promise<boolean> => {
+export const createService = async (props: NewService): Promise<ActionResult | null> => {
   try {
     const response = await api.post("services", props);
-    return response.data.success;
+    return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
-export const updateService = async (props: NewService): Promise<boolean> => {
+export const updateService = async (props: NewService): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`services/${props.id}`, props);
-    return response.data.success;
+    return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 

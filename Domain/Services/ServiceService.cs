@@ -21,6 +21,7 @@ namespace Domain.Services
             var action = await _serviceRepo.CreateService(service, cancellationToken);
             return new CreateServiceResponse
             {
+                Id = service.Id,
                 Success = action
             };
         }

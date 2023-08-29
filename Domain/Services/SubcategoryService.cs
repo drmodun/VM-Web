@@ -21,7 +21,8 @@ namespace Domain.Services
             var action = await _subcategoryRepo.CreateSubcategory(subcategory, cancellationToken);
             return new CreateSubcategoryResponse
             {
-                Success = action
+                Success = action,
+                Id = subcategory.Id
             };
         }
 

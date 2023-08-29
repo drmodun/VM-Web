@@ -32,6 +32,7 @@ export function parseJwt(token: string) {
 
 export interface ActionResult {
   success: boolean;
+  id?: string; 
 }
 
 export interface Sorting {

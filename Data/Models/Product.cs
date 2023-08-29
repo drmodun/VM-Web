@@ -11,9 +11,6 @@ namespace Data.Models
         public decimal Price { get; set; }
 
         public int Quantity { get; set; }
-
-        public string Image { get; set; }
-
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         public Guid CategoryId { get; set; }

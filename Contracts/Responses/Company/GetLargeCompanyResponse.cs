@@ -7,7 +7,7 @@ namespace Contracts.Responses.Company
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Logo { get; set; }
+
         public Guid Id { get; set; }
         public List<GetShortCategoryResponse> Categories { get; set; }
         public List<GetShortSubcategoryResponse> Subcategories { get; set; }

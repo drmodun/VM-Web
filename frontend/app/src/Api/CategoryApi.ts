@@ -107,35 +107,33 @@ export const getCategory = async (id: string) => {
 
 export const createCategory = async (
   category: NewCategory
-): Promise<boolean> => {
+): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/categories", category);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
 export const updateCategory = async (
   category: NewCategory
-): Promise<boolean> => {
+): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`/categories/${category.id!}`, category);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
 export const getLargeCategory = async (id: string) => {
   try {
-    const response = await api.get<GetLargeCategory>(
-      `/categories/large/${id}`
-    );
+    const response = await api.get<GetLargeCategory>(`/categories/large/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);

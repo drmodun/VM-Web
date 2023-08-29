@@ -1,4 +1,4 @@
-import { Transaction, getTransaction } from "../../../../Api/TransactionApi";
+import { Transaction, deleteTransaction, getTransaction } from "../../../../Api/TransactionApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -21,6 +21,17 @@ export const TransactionPage = () => {
     if (tryTransaction) {
       setTransaction(tryTransaction);
     }
+  };
+
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteTransaction(transactionId as string);
+    if (!tryAction) return;
+    alert("User successfully deleted");
+    window.location.href = "/admin/transactions";
   };
   useEffect(() => {
     tryGetTransaction();
@@ -60,7 +71,7 @@ export const TransactionPage = () => {
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
           <span>You cannot edit user transactions</span>
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

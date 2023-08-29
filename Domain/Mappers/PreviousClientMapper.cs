@@ -12,7 +12,6 @@ namespace Domain.Mappers
             {
                 Id = previousClient.Id,
                 Description = previousClient.Description,
-                Image = previousClient.Image,
                 Name = previousClient.Name,
                 Website = previousClient.Website,
                 Rating = previousClient.Rating,
@@ -22,7 +21,6 @@ namespace Domain.Mappers
         {
             return new PreviousClient
             {
-                Image = request.Image,
                 Name = request.Name,
                 Website = request.Website,
                 Rating = request.Rating,
@@ -36,7 +34,6 @@ namespace Domain.Mappers
         {
             return new PreviousClient
             {
-                Image = request.Image,
                 Name = request.Name,
                 Website = request.Website,
                 Rating = request.Rating,

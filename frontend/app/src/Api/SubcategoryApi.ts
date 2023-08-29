@@ -9,6 +9,7 @@ import {
 } from "./Shared";
 import { Indexable } from "../Types/Interfaces";
 import { ShortCompany } from "./CompanyApi";
+import { ActionFunction } from "react-router-dom";
 
 export interface Subcategory {
   id: string;
@@ -96,14 +97,14 @@ export const getSubcategory = async (id: string) => {
 
 export const createSubcategory = async (
   subcategory: NewSubcategory
-): Promise<boolean> => {
+): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/subcategories", subcategory);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
@@ -121,17 +122,17 @@ export const getShortSubcategories = async ( params: GetAllProps | {} = {}) => {
 
 export const updateSubcategory = async (
   subcategory: NewSubcategory
-): Promise<boolean> => {
+): Promise<ActionResult | null> => {
   try {
     const response = await api.put(
       `/subcategories/${subcategory.id!}`,
       subcategory
     );
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 

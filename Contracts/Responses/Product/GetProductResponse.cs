@@ -10,7 +10,6 @@ namespace Contracts.Responses.Product
 
         public DateTime LastUpdated { get; set; }
 
-        public string Image { get; set; } = "";
         public Guid CompanyId { get; set; }
         public string CompanyName { get; set; }
         public Guid CategoryId { get; set; }

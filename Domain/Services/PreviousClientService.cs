@@ -21,7 +21,8 @@ namespace Domain.Services
             var action = await _previousClientRepo.CreatePreviousClient(previousClient, cancellationToken);
             return new CreatePreviousClientResponse
             {
-                Success = action
+                Success = action,
+                Id = previousClient.Id
             };
         }
 

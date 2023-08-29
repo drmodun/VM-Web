@@ -11,7 +11,7 @@ import { Indexable } from "../Types/Interfaces";
 export interface Product {
   id: string;
   name: string;
-  image: string;
+  
   price: number;
   categoryId: string;
   subcategoryId: string;
@@ -37,7 +37,7 @@ export interface SimilarProps {
 export interface SimilarProduct {
   id: string;
   name: string;
-  image: string;
+  
   price: number;
   isInStock: boolean;
   companyId: string;
@@ -47,7 +47,7 @@ export interface SimilarProduct {
 export interface ShortProduct {
   id: string;
   name: string;
-  image: string;
+  
   price: number;
   isFavourite: boolean;
   isInCart: boolean;
@@ -71,7 +71,7 @@ export interface SimilarResponse {
 export interface NewProduct {
   id?: string;
   name: string;
-  image: string;
+  
   price: number;
   quantity: number;
   categoryId: string;
@@ -142,26 +142,26 @@ export const getProduct = async (id: string) => {
   }
 };
 
-export const createProduct = async (product: NewProduct): Promise<boolean> => {
+export const createProduct = async (product: NewProduct): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/products", product);
     const result = response.data as ActionResult;
     console.log(response.data);
-    return response.data.success as boolean;
+    return response.data;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
-export const updateProduct = async (product: NewProduct): Promise<boolean> => {
+export const updateProduct = async (product: NewProduct): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`/products/${product.id!}`, product);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 

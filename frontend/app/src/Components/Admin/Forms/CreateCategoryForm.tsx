@@ -1,8 +1,14 @@
 import { useState } from "react";
 import classes from "./Forms.module.scss";
 import Inputs from "../FormElements";
-import { NewCategory, Category, createCategory, updateCategory } from "../../../Api/CategoryApi";
+import {
+  NewCategory,
+  Category,
+  createCategory,
+  updateCategory,
+} from "../../../Api/CategoryApi";
 import { Indexable } from "../../../Types/Interfaces";
+import { UpdateFile, UploadFile } from "../../../Api/BlobApi";
 
 interface Props {
   isEdit?: boolean;
@@ -10,11 +16,44 @@ interface Props {
   reload: Function;
 }
 
-export const CategoryForm = ({isEdit, item, reload} : Props ) => {
+export const CategoryForm = ({ isEdit, item, reload }: Props) => {
   const [name, setName] = useState<string>(isEdit ? item!.name : "");
-  const [description, setDescription] = useState<string>(isEdit ? item!.description : "");
+  const [description, setDescription] = useState<string>(
+    isEdit ? item!.description : ""
+  );
   const [schema, setSchema] = useState<Indexable>(isEdit ? item!.schema : {});
   const [status, setStatus] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files);
+    if (!e.target.files) return;
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = async (id: string) => {
+    console.log(file);
+    if (!file) return false;
+    const formData = new FormData();
+    formData.append("formFile", file);
+    formData.append("name", id);
+    formData.append("directory", "/categories/");
+    try {
+      const response = isEdit
+        ? await UpdateFile(formData)
+        : await UploadFile(formData);
+      if (!response) {
+        console.log("Something went wrong");
+        return false;
+      }
+      console.log(response);
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  };
 
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,14 +77,17 @@ export const CategoryForm = ({isEdit, item, reload} : Props ) => {
       schema,
     };
 
-    const response =
-    isEdit ? await updateCategory(newCategory) :
-    await createCategory(newCategory);
-    response
-      ? setStatus("Action performed successfully")
+    const response = isEdit
+      ? await updateCategory(newCategory)
+      : await createCategory(newCategory);
+    if (!response) return;
+    const upload: boolean = await handleFileUpload(
+      isEdit ? item!.id! : response.id!
+    );
+    response?.success && (upload || !file)
+      ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
       : setStatus("Something went wrong");
-    console.log(name, description, schema);
-    response && reload();
+    response && upload && reload();
   };
   //gotta fix the resizing problem
 
@@ -71,9 +113,8 @@ export const CategoryForm = ({isEdit, item, reload} : Props ) => {
           value={schema}
           onChange={setSchema}
         />
-        <button type="submit">
-          {isEdit ? "Edit" : "Create"} Category
-        </button>
+        <input type="file" onChange={handleFileChange} />
+        <button type="submit">{isEdit ? "Edit" : "Create"} Category</button>
       </form>
       <div className={classes.Status}>{status}</div>
     </div>

@@ -4,7 +4,6 @@ import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl } from "./
 
 export interface PreviousClient {
   name: string;
-  image: string;
   id: string;
   rating: number;
   website: string;
@@ -14,7 +13,6 @@ export interface PreviousClient {
 export interface NewPreviousClient {
   id?: string;
   name: string;
-  image: string;
   rating: number;
   website: string;
   description: string;
@@ -80,40 +78,40 @@ export const getPreviousClient = async (id: string) => {
 
 export const createPreviousClient = async (
   previousClient: NewPreviousClient
-): Promise<boolean> => {
+): Promise<ActionResult |null> => {
   try {
     const response = await api.post("/previous-clients", previousClient);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
 export const updatePreviousClient = async (
   previousClient: NewPreviousClient
-): Promise<boolean> => {
+): Promise<ActionResult | null> => {
   try {
     const response = await api.put(
       `/previous-clients/${previousClient.id!}`,
       previousClient
     );
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
-export const deletePreviousClient = async (id: string): Promise<boolean> => {
+export const deletePreviousClient = async (id: string): Promise<ActionResult | null> => {
   try {
     const response = await api.delete(`/previous-clients/${id}`);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result;
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };

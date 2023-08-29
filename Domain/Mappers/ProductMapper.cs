@@ -25,7 +25,6 @@ namespace Domain.Mappers
                 Quantity = product.Quantity,
                 SubcategoryName = product.Subcategory.Name,
                 SubcategoryId = product.Subcategory.Id,
-                Image = product.Image,
                 IsFavourite = userId != null && product.Favourites.Any(x=>x.UserId == userId) ,
                 CartQuantity = userId != null ? 
                 product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId) != null 
@@ -48,7 +47,6 @@ namespace Domain.Mappers
                 Description = request.Description,
                 Price = request.Price,
                 SubCategoryId = request.SubCategoryId,
-                Image = request.Image,
                 Quantity = request.Quantity,
                 UpdatedAt = DateTime.UtcNow,
             };
@@ -67,7 +65,6 @@ namespace Domain.Mappers
                 Description = request.Description,
                 Price = request.Price,
                 SubCategoryId = request.SubCategoryId,
-                Image = request.Image,
                 Quantity = request.Quantity,
                 UpdatedAt = DateTime.UtcNow,
 
@@ -80,7 +77,6 @@ namespace Domain.Mappers
             {
                 Id = product.Id,
                 CompanyId = product.CompanyId,
-                Image = product.Image,
                 CompanyName = product.Company.Name,
                 Name = product.Name,
                 IsInStock = product.Quantity > 0,
@@ -97,7 +93,6 @@ namespace Domain.Mappers
                 CompanyId = product.CompanyId,
                 CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name,
-                Image = product.Image,
                 CompanyName = product.Company.Name,
                 Name = product.Name,
                 Price = product.Price,
@@ -117,7 +112,6 @@ namespace Domain.Mappers
                 CompanyId = product.CompanyId,
                 CategoryId = product.CategoryId,
                 CategoryName = product.Category.Name,
-                Image = product.Image,
                 CompanyName = product.Company.Name,
                 Name = product.Name,
                 Price = product.Price,

@@ -1,4 +1,4 @@
-import { Service, getService } from "../../../../Api/ServiceApi";
+import { Service, deleteService, getService } from "../../../../Api/ServiceApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -11,15 +11,24 @@ const serviceTypeDict: { [key: string]: string } = {
   2: "Device",
   3: "Other",
 };
-
 export const ServicePage = () => {
   const { serviceId } = useParams();
   const [service, setService] = useState<Service | null>(null);
-
+  
   const reload = async () => {
     tryGetService();
   };
-
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this service?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteService(serviceId as string);
+    if (!tryAction) return;
+    alert("Service successfully deleted");
+    window.location.href = "/admin/services";
+  };
+  
   const tryGetService = async () => {
     const tryService = await getService(serviceId as string);
     if (tryService) {
@@ -57,7 +66,7 @@ export const ServicePage = () => {
           {service && (
             <Forms.ServiceForm isEdit={true} item={service} reload={reload} />
           )}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

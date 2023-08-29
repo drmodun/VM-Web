@@ -1,4 +1,4 @@
-import { User, getUser } from "../../../../Api/UserApi";
+import { User, deleteUserAdmin, getUser } from "../../../../Api/UserApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -19,6 +19,17 @@ export const UserPage = () => {
     if (tryUser) {
       setUser(tryUser);
     }
+  };
+
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteUserAdmin(userId as string);
+    if (!tryAction) return;
+    alert("User successfully deleted");
+    window.location.href = "/admin/users";
   };
   useEffect(() => {
     tryGetUser();
@@ -52,7 +63,7 @@ export const UserPage = () => {
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
           {user && <Forms.UserForm isEdit={true} reload={reload} item={user} />}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Company, getCompany } from "../../../../Api/CompanyApi";
+import { Company, deleteCompany, getCompany } from "../../../../Api/CompanyApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -23,6 +23,17 @@ export const CompanyPage = () => {
     //add edit functionality later
   }, []);
 
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this company?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteCompany(companyId as string);
+    if (!tryAction) return;
+    alert("Company successfully deleted");
+    window.location.href = "/admin/companies";
+  };
+
   return (
     <div className={classes.Container}>
       <div className={classes.SingleItemPage}>
@@ -35,7 +46,6 @@ export const CompanyPage = () => {
                 Name: company.name,
                 Description: company.description,
                 Website: company.website,
-                Logo: company.logo,
               }}
               links={[]}
             />
@@ -48,7 +58,7 @@ export const CompanyPage = () => {
             item={company}
             reload={tryGetCompany}
           />}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

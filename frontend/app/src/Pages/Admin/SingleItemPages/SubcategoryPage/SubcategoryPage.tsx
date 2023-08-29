@@ -1,4 +1,4 @@
-import { Subcategory, getSubcategory } from "../../../../Api/SubcategoryApi";
+import { Subcategory, deleteSubcategory, getSubcategory } from "../../../../Api/SubcategoryApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -30,6 +30,17 @@ export const SubcategoryPage = () => {
       });
       setValue(tempValue);
     }
+  };
+
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this subcategory?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteSubcategory(subcategoryId as string);
+    if (!tryAction) return;
+    alert("Subcategory successfully deleted");
+    window.location.href = "/admin/subcategories";
   };
   useEffect(() => {
     tryGetCategories();
@@ -75,7 +86,7 @@ export const SubcategoryPage = () => {
               categories={categories}
             />
           )}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

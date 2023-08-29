@@ -1,4 +1,8 @@
-import { Category, getCategory } from "../../../../Api/CategoryApi";
+import {
+  Category,
+  deleteCategory,
+  getCategory,
+} from "../../../../Api/CategoryApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -28,6 +32,17 @@ export const CategoryPage = () => {
       setValue(tempValue);
     }
   };
+
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this category?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteCategory(categoryId as string);
+    if (!tryAction) return;
+    alert("Category successfully deleted");
+    window.location.href = "/admin/categories";
+  };
   useEffect(() => {
     tryGetCategory();
 
@@ -47,12 +62,16 @@ export const CategoryPage = () => {
         )}
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
-         {category && <Forms.CategoryForm
-            isEdit={true}
-            item={category}
-            reload={tryGetCategory}
-           />}
-          <button className={classes.DeleteButton}>Delete</button>
+          {category && (
+            <Forms.CategoryForm
+              isEdit={true}
+              item={category}
+              reload={tryGetCategory}
+            />
+          )}
+          <button onClick={handleDelete} className={classes.DeleteButton}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

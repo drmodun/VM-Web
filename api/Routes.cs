@@ -121,8 +121,8 @@
         public static class Files
         {
             public const string Get = Base + $"/files/{{name}}";
-            public const string Create = Base + $"files/upload/{{path}}";
-            public const string Update = Base + $"files/upload/{{path}}";
+            public const string Create = Base + $"/files/upload/{{path}}";
+            public const string Update = Base + $"/files/upload/{{path}}";
             public const string Delete = Base + $"/files/{{name}}";
 
         }

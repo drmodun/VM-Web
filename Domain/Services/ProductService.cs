@@ -24,7 +24,8 @@ namespace Domain.Services
             var action = await _productRepo.CreateProduct(product, cancellationToken);
             return new CreateProductResponse
             {
-                Success = action
+                Success = action,
+                Id = product.Id
             };
         }
 

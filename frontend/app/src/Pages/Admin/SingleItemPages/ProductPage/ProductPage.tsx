@@ -1,4 +1,4 @@
-import { Product, getProduct } from "../../../../Api/ProductApi";
+import { Product, deleteProduct, getProduct } from "../../../../Api/ProductApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -31,6 +31,17 @@ export const ProductPage = () => {
     //add edit functionality later
   }, []);
 
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteProduct(productId as string);
+    if (!tryAction) return;
+    alert("Product successfully deleted");
+    window.location.href = "/admin/products";
+  };
+
   const tryGetProduct = async () => {
     const tryProduct = await getProduct(productId as string);
     if (tryProduct) {
@@ -53,7 +64,6 @@ export const ProductPage = () => {
       Object.keys(tryProduct.subAttributes).forEach((key: string) => {
         tempValue[key] = tryProduct.subAttributes[key] as string;
       });
-      tempValue["image"] = tryProduct.image;
       tempValue["quantity"] = tryProduct.quantity.toString();
 
       setValue(tempValue);
@@ -128,7 +138,7 @@ export const ProductPage = () => {
               companies={companies}
             />
           )}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ import {
   createProduct,
   updateProduct,
 } from "../../../Api/ProductApi";
+import { UpdateFile, UploadFile } from "../../../Api/BlobApi";
 
 interface Props {
   isEdit?: boolean;
@@ -46,7 +47,6 @@ export const ProductForm = ({
   );
   const [schema, setSchema] = useState({});
   const [subSchema, setSubSchema] = useState({});
-  const [image, setImage] = useState<string>(isEdit ? item!.image : "");
   const [additionalInfo, setAdditionalInfo] = useState<Indexable>(
     isEdit ? item!.attributes : {}
   );
@@ -57,6 +57,37 @@ export const ProductForm = ({
     isEdit ? item!.companyId : companies[0] ? companies[0].id : ""
   );
   const [status, setStatus] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files);
+    if (!e.target.files) return;
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = async (id: string) => {
+    console.log(file);
+    if (!file) return false;
+    const formData = new FormData();
+    formData.append("formFile", file);
+    formData.append("name", id);
+    formData.append("directory", "/products/");
+    try {
+      const response = isEdit
+        ? await UpdateFile(formData)
+        : await UploadFile(formData);
+      if (!response) {
+        console.log("Something went wrong");
+        return false;
+      }
+      console.log(response);
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  };
 
   useEffect(() => {
     const subcategory = isEdit
@@ -121,10 +152,6 @@ export const ProductForm = ({
       setStatus("Subcategory is not valid");
       return;
     }
-    if (image.length > 500 || image.length < 3) {
-      setStatus("Image is not valid");
-      return;
-    }
     if (company === "") {
       setStatus("Company is not valid");
       return;
@@ -137,7 +164,6 @@ export const ProductForm = ({
       price,
       quantity,
       categoryId: category,
-      image,
       attributes: additionalInfo,
       subAttributes: otherAdditionalInfo!,
       companyId: company,
@@ -150,14 +176,14 @@ export const ProductForm = ({
       ? await updateProduct(product)
       : await createProduct(product);
     await createProduct(product);
-    !response
-      ? setStatus(
-          "An error occured during the making of the entity, for more details look in log"
-        )
-      : setStatus(
-          "Product" + ` ${isEdit ? "edited" : "created"} ` + "successfully"
-        );
-    response && reload();
+    if (!response) return;
+    const upload: boolean = await handleFileUpload(
+      isEdit ? item!.id! : response.id!
+    );
+    response?.success && (upload || !file)
+      ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
+      : setStatus("Something went wrong");
+    response && upload && reload();
 
     //later should also delete the fields, but for now it's fine and gonna make seeding easier
   };
@@ -233,13 +259,6 @@ export const ProductForm = ({
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
             />
-
-            <Inputs.TextInput
-              label="Image"
-              name="image"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
             <Inputs.NumberInput
               label="Quantity"
               name="quantity"
@@ -252,8 +271,7 @@ export const ProductForm = ({
               name="category"
               value={category}
               onChange={handleCategoryChange}
-              options={categories
-                .map((category: Category) => ({
+              options={categories.map((category: Category) => ({
                 value: category.id,
                 label: category.name,
               }))}
@@ -286,22 +304,23 @@ export const ProductForm = ({
                 }))}
             />
 
-            {schema && Object.keys(schema).map((key: string) => {
-              return (
-                <Inputs.TextInput
-                  key={key}
-                  label={key}
-                  name={key}
-                  value={additionalInfo ? additionalInfo[key] : ""}
-                  onChange={(e) =>
-                    setAdditionalInfo((prev) => ({
-                      ...prev,
-                      [key]: e.target.value,
-                    }))
-                  }
-                />
-              );
-            })}
+            {schema &&
+              Object.keys(schema).map((key: string) => {
+                return (
+                  <Inputs.TextInput
+                    key={key}
+                    label={key}
+                    name={key}
+                    value={additionalInfo ? additionalInfo[key] : ""}
+                    onChange={(e) =>
+                      setAdditionalInfo((prev) => ({
+                        ...prev,
+                        [key]: e.target.value,
+                      }))
+                    }
+                  />
+                );
+              })}
 
             {Object.keys(subSchema).map((key: string) => {
               return (
@@ -319,6 +338,7 @@ export const ProductForm = ({
                 />
               );
             })}
+            <input type="file" onChange={handleFileChange} />
 
             <button type="submit">{isEdit ? "Edit" : "Create"}</button>
           </form>

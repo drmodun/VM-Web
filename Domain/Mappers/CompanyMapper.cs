@@ -12,7 +12,6 @@ namespace Domain.Mappers
             {
                 Id = company.Id,
                 Description = company.Description,
-                Logo = company.Logo,
                 Website = company.Website,
                 Name = company.Name,
 
@@ -23,7 +22,6 @@ namespace Domain.Mappers
             return new GetShortCompany
             {
                 Id = company.Id,
-                Logo = company.Logo,
                 NumberOfProducts = company.Products.Count,
                 Name = company.Name,
             };
@@ -34,7 +32,6 @@ namespace Domain.Mappers
             {
                 Name = request.Name,
                 Description = request.Description,
-                Logo = request.Logo,
                 Website = request.Website,
                 Id = Guid.NewGuid()
             };
@@ -46,7 +43,6 @@ namespace Domain.Mappers
             {
                 Id = company.Id,
                 Name = company.Name,
-                Logo = company.Logo,
                 Categories = company.Products.DistinctBy(x => x.Category).Select(x => CategoryMapper.ToShort(x.Category)).ToList(),
                 Description = company.Description,
                 Subcategories = company.Products.DistinctBy(x => x.Subcategory).Select(x => SubcategoryMapper.ToShort(x.Subcategory)).ToList()
@@ -61,7 +57,6 @@ namespace Domain.Mappers
             {
                 Name = request.Name,
                 Description = request.Description,
-                Logo = request.Logo,
                 Website = request.Website,
                 Id = request.Id
             };

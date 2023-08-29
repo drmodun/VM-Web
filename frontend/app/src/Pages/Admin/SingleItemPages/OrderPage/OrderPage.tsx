@@ -1,4 +1,4 @@
-import { Order, getOrder } from "../../../../Api/OrderApi";
+import { Order, deleteOrder, getOrder } from "../../../../Api/OrderApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -33,6 +33,17 @@ export const OrderPageAdmin = () => {
     //TODO: add keys later
     //add edit functionality later
   }, []);
+
+  const handleDelete = async () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this order?"
+    );
+    if (!confirmation) return;
+    const tryAction = await deleteOrder(orderId as string);
+    if (!tryAction) return;
+    alert("Order successfully deleted");
+    window.location.href = "/admin/orders";
+  };
   
   return (
     <div className={classes.Container}>
@@ -68,7 +79,7 @@ export const OrderPageAdmin = () => {
             item={order!}
             reload={tryGetOrder}
           />}
-          <button className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
         </div>
       </div>
     </div>

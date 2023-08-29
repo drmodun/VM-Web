@@ -21,6 +21,7 @@ namespace Domain.Services
             var action = await _companyRepo.CreateCompany(company, cancellationToken);
             return new CreateCompanyResponse
             {
+                Id = company.Id,
                 Success = action
             };
         }

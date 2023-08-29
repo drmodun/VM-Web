@@ -13,7 +13,6 @@ import { ShortSubcategory } from "./SubcategoryApi";
 export interface Company {
   id: string;
   name: string;
-  logo: string;
   website: string;
   description: string;
 }
@@ -21,14 +20,12 @@ export interface Company {
 export interface NewCompany {
   id?: string;
   name: string;
-  logo: string;
   description: string;
   website: string;
 }
 
 export interface ShortCompany {
   id: string;
-  logo: string;
   name: string;
   numberOfProducts: number;
 }
@@ -45,7 +42,6 @@ export interface GetAllProps {
 export interface GetLargeCompany {
   id: string;
   name: string;
-  logo: string;
   description: string;
   website: string;
   subcategories: ShortSubcategory[];
@@ -94,25 +90,25 @@ export const getCompany = async (id: string) => {
   }
 };
 
-export const createCompany = async (company: NewCompany): Promise<boolean> => {
+export const createCompany = async (company: NewCompany): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/companies", company);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 
-export const updateCompany = async (company: NewCompany): Promise<boolean> => {
+export const updateCompany = async (company: NewCompany): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`/companies/${company.id!}`, company);
     const result = response.data as ActionResult;
-    return result.success as boolean;
+    return result
   } catch (error) {
     console.error(error);
-    return false;
+    return null;
   }
 };
 

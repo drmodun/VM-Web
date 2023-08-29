@@ -10,6 +10,6 @@
 
         public string Website { get; set; }
         //make my mind about pagination here
-        public string Logo { get; set; }
+
     }
 }

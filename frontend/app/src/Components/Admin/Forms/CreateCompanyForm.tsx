@@ -1,7 +1,14 @@
 import Inputs from "../FormElements";
-import { Company, createCompany, NewCompany, updateCompany } from "../../../Api/CompanyApi";
+import {
+  Company,
+  createCompany,
+  NewCompany,
+  updateCompany,
+} from "../../../Api/CompanyApi";
 import { useState } from "react";
 import classes from "./Forms.module.scss";
+import { upload } from "@testing-library/user-event/dist/upload";
+import { UpdateFile, UploadFile } from "../../../Api/BlobApi";
 
 interface Props {
   isEdit: boolean;
@@ -11,11 +18,43 @@ interface Props {
 
 export const CompanyForm = ({ isEdit, reload, item }: Props) => {
   const [name, setName] = useState<string>(isEdit ? item!.name : "");
-  const [description, setDescription] = useState<string>(isEdit ? item!.description : "");
+  const [description, setDescription] = useState<string>(
+    isEdit ? item!.description : ""
+  );
   const [website, setWebsite] = useState<string>(isEdit ? item!.website : "");
-  const [logo, setLogo] = useState<string>(isEdit ? item!.logo : "");
 
   const [status, setStatus] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files);
+    if (!e.target.files) return;
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = async (id: string) => {
+    console.log(file);
+    if (!file) return false;
+    const formData = new FormData();
+    formData.append("formFile", file);
+    formData.append("name", id);
+    formData.append("directory", "/companies/");
+    try {
+      const response = isEdit
+        ? await UpdateFile(formData)
+        : await UploadFile(formData);
+      if (!response) {
+        console.log("Something went wrong");
+        return false;
+      }
+      console.log(response);
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,16 +63,19 @@ export const CompanyForm = ({ isEdit, reload, item }: Props) => {
       name,
       description,
       website,
-      logo,
     };
     setStatus("Loading...");
-    const response =
-      isEdit ? await updateCompany(newCompany) :
-     await createCompany(newCompany);
-    response
+    const response = isEdit
+      ? await updateCompany(newCompany)
+      : await createCompany(newCompany);
+    if (!response) return;
+    const upload: boolean = await handleFileUpload(
+      isEdit ? item!.id! : response.id!
+    );
+    response?.success && (upload || !file)
       ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
       : setStatus("Something went wrong");
-    response && reload();
+    response && upload && reload();
   };
 
   return (
@@ -58,12 +100,7 @@ export const CompanyForm = ({ isEdit, reload, item }: Props) => {
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
         />
-        <Inputs.TextInput
-          label="Logo"
-          name="logo"
-          value={logo}
-          onChange={(e) => setLogo(e.target.value)}
-        />
+        <input type="file" onChange={handleFileChange} />
         <button type="submit">{isEdit ? "Edit" : "Create"}</button>
       </form>
       <div className={classes.Status}>{status}</div>

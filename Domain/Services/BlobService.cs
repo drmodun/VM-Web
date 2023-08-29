@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,11 +23,11 @@ namespace Domain.Services
 
         }
 
-        public async Task<bool> Upload(string name, IFormFile file)
+        public async Task<bool> Upload(string name, IFormFile file, string directory)
         {
             try
             {
-                var client = _blobContainerClient.GetBlobClient(name);
+                var client = _blobContainerClient.GetBlobClient(directory + name);
                 await using (Stream? data = file.OpenReadStream())
                 {
                     await client.UploadAsync(data);
@@ -35,7 +36,6 @@ namespace Domain.Services
             }
             catch (Exception ex)
             {
-                throw (ex);
                 Console.WriteLine(ex);
                 return false;
             }
@@ -62,14 +62,14 @@ namespace Domain.Services
             await blobClient.DeleteAsync();
             return true;
         }
-        public async Task<bool> HandleImageEditAsync(IFormFile image, string path)
+        public async Task<bool> HandleImageEditAsync(IFormFile image, string path, string directory)
         {
             if (image is null)
             {
                 return await DeleteFileFromBlobStorageAsync(path);
             }
 
-            return await Upload(path, image);
+            return await Upload(path, image, directory);
 
         }
     }
