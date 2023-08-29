@@ -48,6 +48,8 @@ export const CompaniesPage = () => {
               <ShortView
                 titlte={company.name}
                 subtitle={company.numberOfProducts.toString()}
+                directory="companies"
+                id={company.id}
                 link={`/brands/${company.id}`}
               />
             ))}

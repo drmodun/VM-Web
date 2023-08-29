@@ -51,8 +51,10 @@ export const CategoriesPage = () => {
             categories.map((category) => (
               <ShortView
                 titlte={category.name}
+                id={category.id}
                 subtitle={category.numberOfProducts.toString()}
                 link={`/categories/${category.id}`}
+                directory="categories"
               />
             ))}
         </div>

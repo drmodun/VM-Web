@@ -168,6 +168,8 @@ export const Homepage = () => {
               categories.map((category) => {
                 return (
                   <ShortView
+                    directory="categories"
+                    id={category.id}
                     key={category.id}
                     link={`/categories/${category.id}`}
                     titlte={category.name}
@@ -189,6 +191,8 @@ export const Homepage = () => {
                   <ShortView
                     key={brand.id}
                     link={`/brands/${brand.id}`}
+                    directory="companies"
+                    id={brand.id}
                     titlte={brand.name}
                     subtitle={brand.numberOfProducts.toString()}
                   />

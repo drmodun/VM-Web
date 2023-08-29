@@ -11,7 +11,11 @@ export const PreviousClientView = ({ client }: Props) => {
     <div className={classes.Container}>
       <div className={classes.PreviousClient}>
         <div className={classes.Image}>
-          <img src={placeholder} alt="" />
+          <img src={"https://media0testing.blob.core.windows.net/vm-racunala/clients/" + client.id} alt={client.name} onError={
+            (e) => {
+              e.currentTarget.src = placeholder;
+            }
+          }/>
         </div>
         <div className={classes.OtherInfo}>
           <div className={classes.Name}>{client.name}</div>

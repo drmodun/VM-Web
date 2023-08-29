@@ -42,8 +42,9 @@ export const MainProductView = ({ product }: Props) => {
   };
 
   const cartAdd = async () => {
-    const action = isInCart ? await updateCart(product.id, selectedQuantity) :
-    await addToCart(product.id, selectedQuantity);
+    const action = isInCart
+      ? await updateCart(product.id, selectedQuantity)
+      : await addToCart(product.id, selectedQuantity);
     if (!action) return;
     setIsInCart(true);
   };
@@ -52,7 +53,16 @@ export const MainProductView = ({ product }: Props) => {
     <div className={classes.Container}>
       <div className={classes.Product}>
         <div className={classes.Image}>
-          <img src={Placeholder} alt={product.name} />
+          <img
+            src={
+              "https://media0testing.blob.core.windows.net/vm-racunala/products/" +
+              product.id
+            }
+            alt={product.name}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = Placeholder;
+            }}
+          />
         </div>
         <div className={classes.ProductInfo}>
           <span className={classes.Title}>{product.name}</span>

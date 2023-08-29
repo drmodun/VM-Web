@@ -8,16 +8,34 @@ interface Props {
   subtitle: string;
   link: string;
   isShort?: boolean;
+  directory: string;
+  id: string;
 }
 //TODO: add images support for categories
-export const ShortView = ({ titlte, subtitle, link, isShort}: Props) => {
+export const ShortView = ({
+  titlte,
+  subtitle,
+  link,
+  isShort,
+  directory,
+  id,
+}: Props) => {
   return (
     <Link to={link} className={classes.Link}>
-      <div className={ isShort ? classes.ShortContainer :
-        classes.Container}>
+      <div className={isShort ? classes.ShortContainer : classes.Container}>
         <div className={classes.Item}>
           <div className={classes.Image}>
-            <img src={Placeholder} alt={titlte} />
+            <img
+              src={
+                `https://media0testing.blob.core.windows.net/vm-racunala/${directory}/${id}`
+              }
+              onError={
+                (e) => {
+                  e.currentTarget.src = Placeholder;
+                }
+              }
+              alt={titlte}
+            />
           </div>
           <div className={classes.ItemInfo}>
             <span className={classes.Name}>{titlte}</span>

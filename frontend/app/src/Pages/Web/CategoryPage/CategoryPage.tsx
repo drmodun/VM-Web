@@ -78,16 +78,29 @@ export const CategoryPage = () => {
             <span className={classes.Subtitle}>{category?.description}</span>
           </div>
           <div className={classes.CategoryImage}>
-            <img src={Placeholder} alt={category?.name} />
+            {category && (
+              <img
+                src={
+                  "https://media0testing.blob.core.windows.net/vm-racunala/categories/" +
+                  category?.id
+                }
+                alt={category?.name}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = Placeholder;
+                }}
+              />
+            )}
           </div>
         </div>
         <span className={classes.SubHeader}>Subcategories</span>
         <div className={classes.Subcategories}>
           {category?.subcategories.map((subcategory) => (
             <ShortView
-              titlte={subcategory.name}
-              subtitle={subcategory.numberOfProducts.toString()}
               link={`/subcategories/${subcategory.id}`}
+              id={subcategory.id}
+              titlte={subcategory.name}
+              directory="subcategories"
+              subtitle={subcategory.numberOfProducts.toString()}
             />
           ))}
         </div>
@@ -95,7 +108,9 @@ export const CategoryPage = () => {
         <div className={classes.Companies}>
           {category?.brands.map((company) => (
             <ShortView
+              id={company.id}
               titlte={company.name}
+              directory="companies"
               subtitle={company.numberOfProducts.toString()}
               link={`/brands/${company.id}`}
             />

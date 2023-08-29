@@ -81,14 +81,18 @@ export const SearchPage = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.SearchPage}>
-        <h2 className={classes.Title}>Search Results for: {searchTerm.get("name")}</h2>
+        <h2 className={classes.Title}>
+          Search Results for: {searchTerm.get("name")}
+        </h2>
         <div className={classes.Section}>
           <h3 className={classes.Subtitle}>Categories: {categories.length}</h3>
           <div className={classes.SectionList}>
             {categories.map((category) => (
               <ShortView
                 subtitle={category.numberOfProducts.toString()}
+                directory="categories" 
                 titlte={category.name} //TODO: fix all misspellings
+                id={category.id}
                 link={`/categories/${category.id}`}
               />
             ))}
@@ -103,7 +107,9 @@ export const SearchPage = () => {
               <ShortView
                 subtitle={subcategory.numberOfProducts.toString()}
                 titlte={subcategory.name} //TODO: fix all misspellings
+                directory="subcategories"
                 link={`/subcategories/${subcategory.id}`}
+                id={subcategory.id}
               />
             ))}
           </div>
@@ -113,6 +119,8 @@ export const SearchPage = () => {
           <div className={classes.SectionList}>
             {brands.map((brand) => (
               <ShortView
+                directory="companies"
+                id={brand.id}
                 subtitle={brand.numberOfProducts.toString()}
                 titlte={brand.name} //TODO: fix all misspellings
                 link={`/brands/${brand.id}`}

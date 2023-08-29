@@ -79,7 +79,13 @@ export const CompanyPage = () => {
             <span className={classes.Subtitle}>{Company?.description}</span>
           </div>
           <div className={classes.CompanyImage}>
-            <img src={Placeholder} alt={Company?.name} />
+            <img
+              src={
+                "https://media0testing.blob.core.windows.net/vm-racunala/companies/" +
+                Company.id
+              }
+              alt={Company?.name}
+            />
           </div>
         </div>
 
@@ -87,6 +93,8 @@ export const CompanyPage = () => {
         <div className={classes.Categories}>
           {Company?.categories.map((category) => (
             <ShortView
+              directory="categories"
+              id={category.id}
               titlte={category.name}
               subtitle={category.numberOfProducts.toString()}
               link={`/categories/${category.id}`}
@@ -99,7 +107,9 @@ export const CompanyPage = () => {
             <ShortView
               titlte={subcategory.name}
               subtitle={subcategory.numberOfProducts.toString()}
+              directory="subcategories"
               link={`/subcategories/${subcategory.id}`}
+              id={subcategory.id}
             />
           ))}
         </div>

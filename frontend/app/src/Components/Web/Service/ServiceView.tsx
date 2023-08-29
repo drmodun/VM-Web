@@ -18,7 +18,16 @@ export const ServiceView = ({ service }: Props) => {
     <div className={classes.Container}>
       <div className={classes.Service}>
         <div className={classes.Image}>
-          <img src={Placeholder} alt="service" />
+          <img
+            onError={(e) => {
+              e.currentTarget.src = Placeholder;
+            }}
+            src={
+              "https://media0testing.blob.core.windows.net/vm-racunala/services/" +
+              service.id
+            }
+            alt="service"
+          />
         </div>
         <div className={classes.Info}>
           <div className={classes.Name}>
@@ -34,7 +43,9 @@ export const ServiceView = ({ service }: Props) => {
             <div className={classes.Price}>
               <span>{service.price}€</span>
             </div>
-            <Link className={classes.Button} to={`/services/${service.id}`} >Naruči</Link>
+            <Link className={classes.Button} to={`/services/${service.id}`}>
+              Naruči
+            </Link>
           </div>
         </div>
       </div>

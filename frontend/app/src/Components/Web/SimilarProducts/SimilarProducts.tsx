@@ -47,7 +47,16 @@ export const SimilarProducts = ({ prod }: Props) => {
             <div className={classes.Divider}></div>
             <div className={classes.SimilarProduct}>
               <div className={classes.Main}>
-                <img src={Placeholder} alt={product.name} />
+                <img
+                  src={
+                    "https://media0testing.blob.core.windows.net/vm-racunala/products/" +
+                    product.id
+                  }
+                  onError={(e) => {
+                    e.currentTarget.src = Placeholder;
+                  }}
+                  alt={product.name}
+                />
                 <Link className={classes.Link} to={`/products/${product.id}`}>
                   <h3>{product.name}</h3>
                 </Link>

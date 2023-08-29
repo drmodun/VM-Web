@@ -64,11 +64,11 @@ namespace Domain.Services
         }
         public async Task<bool> HandleImageEditAsync(IFormFile image, string path, string directory)
         {
-            if (image is null)
+            var deletion = await DeleteFileFromBlobStorageAsync(directory + path);
+            if (!deletion)
             {
-                return await DeleteFileFromBlobStorageAsync(path);
+                return false;
             }
-
             return await Upload(path, image, directory);
 
         }

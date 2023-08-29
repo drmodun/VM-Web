@@ -85,7 +85,16 @@ export const SubcategoryPage = () => {
             </Link>
           </div>
           <div className={classes.SubcategoryImage}>
-            <img src={Placeholder} alt={Subcategory?.name} />
+            <img
+              src={
+                "https://media0testing.blob.core.windows.net/vm-racunala/subcategories/" +
+                Subcategory.id
+              }
+              alt={Subcategory?.name}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = Placeholder;
+              }}
+            />
           </div>
         </div>
 
@@ -94,6 +103,8 @@ export const SubcategoryPage = () => {
           {Subcategory?.brands.map((company) => (
             <ShortView
               titlte={company.name}
+              directory="companies"
+              id={company.id}
               subtitle={company.numberOfProducts.toString()}
               link={`/brands/${company.id}`}
             />

@@ -42,10 +42,21 @@ export const CartItemView = ({ item, change, remove, index }: Props) => {
     <div className={classes.Container}>
       <div className={classes.Item}>
         <div className={classes.Image}>
-          <img src={Placeholder} alt="product" />
+          <img
+            src={
+              "https://media0testing.blob.core.windows.net/vm-racunala/products/" +
+              item.productId
+            }
+            onError={(e) => {
+              e.currentTarget.src = Placeholder;
+            }}
+            alt="product"
+          />
         </div>
         <div className={classes.Info}>
-          <Link className={classes.Name} to={`/products/${item.productId}`}>{item.productName}</Link>
+          <Link className={classes.Name} to={`/products/${item.productId}`}>
+            {item.productName}
+          </Link>
           <div className={classes.Price}>
             <span>Price: {item.pricePerUnit} €</span>
           </div>

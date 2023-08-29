@@ -67,7 +67,16 @@ export const ProductView = ({ product, removal }: Props) => {
           />
         </div>
         <div className={classes.Image}>
-          <img src={image} alt={product.name} />
+          <img
+            src={
+              "https://media0testing.blob.core.windows.net/vm-racunala/products/" +
+              product.id
+            }
+            alt={product.name}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = image;
+            }}
+          />
         </div>
         <div className={classes.ProductInfo}>
           <Link
