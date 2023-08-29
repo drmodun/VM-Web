@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using Azure.Storage.Blobs;
+using Data;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.Validatiors;
@@ -20,6 +21,7 @@ namespace Domain
             services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
+            services.AddScoped<BlobService>();
             services.Configure<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>(o => {
                 o.ViewLocationFormats.Add("/Email/Views/{0}" + Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewExtension);
             });
