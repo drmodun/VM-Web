@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import classes from "./CategoryPage.module.scss";
 import { GetLargeCategory, getLargeCategory } from "../../../Api/CategoryApi";
 import { useEffect, useState } from "react";
-import Placeholder from "../../../assets/placeholder.png";
+import Placeholder from "../../../assets/placeholder.webp";
 import ShortView from "../../../Components/Web/ShortView";
 import ProductView from "../../../Components/Web/ProductView";
 import {

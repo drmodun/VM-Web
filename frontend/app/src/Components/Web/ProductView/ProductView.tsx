@@ -7,7 +7,7 @@ import {
 import classes from "./ProductView.module.scss";
 import Favourite from "../../../assets/favorite_product.svg";
 import Cart from "../../../assets/cart.svg";
-import image from "../../../assets/placeholder.png";
+import image from "../../../assets/placeholder.webp";
 import favourite_active from "../../../assets/favorite_product_active.svg";
 import shopping_active from "../../../assets/shopping_product_active.svg";
 import shopping from "../../../assets/shopping_product_hover.svg";

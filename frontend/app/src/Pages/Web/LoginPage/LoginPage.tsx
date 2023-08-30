@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Login from "../../../Components/Web/Login";
-import Background from "../../../assets/background.svg";
+import Background from "../../../assets/background.webp";
 import classes from "./LoginPage.module.scss";
 
 export const LoginPage = () => {

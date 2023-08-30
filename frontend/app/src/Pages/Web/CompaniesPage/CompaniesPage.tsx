@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "./CompaniesPage.module.scss";
 
-import companies1 from "../../../assets/companies.svg";
+import companies1 from "../../../assets/companies2.png";
 import { Category } from "../../../Types/Interfaces";
 import Switch from "../../../Components/Web/Switch";
 import { SortAttributeType, SortType } from "../../../Types/Enums";

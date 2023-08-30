@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import classes from "./BrandPage.module.scss";
 import { GetLargeCompany, getLargeCompany } from "../../../Api/CompanyApi";
 import { useEffect, useState } from "react";
-import Placeholder from "../../../assets/placeholder.png";
+import Placeholder from "../../../assets/placeholder.webp";
 import ShortView from "../../../Components/Web/ShortView";
 import ProductView from "../../../Components/Web/ProductView";
 import {

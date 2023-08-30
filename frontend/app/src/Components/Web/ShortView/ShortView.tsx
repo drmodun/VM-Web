@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./ShortView.module.scss";
-import Placeholder from "../../../assets/placeholder.png";
+import Placeholder from "../../../assets/placeholder.webp";
 import { Link } from "react-router-dom";
 
 interface Props {

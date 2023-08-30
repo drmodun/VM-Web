@@ -1,6 +1,6 @@
 import Register from "../../../Components/Web/Register";
 import React, { useState, useEffect} from "react";
-import Background from "../../../assets/background2.svg";
+import Background from "../../../assets/background2.webp";
 import classes from "./RegisterPage.module.scss";
 import { createUser, NewUser} from "../../../Api/UserApi";
 export const RegisterPage = () => {

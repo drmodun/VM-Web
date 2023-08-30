@@ -5,8 +5,7 @@ import {
   getCategories,
   getShortCategories,
 } from "../../../Api/CategoryApi";
-import categories1 from "../../../assets/categories1.svg";
-import categories2 from "../../../assets/categories2.svg";
+import categories2 from "../../../assets/categories1.webp";
 import { Category } from "../../../Types/Interfaces";
 import Switch from "../../../Components/Web/Switch";
 import { SortAttributeType, SortType } from "../../../Types/Enums";

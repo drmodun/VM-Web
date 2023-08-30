@@ -4,15 +4,15 @@ import {
   ShortProduct,
   getShortProducts,
 } from "../../../Api/ProductApi";
-import brands2 from "../../../assets/brands2.svg";
+import brands2 from "../../../assets/companies2.webp";
 import ProductView from "../../../Components/Web/ProductView";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
 import { useEffect, useState } from "react";
-import products2 from "../../../assets/products2.svg";
-import products3 from "../../../assets/products3.svg";
-import categories1 from "../../../assets/categories1.svg";
-import services1 from "../../../assets/services1.svg";
+import products2 from "../../../assets/product2.webp";
+import products3 from "../../../assets/products4.webp";
+import categories1 from "../../../assets/categories2.webp";
+import services1 from "../../../assets/services1.webp";
 //perhaps later do some stuff with pictures again
 import ShortView from "../../../Components/Web/ShortView";
 import { Link } from "react-router-dom";
@@ -67,6 +67,7 @@ export const Homepage = () => {
 
   return (
     <div className={classes.Container}>
+      <link rel="preload" fetchpriority="high" as="image" href={products2} type="image/webp"></link>
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
         <img src={products2} alt="" />

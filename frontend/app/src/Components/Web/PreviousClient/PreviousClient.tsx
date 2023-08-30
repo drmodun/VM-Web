@@ -11,11 +11,16 @@ export const PreviousClientView = ({ client }: Props) => {
     <div className={classes.Container}>
       <div className={classes.PreviousClient}>
         <div className={classes.Image}>
-          <img src={"https://media0testing.blob.core.windows.net/vm-racunala/clients/" + client.id} alt={client.name} onError={
-            (e) => {
-              e.currentTarget.src = placeholder;
+          <img
+            src={
+              "https://media0testing.blob.core.windows.net/vm-racunala/clients/" +
+              client.id
             }
-          }/>
+            alt={client.name}
+            onError={(e) => {
+              e.currentTarget.src = placeholder;
+            }}
+          />
         </div>
         <div className={classes.OtherInfo}>
           <div className={classes.Name}>{client.name}</div>
@@ -30,6 +35,7 @@ export const PreviousClientView = ({ client }: Props) => {
           <a
             target="_blank"
             rel="noreferrer noopener"
+            //TODO: fix theese links
             referrerPolicy="no-referrer"
             href={client.website}
             className={classes.Site}
