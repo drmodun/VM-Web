@@ -42,7 +42,7 @@ export const CompaniesPage = () => {
         </div>
       </div>
       <div className={classes.CompaniesPage}>
-        <div className={classes.Companies}>
+        {companies && companies.length > 0 ?<div className={classes.Companies}>
           {companies &&
             companies.map((company) => (
               <ShortView
@@ -53,7 +53,11 @@ export const CompaniesPage = () => {
                 link={`/brands/${company.id}`}
               />
             ))}
-        </div>
+        </div> : <div className={classes.Empty}>
+            <h2>No Brands found</h2>
+            <p>There are no brands at the moment, please come back later.</p>
+          </div>
+        }
       </div>
     </div>
   );

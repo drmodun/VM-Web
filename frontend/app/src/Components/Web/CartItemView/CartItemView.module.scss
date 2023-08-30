@@ -50,8 +50,10 @@
             height: 100%;
             justify-content: space-between;
             width: 100%;
+            margin-left: 20px;
             @media screen and (max-width: 950px) {
                 justify-content: flex-start;
+                margin-left: 0px;
             }
             .Name {
                 color: var(--background-main-color, #0d63f3);

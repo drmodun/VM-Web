@@ -103,6 +103,10 @@
                     line-height: normal;
                     letter-spacing: 0.32px;
                     text-transform: none;
+                    @media screen and (max-width: 950px) {
+                        font-size: 12px;
+                        margin-bottom: 10px;
+                    }
                     &:hover {
                         color: var(--background-main-color, #0D63F3);
                         text-decoration: underline;

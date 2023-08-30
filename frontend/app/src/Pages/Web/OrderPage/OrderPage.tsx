@@ -24,7 +24,10 @@ export const OrderPage = () => {
 
   const fetchService = async () => {
     const service = await getService(serviceId as string);
-    if (service == null) return;
+    if (service == null) {
+      window.location.href = "/404";
+      return;
+    };
     console.log(service);
     setService(service);
   };

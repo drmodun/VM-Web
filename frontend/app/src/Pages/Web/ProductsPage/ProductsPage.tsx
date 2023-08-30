@@ -53,7 +53,7 @@ export const ProductsPage = () => {
     const response = await getShortProducts({
       "Sorting.Attribute": sortAttribute,
       "Sorting.SortType": type,
-      "Pagination.PageNumber": pageInfo.page ?? 1,
+      "Pagination.PageNumber": pageInfo?.page ?? 1,
       "Pagination.PageSize": 20,
       name: name ?? undefined,
       categoryId: category ?? undefined,
@@ -74,7 +74,7 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     productFetcher(undefined, true);
-  }, [pageInfo.page, sortAttribute, type]);
+  }, [pageInfo?.page, sortAttribute, type]);
 
   return (
     <div className={classes.Container}>
@@ -123,7 +123,7 @@ export const ProductsPage = () => {
               />
             </div>
           </div>
-          {products.length > 0 && pageInfo && (
+          {products && products.length > 0 && pageInfo && (
             <Pagination
               currentPage={pageInfo.page ?? 1}
               totalPages={pageInfo.totalPages!}
@@ -133,7 +133,7 @@ export const ProductsPage = () => {
             />
           )}
         </div>
-        {products.length ? (
+        {products && products.length ? (
           <div className={classes.Products}>
             {products.map((product) => (
               <ProductView product={product} />

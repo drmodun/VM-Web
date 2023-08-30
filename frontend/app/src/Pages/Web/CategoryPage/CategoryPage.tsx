@@ -25,7 +25,10 @@ export const CategoryPage = () => {
 
   const fetchCategory = async () => {
     const response = await getLargeCategory(categoryId as string);
-    if (response == null) return;
+    if (response == null) {
+      window.location.href = "/404";
+      return;
+    };
     setCategory(response);
   };
 

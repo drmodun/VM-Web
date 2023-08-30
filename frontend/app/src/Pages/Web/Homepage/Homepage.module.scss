@@ -10,6 +10,20 @@
     @media screen and (max-width: 768px) {
         margin-top: 0px;
     }
+    .NotFound{
+        width: 78vw;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2vw;
+        font-family: Nuckle;
+        font-weight: 500;
+        color: var(--neutral-200, #9d9ea2);
+        @media (max-width: 768px) {
+            font-size: 4.5vw;
+        }
+    }
     .Cover {
         width: 100%;
         height: 800px;

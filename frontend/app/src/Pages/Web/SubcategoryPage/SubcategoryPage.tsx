@@ -28,7 +28,10 @@ export const SubcategoryPage = () => {
 
   const fetchSubcategory = async () => {
     const response = await getLargeSubcategory(subcategoryId as string);
-    if (response == null) return;
+    if (response == null) {
+      window.location.href = "/404";
+      return;
+    };
     setSubcategory(response);
   };
 

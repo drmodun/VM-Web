@@ -101,6 +101,16 @@
                     }
                 }
             }
+            .Warning{
+                font-size: 16px;
+                font-family: Nuckle;
+                text-align: center;
+                color:  #f64d4d;
+                font-weight: 600;
+                @media screen and (max-width: 768px) {
+                    font-size: 3.5vw;
+                }
+            }
             .Button {
                 width: 100%;
                 height: 70px;
@@ -129,6 +139,11 @@
                 &:active {
                     color: #d0def5;
                     background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
+                }
+                &:disabled{
+                    background-color: lightgrey;
+                    color: grey;
+                    cursor: not-allowed;
                 }
             }
         }

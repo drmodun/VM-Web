@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import classes from "./CartPage.module.scss";
-import { CartItem, Checkout, getCart } from "../../../Api/UserApi";
+import { CartItem, Checkout, User, getCart, getMe } from "../../../Api/UserApi";
 import CartItemView from "../../../Components/Web/CartItemView";
 import { accountInfo } from "../../../Api/Shared";
 
@@ -8,13 +8,20 @@ export const CartPage = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [disabled, setDisabled] = useState<boolean>(false);
-
+  const [hasCard, setHasCard] = useState<boolean>(false);
   const checkout = async () => {
     setDisabled(true);
     const action = await Checkout();
-    if (!action) return;
+    if (!action) {
+      setDisabled(false);
+      alert("Something went wrong, please try again later");
+      return;
+    }
+    alert(
+      "Successfully checked out your cart, see your transactions on your user page"
+    );
     //go to the page for transactions
-    window.location.href = "/";
+    window.location.href = "/user";
   };
 
   const removeTotal = (value: number, index: number) => {
@@ -34,10 +41,14 @@ export const CartPage = () => {
   const fetchCart = async () => {
     if (!accountInfo) return;
     const response = await getCart();
+    const tempUser = await getMe();
+    if (response == null || tempUser == null) return;
+    setHasCard(tempUser.hasCardInfo);
     setCartItems(response?.items!);
     setTotal(response?.totalPrice!);
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchCart();
   }, []);
 
@@ -46,7 +57,7 @@ export const CartPage = () => {
   return accountInfo ? (
     <div className={classes.Container}>
       <div className={classes.Cart}>
-        {cartItems.length > 0 ? (
+        {cartItems && cartItems.length > 0 ? (
           <div className={classes.CartItems}>
             {cartItems &&
               cartItems.map((item, i) => (
@@ -63,11 +74,11 @@ export const CartPage = () => {
             <h1>Your cart is empty</h1>
             <p>
               Go to the <a href="/">home page</a> or{" "}
-              <a href="/products">the product page</a>to add items to your cart
+              <a href="/products">the product page</a> to add items to your cart
             </p>
           </div>
         )}
-        {cartItems.length > 0 && (
+        {cartItems && cartItems.length > 0 && (
           <div className={classes.Checkout}>
             <div className={classes.Total}>
               <span>Total:</span>
@@ -75,11 +86,16 @@ export const CartPage = () => {
             </div>
             <button
               className={classes.Button}
-              disabled={disabled}
+              disabled={disabled || !hasCard}
               onClick={checkout}
             >
               Checkout
             </button>
+            {!hasCard && (
+              <p className={classes.Warning}>
+                You need to have a card registered to your account to checkout
+              </p>
+            )}
           </div>
         )}
       </div>

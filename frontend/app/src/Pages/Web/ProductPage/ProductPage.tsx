@@ -10,7 +10,10 @@ export const ProductPage = () => {
   const [product, setProduct] = useState<Product>();
   const fetchProduct = async () => {
     const response = await getProduct(productId as string);
-    if (response == null) return;
+    if (response == null) {
+      window.location.href = "/404";
+      return;
+    };
     console.log(response);
     setProduct(response);
   };

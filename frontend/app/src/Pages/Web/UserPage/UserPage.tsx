@@ -39,7 +39,10 @@ export const UserPage = () => {
   //TODO: add stuff for empty searches, empty lists and placeholdets
   const reload = async () => {
     const info = await getMe();
-    if (!info) return;
+    if (!info) {
+      window.location.href = "/404";
+      return;
+    }
     console.log(info);
     setUser(info.user);
     setHasCard(info.hasCardInfo);
@@ -92,7 +95,7 @@ export const UserPage = () => {
                 </div>
               </div>
               <button className={classes.Logout} onClick={logout}>
-                Logout  
+                Logout
               </button>
             </div>
             <div className={classes.Selection}>
@@ -177,125 +180,133 @@ export const UserPage = () => {
                     <CardSection />
                   </div>
                 )}
-                {tab === Tabs.Orders && (
-                  <div className={classes.Orders}>
-                    <div className={classes.SelectRow}>
-                      <Switch
-                        options={[
-                          { label: "Nijedno", value: 0 },
-                          { label: "Abecedno", value: 1 },
-                          { label: "Cijena", value: 2 },
-                          { label: "Datum", value: 3 },
-                          { label: "Tip", value: 4 },
-                          { label: "Status", value: 5 },
-                        ]}
-                        onSwitch={(value) => {
-                          setCriteria(value);
-                        }}
-                      />
-                      <Switch
-                        options={[
-                          { label: "Rastuće", value: 0 },
-                          { label: "Padajuće", value: 1 },
-                        ]}
-                        onSwitch={(value) => {
-                          setSortType(value);
-                        }}
-                      />
+                {tab === Tabs.Orders &&
+                  (orders && orders.length > 0 ? (
+                    <div className={classes.Orders}>
+                      <div className={classes.SelectRow}>
+                        <Switch
+                          options={[
+                            { label: "Nijedno", value: 0 },
+                            { label: "Abecedno", value: 1 },
+                            { label: "Cijena", value: 2 },
+                            { label: "Datum", value: 3 },
+                            { label: "Tip", value: 4 },
+                            { label: "Status", value: 5 },
+                          ]}
+                          onSwitch={(value) => {
+                            setCriteria(value);
+                          }}
+                        />
+                        <Switch
+                          options={[
+                            { label: "Rastuće", value: 0 },
+                            { label: "Padajuće", value: 1 },
+                          ]}
+                          onSwitch={(value) => {
+                            setSortType(value);
+                          }}
+                        />
+                      </div>
+                      {orders
+                        .sort((a, b) => {
+                          if (criteria === 0) return 0;
+                          if (criteria === 1) {
+                            if (a.serviceName > b.serviceName) return 1;
+                            else return -1;
+                          }
+                          if (criteria === 2) {
+                            if (a.price > b.price) return 1;
+                            else return -1;
+                          }
+                          if (criteria === 3) {
+                            if (a.created > b.created) return 1;
+                            else return -1;
+                          }
+                          if (criteria === 4) {
+                            if (a.serviceType > b.serviceType) return 1;
+                            else return -1;
+                          }
+                          if (criteria === 5) {
+                            if (a.statusType > b.statusType) return 1;
+                            else return -1;
+                          }
+                          return 0;
+                        })
+                        .sort((a, b) => {
+                          if (sortType === 0) return 0;
+                          return -1;
+                        })
+                        .map((order, index) => {
+                          return <OrderView key={index} order={order} />;
+                        })}
                     </div>
-                    {orders
-                      .sort((a, b) => {
-                        if (criteria === 0) return 0;
-                        if (criteria === 1) {
-                          if (a.serviceName > b.serviceName) return 1;
-                          else return -1;
-                        }
-                        if (criteria === 2) {
-                          if (a.price > b.price) return 1;
-                          else return -1;
-                        }
-                        if (criteria === 3) {
-                          if (a.created > b.created) return 1;
-                          else return -1;
-                        }
-                        if (criteria === 4) {
-                          if (a.serviceType > b.serviceType) return 1;
-                          else return -1;
-                        }
-                        if (criteria === 5) {
-                          if (a.statusType > b.statusType) return 1;
-                          else return -1;
-                        }
-                        return 0;
-                      })
-                      .sort((a, b) => {
-                        if (sortType === 0) return 0;
-                        return -1;
-                      })
-                      .map((order, index) => {
-                        return <OrderView key={index} order={order} />;
-                      })}
-                  </div>
-                )}
-                {tab === Tabs.Transactions && (
-                  <div className={classes.Transactions}>
-                    <div className={classes.SelectRow}>
-                      <Switch
-                        options={[
-                          { label: "Nijedno", value: 0 },
-                          { label: "Abecedno", value: 1 },
-                          { label: "Ukupna cijena", value: 2 },
-                          { label: "Datum", value: 3 },
-                        ]}
-                        onSwitch={(value) => {
-                          setCriteria(value);
-                        }}
-                      />
-                      <Switch
-                        options={[
-                          { label: "Rastuće", value: 0 },
-                          { label: "Padajuće", value: 1 },
-                        ]}
-                        onSwitch={(value) => {
-                          setSortType(value);
-                        }}
-                      />
+                  ) : (
+                    <span className={classes.NotFound}>No orders found</span>
+                  ))}
+                {tab === Tabs.Transactions &&
+                  (transactions && transactions.length > 0 ? (
+                    <div className={classes.Transactions}>
+                      <div className={classes.SelectRow}>
+                        <Switch
+                          options={[
+                            { label: "Nijedno", value: 0 },
+                            { label: "Abecedno", value: 1 },
+                            { label: "Ukupna cijena", value: 2 },
+                            { label: "Datum", value: 3 },
+                          ]}
+                          onSwitch={(value) => {
+                            setCriteria(value);
+                          }}
+                        />
+                        <Switch
+                          options={[
+                            { label: "Rastuće", value: 0 },
+                            { label: "Padajuće", value: 1 },
+                          ]}
+                          onSwitch={(value) => {
+                            setSortType(value);
+                          }}
+                        />
+                      </div>
+                      {transactions
+                        .sort((a, b) => {
+                          if (criteria === 0) return 0;
+                          if (criteria === 1) {
+                            if (a.productName > b.productName) return 1;
+                            else return -1;
+                          }
+                          if (criteria === 2) {
+                            if (
+                              a.pricePerUnit * a.quantity >
+                              b.quantity * b.pricePerUnit
+                            )
+                              return 1;
+                            else return -1;
+                          }
+                          if (criteria === 3) {
+                            if (a.createdAt > b.createdAt) return 1;
+                            else return -1;
+                          }
+                          return 0;
+                        })
+                        .sort((a, b) => {
+                          if (sortType === 0) return 0;
+                          return -1;
+                        })
+                        .map((transaction, index) => {
+                          return (
+                            <TransactionView
+                              key={index}
+                              transaction={transaction}
+                            />
+                          );
+                        })}
                     </div>
-                    {transactions
-                      .sort((a, b) => {
-                        if (criteria === 0) return 0;
-                        if (criteria === 1) {
-                          if (a.productName > b.productName) return 1;
-                          else return -1;
-                        }
-                        if (criteria === 2) {
-                          if (
-                            a.pricePerUnit * a.quantity >
-                            b.quantity * b.pricePerUnit
-                          )
-                            return 1;
-                          else return -1;
-                        }
-                        if (criteria === 3) {
-                          if (a.createdAt > b.createdAt) return 1;
-                          else return -1;
-                        }
-                        return 0;
-                      })
-                      .sort((a, b) => {
-                        if (sortType === 0) return 0;
-                        return -1;
-                      })
-                      .map((transaction, index) => {
-                        return (
-                          <TransactionView
-                            key={index}
-                            transaction={transaction}
-                          />
-                        );
-                      })}
-                  </div>
-                )}
+                  ) : (
+                    <span className={classes.NotFound}>
+                      No transactions found
+                    </span>
+                  ))}
               </div>
             </div>
           </div>

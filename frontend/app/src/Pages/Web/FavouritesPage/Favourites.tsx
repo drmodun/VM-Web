@@ -16,6 +16,7 @@ export const FavouritesPage = () => {
     setFavourites(response.items);
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchFavourites();
   }, []);
 

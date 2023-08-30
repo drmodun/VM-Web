@@ -45,18 +45,25 @@ export const CategoriesPage = () => {
         </div>
       </div>
       <div className={classes.CategoriesPage}>
-        <div className={classes.Categories}>
-          {categories &&
-            categories.map((category) => (
-              <ShortView
-                titlte={category.name}
-                id={category.id}
-                subtitle={category.numberOfProducts.toString()}
-                link={`/categories/${category.id}`}
-                directory="categories"
-              />
-            ))}
-        </div>
+        {categories && categories.length > 0 ? (
+          <div className={classes.Categories}>
+            {categories &&
+              categories.map((category) => (
+                <ShortView
+                  titlte={category.name}
+                  id={category.id}
+                  subtitle={category.numberOfProducts.toString()}
+                  link={`/categories/${category.id}`}
+                  directory="categories"
+                />
+              ))}
+          </div>
+        ) : (
+          <div className={classes.Empty}>
+            <h2>No Categories found</h2>
+            <p>There are no categories at the moment, please come back later.</p>
+          </div>
+        )}
       </div>
     </div>
   );

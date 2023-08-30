@@ -11,19 +11,16 @@ export const Footer = () => {
       <footer>
         <div className={classes.FooterContent}>
           <div className={classes.FooterSection}>
-            <h3>Kompanija</h3>
+            <h3>Korisnik</h3>
             <ul>
-              <Link className={classes.Link} to={"/about"}>
-                <li>O nama</li>
+              <Link className={classes.Link} to={"/user"}>
+                <li>Korisnička stranica</li>
               </Link>
-              <Link className={classes.Link} to={"/contact"}>
-                <li>Kontakt</li>
+              <Link className={classes.Link} to={"/cart"}>
+                <li>Košarica</li>
               </Link>
-              <Link className={classes.Link} to={"/faq"}>
-                <li>FAQ</li>
-              </Link>
-              <Link className={classes.Link} to="/temrs">
-                <li>Uslovi korišćenja</li>
+              <Link className={classes.Link} to={"/favourites"}>
+                <li>Favoriti</li>
               </Link>
             </ul>
           </div>
@@ -39,6 +36,13 @@ export const Footer = () => {
               <Link className={classes.Link} to={"/services"}>
                 <li>Servisi</li>
               </Link>
+              <Link className={classes.Link} to={"/categories"}>
+                <li>Kategorije</li>
+              </Link>
+              <Link className={classes.Link} to={"/brands"}>
+                <li>Brendovi</li>
+              </Link>
+              
               <Link className={classes.Link} to={"/clients"}>
                 <li>Prijašnji klijenti</li>
               </Link>

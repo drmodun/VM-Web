@@ -37,7 +37,10 @@ export const CompanyPage = () => {
       "Pagination.PageSize": 20,
       companyId: companyId as string,
     });
-    if (response == null) return;
+    if (response == null) {
+      window.location.href = "/404";
+      return;
+    }
     setProducts(response.items);
     if (pageChange) return;
     setPageInfo(response.pageInfo);

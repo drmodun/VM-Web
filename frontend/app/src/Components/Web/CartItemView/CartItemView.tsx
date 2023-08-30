@@ -85,18 +85,18 @@ export const CartItemView = ({ item, change, remove, index }: Props) => {
           <div className={classes.Quantity}>
             <button
               onClick={() => {
-                changeQuantity(quantity + 1);
-              }}
-            >
-              +
-            </button>
-            <div>{quantity}</div>
-            <button
-              onClick={() => {
                 changeQuantity(quantity - 1);
               }}
             >
               -
+            </button>
+            <div>{quantity}</div>
+            <button
+              onClick={() => {
+                changeQuantity(quantity + 1);
+              }}
+            >
+              +
             </button>
           </div>
           <button className={classes.Remove} onClick={removeItem}>

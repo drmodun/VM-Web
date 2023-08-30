@@ -67,7 +67,13 @@ export const Homepage = () => {
 
   return (
     <div className={classes.Container}>
-      <link rel="preload" fetchpriority="high" as="image" href={products2} type="image/webp"></link>
+      <link
+        rel="preload"
+        fetchpriority="high"
+        as="image"
+        href={products2}
+        type="image/webp"
+      ></link>
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
         <img src={products2} alt="" />
@@ -164,54 +170,66 @@ export const Homepage = () => {
         </div>
         <div className={classes.Row}>
           <span>Categories</span>
-          <div className={classes.List}>
-            {categories &&
-              categories.map((category) => {
-                return (
-                  <ShortView
-                    directory="categories"
-                    id={category.id}
-                    key={category.id}
-                    link={`/categories/${category.id}`}
-                    titlte={category.name}
-                    subtitle={category.numberOfProducts.toString()}
-                  />
-                );
-              })}
-          </div>
+          {categories && categories.length ? (
+            <div className={classes.List}>
+              {categories &&
+                categories.map((category) => {
+                  return (
+                    <ShortView
+                      directory="categories"
+                      id={category.id}
+                      key={category.id}
+                      link={`/categories/${category.id}`}
+                      titlte={category.name}
+                      subtitle={category.numberOfProducts.toString()}
+                    />
+                  );
+                })}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No categories founds</span>
+          )}
           <Link className={classes.ViewAll} to={"/categories"}>
             View all
           </Link>
         </div>
         <div className={classes.Row}>
           <span>Brands</span>
-          <div className={classes.List}>
-            {brands &&
-              brands.map((brand) => {
-                return (
-                  <ShortView
-                    key={brand.id}
-                    link={`/brands/${brand.id}`}
-                    directory="companies"
-                    id={brand.id}
-                    titlte={brand.name}
-                    subtitle={brand.numberOfProducts.toString()}
-                  />
-                );
-              })}
-          </div>
+          {brands && brands.length ? (
+            <div className={classes.List}>
+              {brands &&
+                brands.map((brand) => {
+                  return (
+                    <ShortView
+                      key={brand.id}
+                      link={`/brands/${brand.id}`}
+                      directory="companies"
+                      id={brand.id}
+                      titlte={brand.name}
+                      subtitle={brand.numberOfProducts.toString()}
+                    />
+                  );
+                })}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No brands founds</span>
+          )}
           <Link className={classes.ViewAll} to={"/brands"}>
             View all
           </Link>
         </div>
         <div className={classes.Row}>
           <span>Popularni produkti</span>
-          <div className={classes.ProductList}>
-            {products &&
-              products.map((product) => {
-                return <ProductView key={product.id} product={product} />;
-              })}
-          </div>
+          {products && products.length ? (
+            <div className={classes.ProductList}>
+              {products &&
+                products.map((product) => {
+                  return <ProductView key={product.id} product={product} />;
+                })}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No products founds</span>
+          )}
         </div>
       </div>
     </div>

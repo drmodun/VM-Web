@@ -1,4 +1,4 @@
-.Container {
+    .Container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,6 +46,8 @@
             align-items: center;
             justify-content: center;
             display: flex;
+            outline: none;
+            border: none;
             padding: 10px 0px;
             font-family: Nuckle;
             font-size: 16px;
