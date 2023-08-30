@@ -65,7 +65,8 @@
                 width: 100%;
                 min-height: 320px;
                 justify-content: center;
-                .Switch{
+                align-items: center;
+                .Switch {
                     font-size: 16px;
                     font-weight: 600;
                     color: var(--black-h-1, #2c2c2c);
@@ -80,7 +81,6 @@
                         color: #2352e1;
                         text-decoration: none;
                     }
-
                 }
                 > div {
                     margin-bottom: 20px;
@@ -92,7 +92,7 @@
                     color: var(--red-base, #ff0000);
                     font-family: Nuckle;
                     font-size: 12px;
-                    font-weight: 400;
+                    font-weight: 600;
                     margin-bottom: 10px;
                     min-height: 40px;
                 }

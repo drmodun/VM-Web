@@ -55,11 +55,17 @@
             padding-top: 13px;
             padding-bottom: 13px;
             display: flex;
+            text-decoration: none;
             border-radius: 10px;
             background: var(
                 --button-gradient-20,
                 linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
             );
+            &:hover {
+                cursor: pointer;
+                color: #fff;
+                background: var(--button-gradient, linear-gradient(220deg, #2d2ef6 0%, #f14dfd 100%));
+            }
             flex-direction: row;
             justify-content: center;
             align-items: center;
@@ -98,7 +104,7 @@
                     letter-spacing: 0.32px;
                     text-transform: none;
                     &:hover {
-                        color: var(--text-main, #120828);
+                        color: var(--background-main-color, #0D63F3);
                         text-decoration: underline;
                         cursor: pointer;
                     }

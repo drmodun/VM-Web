@@ -3,7 +3,6 @@ import { CartItem, removeFromCart, updateCart } from "../../../Api/UserApi";
 import Placeholder from "../../../assets/placeholder.webp";
 import classes from "./CartItemView.module.scss";
 import { useEffect, useState } from "react";
-import StripeCheckout from "react-stripe-checkout";
 interface Props {
   item: CartItem;
   change?: Function;

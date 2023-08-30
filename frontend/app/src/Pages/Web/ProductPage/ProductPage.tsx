@@ -36,6 +36,7 @@ export const ProductPage = () => {
           <SimilarProducts prod={product} />
         </>
       )}
+      
     </div>
   );
 };

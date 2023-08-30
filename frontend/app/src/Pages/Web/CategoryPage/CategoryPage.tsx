@@ -93,29 +93,37 @@ export const CategoryPage = () => {
           </div>
         </div>
         <span className={classes.SubHeader}>Subcategories</span>
-        <div className={classes.Subcategories}>
-          {category?.subcategories.map((subcategory) => (
-            <ShortView
-              link={`/subcategories/${subcategory.id}`}
-              id={subcategory.id}
-              titlte={subcategory.name}
-              directory="subcategories"
-              subtitle={subcategory.numberOfProducts.toString()}
-            />
-          ))}
-        </div>
+        {category.subcategories.length ? (
+          <div className={classes.Subcategories}>
+            {category?.subcategories.map((subcategory) => (
+              <ShortView
+                link={`/subcategories/${subcategory.id}`}
+                id={subcategory.id}
+                titlte={subcategory.name}
+                directory="subcategories"
+                subtitle={subcategory.numberOfProducts.toString()}
+              />
+            ))}
+          </div>
+        ) : (
+          <span className={classes.NotFound}>No subcategories found</span>
+        )}
         <span className={classes.SubHeader}>Brands</span>
-        <div className={classes.Companies}>
-          {category?.brands.map((company) => (
-            <ShortView
-              id={company.id}
-              titlte={company.name}
-              directory="companies"
-              subtitle={company.numberOfProducts.toString()}
-              link={`/brands/${company.id}`}
-            />
-          ))}
-        </div>
+        {category.brands?.length! ? (
+          <div className={classes.Companies}>
+            {category?.brands.map((company) => (
+              <ShortView
+                id={company.id}
+                titlte={company.name}
+                directory="companies"
+                subtitle={company.numberOfProducts.toString()}
+                link={`/brands/${company.id}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <span className={classes.NotFound}>No brands found</span>
+        )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
             <span className={classes.SubHeader} id="#products">
@@ -159,12 +167,16 @@ export const CategoryPage = () => {
               </div>
             </div>
           </div>
-          <div className={classes.Products}>
-            {products &&
-              products.map((product) => <ProductView product={product} />)}
-          </div>
+          {products?.length! > 0 ? (
+            <div className={classes.Products}>
+              {products &&
+                products.map((product) => <ProductView product={product} />)}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No products found</span>
+          )}
           <div className={classes.Pagination}>
-            {pageInfo && (
+            {pageInfo && products?.length! > 0 && (
               <Pagination
                 currentPage={pageInfo.page ?? 1}
                 totalPages={pageInfo.totalPages!}

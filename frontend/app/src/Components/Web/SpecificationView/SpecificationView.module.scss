@@ -1,14 +1,11 @@
 .Container {
-    width: 76vw;
+    width: 100%;
     padding: 40px 20px;
     border-radius: 10px;
     border: 1px solid var(--stroke-primary, #e4e7ee);
     background: var(--background-white, #fff);
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 950px) {
-        width: 88vw;
-    }
     > h1 {
         color: var(--text-main, #1e1e1e);
         font-family: Nuckle;

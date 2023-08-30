@@ -1,13 +1,10 @@
 .Container {
-    width: 76vw;
+    width: 100%;
     border-radius: 10px;
     background: var(--background-white, #fff);
     display: flex;
     flex-direction: column;
     padding: 20px;
-    @media screen and (max-width: 950px) {
-        width: 88vw;
-    }
     > h3 {
         color: var(--unnamed, #333232);
         /* TODO: meybe fix the displaz on larger resolutions */

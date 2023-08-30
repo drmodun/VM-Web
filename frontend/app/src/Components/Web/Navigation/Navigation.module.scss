@@ -72,6 +72,11 @@
                 margin-right: 12px;
                 //TODO: change the menu so it is in front of the logo
             }
+            &:hover{
+                cursor: pointer;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                background: var(--button-gradient, linear-gradient(220deg, #2d2ef6 0%, #f14dfd 100%));
+            }
             @media screen and (max-width: 950px) {
                 span {
                     display: none;
@@ -162,7 +167,7 @@
             justify-content: center;
             align-self: center;
             @media screen and (max-width: 950px) {
-                flex-direction: column;
+                display: none;
             }
         }
         .Favourites {
@@ -228,9 +233,6 @@
             }
         }
         .Login {
-            @media screen and (max-width: 950px) {
-                display: none;
-            }
             text-decoration: none;
             background-color: #7d5ef6;
             border-radius: 8px;
@@ -247,6 +249,13 @@
                 cursor: pointer;
                 background-color: #4d5ef6;
             }
+            @media screen and (max-width: 950px) {
+                width: 40px;
+                font-size: 10px;
+                margin: 0;
+                height: 40px;
+                border-radius: 50%;
+            }
             &:active {
                 background-color: #7d5ef6;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -254,9 +263,6 @@
             }
         }
         .Profile {
-            @media screen and (max-width: 950px) {
-                display: none;
-            }
             color: #0d63f3;
             font-weight: 500;
             font-size: 16px;
@@ -264,13 +270,19 @@
             height: 46px;
             align-items: center;
             justify-content: center;
+            text-decoration: none;
             transition: opacity 0.05s ease-in-out;
             &:hover {
                 cursor: pointer;
                 opacity: 0.8;
+                text-decoration: underline;
             }
             &:active {
                 opacity: 0.6;
+            }
+            @media screen and (max-width: 950px) {
+                font-size: 10px;
+                margin: 0;
             }
         }
     }

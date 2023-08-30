@@ -24,7 +24,7 @@ export const SideMenu = ({
         </div>
         <div className={classes.Menu}>
           {isLoggedIn ? (
-            <Link className={classes.User} onClick={closeMenu} to="/me">
+            <Link className={classes.User} onClick={closeMenu} to="/user">
               <span>{userName}</span>
             </Link>
           ) : (

@@ -86,55 +86,71 @@ export const SearchPage = () => {
         </h2>
         <div className={classes.Section}>
           <h3 className={classes.Subtitle}>Categories: {categories.length}</h3>
-          <div className={classes.SectionList}>
-            {categories.map((category) => (
-              <ShortView
-                subtitle={category.numberOfProducts.toString()}
-                directory="categories" 
-                titlte={category.name} //TODO: fix all misspellings
-                id={category.id}
-                link={`/categories/${category.id}`}
-              />
-            ))}
-          </div>
+          {categories.length ? (
+            <div className={classes.SectionList}>
+              {categories.map((category) => (
+                <ShortView
+                  subtitle={category.numberOfProducts.toString()}
+                  directory="categories"
+                  titlte={category.name} //TODO: fix all misspellings
+                  id={category.id}
+                  link={`/categories/${category.id}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No categories found</span>
+          )}
         </div>
         <div className={classes.Section}>
           <h3 className={classes.Subtitle}>
             Subcategories: {subcategories.length}
           </h3>
-          <div className={classes.SectionList}>
-            {subcategories.map((subcategory) => (
-              <ShortView
-                subtitle={subcategory.numberOfProducts.toString()}
-                titlte={subcategory.name} //TODO: fix all misspellings
-                directory="subcategories"
-                link={`/subcategories/${subcategory.id}`}
-                id={subcategory.id}
-              />
-            ))}
-          </div>
+          {subcategories.length ? (
+            <div className={classes.SectionList}>
+              {subcategories.map((subcategory) => (
+                <ShortView
+                  subtitle={subcategory.numberOfProducts.toString()}
+                  titlte={subcategory.name} //TODO: fix all misspellings
+                  directory="subcategories"
+                  link={`/subcategories/${subcategory.id}`}
+                  id={subcategory.id}
+                />
+              ))}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No subcategories found</span>
+          )}
         </div>
         <div className={classes.Section}>
           <h3 className={classes.Subtitle}>Brands: {brands.length}</h3>
-          <div className={classes.SectionList}>
-            {brands.map((brand) => (
-              <ShortView
-                directory="companies"
-                id={brand.id}
-                subtitle={brand.numberOfProducts.toString()}
-                titlte={brand.name} //TODO: fix all misspellings
-                link={`/brands/${brand.id}`}
-              />
-            ))}
-          </div>
+          {brands.length ? (
+            <div className={classes.SectionList}>
+              {brands.map((brand) => (
+                <ShortView
+                  directory="companies"
+                  id={brand.id}
+                  subtitle={brand.numberOfProducts.toString()}
+                  titlte={brand.name} //TODO: fix all misspellings
+                  link={`/brands/${brand.id}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No brands found</span>
+          )}
         </div>
         <div className={classes.Section}>
           <h3 className={classes.Subtitle}>Products: {products.length}</h3>
-          <div className={classes.ProductList}>
-            {products.map((product) => (
-              <ProductView product={product} />
-            ))}
-          </div>
+          {products.length ? (
+            <div className={classes.ProductList}>
+              {products.map((product) => (
+                <ProductView product={product} />
+              ))}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No products found</span>
+          )}
         </div>
       </div>
     </div>

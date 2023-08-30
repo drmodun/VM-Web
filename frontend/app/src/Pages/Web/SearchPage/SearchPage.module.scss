@@ -11,6 +11,20 @@
     @media (max-width: 768px) {
         padding: 20px 2vw;
     }
+    .NotFound{
+        width: 100%;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2vw;
+        font-family: Nuckle;
+        font-weight: 500;
+        color: var(--neutral-200, #9d9ea2);
+        @media (max-width: 768px) {
+            font-size: 4.5vw;
+        }
+    }
     .SearchPage {
         display: flex;
         flex-direction: column;

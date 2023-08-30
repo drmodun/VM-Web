@@ -10,6 +10,22 @@
     height: 100%;
     flex-direction: column;
     background-color: #ecf4ff;
+    .NotFound{
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2vw;
+        font-family: Nuckle;
+        font-weight: 500;
+        margin-top: 10%;
+        color: var(--neutral-200, #9d9ea2);
+        @media (max-width: 768px) {
+            font-size: 4.5vw;
+        }
+    }
     .Page {
         display: flex;
         flex-direction: row;
@@ -31,12 +47,14 @@
     .Filter {
         margin-right: 30px;
         display: flex;
+        min-width: 500px;
         flex-direction: column;
         align-items: center;
         @media screen and (max-width: 950px) {
             margin-right: 0px;
             margin-bottom: 20px;
             order: -1;
+            min-width: 0px;
         }
         > div {
             &:first-child {

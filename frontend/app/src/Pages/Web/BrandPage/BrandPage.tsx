@@ -84,35 +84,46 @@ export const CompanyPage = () => {
                 "https://media0testing.blob.core.windows.net/vm-racunala/companies/" +
                 Company.id
               }
+              onError={
+                (e) => ((e.target as HTMLImageElement).src = Placeholder)
+              }
               alt={Company?.name}
             />
           </div>
         </div>
 
         <span className={classes.SubHeader}>Categories</span>
-        <div className={classes.Categories}>
-          {Company?.categories.map((category) => (
-            <ShortView
-              directory="categories"
-              id={category.id}
-              titlte={category.name}
-              subtitle={category.numberOfProducts.toString()}
-              link={`/categories/${category.id}`}
-            />
-          ))}
-        </div>
+        {Company.categories.length ? (
+          <div className={classes.Categories}>
+            {Company?.categories.map((category) => (
+              <ShortView
+                directory="categories"
+                id={category.id}
+                titlte={category.name}
+                subtitle={category.numberOfProducts.toString()}
+                link={`/categories/${category.id}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <span className={classes.NotFound}>No categories found</span>
+        )}
         <span className={classes.SubHeader}>Subcategories</span>
-        <div className={classes.Subcategories}>
-          {Company?.subcategories.map((subcategory) => (
-            <ShortView
-              titlte={subcategory.name}
-              subtitle={subcategory.numberOfProducts.toString()}
-              directory="subcategories"
-              link={`/subcategories/${subcategory.id}`}
-              id={subcategory.id}
-            />
-          ))}
-        </div>
+        {Company.subcategories.length ? (
+          <div className={classes.Subcategories}>
+            {Company?.subcategories.map((subcategory) => (
+              <ShortView
+                titlte={subcategory.name}
+                subtitle={subcategory.numberOfProducts.toString()}
+                directory="subcategories"
+                link={`/subcategories/${subcategory.id}`}
+                id={subcategory.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <span className={classes.NotFound}>No subcategories found</span>
+        )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
             <span className={classes.SubHeader} id="#products">
@@ -156,21 +167,27 @@ export const CompanyPage = () => {
               </div>
             </div>
           </div>
-          <div className={classes.Products}>
-            {products &&
-              products.map((product) => <ProductView product={product} />)}
-          </div>
-          <div className={classes.Pagination}>
-            {pageInfo && (
-              <Pagination
-                currentPage={pageInfo.page ?? 1}
-                totalPages={pageInfo.totalPages!}
-                onPageChange={(page) => {
-                  setPageInfo((prev) => ({ ...prev, page: page }));
-                }}
-              />
-            )}
-          </div>
+          {products?.length ? (
+            <div className={classes.Products}>
+              {products &&
+                products.map((product) => <ProductView product={product} />)}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No products found</span>
+          )}
+          {products?.length! > 0  && (
+            <div className={classes.Pagination}>
+              {pageInfo && (
+                <Pagination
+                  currentPage={pageInfo.page ?? 1}
+                  totalPages={pageInfo.totalPages!}
+                  onPageChange={(page) => {
+                    setPageInfo((prev) => ({ ...prev, page: page }));
+                  }}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

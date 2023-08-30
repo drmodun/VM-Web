@@ -1,11 +1,11 @@
 .Container {
     background-color: transparent;
     padding: 45px 3vw;
-    width: 76vw;
+    width: 100%;
     height: 800px;
     @media screen and (max-width: 768px) {
         width: 100%;
-        padding: 45px 20px;
+        padding: 45px 0px;
         height: fit-content;
         align-items: center;
     }
@@ -31,8 +31,8 @@
             border-radius: 20px;
             align-items: center;
             @media screen and (max-width: 768px) {
-                width: 320px;
-                height: 320px;
+                width: 100%;
+                height: 90vw;
                 margin-bottom: 20px;
                 margin-right: 0px;
             }
@@ -44,20 +44,20 @@
                 width: 23vw;
                 height: 23vw;
                 @media screen and (max-width: 768px) {
-                    width: 220px;
-                    height: 220px;
+                    width: 90%;
+                    height: 90%;
                 }
             }
         }
         .ProductInfo {
             display: flex;
             flex-direction: column;
-            width: 100%;
+            width: 20vw;
             height: 100%;
             align-items: flex-start;
             justify-content: flex-start;
             @media screen and (max-width: 768px) {
-                width: 320px;
+                width: 100%;
             }
             .Title {
                 font-family: Nuckle;
@@ -74,7 +74,7 @@
                 font-weight: 591;
                 line-height: normal;
                 min-height: 150px;
-                max-width: 18vw;
+                max-width: 100%;
                 word-wrap: break-word;
                 margin-bottom: 15px;
                 @media screen and (max-width: 768px) {
@@ -155,18 +155,39 @@
             .Sub {
                 flex-direction: column;
                 display: flex;
-                .SubLink {
-                    text-decoration: none;
-                    color: #0d63f3;
-                    font-family: Nuckle;
-                    font-size: 18px;
-                    margin-bottom: 14px;
-                    font-weight: 591;
-                    &:hover {
-                        text-decoration: underline;
+                margin-bottom: 40px;
+                @media screen and (max-width: 768px) {
+                    margin-bottom: 20px;
+                    width: 100%;
+                }
+                .Linked {
+                    width: 25vw;
+                    height: 30px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+                    align-items: center;
+                    @media screen and (max-width: 768px) {
+                        width: 100%;
                     }
-                    &:active {
-                        color: #4d5ef6;
+                    > span {
+                        font-size: 20px;
+                        font-family: Nuckle;
+                        font-weight: 600;
+                    }
+                    .SubLink {
+                        text-decoration: none;
+                        color: #0d63f3;
+                        font-family: Nuckle;
+                        font-size: 18px;
+                        font-weight: 591;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                        &:active {
+                            color: #4d5ef6;
+                        }
                     }
                 }
             }
@@ -206,10 +227,10 @@
                     &:last-child {
                         margin-right: 0px;
                     }
-                    background: var(--background-main-color, #75E093);
+                    background: var(--background-main-color, #75e093);
                     &:hover {
                         cursor: pointer;
-                        background: #20BF86;
+                        background: #20bf86;
                     }
                     //TOD: add removal on single product page
                     &:active {

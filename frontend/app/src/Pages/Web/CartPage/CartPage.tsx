@@ -28,7 +28,7 @@ export const CartPage = () => {
   const changeTotal = (value: number, index: number) => {
     console.log(value);
     console.log(Math.round((cartItems[index].total + value) * 100) / 100);
-    setTotal(prev=>Math.round((prev + value) * 100) / 100);
+    setTotal((prev) => Math.round((prev + value) * 100) / 100);
   };
 
   const fetchCart = async () => {
@@ -43,28 +43,57 @@ export const CartPage = () => {
 
   //make things for empty cart
 
-  return (
+  return accountInfo ? (
     <div className={classes.Container}>
       <div className={classes.Cart}>
-        <div className={classes.CartItems}>
-          {cartItems && cartItems.map((item, i) => (
-            <CartItemView
-              item={item}
-              remove={removeTotal}
-              index={i}
-              change={changeTotal}
-            />
-          ))}
-        </div>
-        <div className={classes.Checkout}>
-          <div className={classes.Total}>
-            <span>Total:</span>
-            <span className={classes.Price}>{total} €</span>
+        {cartItems.length > 0 ? (
+          <div className={classes.CartItems}>
+            {cartItems &&
+              cartItems.map((item, i) => (
+                <CartItemView
+                  item={item}
+                  remove={removeTotal}
+                  index={i}
+                  change={changeTotal}
+                />
+              ))}
           </div>
-          <button className={classes.Button} disabled={disabled}
-          onClick={checkout}>
-            Checkout
-          </button>
+        ) : (
+          <div className={classes.Empty}>
+            <h1>Your cart is empty</h1>
+            <p>
+              Go to the <a href="/">home page</a> or{" "}
+              <a href="/products">the product page</a>to add items to your cart
+            </p>
+          </div>
+        )}
+        {cartItems.length > 0 && (
+          <div className={classes.Checkout}>
+            <div className={classes.Total}>
+              <span>Total:</span>
+              <span className={classes.Price}>{total} €</span>
+            </div>
+            <button
+              className={classes.Button}
+              disabled={disabled}
+              onClick={checkout}
+            >
+              Checkout
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  ) : (
+    <div className={classes.Container}>
+      <div className={classes.Cart}>
+        <div className={classes.Empty}>
+          <h1>You are not logged in</h1>
+          <p>
+            You need to be logged in to see your cart and add items to your
+            cart. Go to the <a href="/login">login page</a> or{" "}
+            <a href="/register">the register page</a> to log in or register
+          </p>
         </div>
       </div>
     </div>

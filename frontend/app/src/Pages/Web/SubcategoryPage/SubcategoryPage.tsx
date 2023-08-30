@@ -99,17 +99,21 @@ export const SubcategoryPage = () => {
         </div>
 
         <span className={classes.SubHeader}>Brands</span>
-        <div className={classes.Companies}>
-          {Subcategory?.brands.map((company) => (
-            <ShortView
-              titlte={company.name}
-              directory="companies"
-              id={company.id}
-              subtitle={company.numberOfProducts.toString()}
-              link={`/brands/${company.id}`}
-            />
-          ))}
-        </div>
+        {Subcategory.brands.length ? (
+          <div className={classes.Companies}>
+            {Subcategory?.brands.map((company) => (
+              <ShortView
+                titlte={company.name}
+                directory="companies"
+                id={company.id}
+                subtitle={company.numberOfProducts.toString()}
+                link={`/brands/${company.id}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <span className={classes.NotFound}>No brands found</span>
+        )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
             <span className={classes.SubHeader} id="#products">
@@ -149,21 +153,27 @@ export const SubcategoryPage = () => {
               </div>
             </div>
           </div>
-          <div className={classes.Products}>
-            {products &&
-              products.map((product) => <ProductView product={product} />)}
-          </div>
-          <div className={classes.Pagination}>
-            {pageInfo && (
-              <Pagination
-                currentPage={pageInfo.page ?? 1}
-                totalPages={pageInfo.totalPages!}
-                onPageChange={(page) => {
-                  setPageInfo((prev) => ({ ...prev, page: page }));
-                }}
-              />
-            )}
-          </div>
+          {products?.length! ? (
+            <div className={classes.Products}>
+              {products &&
+                products.map((product) => <ProductView product={product} />)}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No products found</span>
+          )}
+          {products?.length! && (
+            <div className={classes.Pagination}>
+              {pageInfo && (
+                <Pagination
+                  currentPage={pageInfo.page ?? 1}
+                  totalPages={pageInfo.totalPages!}
+                  onPageChange={(page) => {
+                    setPageInfo((prev) => ({ ...prev, page: page }));
+                  }}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

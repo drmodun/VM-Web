@@ -133,11 +133,15 @@ export const ProductsPage = () => {
             />
           )}
         </div>
-        <div className={classes.Products}>
-          {products.map((product) => (
-            <ProductView product={product} />
-          ))}
-        </div>
+        {products.length ? (
+          <div className={classes.Products}>
+            {products.map((product) => (
+              <ProductView product={product} />
+            ))}
+          </div>
+        ) : (
+          <span className={classes.NotFound}>No products found</span>
+        )}
       </div>
     </div>
   );

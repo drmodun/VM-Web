@@ -26,7 +26,7 @@ export const Layout = () => {
                 userName={accountInfo?.name}
             />
             { menuOpen &&
-            <SideMenu
+            <SideMenu   
                 closeMenu={closeMenu}
                 menuOpen={menuOpen}
                 isLoggedIn={accountInfo}

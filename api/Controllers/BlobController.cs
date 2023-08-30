@@ -1,6 +1,8 @@
 ﻿using Azure.Storage.Blobs.Models;
+using Contracts.Constants;
 using Domain.Services;
 using EllipticCurve.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -26,7 +28,7 @@ namespace api.Controllers
             //TODO: add download file funcionality here, dont know why it doesnt work but not too important right now
             return File(blob.Content, blob.Details.ContentType);
         }
-
+        [Authorize(AuthConstants.AdminUserPolicyName)]
         [HttpPost(Routes.Files.Create)]
         public async Task<ActionResult> PostBlob([FromRoute] string path, IFormFile formFile, [FromQuery] string directory)
         {
@@ -37,6 +39,7 @@ namespace api.Controllers
             }
             return action ? Ok(action) : BadRequest();
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
 
         [HttpDelete(Routes.Files.Delete)]
         public async Task<ActionResult> DeleteBlob([FromRoute] string path)
@@ -48,6 +51,8 @@ namespace api.Controllers
             }
             return action ? Ok(action) : NotFound();
         }
+        [Authorize(AuthConstants.AdminUserPolicyName)]
+
 
         [HttpPut(Routes.Files.Update)]
         public async Task<ActionResult> UpdateBlob([FromRoute] string path, IFormFile formFile, [FromQuery] string directory)

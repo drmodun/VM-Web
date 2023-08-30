@@ -67,25 +67,36 @@ export const MainProductView = ({ product }: Props) => {
         <div className={classes.ProductInfo}>
           <span className={classes.Title}>{product.name}</span>
           <div className={classes.Sub}>
-            <Link
-              className={classes.SubLink}
-              to={`/categories/${product.categoryId}`}
-            >
-              <span>{product.categoryName}</span>
-            </Link>
-            <Link
-              className={classes.SubLink}
-              to={`/categories/${product.categoryId}/subcategories/${product.subcategoryId}`}
-            >
-              <span>{product.subcategoryName}</span>
-            </Link>
+            <div className={classes.Linked}>
+              <span>Kategorija </span>
+              <Link
+                className={classes.SubLink}
+                to={`/categories/${product.categoryId}`}
+              >
+                <span>{product.categoryName}</span>
+              </Link>
+            </div>
+            <div className={classes.Linked}>
+              <span>Subkategorija</span>
+              <Link
+                className={classes.SubLink}
+                to={`/subcategories/${product.subcategoryId}`}
+              >
+                <span>{product.subcategoryName}</span>
+              </Link>
+            </div>
+            <div className={classes.Linked}>
+              <span>
 
-            <Link
-              className={classes.SubLink}
-              to={`/brands/${product.companyId}`}
-            >
-              <span>{product.companyName}</span>
-            </Link>
+              Brand
+              </span>
+              <Link
+                className={classes.SubLink}
+                to={`/brands/${product.companyId}`}
+              >
+                <span>{product.companyName}</span>
+              </Link>
+            </div>
           </div>
           <span className={classes.Description}>{product.description}</span>
           <span className={classes.Quantity}>{product.quantity} komada</span>
