@@ -1,4 +1,4 @@
-import classes from "./PreviousClient.module.scss";
+import classes from "./PreviousCLient.module.scss";
 import placeholder from "../../../assets/product1.svg";
 import { PreviousClient } from "../../../Api/PreviousClientApi";
 
