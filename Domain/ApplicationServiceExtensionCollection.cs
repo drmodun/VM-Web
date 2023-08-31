@@ -6,6 +6,7 @@ using Domain.Validatiors;
 using Email;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Stripe;
@@ -16,9 +17,9 @@ namespace Domain
     {
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            EmailSender.ApiKey = configuration.GetValue<string>("SendGrid:Key");
+            EmailSender.ApiKey = configuration["SendGridKey"];
             StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
-            services.AddDbContext<Context>(options => options.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres"));
+            services.AddDbContext<Context>(options => options.UseNpgsql(configuration["DbConnectionString"]));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
             services.AddScoped<BlobService>();

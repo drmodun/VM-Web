@@ -5,7 +5,9 @@ using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Stripe;
+using Azure.Security.KeyVault.Secrets;
 using System.Text;
+using Azure.Identity;
 
 namespace api
 {
@@ -15,7 +17,8 @@ namespace api
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
-            StripeConfiguration.ApiKey = config["Stripe:SecretKey"];
+            var keyVaultEndpoint = new Uri(builder.Configuration["VaultUri"]);
+            builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
             // Add services to the container.
             builder.Services.AddAuthentication(x =>
             {

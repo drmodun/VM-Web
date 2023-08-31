@@ -23,12 +23,6 @@ namespace Data
 
 
         public DbSet<Favourites> Favourites => Set<Favourites>();
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=vm;Username=postgres;Password=postgres");
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
