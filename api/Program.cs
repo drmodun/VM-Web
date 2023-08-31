@@ -17,8 +17,6 @@ namespace api
         {
             var builder = WebApplication.CreateBuilder(args);
             var config = builder.Configuration;
-            var keyVaultEndpoint = new Uri(builder.Configuration["VaultUri"]);
-            builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
             // Add services to the container.
             builder.Services.AddAuthentication(x =>
             {
