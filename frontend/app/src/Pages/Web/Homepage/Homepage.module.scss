@@ -110,10 +110,16 @@
                     cursor: pointer;
                     background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
                     color: white;
+                    img{
+                        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+                    }
                 }
                 &:active {
                     background: var(--button-gradient, linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%));
                     color: white;
+                    img{
+                        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+                    }
                 }
                 border-radius: 50%;
             }

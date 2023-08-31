@@ -5,7 +5,9 @@ import {
   getShortProducts,
 } from "../../../Api/ProductApi";
 import brands2 from "../../../assets/companies2.webp";
+import chevronLeft from "../../../assets/chevron-left.svg";
 import ProductView from "../../../Components/Web/ProductView";
+import chevronRight from "../../../assets/chevron-right.svg";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
 import { useEffect, useState } from "react";
@@ -19,8 +21,8 @@ import { Link } from "react-router-dom";
 import { ShortCompany, getShortCompanies } from "../../../Api/CompanyApi";
 const enum Tabs {
   Products,
-  Categories,
   Services,
+  Categories,
   Brands,
 }
 export const Homepage = () => {
@@ -93,7 +95,7 @@ export const Homepage = () => {
             className={classes.Arrow}
             onClick={() => setTab((prev) => (prev !== 0 ? prev - 1 : 0))}
           >
-            {"<"}
+            <img src={chevronLeft} alt="" />
           </div>
           <div className={classes.Upper}>
             {tab === Tabs.Categories && (
@@ -141,16 +143,16 @@ export const Homepage = () => {
               />
               <div
                 className={
-                  tab === Tabs.Categories ? classes.ActiveDot : classes.Dot
-                }
-                onClick={() => setTab(Tabs.Categories)}
-              />
-              <div
-                className={
                   tab === Tabs.Services ? classes.ActiveDot : classes.Dot
                 }
                 onClick={() => setTab(Tabs.Services)}
               />
+                <div
+                  className={
+                    tab === Tabs.Categories ? classes.ActiveDot : classes.Dot
+                  }
+                  onClick={() => setTab(Tabs.Categories)}
+                />
               <div
                 onClick={() => setTab(Tabs.Brands)}
                 className={
@@ -163,9 +165,8 @@ export const Homepage = () => {
             className={classes.Arrow}
             onClick={() =>
               setTab((prev) => (prev !== Tabs.Brands ? prev + 1 : 3))
-            }
-          >
-            {">"}
+            }>
+            <img src={chevronRight} alt="" />
           </div>
         </div>
         <div className={classes.Row}>

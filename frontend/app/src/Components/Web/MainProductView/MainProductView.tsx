@@ -26,6 +26,7 @@ export const MainProductView = ({ product }: Props) => {
   useEffect(() => {
     setSelectedQuantity(product?.cartQuantity || 1);
     setIsFavourite(product?.isFavourite || false);
+    setIsInCart(product?.cartQuantity > 0 || false);
   }, [product]);
 
   const toggleFavourite = async () => {
@@ -86,10 +87,7 @@ export const MainProductView = ({ product }: Props) => {
               </Link>
             </div>
             <div className={classes.Linked}>
-              <span>
-
-              Brand
-              </span>
+              <span>Brand</span>
               <Link
                 className={classes.SubLink}
                 to={`/brands/${product.companyId}`}

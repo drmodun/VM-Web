@@ -4,6 +4,7 @@ import {
   PreviousClient,
   getPreviousClients,
 } from "../../../Api/PreviousClientApi";
+import clients2 from "../../../assets/clients2.webp";
 import PreviousClientView from "../../../Components/Web/PreviousClient";
 
 export const PreviousClientsPage = () => {
@@ -19,7 +20,19 @@ export const PreviousClientsPage = () => {
 
   return (
     <div className={classes.Container}>
-      <h1>Previous Clients</h1>
+      <div className={classes.Cover}>
+        <div className={classes.Backdrop}></div>
+        <img src={clients2} alt="clients" />
+        <div
+          className={
+            //TODO: write a brader description
+            classes.CoverText
+          }
+        >
+          <h1>Previous Clients</h1>
+          <p>Take a look at some of our previous clients</p>
+        </div>
+      </div>{" "}
       {clients && clients.length > 0 ? (
         <div className={classes.ClientsContainer}>
           {clients.map((client) => (

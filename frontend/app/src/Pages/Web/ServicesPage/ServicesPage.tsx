@@ -3,7 +3,7 @@ import { Service, getServices } from "../../../Api/ServiceApi";
 import ServiceView from "../../../Components/Web/Service";
 import classes from "./ServicesPage.module.scss";
 import { SortAttributeType } from "../../../Types/Enums";
-
+import services4 from "../../../assets/services4.webp";
 const serviceTypeDict: { [key: string]: string } = {
   0: "Network",
   1: "Computer",
@@ -25,7 +25,19 @@ export const ServicesPage = () => {
   }, []);
   return (
     <div className={classes.Container}>
-      <h1>Services</h1>
+      <div className={classes.Cover}>
+        <div className={classes.Backdrop}></div>
+        <img src={services4} alt="services" />
+        <div
+          className={
+            //TODO: write a brader description
+            classes.CoverText
+          }
+        >
+          <h1>Service</h1>
+          <p>Find the service you need</p>
+        </div>
+      </div>
       {services && services.length > 0 ? (
         <div className={classes.Services}>
           {services &&
