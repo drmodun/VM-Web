@@ -19,7 +19,8 @@ namespace Domain
         {
             EmailSender.ApiKey = configuration["SendGridKey"];
             StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
-            services.AddDbContext<Context>(options => options.UseNpgsql(configuration["DbConnectionString"]));
+            Console.WriteLine(configuration["DbConnectionString"]);
+            services.AddDbContext<Context>(options => options.UseNpgsql(configuration["DatabaseConnectionString"]));
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
             services.AddScoped<BlobService>();

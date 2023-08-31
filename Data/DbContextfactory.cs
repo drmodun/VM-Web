@@ -10,9 +10,7 @@ namespace Data
 
             var options = new DbContextOptionsBuilder<Context>()
                 .EnableSensitiveDataLogging(true)
-                .UseNpgsql(
-                    "Host=localhost;Database=vm;Username=postgres;Password=postgres"
-                )
+                .UseNpgsql()
                 .Options;
 
             return new Context(options);
