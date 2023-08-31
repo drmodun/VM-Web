@@ -25,7 +25,6 @@ export const PreviousClientsPage = () => {
         <img src={clients2} alt="clients" />
         <div
           className={
-            //TODO: write a brader description
             classes.CoverText
           }
         >

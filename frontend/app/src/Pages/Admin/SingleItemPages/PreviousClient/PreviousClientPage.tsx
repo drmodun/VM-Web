@@ -28,8 +28,7 @@ export const PreviousClientPage = () => {
     tryGetPreviousClient();
 
     // fetch previousClient data
-    //TODO: add keys later
-    //add edit functionality later
+    
   }, []);
 
   return (

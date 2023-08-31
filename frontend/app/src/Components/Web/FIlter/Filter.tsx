@@ -68,7 +68,6 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
   }, [category, subcategory]);
 
   const companyGetter = async () => {
-    //TODO: add special wa to sort companies on backend
     const response = await getCompanies({
       subcategoryId: subcategory ? subcategory : undefined,
       categoryId: category ? category : undefined,
@@ -130,7 +129,6 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               onSelect={(value) => {
                 setSubcategory(value);
               }}
-              //TODO: fix slider minimal value
             />
           </div>
           <div className={classes.Company}>

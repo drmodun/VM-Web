@@ -36,7 +36,6 @@ export const UserPage = () => {
   const [sortType, setSortType] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
   const [criteria, setCriteria] = useState<number>(0); //0 - none, 1 - abc, 2 - price, 3 - date
   const [tab, setTab] = useState<Tabs>(Tabs.Info);
-  //TODO: add stuff for empty searches, empty lists and placeholdets
   const reload = async () => {
     const info = await getMe();
     if (!info) {
@@ -51,7 +50,6 @@ export const UserPage = () => {
     setTransactions(info.transactions);
     window.scrollTo(0, 0);
   };
-  //later make sorting for transactions and orders
   useEffect(() => {
     window.document.title = "User";
     reload();

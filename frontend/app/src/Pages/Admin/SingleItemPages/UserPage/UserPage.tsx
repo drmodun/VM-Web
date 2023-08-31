@@ -34,8 +34,6 @@ export const UserPage = () => {
   useEffect(() => {
     tryGetUser();
     // fetch user data
-    //TODO: add keys later
-    //add edit functionality later
   }, []);
 
   return (

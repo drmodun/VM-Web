@@ -15,7 +15,6 @@ import products2 from "../../../assets/product2.webp";
 import products3 from "../../../assets/products4.webp";
 import categories1 from "../../../assets/categories2.webp";
 import services1 from "../../../assets/services1.webp";
-//perhaps later do some stuff with pictures again
 import ShortView from "../../../Components/Web/ShortView";
 import { Link } from "react-router-dom";
 import { ShortCompany, getShortCompanies } from "../../../Api/CompanyApi";
@@ -63,7 +62,6 @@ export const Homepage = () => {
     categoryFetcher();
     brandFetcher();
     window.scrollTo(0, 0);
-    //TODO: look into performance issues with pictures
     window.document.title = "VM | Home";
   }, []);
 
@@ -81,7 +79,6 @@ export const Homepage = () => {
         <img src={products2} alt="" />
         <div
           className={
-            //TODO: write a brader description
             classes.CoverText
           }
         >
@@ -181,7 +178,7 @@ export const Homepage = () => {
                       id={category.id}
                       key={category.id}
                       link={`/categories/${category.id}`}
-                      titlte={category.name}
+                      title={category.name}
                       subtitle={category.numberOfProducts.toString()}
                     />
                   );
@@ -206,7 +203,7 @@ export const Homepage = () => {
                       link={`/brands/${brand.id}`}
                       directory="companies"
                       id={brand.id}
-                      titlte={brand.name}
+                      title={brand.name}
                       subtitle={brand.numberOfProducts.toString()}
                     />
                   );

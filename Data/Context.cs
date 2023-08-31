@@ -108,16 +108,6 @@ namespace Data
                 .WithMany(o => o.CartsProducts)
                 .HasForeignKey(o => o.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-
-            //handle conversions later  
-
-
-
-
-
-
-
             base.OnModelCreating(modelBuilder);
 
         }

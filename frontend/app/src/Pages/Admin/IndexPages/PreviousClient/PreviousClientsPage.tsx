@@ -11,7 +11,6 @@ import ItemTable from "../../../../Components/Admin/ItemTable";
 import { Link } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
 import Search from "../../../../Components/Admin/SearchSettings";
-//implement filter and sorting TODO
 
 const previousClientTypeDict: { [key: string]: string } = {
   0: "Network",
@@ -81,7 +80,6 @@ export const PreviousClientsPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -101,20 +99,11 @@ export const PreviousClientsPage = () => {
           })}
           links={[]}
           important={["name", "rating"]}
-          deleteItem={handleDeletePreviousClient} //TODO
+          deleteItem={handleDeletePreviousClient}
           type="previousClients"
         />
         <div className={classes.PreviousClientPagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
+          
         </div>
       </div>
       <div className={classes.PageActions}>

@@ -4,16 +4,15 @@ import Placeholder from "../../../assets/placeholder.webp";
 import { Link } from "react-router-dom";
 
 interface Props {
-  titlte: string;
+  title: string;
   subtitle: string;
   link: string;
   isShort?: boolean;
   directory: string;
   id: string;
 }
-//TODO: add images support for categories
 export const ShortView = ({
-  titlte,
+  title,
   subtitle,
   link,
   isShort,
@@ -34,11 +33,11 @@ export const ShortView = ({
                   e.currentTarget.src = Placeholder;
                 }
               }
-              alt={titlte}
+              alt={title}
             />
           </div>
           <div className={classes.ItemInfo}>
-            <span className={classes.Name}>{titlte}</span>
+            <span className={classes.Name}>{title}</span>
             <span className={classes.Subtitle}>Produkti: ({subtitle})</span>
           </div>
         </div>

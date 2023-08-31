@@ -36,7 +36,6 @@ export const CategoriesPage = () => {
         <img src={categories2} alt="" />
         <div
           className={
-            //TODO: write a brader description
             classes.CoverText
           }
         >
@@ -50,7 +49,7 @@ export const CategoriesPage = () => {
             {categories &&
               categories.map((category) => (
                 <ShortView
-                  titlte={category.name}
+                  title={category.name}
                   id={category.id}
                   subtitle={category.numberOfProducts.toString()}
                   link={`/categories/${category.id}`}

@@ -15,7 +15,6 @@ namespace Contracts.Requests.Transaction
         public SortRequest? Sorting { get; set; }
         public decimal? MaxPrice { get; set; }
 
-        public TransactionType? Type { get; set; }
         public DateTime? CreatedAt { get; set; }
 
         public PageRequest? Pagination { get; set; }

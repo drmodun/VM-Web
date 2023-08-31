@@ -11,7 +11,6 @@ import ItemTable from "../../../../Components/Admin/ItemTable";
 import { Link } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
 import Search from "../../../../Components/Admin/SearchSettings";
-//implement filter and sorting TODO
 export const CategoriesPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -69,7 +68,6 @@ export const CategoriesPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -86,20 +84,11 @@ export const CategoriesPage = () => {
           })}
           links={[]}
           important={["id", "name", "description"]}
-          deleteItem={handleDeleteCategory} //TODO
+          deleteItem={handleDeleteCategory} 
           type="categories"
         />
         <div className={classes.CategoryPagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
+          
         </div>
       </div>
       <div className={classes.PageActions}>
@@ -107,7 +96,6 @@ export const CategoriesPage = () => {
           <Search.CategorySearch search={categorySearch} />
         </div>
         <div className={classes.CategoryPageCreate}>
-          <h2>Create Category</h2>
           <Forms.CategoryForm
             isEdit={false}
             reload={categoryGetter}

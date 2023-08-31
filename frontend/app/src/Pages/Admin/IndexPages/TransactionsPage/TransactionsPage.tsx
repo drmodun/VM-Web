@@ -13,8 +13,6 @@ import Forms from "../../../../Components/Admin/Forms";
 import Search from "../../../../Components/Admin/SearchSettings";
 import { getCategories } from "../../../../Api/CategoryApi";
 import { Category } from "../../../../Types/Interfaces";
-//implement filter and sorting TODO
-//TODO: test and fix this page
 export const TransactionsPage = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,7 +31,8 @@ export const TransactionsPage = () => {
       setTotalPages(transactions.pageInfo.totalPages || 1);
       setTotalItems(transactions.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${transactions.pageInfo.page} of ${transactions.pageInfo.totalPages!}`
+        `Page ${transactions.pageInfo.page} of ${transactions.pageInfo
+          .totalPages!}`
       );
       setStatus("Transactions fetched successfully");
     } else {
@@ -50,14 +49,14 @@ export const TransactionsPage = () => {
       setTotalPages(transactions.pageInfo.totalPages || 1);
       setTotalItems(transactions.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${transactions.pageInfo.page} of ${transactions.pageInfo.totalPages!}`
+        `Page ${transactions.pageInfo.page} of ${transactions.pageInfo
+          .totalPages!}`
       );
       setStatus("Transactions fetched successfully");
     } else {
       setStatus("Something went wrong");
     }
   };
-
 
   useEffect(() => {
     transactionGetter();
@@ -73,7 +72,6 @@ export const TransactionsPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -83,44 +81,43 @@ export const TransactionsPage = () => {
         <ItemTable
           items={transactions.map((transaction) => {
             return {
-                id: transaction.id,
-                Product: transaction.productName,
-                User: transaction.userName,
-                Type: transaction.transactionType,
-                Created : `${transaction.createdAt.getDate()}/${transaction.createdAt.getMonth()+1}/${transaction.createdAt.getFullYear()}`,
+              id: transaction.id,
+              Product: transaction.productName,
+              User: transaction.userName,
+              PricePerUnit: `${transaction.pricePerUnit} eur`,
+              Created: `${new Date(
+                transaction.createdAt
+              ).toLocaleDateString()}`,
+              Quantity: transaction.quantity,
+              TotalPrice: `${
+                Math.round(
+                  transaction.pricePerUnit * transaction.quantity * 100
+                ) / 100
+              } eur`,
             };
           })}
           links={[
-            { name: "Product", link: "productId", type: "products"},
-            { name: "User", link: "userId", type: "users"},
+            { name: "Product", link: "productId", type: "products" },
+            { name: "User", link: "userId", type: "users" },
           ]}
-          important={["Product", "User", "Type", "Created"]}
-          deleteItem={handleDeleteTransaction} //TODO
+          important={[
+            "Product",
+            "User",
+            "PricePerUnit",
+            "Created",
+            "Quantity",
+            "TotalPrice",
+          ]}
+          deleteItem={handleDeleteTransaction} 
           type="transactions"
         />
-        <div className={classes.TransactionPagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
-        </div>
       </div>
       <div className={classes.PageActions}>
         <div className={classes.TransactionPageSearch}>
-          <Search.TransactionSearch search={transactionSearch}/>
+          <Search.TransactionSearch search={transactionSearch} />
         </div>
         <div className={classes.TransactionPageCreate}>
-          <h2>Create Transaction</h2>
-          {//TODO: add create form
-          }
           <span>Only users can make transactions</span>
-          
         </div>
       </div>
     </div>

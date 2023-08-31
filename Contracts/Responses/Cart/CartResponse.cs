@@ -4,6 +4,5 @@
     {
         public List<ConnectionResponse> Items { get; set; } = new List<ConnectionResponse>();
         public decimal TotalPrice { get; set; }
-        //later add stuff for transactions
     }
 }

@@ -61,7 +61,7 @@ namespace Domain.Services
             var pageInfo =
             new PageResponse
             {
-                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                Page = request.Pagination != null ? request.Pagination.PageNumber : 1,
                 PageSize = request.Pagination != null ? request.Pagination.PageSize : subcategories.Count(),
                 TotalItems = subcategories.Count(),
                 TotalPages = request.Pagination != null ? (subcategories.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1
@@ -89,7 +89,7 @@ namespace Domain.Services
             var pageInfo =
             new PageResponse
             {
-                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                Page = request.Pagination != null ? request.Pagination.PageNumber : 1,
                 PageSize = request.Pagination != null ? request.Pagination.PageSize : subcategories.Count(),
                 TotalItems = subcategories.Count(),
                 TotalPages = request.Pagination != null ? (subcategories.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1

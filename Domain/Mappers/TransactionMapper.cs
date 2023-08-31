@@ -13,7 +13,6 @@ namespace Domain.Mappers
                 UserId = request.UserId,
                 CreatedAt = DateTime.UtcNow,
                 ProductId = request.ProductId,
-                Type = request.Type,
                 Quantity = request.Quantity,
                 Id = request.Id
             };
@@ -28,7 +27,6 @@ namespace Domain.Mappers
                 UserName = transaction.User.Name,
                 ProductId = transaction.ProductId,
                 ProductName = transaction.Product.Name,
-                TransactionType = transaction.Type,
                 PricePerUnit = transaction.PricePerUnit,
                 Quantity = transaction.Quantity
             };
@@ -40,7 +38,6 @@ namespace Domain.Mappers
                 UserId = request.UserId,
                 CreatedAt = DateTime.UtcNow,
                 ProductId = request.ProductId,
-                Type = request.Type,
                 Quantity = request.Quantity,
                 Id = Guid.NewGuid(),
             };

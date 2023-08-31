@@ -66,7 +66,7 @@ export const Pagination = ({
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage === totalPages}
         >
-          {">>" /*TODO: implement iconst instead of this*/}
+          {">>"}
         </button>
       </div>
     </div>

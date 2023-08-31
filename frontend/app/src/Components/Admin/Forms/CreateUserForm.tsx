@@ -43,11 +43,16 @@ export const UserForm = ({ isEdit, item, reload }: Props) => {
       return;
     }
 
-    if (email.length > 50 || email.length < 3) {
+    if (
+      email.length > 50 ||
+      email.length < 3 ||
+      email.match(
+        // eslint-disable-next-line no-control-regex
+        /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+      ) === null
+    ) {
       setStatus("Email is not valid");
       return;
-
-      //later add a regex for email validation
     }
 
     if (address.length > 50 || address.length < 3) {
@@ -72,7 +77,6 @@ export const UserForm = ({ isEdit, item, reload }: Props) => {
       phoneNumber,
     };
 
-    //later add a ternary desision for adding admins
     const response = !isEdit
       ? await createUser(newUser)
       : await updateUser(newUser);
@@ -110,12 +114,14 @@ export const UserForm = ({ isEdit, item, reload }: Props) => {
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        <Inputs.CheckboxInput
-          label="Is Admin"
-          name="isAdmin"
-          value={isAdmin}
-          onChange={(e) => handleAdminChange(e.target.checked)}
-        />
+        {isEdit && (
+          <Inputs.CheckboxInput
+            label="Is Admin"
+            name="isAdmin"
+            value={isAdmin}
+            onChange={(e) => handleAdminChange(e.target.checked)}
+          />
+        )}
         <button type="submit">Create User</button>
       </form>
       <div className={classes.Status}>{status}</div>

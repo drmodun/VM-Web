@@ -47,22 +47,11 @@ import PasswordChangePage from "../Pages/Web/PasswordChangePage";
 import { OrdersPage } from "../Pages/Admin/IndexPages/OrdersPage/OrdersPage";
 import { OrderPageAdmin } from "../Pages/Admin/SingleItemPages/OrderPage/OrderPage";
 import NotFoundPage from "../Pages/Web/404";
-const placeholders = () => {
-  return <div></div>;
-};
-const placeholder = () => {
-  return <div></div>;
-};
-// gonna write the admin layout later
-//all of theese are placeholders for now
-// gonna write the admin layout laterq
-//gonna write non admin routes later
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<AdminLayout />}>
         {
-          //make this a lot cleaner later
           accountInfo &&
             accountInfo.admin !== undefined &&
             new Date(localStorage.getItem("loginTime") ?? "") >

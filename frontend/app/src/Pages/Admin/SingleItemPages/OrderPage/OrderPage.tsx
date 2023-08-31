@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
 import classes from "../SingleItemPage.module.scss";
-//TODO: later add types
 const orderTypeDict: { [key: string]: string } = {
   0: "Pending",
   1: "Accepted",
@@ -30,8 +29,7 @@ export const OrderPageAdmin = () => {
     console.log(order);
 
     // fetch order data
-    //TODO: add keys later
-    //add edit functionality later
+    
   }, []);
 
   const handleDelete = async () => {

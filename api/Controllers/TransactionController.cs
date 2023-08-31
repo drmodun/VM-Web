@@ -55,7 +55,6 @@ namespace api.Controllers
         [HttpDelete(Routes.Transaction.Delete)]
         public async Task<ActionResult<DeleteTransactionResponse>> DeleteTransaction([FromRoute] Guid id, CancellationToken cancellationToken)
         {
-            //later make a desicision wether to have delete and get requests if they are id only
             var response = await _transactionService.DeleteTransaction(id, cancellationToken);
             return response.Success ? Ok(response) : NotFound(response);
         }

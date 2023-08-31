@@ -33,7 +33,6 @@ export const CompaniesPage = () => {
         <img src={companies1} alt="" />
         <div
           className={
-            //TODO: write a brader description
             classes.CoverText
           }
         >
@@ -46,7 +45,7 @@ export const CompaniesPage = () => {
           {companies &&
             companies.map((company) => (
               <ShortView
-                titlte={company.name}
+                title={company.name}
                 subtitle={company.numberOfProducts.toString()}
                 directory="companies"
                 id={company.id}

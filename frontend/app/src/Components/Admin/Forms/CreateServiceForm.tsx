@@ -9,8 +9,6 @@ import classes from "./Forms.module.scss";
 import Inputs from "../FormElements";
 import { ServiceType } from "../../../Types/Enums";
 import { UpdateFile, UploadFile } from "../../../Api/BlobApi";
-//later fix all instances of wrong rounding
-//possiblz fix names too
 interface Props {
   isEdit: boolean;
   item?: Service;
@@ -79,7 +77,7 @@ export const ServiceForm = ({ reload, isEdit, item }: Props) => {
       response?.success && (upload || !file)
         ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
         : setStatus("Something went wrong");
-      response && upload && reload();
+      response && (upload || !file) && reload();
   };
 
   return (

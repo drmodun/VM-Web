@@ -68,7 +68,6 @@ namespace Domain
             services.AddScoped<TokenService>();
 
             //later maybe use interfaces but it will be easier now
-            //validation seems to be broken but still works
             return services;
         }
 

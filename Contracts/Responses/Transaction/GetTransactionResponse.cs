@@ -12,6 +12,5 @@ namespace Contracts.Responses.Transaction
         public string UserName { get; set; }
         public string ProductName { get; set; }
         public DateTime CreatedAt { get; set; }
-        public TransactionType TransactionType { get; set; }
     }
 }

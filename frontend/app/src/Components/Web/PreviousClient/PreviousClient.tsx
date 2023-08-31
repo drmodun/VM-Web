@@ -35,7 +35,6 @@ export const PreviousClientView = ({ client }: Props) => {
           <a
             target="_blank"
             rel="noreferrer noopener"
-            //TODO: fix theese links
             referrerPolicy="no-referrer"
             href={client.website}
             className={classes.Site}

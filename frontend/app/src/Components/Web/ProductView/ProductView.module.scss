@@ -151,7 +151,6 @@
                 background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
                 &:hover {
                     border: 1px solid rgba(0, 0, 0, 0.25);
-                    //TODO: learn how to make that annoying sadow aeffect
                     cursor: pointer;
                 }
                 &:active {

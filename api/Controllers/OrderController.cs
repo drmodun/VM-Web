@@ -80,9 +80,6 @@ namespace api.Controllers
             return response.Success ? Ok(response) : NotFound(response);
         }
 
-        //later add specific responses for other views
-
-
 
     }
 }

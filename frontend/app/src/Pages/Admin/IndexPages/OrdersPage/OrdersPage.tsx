@@ -13,8 +13,6 @@ import Forms from "../../../../Components/Admin/Forms";
 import Search from "../../../../Components/Admin/SearchSettings";
 import { getCategories } from "../../../../Api/CategoryApi";
 import { Category } from "../../../../Types/Interfaces";
-//implement filter and sorting TODO
-//TODO: test and fix this page
 const orderTypeDict: { [key: string]: string } = {
   0: "Pending",
   1: "Accepted",
@@ -80,7 +78,6 @@ export const OrdersPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -106,20 +103,11 @@ export const OrdersPage = () => {
             { name: "User", link: "userId", type: "users" },
           ]}
           important={["Service", "User", "Type", "Deadline"]}
-          deleteItem={handleDeleteOrder} //TODO
+          deleteItem={handleDeleteOrder} 
           type="orders"
         />
         <div className={classes.OrderPagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
+          
         </div>
       </div>
       <div className={classes.PageActions}>
@@ -127,10 +115,6 @@ export const OrdersPage = () => {
           <Search.OrderSearch search={orderSearch} />
         </div>
         <div className={classes.OrderPageCreate}>
-          <h2>Create Order</h2>
-          {
-            //TODO: add create form
-          }
           <span>Only users can make orders</span>
         </div>
       </div>

@@ -15,7 +15,6 @@ import { getCategories } from "../../../../Api/CategoryApi";
 import { Category, Company, Subcategory } from "../../../../Types/Interfaces";
 import { getSubcategories } from "../../../../Api/SubcategoryApi";
 import { getCompanies } from "../../../../Api/CompanyApi";
-//implement filter and sorting TODO
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -105,7 +104,6 @@ export const ProductsPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -145,20 +143,11 @@ export const ProductsPage = () => {
             "price",
             "quantity",
           ]}
-          deleteItem={handleDeleteProduct} //TODO
+          deleteItem={handleDeleteProduct} 
           type="products"
         />
         <div className={classes.ProductPagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
+          
         </div>
       </div>
       <div className={classes.PageActions}>
@@ -171,7 +160,6 @@ export const ProductsPage = () => {
           />
         </div>
         <div className={classes.ProductPageCreate}>
-          <h2>Create Product</h2>
           { subcategories && companies && categories &&
             <Forms.ProductForm
            isEdit={false}

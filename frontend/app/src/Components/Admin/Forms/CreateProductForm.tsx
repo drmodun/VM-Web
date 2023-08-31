@@ -124,7 +124,6 @@ export const ProductForm = ({
     setSchema(isEdit ? schema : categories[0] ? categories[0].schema : {});
     setSubSchema(subcategory ? subcategory.subSchema : {});
   }, [categories, subCatgories, companies]);
-  //TODO: think of a better way to do this, now it resets on every new category
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -183,7 +182,7 @@ export const ProductForm = ({
     response?.success && (upload || !file)
       ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
       : setStatus("Something went wrong");
-    response && upload && reload();
+    response && (upload || !file) && reload();
 
     //later should also delete the fields, but for now it's fine and gonna make seeding easier
   };
@@ -292,12 +291,11 @@ export const ProductForm = ({
             />
             <Inputs.SelectInput
               label="Company"
-              //TODO: fix this and make it cleaner
               name="company"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               options={companies
-                .filter((comp: Company) => comp != null && comp != undefined)
+                .filter((comp: Company) => comp != null && comp !== undefined)
                 .map((comp: Company) => ({
                   value: comp.id,
                   label: comp.name,

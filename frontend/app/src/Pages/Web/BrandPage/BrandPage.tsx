@@ -102,7 +102,7 @@ export const CompanyPage = () => {
               <ShortView
                 directory="categories"
                 id={category.id}
-                titlte={category.name}
+                title={category.name}
                 subtitle={category.numberOfProducts.toString()}
                 link={`/categories/${category.id}`}
               />
@@ -116,7 +116,7 @@ export const CompanyPage = () => {
           <div className={classes.Subcategories}>
             {Company?.subcategories.map((subcategory) => (
               <ShortView
-                titlte={subcategory.name}
+                title={subcategory.name}
                 subtitle={subcategory.numberOfProducts.toString()}
                 directory="subcategories"
                 link={`/subcategories/${subcategory.id}`}

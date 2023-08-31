@@ -54,7 +54,6 @@ namespace Domain.Repositories
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
 ;            //sorting
-            //possibly later change logic of sorting to be more dynamic
 
             if (request.Sorting != null)
             {
@@ -101,45 +100,13 @@ namespace Domain.Repositories
             }
             return categories;
         }
-
-        public async Task<IQueryable<Category>> GetCateoriesWithEverything(GetAllProductsRequest request, CancellationToken cancellationToken)
-        {
-            //this call would be way too expensive, probably will be removed later
-            var categories = _context.Categories
-                    .Include(x => x.Products)
-                        .ThenInclude(x => x.Company)
-                    .Include(x => x.Products)
-                    .Include(x => x.Subcategories)
-                    .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
-                    .AsNoTracking();
-            if (request.Sorting != null)
-            {
-                switch (request.Sorting.Attribute)
-                {
-                    case SortAttributeType.SortByName:
-                        if (request.Sorting.SortType == SortType.Ascending)
-                            categories = categories.OrderBy(x => x.Name);
-                        else
-                            categories = categories.OrderByDescending(x => x.Name);
-                        break;
-                    case SortAttributeType.SortByQuantity:
-                        if (request.Sorting.SortType == SortType.Ascending)
-                            categories = categories.OrderBy(x => x.Products.Count);
-                        else
-                            categories = categories.OrderByDescending(x => x.Products.Count);
-                        break;
-                    default: break;
-                }
-            }
-            return categories;
-        }
         public async Task<Category?> GetLargeCategory(Guid id, CancellationToken cancellationToken)
         {
             //also very expensive might optimise later
             var category = await _context.Categories
                 .Include(x => x.Products)
                         .ThenInclude(x => x.Company)
-                            .ThenInclude(x => x.Products)
+                            .ThenInclude(x => x.Products.Count)
                     .Include(x => x.Subcategories)
                         .ThenInclude(x => x.Products)
                     .FirstOrDefaultAsync(x => x.Id == id);

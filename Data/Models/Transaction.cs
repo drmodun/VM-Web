@@ -13,6 +13,5 @@ namespace Data.Models
         public Product? Product { get; set; }
         public Guid ProductId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public TransactionType Type { get; set; }
     }
 }

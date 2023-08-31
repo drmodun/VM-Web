@@ -1,6 +1,5 @@
 export const baseUrl: string = "https://localhost:7069/api";
 export let jwt: string = localStorage.getItem("token") || "";
-//gonna use a temporary jwt just for testing, the login page will be implemented later
 
 export const setJwt = (token: string) => {
   jwt = token;
@@ -58,4 +57,3 @@ export interface PaginationResult<T> {
   items: T[];
 }
 
-//might update later

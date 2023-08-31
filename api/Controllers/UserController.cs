@@ -198,10 +198,5 @@ namespace api.Controllers
             return action ? Ok(action) : NotFound(action);
         }
 
-
-
-        //TODO: Make functions for adding and removing admins (makoing normal accounts admin and vice versa)
-
-
     }
 }

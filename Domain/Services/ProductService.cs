@@ -74,7 +74,7 @@ namespace Domain.Services
             var pageInfo =
             new PageResponse
             {
-                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                Page = request.Pagination != null ? request.Pagination.PageNumber : 1,
                 PageSize = request.Pagination != null ? request.Pagination.PageSize : products.Count(),
                 TotalItems = products.Count(),
                 TotalPages = request.Pagination != null ? (products.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
@@ -97,7 +97,7 @@ namespace Domain.Services
             var pageInfo =
             new PageResponse
             {
-                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                Page = request.Pagination != null ? request.Pagination.PageNumber : 1,
                 PageSize = request.Pagination != null ? request.Pagination.PageSize : products.Count(),
                 TotalItems = products.Count(),
                 TotalPages = request.Pagination != null ? (products.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1,
@@ -120,10 +120,9 @@ namespace Domain.Services
             var products = await _productRepo.GetFavourites(userId);
             var list = products.Select(x => ProductMapper.ToFavouriteShortProducts(userId, x)).ToList();
             var pageInfo =
-            //TODO: add pagination for this
             new PageResponse
             {
-                PageNumber = 1,
+                Page = 1,
                 PageSize = list.Count,
                 TotalItems = list.Count,
                 TotalPages = 1,

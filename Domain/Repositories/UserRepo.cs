@@ -115,7 +115,6 @@ namespace Domain.Repositories
                     .ThenInclude(t => t.Product)
                 .Include(x => x.Orders)
                     .ThenInclude(x => x.Service)
-                //theese are for some views which will be added later, might make it into another function but I see no point for that right now
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Email == null || x.Email.Contains(request.Email))
                 .Where(x => request.Address == null || x.Address.Contains(request.Address));

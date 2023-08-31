@@ -47,8 +47,6 @@ export const SubcategoryPage = () => {
     tryGetSubcategory();
 
     // fetch category data
-    //TODO: add keys later
-    //add edit functionality later
   }, []);
 
   const tryGetCategories = async () => {

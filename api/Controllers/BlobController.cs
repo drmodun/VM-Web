@@ -25,7 +25,6 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-            //TODO: add download file funcionality here, dont know why it doesnt work but not too important right now
             return File(blob.Content, blob.Details.ContentType);
         }
         [Authorize(AuthConstants.AdminUserPolicyName)]

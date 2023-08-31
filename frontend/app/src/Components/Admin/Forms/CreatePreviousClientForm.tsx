@@ -76,7 +76,7 @@ export const PreviousClientForm = ({ reload, isEdit, item }: Props) => {
     response?.success && (upload || !file)
       ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
       : setStatus("Something went wrong");
-    response && upload && reload();
+    response && (upload || !file) && reload();
   };
 
   return (

@@ -98,7 +98,6 @@
                 width: 42px;
                 height: 42px;
                 padding: 5px;
-                //replace later with chevrons
                 background: var(
                     --button-gradient-20,
                     linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
@@ -274,8 +273,6 @@
                     border-radius: 10px;
                 }
                 div {
-                    //another dirty css trick
-                    //might work on this later
                     margin-right: 20px;
                     margin-bottom: 20px;
                     > div {

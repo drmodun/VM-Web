@@ -14,7 +14,6 @@ interface Props {
   product: Product;
 }
 
-//TODO: add image funcionality
 
 export const MainProductView = ({ product }: Props) => {
   const [selectedQuantity, setSelectedQuantity] = useState(

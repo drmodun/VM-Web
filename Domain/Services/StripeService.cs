@@ -28,7 +28,6 @@ namespace Domain.Services
             if (user == null) { return null; }
             CustomerCreateOptions customerOptions = new CustomerCreateOptions
             {
-                //later make the name input for everything
                 Name = customer.Name,
                 Email = customer.Email,
                 Source = customer.TokenId
@@ -59,7 +58,6 @@ namespace Domain.Services
                 Console.WriteLine(amount);
                 return null;
             }
-            // Set the options for the payment we would like to create at Stripe
             ChargeCreateOptions paymentOptions = new ChargeCreateOptions
             {
                 Customer = user,
@@ -71,10 +69,8 @@ namespace Domain.Services
             //probably get better error handling later
 
             Console.WriteLine("sougcsgousoucs");
-            // Create the payment
             var createdPayment = await _chargeService.CreateAsync(paymentOptions, null, cancellationToken);
             await _cartsService.BuyCart(payment.UserId, cancellationToken);
-            // Return the payment to requesting method
             return new StripePayment
             {
                 CustomerId = createdPayment.CustomerId,

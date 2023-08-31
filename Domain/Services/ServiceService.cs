@@ -59,7 +59,7 @@ namespace Domain.Services
             var pageInfo =
             new PageResponse
             {
-                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                Page = request.Pagination != null ? request.Pagination.PageNumber : 1,
                 PageSize = request.Pagination != null ? request.Pagination.PageSize : services.Count(),
                 TotalItems = services.Count(),
                 TotalPages = request.Pagination != null ? (services.Count() + request.Pagination.PageSize - 1) / request.Pagination.PageSize : 1

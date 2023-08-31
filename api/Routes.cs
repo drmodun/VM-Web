@@ -20,7 +20,6 @@
 
         public static class User
         {
-            //later make this make more sense
             public const string Get = Base + $"/users/{{id:Guid}}";
             public const string Delete = Base + $"/users";
             public const string Update = Base + $"/users";

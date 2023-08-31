@@ -56,7 +56,6 @@ export interface CartItem {
   total: number;
   quantity: number;
 }
-//TODO: add emails for order updates and stuff
 export interface Cart {
   items: CartItem[];
   totalPrice: number;
@@ -126,8 +125,6 @@ export const createUser = async (user: NewUser): Promise<boolean> => {
     return false;
   }
 };
-
-//TODO: Upadte user apis with new constracts and stuff, also try to make teh editing process make more sense
 
 export const updateUser = async (user: NewUser): Promise<boolean> => {
   try {

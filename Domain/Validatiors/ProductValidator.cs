@@ -43,7 +43,6 @@ namespace Domain.Validatiors
                 foreach (var pair in categorySchema)
                 {
                     JsonElement property;
-                    //might add specific property checks based on string later
                     //for simplification reasons I will use strings as bools here
                     //and could possibly expand their use later
                     if (!root.TryGetProperty(pair.Key, out property) && pair.Value == "required")
@@ -61,7 +60,6 @@ namespace Domain.Validatiors
                 foreach (var pair in subCategorySchema)
                 {
                     JsonElement property;
-                    //might add specific property checks based on string later
                     //for simplification reasons I will use strings as bools here
                     //and could possibly expand their use later
                     if (!subRoot.TryGetProperty(pair.Key, out property) && pair.Value == "required")

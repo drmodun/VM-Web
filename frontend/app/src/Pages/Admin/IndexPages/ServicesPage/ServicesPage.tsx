@@ -11,7 +11,6 @@ import ItemTable from "../../../../Components/Admin/ItemTable";
 import { Link } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
 import Search from "../../../../Components/Admin/SearchSettings";
-//implement filter and sorting TODO
 
 const serviceTypeDict: { [key: string]: string } = {
   0: "Network",
@@ -81,7 +80,6 @@ export const ServicesPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -99,20 +97,11 @@ export const ServicesPage = () => {
           })}
           links={[]}
           important={["name", "price", "serviceType"]}
-          deleteItem={handleDeleteService} //TODO
+          deleteItem={handleDeleteService}
           type="services"
         />
         <div className={classes.ServicePagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
+          
         </div>
       </div>
       <div className={classes.PageActions}>
@@ -120,7 +109,6 @@ export const ServicesPage = () => {
           <Search.ServiceSearch search={serviceSearch} />
         </div>
         <div className={classes.ServicePageCreate}>
-          <h2>Create Service</h2>
           <Forms.ServiceForm
             isEdit={false}
            reload={reload} />

@@ -57,7 +57,6 @@ namespace Domain.Repositories
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
             //sorting
-            //possibly later change logic of sorting to be more dynamic
             if (request.Sorting != null)
             {
                 switch (request.Sorting.Attribute)
@@ -91,7 +90,6 @@ namespace Domain.Repositories
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
                 .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
             //sorting
-            //possibly later change logic of sorting to be more dynamic
             if (request.Sorting != null)
             {
                 switch (request.Sorting.Attribute)

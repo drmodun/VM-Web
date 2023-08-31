@@ -92,7 +92,7 @@ export const SearchPage = () => {
                 <ShortView
                   subtitle={category.numberOfProducts.toString()}
                   directory="categories"
-                  titlte={category.name} //TODO: fix all misspellings
+                  title={category.name} 
                   id={category.id}
                   link={`/categories/${category.id}`}
                 />
@@ -111,7 +111,7 @@ export const SearchPage = () => {
               {subcategories.map((subcategory) => (
                 <ShortView
                   subtitle={subcategory.numberOfProducts.toString()}
-                  titlte={subcategory.name} //TODO: fix all misspellings
+                  title={subcategory.name} 
                   directory="subcategories"
                   link={`/subcategories/${subcategory.id}`}
                   id={subcategory.id}
@@ -131,7 +131,7 @@ export const SearchPage = () => {
                   directory="companies"
                   id={brand.id}
                   subtitle={brand.numberOfProducts.toString()}
-                  titlte={brand.name} //TODO: fix all misspellings
+                  title={brand.name} 
                   link={`/brands/${brand.id}`}
                 />
               ))}

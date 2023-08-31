@@ -39,8 +39,6 @@ export const ServicePage = () => {
     tryGetService();
 
     // fetch service data
-    //TODO: add keys later
-    //add edit functionality later
   }, []);
 
   return (

@@ -68,7 +68,6 @@ namespace Domain.Repositories
                 .Where(x => request.CreatedAt == null || request.CreatedAt == x.CreatedAt)
                 .Where(x => request.ProductId == null || request.ProductId == x.ProductId)
                 .Where(x => request.UserId == null || request.UserId == x.UserId)
-                .Where(x => request.Type == null || request.Type == x.Type)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Product.Price * x.Quantity)
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Product.Price * x.Quantity);
 
@@ -100,12 +99,6 @@ namespace Domain.Repositories
                             transactions = transactions.OrderBy(x => x.CreatedAt);
                         else
                             transactions = transactions.OrderByDescending(x => x.CreatedAt);
-                        break;
-                    case SortAttributeType.SortByType:
-                        if (request.Sorting.SortType == SortType.Ascending)
-                            transactions = transactions.OrderBy(x => x.Type);
-                        else
-                            transactions = transactions.OrderByDescending(x => x.Type);
                         break;
                     default: break;
                 }

@@ -1,16 +1,13 @@
-import { Transaction, deleteTransaction, getTransaction } from "../../../../Api/TransactionApi";
+import {
+  Transaction,
+  deleteTransaction,
+  getTransaction,
+} from "../../../../Api/TransactionApi";
 import ItemView from "../../../../Components/Admin/ItemView";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Forms from "../../../../Components/Admin/Forms";
 import classes from "../SingleItemPage.module.scss";
-
-const transactionTypeDict: { [key: string]: string } = {
-  0: "Cash",
-  1: "Credit Card",
-  2: "Debit Card",
-  3: "Paypal",
-};
 
 export const TransactionPage = () => {
   const { transactionId } = useParams();
@@ -37,8 +34,6 @@ export const TransactionPage = () => {
     tryGetTransaction();
 
     // fetch transaction data
-    //TODO: add keys later
-    //add edit functionality later
   }, []);
 
   return (
@@ -53,10 +48,16 @@ export const TransactionPage = () => {
                 Product: transaction.productName,
                 User: transaction.userName,
                 Quantity: transaction.quantity,
-                Created: `${transaction.createdAt.getDate()}/${
-                  transaction.createdAt.getMonth() + 1
-                }/${transaction.createdAt.getFullYear()}`,
-                Type: transactionTypeDict[transaction.transactionType],
+                Price: transaction.pricePerUnit,
+                Total:
+                  Math.round(
+                    transaction.pricePerUnit * transaction.quantity * 100
+                  ) / 100,
+                Created: `${new Date(
+                  transaction.createdAt
+                ).toLocaleDateString()} ${new Date(
+                  transaction.createdAt
+                ).toLocaleTimeString()}`,
               }}
               links={[
                 {
@@ -71,7 +72,9 @@ export const TransactionPage = () => {
         <div className={classes.EditAndDelete}>
           <span>Edit and delete</span>
           <span>You cannot edit user transactions</span>
-          <button onClick={handleDelete} className={classes.DeleteButton}>Delete</button>
+          <button onClick={handleDelete} className={classes.DeleteButton}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

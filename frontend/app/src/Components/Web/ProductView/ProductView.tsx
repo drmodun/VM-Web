@@ -20,10 +20,6 @@ interface Props {
   removal?: Function;
 }
 
-//TODO: add image funcionality
-//TODO: add favourite functionality
-//see if cart works
-
 export const ProductView = ({ product, removal }: Props) => {
   const [isFavourite, setIsFavourite] = useState<boolean>(product.isFavourite);
   const [isInCart, setIsInCart] = useState(product.isInCart);
@@ -80,7 +76,6 @@ export const ProductView = ({ product, removal }: Props) => {
         </div>
         <div className={classes.ProductInfo}>
           <Link
-            //TODO: decide the links for the product
             to={`/products/${product.id}`}
             className={classes.Name}
           >

@@ -30,7 +30,6 @@ export const ServicesPage = () => {
         <img src={services4} alt="services" />
         <div
           className={
-            //TODO: write a brader description
             classes.CoverText
           }
         >

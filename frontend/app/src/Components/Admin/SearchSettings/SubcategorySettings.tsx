@@ -39,7 +39,7 @@ export const SubcategorySearch = ({ search, categories }: Props) => {
 
   return (
     <div className={classes.FormContainer}>
-      <h1>Search Categories</h1>
+      <h1>Search Subcategories</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
           label="Name"

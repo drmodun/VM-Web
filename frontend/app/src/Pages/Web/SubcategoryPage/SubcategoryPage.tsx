@@ -106,7 +106,7 @@ export const SubcategoryPage = () => {
           <div className={classes.Companies}>
             {Subcategory?.brands.map((company) => (
               <ShortView
-                titlte={company.name}
+                title={company.name}
                 directory="companies"
                 id={company.id}
                 subtitle={company.numberOfProducts.toString()}

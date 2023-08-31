@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import Inputs from "../FormElements";
 import { Indexable, Subcategory } from "../../../Types/Interfaces";
 import { UpdateFile, UploadFile } from "../../../Api/BlobApi";
-//TODO: add forms for orders and transactions, but thats for later
 
 interface Props {
   isEdit: boolean;
@@ -111,7 +110,7 @@ export const SubcategoryForm = ({
     response?.success && (upload || !file)
       ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
       : setStatus("Something went wrong");
-    response && upload && reload();
+    response && (upload || !file) && reload();
   };
 
   return (

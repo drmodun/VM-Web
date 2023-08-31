@@ -84,10 +84,11 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
     const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
+    console.log(upload, file);
     response?.success && (upload || !file)
       ? setStatus((isEdit ? "Edited " : "Created ") + "successfully")
       : setStatus("Something went wrong");
-    response && upload && reload();
+    response && (upload || !file) && reload();
   };
   //gotta fix the resizing problem
 

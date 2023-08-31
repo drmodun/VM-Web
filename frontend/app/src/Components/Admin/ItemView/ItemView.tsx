@@ -19,7 +19,6 @@ interface LinkableItem extends Item {
   link: string;
 }
 
-//add later for images and stuff
 export const ItemView = (props: Props) => {
   return (
     <div className={classes.Container}>

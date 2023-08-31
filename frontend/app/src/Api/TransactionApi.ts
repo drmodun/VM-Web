@@ -7,7 +7,6 @@ import {
   Sorting,
   baseUrl,
 } from "./Shared";
-import { TransactionType } from "../Types/Enums";
 
 export interface Transaction {
   id: string;
@@ -18,7 +17,6 @@ export interface Transaction {
   productName: string;
   pricePerUnit: number;
   createdAt: Date;
-  transactionType: TransactionType;
 }
 
 export interface NewTransaction {
@@ -26,20 +24,18 @@ export interface NewTransaction {
   userId: string;
   productId: string;
   quantity: number;
-  type: TransactionType;
 }
 
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   minPrice?: number;
   maxPrice?: number;
   userId?: string;
   productId?: string;
   createdAt?: Date;
-  type?: TransactionType;
 }
 
 const api = axios.create({
@@ -61,7 +57,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 
 export const getTransactions = async (props: GetAllProps | {} = {}) => {
   try {

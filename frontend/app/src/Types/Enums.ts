@@ -14,12 +14,6 @@ export enum StatusType {
   Failed = 5,
 }
 
-export enum TransactionType {
-  Paypal = 0,
-  CreditCard = 1,
-  DebitCard = 2,
-  Cash = 3,
-}
 
 export enum SortAttributeType {
   SortByName,

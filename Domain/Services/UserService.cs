@@ -53,7 +53,6 @@ namespace Domain.Services
                 Name = user.Name,
                 Link = "http://localhost:3000/reset?code=" + user.ActivationCode,
             };
-            //TODO: remove the ption of email change possibly
             var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.PasswordResetView, emailModel);
             var emailSend = await EmailSender.SendEmail(email, "Password change", newEmail);
             return user != null && emailSend && newEmail != null;
@@ -109,7 +108,7 @@ namespace Domain.Services
             var pageInfo =
             new PageResponse
             {
-                PageNumber = request.Pagination != null ? request.Pagination.PageNumber : 1,
+                Page = request.Pagination != null ? request.Pagination.PageNumber : 1,
                 PageSize = request.Pagination != null ? request.Pagination.PageSize : users.Count(),
                 TotalItems = users.Count(),
                 TotalPages = request.Pagination != null ?

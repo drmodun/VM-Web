@@ -36,7 +36,6 @@ export const ItemTable = (props: Props) => {
                 return (
                   <div className={classes.Attribute}>
                     <Link
-                    //TODO: make this more efficient and readable
                       to={
                         ((("/admin/" +
                           props.links.find((item) => item.name === key)

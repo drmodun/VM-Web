@@ -47,8 +47,6 @@ export const CategoryPage = () => {
     tryGetCategory();
 
     // fetch category data
-    //TODO: add keys later
-    //add edit functionality later
   }, []);
 
   return (

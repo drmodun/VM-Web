@@ -2,7 +2,7 @@ import { useState } from "react";
 import classes from "./Settings.module.scss";
 import Inputs from "../FormElements";
 import { GetAllProps } from "../../../Api/TransactionApi";
-import { SortAttributeType, SortType, TransactionType } from "../../../Types/Enums";
+import { SortAttributeType, SortType } from "../../../Types/Enums";
 import { Category } from "../../../Types/Interfaces";
 import { Product } from "../../../Api/ProductApi";
 import { User } from "../../../Api/UserApi";
@@ -12,9 +12,8 @@ interface Props {
 }
 
 export const TransactionSearch = ({ search }: Props) => {
-    const [productName, setProductName] = useState<string>("");
-    const [userName, setUserName] = useState<string>("");
-    const [type, setType] = useState<number>(-1);
+  const [productName, setProductName] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
   const [sortBy, setSortBy] = useState<number>(-1);
   const [sortType, setSortType] = useState<number>(-1);
   const [page, setPage] = useState<number>(1);
@@ -22,13 +21,12 @@ export const TransactionSearch = ({ search }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (page < 0 || limit < 0 ) {
+    if (page < 0 || limit < 0) {
       return;
     }
     search({
-        productName,
-        userName,
-        tranasctionType : type !== -1 ? type : undefined,
+      productName,
+      userName,
       "Sorting.Attribute":
         sortBy !== -1 && sortType !== -1 ? sortBy : undefined,
       "Sorting.SortType":
@@ -40,7 +38,7 @@ export const TransactionSearch = ({ search }: Props) => {
 
   return (
     <div className={classes.FormContainer}>
-      <h1>Search Categories</h1>
+      <h1>Search Transactions</h1>
       <form onSubmit={handleSubmit}>
         <Inputs.TextInput
           label="Product"
@@ -48,28 +46,12 @@ export const TransactionSearch = ({ search }: Props) => {
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
         />
-       <Inputs.TextInput
+        <Inputs.TextInput
           label="User"
           name="user"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
-
-        <Inputs.SelectInput
-            label="Type"
-            name="type"
-            value={type}
-            options={[
-                { value: -1, label: "None" },
-                { value: TransactionType.Cash, label: "Cash" },
-                { value: TransactionType.CreditCard, label: "Credit Card" },
-                { value: TransactionType.DebitCard, label: "Debit Card" },
-                { value: TransactionType.Paypal, label: "PayPal" },
-            ]}
-            onChange={(e) => setType(Number(e.target.value))}
-        />
-
-       
 
         <Inputs.SelectInput
           label="Sort By"

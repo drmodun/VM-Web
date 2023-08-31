@@ -27,8 +27,6 @@ export const ProductPage = () => {
     tryGetCompanies();
 
     // fetch product data
-    //TODO: add keys later
-    //add edit functionality later
   }, []);
 
   const handleDelete = async () => {

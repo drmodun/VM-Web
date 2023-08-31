@@ -13,7 +13,6 @@ import Forms from "../../../../Components/Admin/Forms";
 import Search from "../../../../Components/Admin/SearchSettings";
 import { getCategories } from "../../../../Api/CategoryApi";
 import { Category } from "../../../../Types/Interfaces";
-//implement filter and sorting TODO
 export const SubcategoriesPage = () => {
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,7 +32,8 @@ export const SubcategoriesPage = () => {
       setTotalPages(subcategories.pageInfo.totalPages || 1);
       setTotalItems(subcategories.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${subcategories.pageInfo.page} of ${subcategories.pageInfo.totalPages!}`
+        `Page ${subcategories.pageInfo.page} of ${subcategories.pageInfo
+          .totalPages!}`
       );
       setStatus("Subcategorys fetched successfully");
     } else {
@@ -50,7 +50,8 @@ export const SubcategoriesPage = () => {
       setTotalPages(subcategories.pageInfo.totalPages || 1);
       setTotalItems(subcategories.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${subcategories.pageInfo.page} of ${subcategories.pageInfo.totalPages!}`
+        `Page ${subcategories.pageInfo.page} of ${subcategories.pageInfo
+          .totalPages!}`
       );
       setStatus("Subcategories fetched successfully");
     } else {
@@ -65,7 +66,7 @@ export const SubcategoriesPage = () => {
       setCategories(categories.items);
       setStatus("Categories fetched successfully");
     }
-  }
+  };
 
   useEffect(() => {
     categoryGetter();
@@ -82,7 +83,6 @@ export const SubcategoriesPage = () => {
     }
   };
 
-  //TODO: add filters and sorting
 
   return (
     <div className={classes.Page}>
@@ -100,35 +100,27 @@ export const SubcategoriesPage = () => {
             };
           })}
           links={[
-            { name: "categoryName", link: "categoryId", type: "categories"},
+            { name: "categoryName", link: "categoryId", type: "categories" },
           ]}
           important={["name", "categoryName", "description"]}
-          deleteItem={handleDeleteSubcategory} //TODO
+          deleteItem={handleDeleteSubcategory} 
           type="subcategories"
         />
-        <div className={classes.SubcategoryPagePagination}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            Previous
-          </button>
-          <p>{pageInfo}</p>
-          <button
-            onClick={() => setPage(page + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </button>
-        </div>
+        <div className={classes.SubcategoryPagePagination}></div>
       </div>
       <div className={classes.PageActions}>
         <div className={classes.SubcategoryPageSearch}>
-          <Search.SubcategorySearch search={subcategorySearch} categories={categories} />
+          <Search.SubcategorySearch
+            search={subcategorySearch}
+            categories={categories}
+          />
         </div>
         <div className={classes.SubcategoryPageCreate}>
-          <h2>Create Subcategory</h2>
           <Forms.SubcategoryForm
             isEdit={false}
             reload={subcategoryGetter}
-           categories={categories} />
+            categories={categories}
+          />
         </div>
       </div>
     </div>

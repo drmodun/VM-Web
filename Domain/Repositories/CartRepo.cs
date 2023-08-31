@@ -130,8 +130,6 @@ namespace Domain.Repositories
                     UserId = userId,
                     Quantity = item.Quantity,
                     PricePerUnit = item.Product.Price,
-                    Type = Data.Enums.TransactionType.Paypal
-                    //later make this actually work of course
                 };
                 transactions.Add(value);
             }

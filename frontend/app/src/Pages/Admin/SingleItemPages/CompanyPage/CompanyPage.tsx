@@ -19,8 +19,7 @@ export const CompanyPage = () => {
     tryGetCompany();
 
     // fetch company data
-    //TODO: add keys later
-    //add edit functionality later
+   
   }, []);
 
   const handleDelete = async () => {

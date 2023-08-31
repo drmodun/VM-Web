@@ -25,13 +25,12 @@ namespace Domain.Mappers
                 Quantity = product.Quantity,
                 SubcategoryName = product.Subcategory.Name,
                 SubcategoryId = product.Subcategory.Id,
-                IsFavourite = userId != null && product.Favourites.Any(x=>x.UserId == userId) ,
-                CartQuantity = userId != null ? 
-                product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId) != null 
-                ? product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId).Quantity 
-                : 0 
+                IsFavourite = userId != null && product.Favourites.Any(x => x.UserId == userId),
+                CartQuantity = userId != null ?
+                product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId) != null
+                ? product.CartsProducts.FirstOrDefault(x => x.Cart.UserId == userId).Quantity
                 : 0
-                //TODO: fix this
+                : 0
             };
         }
         public static Product ToEntity(CreateProductRequest request)
@@ -100,7 +99,6 @@ namespace Domain.Mappers
                 SubcategoryName = product.Subcategory.Name,
                 IsFavourite = userId != null && product.Favourites.Any(x => x.UserId == userId),
                 IsInCart = userId != null && product.CartsProducts.Any(x => x.Cart.UserId == userId)
-                //later change this
             };
         }
 
