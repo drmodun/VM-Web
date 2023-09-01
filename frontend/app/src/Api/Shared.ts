@@ -1,3 +1,4 @@
+//export const baseUrl: string = "https://vm-racunala.azurewebsites.net/api";
 export const baseUrl: string = "https://localhost:7069/api";
 export let jwt: string = localStorage.getItem("token") || "";
 

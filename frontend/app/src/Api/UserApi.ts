@@ -262,6 +262,7 @@ export const getMe = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
+    alert(error)
     return null;
   }
 };

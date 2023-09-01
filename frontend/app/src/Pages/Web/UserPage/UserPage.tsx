@@ -39,7 +39,6 @@ export const UserPage = () => {
   const reload = async () => {
     const info = await getMe();
     if (!info) {
-      window.location.href = "/404";
       return;
     }
     console.log(info);
