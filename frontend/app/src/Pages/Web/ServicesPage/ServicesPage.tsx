@@ -21,6 +21,8 @@ export const ServicesPage = () => {
     setServices(response.items);
   };
   useEffect(() => {
+    window.scrollTo(0, 0);  
+    window.document.title = "Services";
     fetchServices();
   }, []);
   return (

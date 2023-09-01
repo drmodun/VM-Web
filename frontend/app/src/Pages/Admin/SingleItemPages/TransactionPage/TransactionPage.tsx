@@ -28,7 +28,7 @@ export const TransactionPage = () => {
     const tryAction = await deleteTransaction(transactionId as string);
     if (!tryAction) return;
     alert("User successfully deleted");
-    window.location.href = "/admin/transactions";
+    window.location.href = "/#/admin/transactions";
   };
   useEffect(() => {
     tryGetTransaction();

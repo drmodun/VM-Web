@@ -21,7 +21,7 @@ export const CartPage = () => {
       "Successfully checked out your cart, see your transactions on your user page"
     );
     //go to the page for transactions
-    window.location.href = "/user";
+    window.location.href = "/#/user";
   };
 
   const removeTotal = (value: number, index: number) => {
@@ -48,6 +48,7 @@ export const CartPage = () => {
     setTotal(response?.totalPrice!);
   };
   useEffect(() => {
+    window.document.title = "Cart";
     window.scrollTo(0, 0);
     fetchCart();
   }, []);
@@ -74,7 +75,7 @@ export const CartPage = () => {
             <h1>Your cart is empty</h1>
             <p>
               Go to the <a href="/">home page</a> or{" "}
-              <a href="/products">the product page</a> to add items to your cart
+              <a href="/#/products">the product page</a> to add items to your cart
             </p>
           </div>
         )}
@@ -107,8 +108,8 @@ export const CartPage = () => {
           <h1>You are not logged in</h1>
           <p>
             You need to be logged in to see your cart and add items to your
-            cart. Go to the <a href="/login">login page</a> or{" "}
-            <a href="/register">the register page</a> to log in or register
+            cart. Go to the <a href="/#/login">login page</a> or{" "}
+            <a href="/#/register">the register page</a> to log in or register
           </p>
         </div>
       </div>

@@ -93,7 +93,7 @@ namespace Domain.Services
                 Note = request.Note,
                 UserName = order.User.Name,
                 Status = StatusDictionary[request.Status],
-                Link = "http://localhost:3000/user"
+                Link = "https://vm-racunala.netlify.app/#/user"
             };
             var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.OrderUpdateView, model);
             var emailSend = await EmailSender.SendEmail(order.Email, "Order update", newEmail);

@@ -1,4 +1,4 @@
-.Container {
+    .Container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -71,6 +71,7 @@
                     font-weight: 500;
                     @media screen and (max-width: 768px) {
                         font-size: 12px;
+                        max-width: 65vw;
                     }
                 }
                 justify-content: center;

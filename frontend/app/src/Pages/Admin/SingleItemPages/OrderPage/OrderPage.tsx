@@ -29,7 +29,7 @@ export const OrderPageAdmin = () => {
     console.log(order);
 
     // fetch order data
-    
+
   }, []);
 
   const handleDelete = async () => {
@@ -40,9 +40,9 @@ export const OrderPageAdmin = () => {
     const tryAction = await deleteOrder(orderId as string);
     if (!tryAction) return;
     alert("Order successfully deleted");
-    window.location.href = "/admin/orders";
+    window.location.href = "/#/admin/orders";
   };
-  
+
   return (
     <div className={classes.Container}>
       <div className={classes.SingleItemPage}>
@@ -55,20 +55,19 @@ export const OrderPageAdmin = () => {
                 Service: order.serviceName,
                 User: order.userName,
                 Deadline: order.deadline
-                  ? `${new Date(order.deadline).getDate()}/${
-                    new Date(order.deadline).getMonth() + 1
+                  ? `${new Date(order.deadline).getDate()}/${new Date(order.deadline).getMonth() + 1
                   }/${new Date(order.deadline).getFullYear()}`
                   : "No deadline",
-                  Type: orderTypeDict[order.statusType],
-                }}
-                links={[
-                  {
-                    name: "Service",
-                    link: `/admin/services/${order.serviceId}`,
-                  },
-                  { name: "User", link: `/admin/user/${order.userId}` },
-                ]}
-                />
+                Type: orderTypeDict[order.statusType],
+              }}
+              links={[
+                {
+                  name: "Service",
+                  link: `/admin/services/${order.serviceId}`,
+                },
+                { name: "User", link: `/admin/users/${order.userId}` },
+              ]}
+            />
           </div>
         )}
         <div className={classes.EditAndDelete}>

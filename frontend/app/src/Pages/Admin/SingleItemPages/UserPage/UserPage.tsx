@@ -29,7 +29,7 @@ export const UserPage = () => {
     const tryAction = await deleteUserAdmin(userId as string);
     if (!tryAction) return;
     alert("User successfully deleted");
-    window.location.href = "/admin/users";
+    window.location.href = "/#/admin/users";
   };
   useEffect(() => {
     tryGetUser();

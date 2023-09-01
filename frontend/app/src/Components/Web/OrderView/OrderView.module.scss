@@ -27,6 +27,12 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-start;
+                @media screen and (max-width: 950px) {
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                }
                 width: 80%;
                 .Name {
                     color: var(--text-main, #1e1e1e);
@@ -38,7 +44,8 @@
                     text-decoration: none;
                     width: 30%;
                     @media screen and (max-width: 950px) {
-                        font-size: 16px;
+                        font-size: 13px;
+                        width: 35%;
                     }
                     &:hover {
                         text-decoration: underline;
@@ -57,7 +64,8 @@
                     font-weight: 591;
                     line-height: normal;
                     @media screen and (max-width: 950px) {
-                        font-size: 12px;
+                        font-size: 10px;
+                        width: 35%;
                     }
                     width: 20%;
                     word-wrap: break-word;
@@ -91,6 +99,9 @@
                 @media screen and (max-width: 950px) {
                     font-size: 12px;
                 }
+                @media screen and (max-width: 768px) {
+                    font-size: 8px;
+                }
             }
         }
         .Total {
@@ -101,7 +112,7 @@
             font-weight: 600;
             line-height: normal;
             @media screen and (max-width: 950px) {
-                font-size: 16px;
+                font-size: 12px;
             }
         }
     }

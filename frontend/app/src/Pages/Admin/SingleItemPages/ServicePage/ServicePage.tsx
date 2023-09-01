@@ -26,7 +26,7 @@ export const ServicePage = () => {
     const tryAction = await deleteService(serviceId as string);
     if (!tryAction) return;
     alert("Service successfully deleted");
-    window.location.href = "/admin/services";
+    window.location.href = "/#/admin/services";
   };
   
   const tryGetService = async () => {

@@ -41,7 +41,7 @@ export const CategoryPage = () => {
     const tryAction = await deleteCategory(categoryId as string);
     if (!tryAction) return;
     alert("Category successfully deleted");
-    window.location.href = "/admin/categories";
+    window.location.href = "/#/admin/categories";
   };
   useEffect(() => {
     tryGetCategory();

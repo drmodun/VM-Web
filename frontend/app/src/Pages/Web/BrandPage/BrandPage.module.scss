@@ -71,6 +71,7 @@
                     font-weight: 500;
                     @media screen and (max-width: 768px) {
                         font-size: 12px;
+                        max-width: 65vw;
                     }
                 }
                 justify-content: center;

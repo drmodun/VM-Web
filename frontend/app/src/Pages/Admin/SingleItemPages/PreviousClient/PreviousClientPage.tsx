@@ -22,7 +22,7 @@ export const PreviousClientPage = () => {
     const tryAction = await deletePreviousClient(previousClientId as string);
     if (!tryAction) return;
     alert("Previous Client successfully deleted");
-    window.location.href = "/admin/previous-clients";
+    window.location.href = "/#/admin/previous-clients";
   };
   useEffect(() => {
     tryGetPreviousClient();

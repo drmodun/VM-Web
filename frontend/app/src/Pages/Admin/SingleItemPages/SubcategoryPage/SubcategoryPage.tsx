@@ -40,7 +40,7 @@ export const SubcategoryPage = () => {
     const tryAction = await deleteSubcategory(subcategoryId as string);
     if (!tryAction) return;
     alert("Subcategory successfully deleted");
-    window.location.href = "/admin/subcategories";
+    window.location.href = "/#/admin/subcategories";
   };
   useEffect(() => {
     tryGetCategories();

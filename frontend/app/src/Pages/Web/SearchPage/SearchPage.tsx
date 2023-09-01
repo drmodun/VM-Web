@@ -63,6 +63,8 @@ export const SearchPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    window.document.title = "Search";
     productFetcher();
     categoryFetcher();
     subcategoryFetcher();

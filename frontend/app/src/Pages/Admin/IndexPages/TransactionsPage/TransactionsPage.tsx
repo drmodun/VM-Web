@@ -85,6 +85,8 @@ export const TransactionsPage = () => {
               Product: transaction.productName,
               User: transaction.userName,
               PricePerUnit: `${transaction.pricePerUnit} eur`,
+              productId: transaction.productId,
+              userId: transaction.userId,
               Created: `${new Date(
                 transaction.createdAt
               ).toLocaleDateString()}`,

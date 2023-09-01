@@ -28,7 +28,7 @@ export const Login = () => {
     const response = await forgotPassword(email);
     if (response) {
       alert("Email poslan");
-      window.location.href = "/login";
+      window.location.href = "/#/login";
       return;
     }
     setError("Invalid credentials");

@@ -18,6 +18,10 @@ import services1 from "../../../assets/services1.webp";
 import ShortView from "../../../Components/Web/ShortView";
 import { Link } from "react-router-dom";
 import { ShortCompany, getShortCompanies } from "../../../Api/CompanyApi";
+import { Service, getServices } from "../../../Api/ServiceApi";
+import ServiceView from "../../../Components/Web/Service";
+import PreviousClientView from "../../../Components/Web/PreviousClient";
+import { PreviousClient, getPreviousClient, getPreviousClients } from "../../../Api/PreviousClientApi";
 const enum Tabs {
   Products,
   Services,
@@ -29,6 +33,8 @@ export const Homepage = () => {
   const [categories, setCategories] = useState<ShortCategory[]>([]);
   const [tab, setTab] = useState<Tabs>(Tabs.Products);
   const [brands, setBrands] = useState<ShortCompany[]>([]);
+  const [previousClients, setPreviousClients] = useState<PreviousClient[]>([]);
+  const [services, setServices] = useState<Service[]>([])
 
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
@@ -41,6 +47,16 @@ export const Homepage = () => {
     setProducts(response?.items!);
   };
 
+  const previousClientsFetcher = async () => {
+    const response = await getPreviousClients({
+      "Sorting.Attribute": SortAttributeType.SortByName,
+      "Sorting.SortType": SortType.Descending,
+      "Pagination.PageSize": 3,
+      "Pagination.PageNumber": 1,
+    });
+    setPreviousClients(response?.items!);
+  }
+
   const categoryFetcher = async () => {
     const response = await getShortCategories({
       "Sorting.Attribute": SortAttributeType.SortByName,
@@ -48,6 +64,16 @@ export const Homepage = () => {
     });
     setCategories(response?.items!);
   };
+
+  const serviceFetcher = async () => {
+    const response = await getServices({
+      "Sorting.Attribute": SortAttributeType.SortByAmountOfOrders,
+      "Sorting.SortType": SortType.Descending,
+      "Pagination.PageSize": 3,
+      "Pagination.PageNumber": 1,
+    });
+    setServices(response?.items!);
+  }
 
   const brandFetcher = async () => {
     const response = await getShortCompanies({
@@ -61,6 +87,7 @@ export const Homepage = () => {
     productFetcher();
     categoryFetcher();
     brandFetcher();
+    serviceFetcher();
     window.scrollTo(0, 0);
     window.document.title = "VM | Home";
   }, []);
@@ -144,12 +171,12 @@ export const Homepage = () => {
                 }
                 onClick={() => setTab(Tabs.Services)}
               />
-                <div
-                  className={
-                    tab === Tabs.Categories ? classes.ActiveDot : classes.Dot
-                  }
-                  onClick={() => setTab(Tabs.Categories)}
-                />
+              <div
+                className={
+                  tab === Tabs.Categories ? classes.ActiveDot : classes.Dot
+                }
+                onClick={() => setTab(Tabs.Categories)}
+              />
               <div
                 onClick={() => setTab(Tabs.Brands)}
                 className={
@@ -217,6 +244,22 @@ export const Homepage = () => {
           </Link>
         </div>
         <div className={classes.Row}>
+          <span>Popularni servisi</span>
+          {services && services.length ? (
+            <div>
+              {services &&
+                services.map((service) => {
+                  return <ServiceView key={service.id} service={service} />;
+                })}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No services founds</span>
+          )}
+          <Link className={classes.ViewAll} to={"/services"}>
+            View all
+          </Link>
+        </div>
+        <div className={classes.Row}>
           <span>Popularni produkti</span>
           {products && products.length ? (
             <div className={classes.ProductList}>
@@ -228,6 +271,22 @@ export const Homepage = () => {
           ) : (
             <span className={classes.NotFound}>No products founds</span>
           )}
+        </div>
+        <div className={classes.Row}>
+          <span>Top prijašnji klijenti</span>
+          {previousClients && previousClients.length ? (
+            <div>
+              {previousClients &&
+                previousClients.map((previousClient) => {
+                  return <PreviousClientView key={previousClient.id} client={previousClient} />;
+                })}
+            </div>
+          ) : (
+            <span className={classes.NotFound}>No previous clients founds</span>
+          )}
+          <Link className={classes.ViewAll} to={"/clients"}>
+            View all
+          </Link>
         </div>
       </div>
     </div>

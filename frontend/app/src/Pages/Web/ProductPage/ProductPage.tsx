@@ -11,7 +11,7 @@ export const ProductPage = () => {
   const fetchProduct = async () => {
     const response = await getProduct(productId as string);
     if (response == null) {
-      window.location.href = "/404";
+      window.location.href = "/#/404";
       return;
     };
     console.log(response);

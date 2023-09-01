@@ -90,6 +90,8 @@ export const OrdersPage = () => {
               id: order.id,
               Service: order.serviceName,
               User: order.userName,
+              serviceId: order.serviceId,
+              userId: order.userId,
               Type: orderTypeDict[order.statusType],
               Deadline: order.deadline
                 ? `${new Date(order.deadline).getDate()}/${

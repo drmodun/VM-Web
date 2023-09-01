@@ -67,8 +67,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     }
     if (
       name.length < 3 ||
-      name.length > 20 ||
-      !name.toLowerCase().match(/^[a-zA-Z]+$/)
+      name.length > 20 
     ) {
       setError(
         "Name must be between 3 and 20 characters and contain only letters"
@@ -77,8 +76,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     }
     if (
       address.length < 3 ||
-      address.length > 20 ||
-      !address.toLocaleLowerCase().match(/^[a-zA-Z]+$/)
+      address.length > 20 
     ) {
       setError(
         "Address must be between 3 and 20 characters and contain only letters"
@@ -111,7 +109,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     const response = await onRegister(newUser);
     if (response) {
       alert("Registration successful, please log in");
-      window.location.href = "/login";
+      window.location.href = "/#/login";
       return;
     }
     setError("Invalid credentials");

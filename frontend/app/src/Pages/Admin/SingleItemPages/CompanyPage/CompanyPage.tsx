@@ -30,7 +30,7 @@ export const CompanyPage = () => {
     const tryAction = await deleteCompany(companyId as string);
     if (!tryAction) return;
     alert("Company successfully deleted");
-    window.location.href = "/admin/companies";
+    window.location.href = "/#/admin/companies";
   };
 
   return (

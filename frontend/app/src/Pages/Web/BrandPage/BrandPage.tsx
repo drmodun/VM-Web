@@ -38,7 +38,7 @@ export const CompanyPage = () => {
       companyId: companyId as string,
     });
     if (response == null) {
-      window.location.href = "/404";
+      window.location.href = "/#/404";
       return;
     }
     setProducts(response.items);

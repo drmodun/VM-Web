@@ -17,6 +17,7 @@ export const FavouritesPage = () => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
+    window.document.title = "Favourites";
     fetchFavourites();
   }, []);
 
@@ -53,8 +54,8 @@ export const FavouritesPage = () => {
         <h1>You are not logged in</h1>
         <p>
           You need to be logged in to see your favourites and add items to your
-          favourites. Go to the <a href="/login">login page</a> or{" "}
-          <a href="/register">the register page</a> to log in or register
+          favourites. Go to the <a href="/#/login">login page</a> or{" "}
+          <a href="/#/register">the register page</a> to log in or register
         </p>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AreaInput from "../../../Components/Web/TextAreaInput";
 import { createOrder } from "../../../Api/OrderApi";
+import { accountInfo } from "../../../Api/Shared";
 
 export const OrderPage = () => {
   const [error, setError] = useState<string>("");
@@ -14,6 +15,7 @@ export const OrderPage = () => {
   const [description, setDescription] = useState<string>("");
   useEffect(() => {
     fetchService();
+    window.document.title = "Order";
     window.scrollTo(0, 0);
   }, []);
 
@@ -25,7 +27,7 @@ export const OrderPage = () => {
   const fetchService = async () => {
     const service = await getService(serviceId as string);
     if (service == null) {
-      window.location.href = "/404";
+      window.location.href = "/#/404";
       return;
     };
     console.log(service);
@@ -65,7 +67,7 @@ export const OrderPage = () => {
       <div className={classes.Service}>
         <ServiceView service={service} />
       </div>
-      <form onSubmit={handleSubmit} className={classes.Form}>
+      {accountInfo ? <form onSubmit={handleSubmit} className={classes.Form}>
         <LargeInput
           label="Your Email"
           name="email"
@@ -81,7 +83,8 @@ export const OrderPage = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button className={classes.Button}>Order</button>
-      </form>
+      </form> : <div className={classes.NotFound}>You need to be logged in to order, log in at <a href="/#/login">login</a></div>
+      }
       <div className={classes.Error}>{error}</div>
     </div>
   ) : (

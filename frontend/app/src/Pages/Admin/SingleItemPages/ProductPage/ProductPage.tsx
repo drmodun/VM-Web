@@ -37,7 +37,7 @@ export const ProductPage = () => {
     const tryAction = await deleteProduct(productId as string);
     if (!tryAction) return;
     alert("Product successfully deleted");
-    window.location.href = "/admin/products";
+    window.location.href = "/#/admin/products";
   };
 
   const tryGetProduct = async () => {

@@ -15,6 +15,7 @@ export const PreviousClientsPage = () => {
     setClients(clients.items!);
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
     previousClientFetcher();
   }, []);
 

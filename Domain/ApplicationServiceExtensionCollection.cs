@@ -17,7 +17,7 @@ namespace Domain
     {
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            EmailSender.ApiKey = configuration["SendGridKey"];
+            EmailSender.ApiKey = configuration["SendGrid:Key"];
             StripeConfiguration.ApiKey = configuration.GetValue<string>("Stripe:SecretKey");
             Console.WriteLine(configuration["DbConnectionString"]);
             services.AddDbContext<Context>(options => options.UseNpgsql(configuration["DatabaseConnectionString"]));

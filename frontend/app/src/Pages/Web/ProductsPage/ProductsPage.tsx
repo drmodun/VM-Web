@@ -68,6 +68,7 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    window.document.title = "Products";
     productFetcher(undefined, false);
   }, []);
 
