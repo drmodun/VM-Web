@@ -5,7 +5,6 @@ using Domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Stripe;
-using Azure.Security.KeyVault.Secrets;
 using System.Text;
 using Azure.Identity;
 
