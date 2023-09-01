@@ -14,7 +14,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.0" />
     <PackageReference Include="SendGrid" Version="9.28.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
 	<ItemGroup>
