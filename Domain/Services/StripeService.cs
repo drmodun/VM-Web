@@ -29,6 +29,7 @@ namespace Domain.Services
             CustomerCreateOptions customerOptions = new CustomerCreateOptions
             {
                 Name = customer.Name,
+                //TODO: add another name field for actual name  
                 Email = customer.Email,
                 Source = customer.TokenId
             };
