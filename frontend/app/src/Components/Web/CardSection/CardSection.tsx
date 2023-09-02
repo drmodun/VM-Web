@@ -10,6 +10,7 @@ import {
 import classes from "./CardSection.module.scss";
 import { handleToken } from "../../../Api/UserApi";
 import { Token } from "react-stripe-checkout";
+import { TextInput } from "../../Admin/FormElements/TextInput";
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -38,6 +39,7 @@ const CARD_ELEMENT_OPTIONS = {
 
 function CardSection() {
   const [focused, setFocused] = React.useState<string | null>(null);
+  const [nameOnCard, setNameOnCard] = React.useState("");
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!stripe || !elements) {
@@ -52,8 +54,11 @@ function CardSection() {
       console.log(result.error.message);
       alert(result.error.message);
     } else {
-      const action = await handleToken(result.token as Token);
-      if (!action) alert("Something went wrong");
+      const action = await handleToken(result.token as Token, nameOnCard);
+      if (!action) {
+        console.log("Error");
+        return;
+      }
       alert("Success");
       console.log(result.token);
       window.location.reload();
@@ -66,6 +71,12 @@ function CardSection() {
 
   return (
     <form className={classes.Form} onSubmit={handleSumbit}>
+      <TextInput
+        label="Name on card"
+        name="nameOnCard"
+        onChange={(e) => setNameOnCard(e.target.value)}
+        value={nameOnCard}
+      />
       <CardNumberElement
         id="#cardNumber"
         onFocus={() => setFocused("number")}

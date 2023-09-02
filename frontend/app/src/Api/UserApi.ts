@@ -267,7 +267,7 @@ export const getMe = async () => {
   }
 };
 
-export const handleToken = async (token: Token) => {
+export const handleToken = async (token: Token, nameOnCard: string) => {
   console.log(token);
   if (!accountInfo) {
     return;
@@ -275,7 +275,7 @@ export const handleToken = async (token: Token) => {
   try {
     const response = await api.post("/add-customer", {
       email: accountInfo.email,
-      name: accountInfo.name,
+      name: nameOnCard,
       tokenId: token.id,
     });
     console.log(response.data);

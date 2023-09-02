@@ -15,7 +15,7 @@ import CardSection from "../../../Components/Web/CardSection/CardSection";
 import Switch from "../../../Components/Web/Switch";
 
 const stripePromise = loadStripe(
-  "pk_test_51NcS2vApp5avo5Y6EQBAPyzC9QJBqsb4fB8paxKr2fF5OfmvAiReZhv9vxaoryAGSwwj5r15dRrVhtR53nr8qqSt00V94ZU7zX"
+  "pk_live_51NcS2vApp5avo5Y6WDlDezJYc31OwGdPJIDnuezXyIzAodhKpEp0xjixVfbOhUhS4zDFmMQxgIk6JCWUDw9Pnowl00fCXsTacc"
 );
 
 const enum Tabs {
