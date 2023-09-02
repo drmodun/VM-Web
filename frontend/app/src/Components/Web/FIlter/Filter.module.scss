@@ -7,13 +7,15 @@
     justify-content: flex-start;
     border-radius: 10px;
     padding: 20px 5px;
+
     .Category {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 20px;
-        > span {
+
+        >span {
             color: var(--text-main, #1e1e1e);
             font-family: Nuckle;
             font-size: 18px;
@@ -23,6 +25,7 @@
             line-height: normal;
         }
     }
+
     .Subcategory {
         width: 100%;
         display: flex;
@@ -30,7 +33,8 @@
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 20px;
-        > span {
+
+        >span {
             color: var(--text-main, #1e1e1e);
             font-family: Nuckle;
             font-size: 18px;
@@ -40,13 +44,15 @@
             line-height: normal;
         }
     }
+
     .Company {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 20px;
-        > span {
+
+        >span {
             color: var(--text-main, #1e1e1e);
             font-family: Nuckle;
             font-size: 18px;
@@ -55,14 +61,16 @@
             line-height: normal;
         }
     }
+
     .Price {
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
         margin-bottom: 20px;
-        > span {
+
+        >span {
             color: var(--text-main, #1e1e1e);
             font-family: Nuckle;
             font-size: 18px;
@@ -71,6 +79,72 @@
             line-height: normal;
         }
     }
+
+    .Slider {
+        width: 260px;
+        height: 10px;
+        border-radius: 20px;
+        background-color: #4d5ef6;
+        display: flex;
+        align-items: center;
+
+        .Thumb {
+            width: 20px;
+            height: 20px;
+            background: #4d5ef6;
+            border-radius: 50%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:last-child {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .Divider {
+        height: 1px;
+        width: 20px;
+        margin: 0px 5px;
+        background: #e4e7ee;
+    }
+
+    .Input {
+        height: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        >input {
+            display: flex;
+            width: 91px;
+            padding: 5px 10px;
+            align-items: flex-start;
+            border-radius: 3px;
+            outline: none;
+            font-weight: 600;
+            border: 1px solid var(--stroke-primary, #e4e7ee);
+            background: var(--background-white, #fff);
+            border: 1px solid var(--stroke-primary, #e4e7ee);
+            color: var(--text-main, #1e1e1e);
+            font-family: Nuckle;
+            font-size: 16px;
+
+            &:focus {
+                border: 1px solid #0d63f3;
+                color: #0d63f3;
+            }
+
+            &:hover {
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
     .Name {
         width: 100%;
         display: flex;
@@ -78,7 +152,8 @@
         align-items: flex-start;
         justify-content: flex-start;
         margin-bottom: 20px;
-        > span {
+
+        >span {
             width: 100%;
             color: var(--text-main, #1e1e1e);
             font-family: Nuckle;
@@ -89,12 +164,11 @@
             line-height: normal;
         }
     }
+
     .Button {
         border-radius: 10px;
-        background: var(
-            --button-gradient-20,
-            linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
-        );
+        background: var(--button-gradient-20,
+                linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%));
         display: flex;
         padding: 9px 0px;
         justify-content: center;
@@ -111,13 +185,13 @@
         line-height: normal;
         width: 100%;
         text-decoration: none;
+
         &:hover {
             cursor: pointer;
-            background: var(
-                --button-gradient-20,
-                linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(226, 17, 76, 0.2) 100%)
-            );
+            background: var(--button-gradient-20,
+                    linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(226, 17, 76, 0.2) 100%));
         }
+
         &:active {
             background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
             color: white;
