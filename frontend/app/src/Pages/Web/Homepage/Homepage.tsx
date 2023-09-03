@@ -88,6 +88,7 @@ export const Homepage = () => {
     categoryFetcher();
     brandFetcher();
     serviceFetcher();
+    previousClientsFetcher();
     window.scrollTo(0, 0);
     window.document.title = "VM | Home";
   }, []);
@@ -117,7 +118,7 @@ export const Homepage = () => {
         <div className={classes.Cards}>
           <div
             className={classes.Arrow}
-            onClick={() => setTab((prev) => (prev !== 0 ? prev - 1 : 0))}
+            onClick={() => setTab((prev) => (prev !== 0 ? prev - 1 : 3))}
           >
             <img src={chevronLeft} alt="" />
           </div>
@@ -188,7 +189,7 @@ export const Homepage = () => {
           <div
             className={classes.Arrow}
             onClick={() =>
-              setTab((prev) => (prev !== Tabs.Brands ? prev + 1 : 3))
+              setTab((prev) => (prev !== Tabs.Brands ? prev + 1 : 0))
             }>
             <img src={chevronRight} alt="" />
           </div>

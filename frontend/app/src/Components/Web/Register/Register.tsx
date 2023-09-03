@@ -67,7 +67,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     }
     if (
       name.length < 3 ||
-      name.length > 20 
+      name.length > 20
     ) {
       setError(
         "Name must be between 3 and 20 characters and contain only letters"
@@ -76,7 +76,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     }
     if (
       address.length < 3 ||
-      address.length > 20 
+      address.length > 20
     ) {
       setError(
         "Address must be between 3 and 20 characters and contain only letters"
@@ -108,7 +108,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
 
     const response = await onRegister(newUser);
     if (response) {
-      alert("Registration successful, please log in");
+      alert("Registration successful, please check your email for activation link, if you don't see it, check your spam and unwanted folder");
       window.location.href = "/#/login";
       return;
     }

@@ -6,14 +6,17 @@
     border-radius: 15px;
     background-color: #fff;
     border: 1px solid #e0e0e0;
+
     @media screen and (max-width: 950px) {
         width: 100%;
         height: 100%;
         padding: 2vw 2vw;
     }
+
     &:hover {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     }
+
     .Item {
         flex-direction: row;
         display: flex;
@@ -21,26 +24,31 @@
         height: 100%;
         align-items: center;
         justify-content: space-between;
+
         @media screen and (max-width: 950px) {
             flex-direction: column;
             justify-content: space-around;
         }
+
         .Image {
             width: 35vw;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+
             @media screen and (max-width: 950px) {
                 width: 100%;
                 height: 50%;
             }
+
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
             }
         }
+
         .Info {
             display: flex;
             flex-direction: column;
@@ -51,10 +59,12 @@
             justify-content: space-between;
             width: 100%;
             margin-left: 20px;
+
             @media screen and (max-width: 950px) {
                 justify-content: flex-start;
                 margin-left: 0px;
             }
+
             .Name {
                 color: var(--background-main-color, #0d63f3);
                 font-family: Nuckle;
@@ -65,18 +75,22 @@
                 line-height: normal;
                 letter-spacing: 0.32px;
                 text-align: center;
+
                 @media screen and (max-width: 950px) {
                     font-size: 2.5vw;
                     margin-bottom: 15px;
                 }
+
                 @media screen and (max-width: 750px) {
                     font-size: 6vw;
                 }
+
                 &:hover {
                     text-decoration: underline;
                     cursor: pointer;
                 }
             }
+
             .Price {
                 color: var(--neutral-200, #9d9ea2);
                 text-align: right;
@@ -86,22 +100,27 @@
                 font-weight: 500;
                 height: fit-content;
                 height: 15%;
+
                 @media screen and (max-width: 950px) {
                     font-size: 2vw;
                     margin-bottom: 10px;
                 }
+
                 @media screen and (max-width: 750px) {
                     font-size: 4vw;
                 }
             }
+
             .Bottom {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 height: 40%;
+
                 @media screen and (max-width: 950px) {
                     height: 100%;
                 }
+
                 .Link {
                     text-decoration: none;
                     color: #062d53;
@@ -112,12 +131,15 @@
                     line-height: normal;
                     letter-spacing: 0.32px;
                     margin-bottom: 5px;
+
                     @media screen and (max-width: 950px) {
                         font-size: 1.5vw;
                     }
+
                     @media screen and (max-width: 750px) {
                         font-size: 2vw;
                     }
+
                     &:hover {
                         color: #0d63f3;
                         text-decoration: underline;
@@ -126,6 +148,7 @@
                 }
             }
         }
+
         .Control {
             display: flex;
             flex-direction: column;
@@ -134,11 +157,13 @@
             font-family: Nuckle;
             width: 100%;
             justify-content: space-around;
+
             @media screen and (max-width: 950px) {
                 align-items: center;
                 justify-content: space-between;
                 flex-direction: column;
             }
+
             .Total {
                 color: black;
                 text-align: right;
@@ -147,23 +172,28 @@
                 font-style: normal;
                 font-weight: 600;
                 line-height: 150%;
+
                 @media screen and (max-width: 950px) {
                     font-size: 3.5vw;
                     margin: 10px 0px;
                 }
+
                 @media screen and (max-width: 750px) {
                     font-size: 5vw;
                 }
             }
+
             .Quantity {
                 flex-direction: row;
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
+
                 @media screen and (max-width: 950px) {
                     margin-bottom: 20px;
                 }
-                > button {
+
+                >button {
                     width: 3vw;
                     height: 3vw;
                     background-color: #0d63f3;
@@ -176,6 +206,7 @@
                     color: #fff;
                     justify-content: center;
                     border: 1px solid #e0e0e0;
+
                     @media screen and (max-width: 950px) {
                         width: 10vw;
                         height: 10vw;
@@ -184,18 +215,26 @@
                         min-width: 30px;
                         border-radius: 1.25vw;
                     }
+
                     &:hover {
                         background-color: #fff;
                         cursor: pointer;
                         color: #0d63f3;
                         border: 1px solid #0d63f3;
                     }
+
                     &:active {
                         color: #fff;
                         background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
                     }
+
+                    &::placeholder {
+                        color: #fff;
+                        background: gray;
+                    }
                 }
-                > div {
+
+                >div {
                     margin: 0px 10px;
                     font-family: Nuckle;
                     width: 3vw;
@@ -212,6 +251,7 @@
                     border-radius: 10px;
                     border: 1px solid #e0e0e0;
                     letter-spacing: 0.32px;
+
                     @media screen and (max-width: 950px) {
                         width: 10vw;
                         height: 10vw;
@@ -220,9 +260,11 @@
                         font-size: 2vw;
                         border-radius: 1.25vw;
                     }
+
                     color: black;
                 }
             }
+
             .Remove {
                 width: 100%;
                 height: 20%;
@@ -238,19 +280,23 @@
                 outline: none;
                 align-items: center;
                 justify-content: center;
+
                 @media screen and (max-width: 950px) {
                     width: 100%;
                     height: 30px;
                     font-size: 1.5vw;
                     min-width: 30px;
                 }
+
                 @media screen and (max-width: 750px) {
                     font-size: 3vw;
                 }
+
                 &:hover {
                     background-color: crimson;
                     cursor: pointer;
                 }
+
                 &:active {
                     background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
                 }

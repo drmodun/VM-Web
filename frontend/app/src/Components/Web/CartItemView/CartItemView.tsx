@@ -12,8 +12,11 @@ interface Props {
 export const CartItemView = ({ item, change, remove, index }: Props) => {
   const [quantity, setQuantity] = useState(item.quantity);
   const [total, setTotal] = useState(item.total);
+  const [disabled, setDisabled] = useState(false);
 
   const changeQuantity = async (value: number) => {
+    setDisabled(true);
+    //TODO: further testing
     if (value < 1 || value > item.maxQuantity) return;
     var action: boolean = await updateCart(item.productId, value);
     if (!action) return;
@@ -22,6 +25,7 @@ export const CartItemView = ({ item, change, remove, index }: Props) => {
       Math.round((value * item.pricePerUnit + Number.EPSILON) * 100) / 100;
     change && change(price - total, index);
     setTotal(price);
+    setDisabled(false);
   };
 
   const removeItem = async () => {
@@ -84,6 +88,7 @@ export const CartItemView = ({ item, change, remove, index }: Props) => {
           </div>
           <div className={classes.Quantity}>
             <button
+              disabled={quantity === 1 || disabled}
               onClick={() => {
                 changeQuantity(quantity - 1);
               }}
@@ -92,6 +97,7 @@ export const CartItemView = ({ item, change, remove, index }: Props) => {
             </button>
             <div>{quantity}</div>
             <button
+              disabled={quantity === item.maxQuantity || disabled}
               onClick={() => {
                 changeQuantity(quantity + 1);
               }}

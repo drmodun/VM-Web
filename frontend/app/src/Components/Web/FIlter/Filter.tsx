@@ -5,11 +5,10 @@ import Dropdown from "../Dropdown";
 import { getCategories } from "../../../Api/CategoryApi";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import { getSubcategories } from "../../../Api/SubcategoryApi";
-import Slider from "../Slider";
 import Input from "../Input";
 import { GetAllProps } from "../../../Api/ProductApi";
+import ReactSlider from "react-slider";
 import { getCompanies } from "../../../Api/CompanyApi";
-
 interface Props {
   minValue: number;
   maxValue: number;
@@ -147,14 +146,45 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
           </div>
           <div className={classes.Price}>
             <div className={classes.Input}>
-              <Slider
-                label="Price"
-                minValue={minValue}
-                maxValue={maxValue}
-                onBottomChange={(value) => setMinPrice(value)}
-                onTopChange={(value) => setMaxPrice(value)}
+              <input
+                type="number"
+                placeholder={String(minValue)}
+                onChange={(event) => setMinPrice(
+                  Number(event.target.value) < minValue
+                    ? minValue
+                    : Number(event.target.value) > maxPrice
+                      ? maxPrice
+                      : Number(event.target.value)
+                )
+                }
+                value={minPrice}
+              />
+              <div className={classes.Divider}></div>
+              <input
+                type="number"
+                placeholder={String(maxValue)}
+                onChange={(event) => setMaxPrice(Number(event.target.value) > maxValue
+                  ? maxValue
+                  : Number(event.target.value) < minPrice
+                    ? minPrice
+                    : Number(event.target.value)
+                )}
+                value={maxPrice}
               />
             </div>
+            <ReactSlider
+              className={classes.Slider}
+              value={[minPrice, maxPrice]}
+              min={minValue}
+              max={maxValue}
+              thumbClassName={classes.Thumb}
+              onChange={
+                ([min, max]) => {
+                  setMinPrice(min);
+                  setMaxPrice(max);
+                }
+              }
+            />
           </div>
           <button
             className={classes.Button}

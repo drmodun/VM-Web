@@ -91,6 +91,7 @@ export const Slider = ({
         >
           <div
             draggable={true}
+         
             className={classes.SliderHandle}
             onDrag={(event) => {
               event.preventDefault();

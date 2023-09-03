@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    touch-action: none;
     justify-content: center;
     .Label {
         color: var(--text-main, #1e1e1e);
@@ -62,6 +63,7 @@
         background-color: #e4e7ee;
         border-radius: 3px;
         align-items: center;
+        touch-action: none;
         .SliderFill {
             display: flex;
             justify-content: space-between;
@@ -72,19 +74,17 @@
             cursor: pointer;
             background: #0d63f3;
             border-radius: 3px;
+            touch-action: none;
             border: 0px solid #010101;
         }
         .SliderHandle {
+            touch-action: none;
             margin-top: -6px; /* Centers thumb on the track */
             background-color: #0d63f3;
             height: 20px;
             width: 20px;
-
-            border-radius: 50%;
-            &:focus {
-                outline: none;
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            }
+            z-index: 3;
+            border-radius: 50%; 
         }
     }
 }
