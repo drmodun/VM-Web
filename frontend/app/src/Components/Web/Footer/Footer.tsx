@@ -42,7 +42,7 @@ export const Footer = () => {
               <Link className={classes.Link} to={"/brands"}>
                 <li>Brendovi</li>
               </Link>
-              
+
               <Link className={classes.Link} to={"/clients"}>
                 <li>Prijašnji klijenti</li>
               </Link>
@@ -55,14 +55,14 @@ export const Footer = () => {
                 <a
                   className={classes.Link}
                   href="mailto:
-                    jan.modun.st@gmail.com?subject=Kontakt sa stranice"
+                  vm-mail@vm-racunala.store?subject=Kontakt sa stranice"
                 >
-                  jan.modun.st@gmail.com
+                  vm-mail@vm-racunala.store
                 </a>
               </li>
               <li>
-                <a className={classes.Link} href="tel:+38761548123">
-                  +387 61 548 123
+                <a className={classes.Link} href="tel:+021/543-318">
+                  021/543-318
                 </a>
               </li>
               <li>
@@ -71,7 +71,10 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                adresa: <br /> ulica 1 <br /> 71000 Sarajevo <br /> HR
+                Adresa: Vukovarska  ulica 127
+              </li>
+              <li>
+                Prodajno mjesto: Velebitska ulica 71
               </li>
             </ul>
             <div className={classes.Social}>
