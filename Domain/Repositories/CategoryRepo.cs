@@ -53,7 +53,9 @@ namespace Domain.Repositories
             var categories = _context.Categories
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-;            //sorting
+                .AsNoTracking();
+
+            ;            //sorting
 
             if (request.Sorting != null)
             {

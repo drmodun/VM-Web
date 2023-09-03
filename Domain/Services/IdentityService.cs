@@ -72,8 +72,8 @@ namespace Domain.Services
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.Add(TokenLifetime),
-                Issuer = "https://randomwebsite.com",
-                Audience = "https://randomwebsite-web-api.com",
+                Issuer = "https://vm-racunala.store",
+                Audience = "https://vm-racunala.store",
                 SigningCredentials =
                     new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

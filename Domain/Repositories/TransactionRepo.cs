@@ -69,7 +69,8 @@ namespace Domain.Repositories
                 .Where(x => request.ProductId == null || request.ProductId == x.ProductId)
                 .Where(x => request.UserId == null || request.UserId == x.UserId)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Product.Price * x.Quantity)
-                .Where(x => request.MinPrice == null || request.MinPrice >= x.Product.Price * x.Quantity);
+                .Where(x => request.MinPrice == null || request.MinPrice >= x.Product.Price * x.Quantity)
+                .AsNoTracking();
 
             if (request.Sorting != null)
             {

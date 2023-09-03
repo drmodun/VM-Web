@@ -55,7 +55,9 @@ namespace Domain.Repositories
                 .Include(x => x.Category)
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
+                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId)
+                .AsNoTracking();
+
             //sorting
             if (request.Sorting != null)
             {
@@ -88,7 +90,9 @@ namespace Domain.Repositories
                 .Include(x => x.Products)
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId);
+                .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId)
+                .AsNoTracking();
+
             //sorting
             if (request.Sorting != null)
             {
@@ -121,6 +125,7 @@ namespace Domain.Repositories
                       .ThenInclude(x => x.Company)
                           .ThenInclude(x => x.Products)
                   .FirstOrDefaultAsync(x => x.Id == id);
+
             if (subcategory == null)
                 return null;
             return subcategory;
