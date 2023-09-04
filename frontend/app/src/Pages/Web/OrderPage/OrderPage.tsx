@@ -29,7 +29,7 @@ export const OrderPage = () => {
     if (service == null) {
       window.location.href = "/#/404";
       return;
-    };
+    }
     console.log(service);
     setService(service);
   };
@@ -55,7 +55,7 @@ export const OrderPage = () => {
     if (!action) alert("Something went wrong");
     alert("Success");
     console.log(action);
-    window.location.reload();
+    window.location.href = "/#/";
   };
 
   const [email, setEmail] = useState<string>("");
@@ -67,24 +67,30 @@ export const OrderPage = () => {
       <div className={classes.Service}>
         <ServiceView service={service} />
       </div>
-      {accountInfo ? <form onSubmit={handleSubmit} className={classes.Form}>
-        <LargeInput
-          label="Your Email"
-          name="email"
-          value={email}
-          placeholder="Enter your email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <AreaInput
-          label="Your problem description"
-          name="description"
-          value={description}
-          placeholder="Enter your problem description"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button className={classes.Button}>Order</button>
-      </form> : <div className={classes.NotFound}>You need to be logged in to order, log in at <a href="/#/login">login</a></div>
-      }
+      {accountInfo ? (
+        <form onSubmit={handleSubmit} className={classes.Form}>
+          <LargeInput
+            label="Your Email"
+            name="email"
+            value={email}
+            placeholder="Enter your email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <AreaInput
+            label="Your problem description"
+            name="description"
+            value={description}
+            placeholder="Enter your problem description"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button className={classes.Button}>Order</button>
+        </form>
+      ) : (
+        <div className={classes.NotFound}>
+          You need to be logged in to order, log in at{" "}
+          <a href="/#/login">login</a>
+        </div>
+      )}
       <div className={classes.Error}>{error}</div>
     </div>
   ) : (

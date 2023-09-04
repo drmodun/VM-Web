@@ -29,6 +29,7 @@ export const Login = () => {
     if (response) {
       alert("Email poslan");
       window.location.href = "/#/login";
+      window.location.reload();
       return;
     }
     setError("Invalid credentials");
