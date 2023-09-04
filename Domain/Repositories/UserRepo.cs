@@ -117,7 +117,8 @@ namespace Domain.Repositories
                     .ThenInclude(x => x.Service)
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Email == null || x.Email.Contains(request.Email))
-                .Where(x => request.Address == null || x.Address.Contains(request.Address));
+                .Where(x => request.Address == null || x.Address.Contains(request.Address))
+                .AsNoTracking();
 
             //sorting
             if (request.Sorting != null)

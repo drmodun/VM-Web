@@ -10,7 +10,7 @@ namespace Data
 
             var options = new DbContextOptionsBuilder<Context>()
                 .EnableSensitiveDataLogging(true)
-                .UseNpgsql()
+                .UseNpgsql("Host=ep-damp-feather-77564992.eu-central-1.aws.neon.tech;Database=neondb;Username=drmodun;Password=jduyNOaYmA85")
                 .Options;
 
             return new Context(options);

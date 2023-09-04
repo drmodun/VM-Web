@@ -5,6 +5,7 @@ using Data.Enums;
 using Data.Models;
 using Domain.Validatiors;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories
 {
@@ -50,7 +51,9 @@ namespace Domain.Repositories
             var previousClients = _context.PreviousClients
                 .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
                 .Where(x => request.Description == null || x.Description.Contains(request.Description))
-;
+                .AsNoTracking();
+
+            ;
             //sorting
 
             if (request.Sorting != null)

@@ -84,7 +84,9 @@ namespace Domain.Repositories
                 .Where(x => request.ServiceType == null || request.ServiceType == x.Service.ServiceType)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Service.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Service.Price)
-;
+                .AsNoTracking();
+
+            ;
             if (request.Sorting != null)
             {
 

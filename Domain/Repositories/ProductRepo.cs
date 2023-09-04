@@ -70,7 +70,9 @@ namespace Domain.Repositories
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice <= x.Price)
                 .Where(x => request.CompanyId == null || request.CompanyId == x.CompanyId)
-                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()));
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
+                .AsNoTracking();
+
 
             //this is an improvised way to sort
             //not sure if it will work this way
@@ -160,7 +162,9 @@ namespace Domain.Repositories
                 .Where(x => request.MaxPrice == null || request.MaxPrice >= x.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice <= x.Price)
                 .Where(x => request.CompanyId == null || request.CompanyId == x.CompanyId)
-                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()));
+                .Where(x => request.Name == null || x.Name.ToLower().Contains(request.Name.ToLower()))
+                .AsNoTracking();
+
 
             //this is an improvised way to sort
             //not sure if it will work this way
@@ -243,7 +247,9 @@ namespace Domain.Repositories
                 .Where(x => x.SubCategoryId == request.SubcategoryId)
                 .OrderBy(x => Math.Abs(x.Price - request.Price))
                 .Take(10)
+                .AsNoTracking()
                 .ToListAsync(cancellationToken);
+
 
         }
 
@@ -257,6 +263,7 @@ namespace Domain.Repositories
                 .ThenInclude(x => x.Cart)
                 .Where(x => x.UserId == userId)
                 .Select(x => x.Product)
+                .AsNoTracking()
                 .ToListAsync();
             return favourites;
         }

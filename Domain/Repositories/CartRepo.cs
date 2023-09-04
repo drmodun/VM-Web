@@ -39,6 +39,7 @@ namespace Domain.Repositories
                     .ThenInclude(x => x.Product).ThenInclude(x => x.Subcategory)
                     .Include(x => x.CartsProducts)
                     .ThenInclude(x => x.Product).ThenInclude(x => x.Company)
+
                 //decide if this information is neccesary or it just hogs memory
                 .FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
             return cart;
