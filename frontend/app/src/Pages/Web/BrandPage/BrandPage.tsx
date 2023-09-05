@@ -141,16 +141,16 @@ export const CompanyPage = () => {
                 <span>Sortiraj po:</span>
                 <Switch
                   options={[
-                    { label: "Name", value: SortAttributeType.SortByName },
+                    { label: "Ime", value: SortAttributeType.SortByName },
                     {
-                      label: "Category",
+                      label: "Kategorija",
                       value: SortAttributeType.SortByCompanyName,
                     },
                     {
-                      label: "Subcategory",
+                      label: "Subkategorija",
                       value: SortAttributeType.SortBySubcategoryName,
                     },
-                    { label: "Price", value: SortAttributeType.SortByPrice },
+                    { label: "Cijena", value: SortAttributeType.SortByPrice },
                     {
                       label: "Profit",
                       value: SortAttributeType.SortByProfit,

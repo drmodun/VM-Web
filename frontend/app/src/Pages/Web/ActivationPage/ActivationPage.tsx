@@ -26,7 +26,7 @@ export const ActivationPage = () => {
         {success && (
           <div className={classes.Success}>
             <span>Uspješno potvrđen račun</span>
-            <Link className={classes.Link} to={"/#/login"}>
+            <Link className={classes.Link} to={"/login"}>
               Idi na prijavu
             </Link>
           </div>

@@ -84,7 +84,7 @@ export const SubcategoryPage = () => {
               to={"/categories/" + Subcategory.categoryId}
               className={classes.CategoryName}
             >
-              Part of: {Subcategory.categoryName}
+              Dio od: {Subcategory.categoryName}
             </Link>
           </div>
           <div className={classes.SubcategoryImage}>
@@ -101,7 +101,7 @@ export const SubcategoryPage = () => {
           </div>
         </div>
 
-        <span className={classes.SubHeader}>Brands</span>
+        <span className={classes.SubHeader}>Brendovi</span>
         {Subcategory.brands.length ? (
           <div className={classes.Companies}>
             {Subcategory?.brands.map((company) => (
@@ -125,12 +125,12 @@ export const SubcategoryPage = () => {
                 <span>Sortiraj po:</span>
                 <Switch
                   options={[
-                    { label: "Name", value: SortAttributeType.SortByName },
+                    { label: "Ime", value: SortAttributeType.SortByName },
                     {
-                      label: "Company",
+                      label: "Brend",
                       value: SortAttributeType.SortByCompanyName,
                     },
-                    { label: "Price", value: SortAttributeType.SortByPrice },
+                    { label: "Cijena", value: SortAttributeType.SortByPrice },
                     {
                       label: "Profit",
                       value: SortAttributeType.SortByProfit,

@@ -94,7 +94,7 @@ export const Homepage = () => {
     serviceFetcher();
     previousClientsFetcher();
     window.scrollTo(0, 0);
-    window.document.title = "VM računala";
+    window.document.title = "VM Računala d.o.o";
   }, []);
 
   return (
@@ -108,7 +108,7 @@ export const Homepage = () => {
       ></link>
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
-        <img src={products2} alt="" />
+        <img src={products2} alt="Cover-VM" />
         <div className={classes.CoverText}>
           <h1>VM računala</h1>
           <p>Poslovna rješenja za IT</p>
@@ -294,7 +294,9 @@ export const Homepage = () => {
                 })}
             </div>
           ) : (
-            <span className={classes.NotFound}>Nema pronađenih prijašnji klijenata</span>
+            <span className={classes.NotFound}>
+              Nema pronađenih prijašnjih klijenata
+            </span>
           )}
           <Link className={classes.ViewAll} to={"/clients"}>
             Pogledaj sve

@@ -112,7 +112,7 @@ export const CategoryPage = () => {
             Nema pronađenih subkategorija
           </span>
         )}
-        <span className={classes.SubHeader}>Brands</span>
+        <span className={classes.SubHeader}>Brendovi</span>
         {category.brands?.length! ? (
           <div className={classes.Companies}>
             {category?.brands.map((company) => (
@@ -138,16 +138,16 @@ export const CategoryPage = () => {
                 <span>Sortiraj po:</span>
                 <Switch
                   options={[
-                    { label: "Name", value: SortAttributeType.SortByName },
+                    { label: "Ime", value: SortAttributeType.SortByName },
                     {
-                      label: "Subcategory",
+                      label: "Subkategorija",
                       value: SortAttributeType.SortBySubcategoryName,
                     },
                     {
-                      label: "Company",
+                      label: "Brend",
                       value: SortAttributeType.SortByCompanyName,
                     },
-                    { label: "Price", value: SortAttributeType.SortByPrice },
+                    { label: "Cijena", value: SortAttributeType.SortByPrice },
                     {
                       label: "Profit",
                       value: SortAttributeType.SortByProfit,

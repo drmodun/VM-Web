@@ -35,8 +35,10 @@ export const CategoriesPage = () => {
         <div className={classes.Backdrop}></div>
         <img src={categories2} alt="" />
         <div className={classes.CoverText}>
-          <h1>Categories</h1>
-          <p>Find your favorite category</p>
+          <h1>Kategorije</h1>
+          <p>
+            Pronađite kategoriju koja vas zanima i pronađite proizvode koji su vam potrebni.
+          </p>
         </div>
       </div>
       <div className={classes.CategoriesPage}>

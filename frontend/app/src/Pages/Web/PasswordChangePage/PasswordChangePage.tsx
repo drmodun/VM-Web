@@ -60,7 +60,7 @@ export const PasswordChangePage = () => {
         {success && (
           <div className={classes.Success}>
             <span>Uspješno promijenjena šifra</span>
-            <Link className={classes.Link} to={"/#/login"}>
+            <Link className={classes.Link} to={"/login"}>
               Idi na prijavu
             </Link>
           </div>

@@ -110,7 +110,7 @@ export const CartPage = () => {
           <h1>Morate biti prijavljeni</h1>
           <p>
             Morate biti prijavljeni da biste mogli vidjeti svoju košaricu.
-            Otiđite na <a href="/#/login">strnaicu prijave</a> ili{" "}
+            Otiđite na <a href="/#/login">stranicu prijave</a> ili{" "}
             <a href="/#/register">stranicu za stvaranje računa</a> da biste se
             prijavili ili stvorili račun
           </p>

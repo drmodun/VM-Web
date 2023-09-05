@@ -42,7 +42,9 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
       !password ||
       !confirmPassword
     ) {
-      setError("All fields are required");
+      setError(
+        "Sva polja moraju biti popunjena, adresa služi kao dostavna adresa, a broj mobitel kao kontakt broj"
+      );
       return;
     }
     const passwordCheck = password.match(
@@ -50,7 +52,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     );
     if (!passwordCheck) {
       setError(
-        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter and one number"
+        "Lozinka mora sadržavati barem 8 znakova, jedno veliko slovo, jedno malo slovo i jedan broj"
       );
       return;
     }
@@ -61,18 +63,16 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
         /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
       )
     ) {
-      setError("Email is not valid");
+      setError("Mail nije validan");
       return;
     }
     if (name.length < 3 || name.length > 20) {
-      setError(
-        "Name must be between 3 and 20 characters and contain only letters"
-      );
+      setError("Ime mora biti između 3 i 20 znakova i sadržavati samo slova");
       return;
     }
     if (address.length < 3 || address.length > 20) {
       setError(
-        "Address must be between 3 and 20 characters and contain only letters"
+        "Adresa mora biti između 3 i 20 znakova i sadržavati samo slova"
       );
       return;
     }
@@ -82,12 +82,8 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
       !phoneNumber.match(/^[0-9]+$/)
     ) {
       setError(
-        "Phone number must be between 3 and 20 characters and contain only numbers"
+        "Broj mobitela mora biti između 3 i 20 znakova i sadržavati samo brojeve"
       );
-      return;
-    }
-    if (password.length < 6) {
-      setError("Password must be longer than 6 characters");
       return;
     }
 
@@ -102,12 +98,12 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
     const response = await onRegister(newUser);
     if (response) {
       alert(
-        "Registration successful, please check your email for activation link, if you don't see it, check your spam and unwanted folder"
+        "Registracija uspješna, provjerite svoj email za potvrdu registracije, ako ne vidite mail provjerite spam folder i neželjenu poštu"
       );
       window.location.href = "/#/login";
       return;
     }
-    setError("Invalid credentials");
+    setError("Greška pri registraciji");
   };
 
   return (
@@ -116,7 +112,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
         <div className={classes.RegisterForm}>
           <div className={classes.RegisterFormHeader}>
             <img src={Logo} alt="VM-racunala" />
-            <h1>Napravite račun</h1>
+            <h1>Registracija</h1>
             <Link to="/login" className={classes.Link}>
               Prijavi se
             </Link>
@@ -130,7 +126,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
                 label="Name"
                 name="name"
                 type="text"
-                placeholder="Name"
+                placeholder="Ime"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 icon1={username}
@@ -145,39 +141,39 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
                 icon1={Email}
               />
               <Input
-                label="Password"
+                label="Šifra"
                 name="password"
                 type="password"
-                placeholder="Password"
+                placeholder="Lozinka"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 icon1={Hide}
                 icon2={Show}
               />
               <Input
-                label="Confirm Password"
+                label="Potvrdi lozinku"
                 name="confirmPassword"
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="Potvrdi lozinku"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 icon1={Hide}
                 icon2={Show}
               />
               <Input
-                label="Address"
+                label="Adresa"
                 name="address"
                 type="text"
-                placeholder="Address"
+                placeholder="Adresa"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 icon1={Address}
               />
               <Input
-                label="Phone Number"
+                label="Broj mobitela"
                 name="phoneNumber"
                 type="text"
-                placeholder="Phone Number"
+                placeholder="Broj mobitela"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 icon1={Phone}
@@ -186,7 +182,7 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
               <div className={classes.Error}>
                 <p>{error}</p>
               </div>
-              <button className={classes.Button}>Register</button>
+              <button className={classes.Button}>Registracija</button>
             </form>
           </div>
         </div>

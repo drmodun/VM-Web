@@ -37,7 +37,9 @@ export const CompaniesPage = () => {
           }
         >
           <h1>Brendovi</h1>
-          <p>Find your favorite brand</p>
+          <p>
+            Pronađite brend koji vas zanima i pronađite proizvode koji su vam potrebni.
+          </p>
         </div>
       </div>
       <div className={classes.CompaniesPage}>

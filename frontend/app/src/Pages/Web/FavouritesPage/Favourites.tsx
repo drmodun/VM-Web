@@ -27,7 +27,7 @@ export const FavouritesPage = () => {
 
   return accountInfo ? (
     <div className={classes.Container}>
-      <h1>Favourites</h1>
+      <h1>Favoriti</h1>
       {favourites?.length ? (
         <div className={classes.ProductRow}>
           {favourites &&

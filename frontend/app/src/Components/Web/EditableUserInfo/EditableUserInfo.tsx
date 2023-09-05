@@ -45,16 +45,16 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
   return (
     <div className={classes.Container}>
       <LargeInput
-        label="Name"
+        label="Ime"
         name="name"
-        placeholder="Name"
+        placeholder="Ime"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <LargeInput
-        label="Address"
+        label="Adresa"
         name="address"
-        placeholder="Address"
+        placeholder="Adresa"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
       />
@@ -66,9 +66,9 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <LargeInput
-        label="Phone"
+        label="Broj mobitela"
         name="phone"
-        placeholder="Phone"
+        placeholder="Broj mobitela"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
