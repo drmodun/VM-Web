@@ -7,7 +7,6 @@ interface Props {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-
 export const AreaInput = ({
   label,
   name,

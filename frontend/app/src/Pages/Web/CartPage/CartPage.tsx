@@ -72,10 +72,11 @@ export const CartPage = () => {
           </div>
         ) : (
           <div className={classes.Empty}>
-            <h1>Your cart is empty</h1>
+            <h1>Vaša košarica je prazna, dodajte proizvode na </h1>
             <p>
               Go to the <a href="/">home page</a> or{" "}
-              <a href="/#/products">the product page</a> to add items to your cart
+              <a href="/#/products">the product page</a> to add items to your
+              cart
             </p>
           </div>
         )}
@@ -94,7 +95,8 @@ export const CartPage = () => {
             </button>
             {!hasCard && (
               <p className={classes.Warning}>
-                You need to have a card registered to your account to checkout
+                Morate biti prijavljeni i imati spremljenu karticu da biste
+                mogli izvršiti kupnju
               </p>
             )}
           </div>
@@ -105,11 +107,12 @@ export const CartPage = () => {
     <div className={classes.Container}>
       <div className={classes.Cart}>
         <div className={classes.Empty}>
-          <h1>You are not logged in</h1>
+          <h1>Morate biti prijavljeni</h1>
           <p>
-            You need to be logged in to see your cart and add items to your
-            cart. Go to the <a href="/#/login">login page</a> or{" "}
-            <a href="/#/register">the register page</a> to log in or register
+            Morate biti prijavljeni da biste mogli vidjeti svoju košaricu.
+            Otiđite na <a href="/#/login">strnaicu prijave</a> ili{" "}
+            <a href="/#/register">stranicu za stvaranje računa</a> da biste se
+            prijavili ili stvorili račun
           </p>
         </div>
       </div>

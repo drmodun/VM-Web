@@ -87,7 +87,7 @@ export const ProductsPage = () => {
           />
           <div className={classes.Sort}>
             <div className={classes.SortUnit}>
-              <span>Sort By</span>
+              <span>Sortiraj po</span>
               <Switch
                 options={[
                   { label: "Name", value: SortAttributeType.SortByName },
@@ -111,11 +111,11 @@ export const ProductsPage = () => {
               />
             </div>
             <div className={classes.SortUnit}>
-              <span>Sort type</span>
+              <span>Sort na način</span>
               <Switch
                 options={[
-                  { label: "Ascending", value: SortType.Ascending },
-                  { label: "Descending", value: SortType.Descending },
+                  { label: "Rastuće", value: SortType.Ascending },
+                  { label: "Padajuće", value: SortType.Descending },
                 ]}
                 onSwitch={(value) => {
                   setType(value);
@@ -140,7 +140,7 @@ export const ProductsPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No products found</span>
+          <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
         )}
       </div>
     </div>

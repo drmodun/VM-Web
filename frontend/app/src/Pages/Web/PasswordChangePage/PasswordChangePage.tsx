@@ -55,12 +55,12 @@ export const PasswordChangePage = () => {
             icon1={Hide}
             icon2={Show}
           />
-          <button className={classes.Button}>Promijenji šifru</button>
+          <button className={classes.Button}>Promijeni šifru</button>
         </form>
         {success && (
           <div className={classes.Success}>
-            <span>Uspješno promijenjenja šifra</span>
-            <Link className={classes.Link} to={"/login"}>
+            <span>Uspješno promijenjena šifra</span>
+            <Link className={classes.Link} to={"/#/login"}>
               Idi na prijavu
             </Link>
           </div>

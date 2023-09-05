@@ -115,13 +115,11 @@ export const SubcategoryPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No brands found</span>
+          <span className={classes.NotFound}>Nema pronađenih brendova</span>
         )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
-            <span className={classes.SubHeader} id="#products">
-              Products
-            </span>
+            <span className={classes.SubHeader} id="#products">Proizvodi</span>
             <div className={classes.Sorting}>
               <div className={classes.Sort}>
                 <span>Sortiraj po:</span>
@@ -146,8 +144,8 @@ export const SubcategoryPage = () => {
               <div className={classes.Sort}>
                 <Switch
                   options={[
-                    { label: "Ascending", value: SortType.Ascending },
-                    { label: "Descending", value: SortType.Descending },
+                    { label: "Rastuće", value: SortType.Ascending },
+                    { label: "Padajuće", value: SortType.Descending },
                   ]}
                   onSwitch={(value) => {
                     setSortType(value);
@@ -162,7 +160,7 @@ export const SubcategoryPage = () => {
                 products.map((product) => <ProductView product={product} />)}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products found</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
           {products?.length! && (
             <div className={classes.Pagination}>

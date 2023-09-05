@@ -30,7 +30,7 @@ export const PreviousClientsPage = () => {
           }
         >
           <h1>Previous Clients</h1>
-          <p>Take a look at some of our previous clients</p>
+          <p>Pogledajt neke od naših zadovoljneih prijašnjih klijenata</p>
         </div>
       </div>{" "}
       {clients && clients.length > 0 ? (
@@ -41,7 +41,7 @@ export const PreviousClientsPage = () => {
         </div>
       ) : (
         <div className={classes.Empty}>
-          <h2>No Clients found</h2>
+          <h2>Nema pronađenih klijenata</h2>
           <p>There are no clients at the moment, please come back later.</p>
         </div>
       )}

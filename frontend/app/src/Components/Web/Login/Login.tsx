@@ -42,9 +42,9 @@ export const Login = () => {
         <div className={classes.LoginForm}>
           <div className={classes.LoginFormHeader}>
             <img src={Logo} alt="VM-racunala" />
-            <h1>Login</h1>
+            <h1>Prijavite se</h1>
             <Link to="/register" className={classes.Link}>
-              Sign Up
+              Napravi račun
             </Link>
           </div>
           <div className={classes.LoginFormBody}>

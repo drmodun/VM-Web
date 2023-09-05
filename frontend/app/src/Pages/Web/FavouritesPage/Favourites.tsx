@@ -40,10 +40,10 @@ export const FavouritesPage = () => {
         </div>
       ) : (
         <div className={classes.Empty}>
-          <h2>No Favourites</h2>
+          <h2>Nemate favorita</h2>
           <p>
-            You have no favourite products, add some to your favourites to see
-            them here.
+            Dodajte proizvode u favorite tako što ćete kliknuti na srce na
+            prikazu proizvoda
           </p>
         </div>
       )}

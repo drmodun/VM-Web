@@ -58,7 +58,7 @@ export const ServicesPage = () => {
         </div>
       ) : (
         <div className={classes.Empty}>
-          <h2>No Services found</h2>
+          <h2>No pronađenih usluga</h2>
           <p>There are no services at the moment, please come back later.</p>
         </div>
       )}

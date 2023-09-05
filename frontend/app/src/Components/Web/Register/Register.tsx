@@ -11,7 +11,6 @@ import username from "../../../assets/username.svg";
 import Input from "../Input";
 import React, { useState } from "react";
 
-
 interface Props {
   isEdit: boolean;
   user?: User;
@@ -65,19 +64,13 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
       setError("Email is not valid");
       return;
     }
-    if (
-      name.length < 3 ||
-      name.length > 20
-    ) {
+    if (name.length < 3 || name.length > 20) {
       setError(
         "Name must be between 3 and 20 characters and contain only letters"
       );
       return;
     }
-    if (
-      address.length < 3 ||
-      address.length > 20
-    ) {
+    if (address.length < 3 || address.length > 20) {
       setError(
         "Address must be between 3 and 20 characters and contain only letters"
       );
@@ -108,7 +101,9 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
 
     const response = await onRegister(newUser);
     if (response) {
-      alert("Registration successful, please check your email for activation link, if you don't see it, check your spam and unwanted folder");
+      alert(
+        "Registration successful, please check your email for activation link, if you don't see it, check your spam and unwanted folder"
+      );
       window.location.href = "/#/login";
       return;
     }
@@ -121,9 +116,9 @@ export const Register = ({ isEdit, user, onRegister }: Props) => {
         <div className={classes.RegisterForm}>
           <div className={classes.RegisterFormHeader}>
             <img src={Logo} alt="VM-racunala" />
-            <h1>Register</h1>
+            <h1>Napravite račun</h1>
             <Link to="/login" className={classes.Link}>
-              Log in
+              Prijavi se
             </Link>
           </div>
           <div className={classes.RegisterFormBody}>

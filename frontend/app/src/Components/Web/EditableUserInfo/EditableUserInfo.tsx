@@ -31,11 +31,11 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
 
   const handleDelete = async () => {
     const action = await deleteUser();
-    const confirmation = window.confirm("Are you sure you want to delete user?");
+    const confirmation = window.confirm("Jeste li sigurni da želite izbrisati korisnika, vaša odluka je konačna?");
     //TODO: possibly add another verification check for deletion
     if (!confirmation) return;
     if (!action) {
-      alert("Failed to delete user");
+      alert("Neuspješno brisanje korisnika");
       return;
     }
     window.location.href = "/";
@@ -74,12 +74,12 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
       />
       <div className={classes.Button}>
         <button className={classes.Save} onClick={handleSave}>
-          Save
+          Spremi
         </button>
       </div>
       <div className={classes.Button}>
         <button className={classes.Delete} onClick={handleDelete}>
-          Delete account
+          Izbrisi korisnika
         </button>
       </div>
     </div>

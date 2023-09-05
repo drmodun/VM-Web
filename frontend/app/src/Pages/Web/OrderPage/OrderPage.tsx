@@ -62,7 +62,7 @@ export const OrderPage = () => {
   return service ? (
     <div className={classes.Container}>
       <span className={classes.Title}>
-        Is this the service you want to order?
+        Jeli ovo servis koji želite naručiti?
       </span>
       <div className={classes.Service}>
         <ServiceView service={service} />
@@ -83,11 +83,11 @@ export const OrderPage = () => {
             placeholder="Enter your problem description"
             onChange={(e) => setDescription(e.target.value)}
           />
-          <button className={classes.Button}>Order</button>
+          <button className={classes.Button}>Naruči</button>
         </form>
       ) : (
         <div className={classes.NotFound}>
-          You need to be logged in to order, log in at{" "}
+          Morate biti prijavljeni, prijavite se na {" "}
           <a href="/#/login">login</a>
         </div>
       )}

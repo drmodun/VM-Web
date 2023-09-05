@@ -52,69 +52,67 @@ const router = createHashRouter(
   createRoutesFromElements(
     <>
       <Route element={<AdminLayout />}>
-        {
-          accountInfo &&
-            accountInfo.admin !== undefined &&
-            new Date(localStorage.getItem("loginTime") ?? "") >
-              new Date(Date.now() - 1000 * 60 * 60 * 8) && (
-              <>
-                <Route path="/admin" element={<AdminHomepage />}></Route>
-                <Route path="/admin/products">
-                  <Route index element={<ProductsPage />}></Route>
-                  <Route path=":productId" element={<ProductPage />}></Route>
-                </Route>
+        {accountInfo &&
+          accountInfo.admin !== undefined &&
+          new Date(localStorage.getItem("loginTime") ?? "") >
+            new Date(Date.now() - 1000 * 60 * 60 * 8) && (
+            <>
+              <Route path="/admin" element={<AdminHomepage />}></Route>
+              <Route path="/admin/products">
+                <Route index element={<ProductsPage />}></Route>
+                <Route path=":productId" element={<ProductPage />}></Route>
+              </Route>
 
-                <Route path="/admin/categories">
-                  <Route index element={<CategoriesPage />}></Route>
-                  <Route path=":categoryId" element={<CategoryPage />}></Route>
-                </Route>
+              <Route path="/admin/categories">
+                <Route index element={<CategoriesPage />}></Route>
+                <Route path=":categoryId" element={<CategoryPage />}></Route>
+              </Route>
 
-                <Route path="/admin/subcategories">
-                  <Route index element={<SubcategoriesPage />}></Route>
-                  <Route
-                    path=":subcategoryId"
-                    element={<SubcategoryPage />}
-                  ></Route>
-                </Route>
+              <Route path="/admin/subcategories">
+                <Route index element={<SubcategoriesPage />}></Route>
+                <Route
+                  path=":subcategoryId"
+                  element={<SubcategoryPage />}
+                ></Route>
+              </Route>
 
-                <Route path="/admin/companies">
-                  <Route index element={<CompaniesPage />}></Route>
-                  <Route path=":companyId" element={<CompanyPage />}></Route>
-                </Route>
+              <Route path="/admin/companies">
+                <Route index element={<CompaniesPage />}></Route>
+                <Route path=":companyId" element={<CompanyPage />}></Route>
+              </Route>
 
-                <Route path="/admin/users">
-                  <Route index element={<UsersPage />}></Route>
-                  <Route path=":userId" element={<UserPage />}></Route>
-                </Route>
+              <Route path="/admin/users">
+                <Route index element={<UsersPage />}></Route>
+                <Route path=":userId" element={<UserPage />}></Route>
+              </Route>
 
-                <Route path="/admin/orders">
-                  <Route index element={<OrdersPage />}></Route>
-                  <Route path=":orderId" element={<OrderPageAdmin />}></Route>
-                </Route>
+              <Route path="/admin/orders">
+                <Route index element={<OrdersPage />}></Route>
+                <Route path=":orderId" element={<OrderPageAdmin />}></Route>
+              </Route>
 
-                <Route path="/admin/transactions">
-                  <Route index element={<TransactionsPage />}></Route>
-                  <Route
-                    path=":transactionId"
-                    element={<TransactionPage />}
-                  ></Route>
-                </Route>
+              <Route path="/admin/transactions">
+                <Route index element={<TransactionsPage />}></Route>
+                <Route
+                  path=":transactionId"
+                  element={<TransactionPage />}
+                ></Route>
+              </Route>
 
-                <Route path="/admin/previousClients">
-                  <Route index element={<PreviousClientsPage />}></Route>
-                  <Route
-                    path=":previousClientId"
-                    element={<PreviousClientPage />}
-                  ></Route>
-                </Route>
+              <Route path="/admin/previousClients">
+                <Route index element={<PreviousClientsPage />}></Route>
+                <Route
+                  path=":previousClientId"
+                  element={<PreviousClientPage />}
+                ></Route>
+              </Route>
 
-                <Route path="/admin/services">
-                  <Route index element={<ServicesPage />}></Route>
-                  <Route path=":serviceId" element={<ServicePage />}></Route>
-                </Route>
-              </>
-            )
-        }
+              <Route path="/admin/services">
+                <Route index element={<ServicesPage />}></Route>
+                <Route path=":serviceId" element={<ServicePage />}></Route>
+              </Route>
+            </>
+          )}
       </Route>
       <Route element={<Layout />}>
         <Route path="/" element={<Homepage />}></Route>

@@ -86,7 +86,7 @@ export const SubcategoriesPage = () => {
 
   return (
     <div className={classes.Page}>
-      <h1>Subcategories</h1>
+      <h1>Subkategorije</h1>
       <p>The page where you can edit, view, delete and create subcategories</p>
       <div className={classes.PageContainer}>
         <ItemTable

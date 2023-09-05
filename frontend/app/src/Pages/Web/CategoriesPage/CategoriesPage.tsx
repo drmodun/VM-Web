@@ -34,11 +34,7 @@ export const CategoriesPage = () => {
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
         <img src={categories2} alt="" />
-        <div
-          className={
-            classes.CoverText
-          }
-        >
+        <div className={classes.CoverText}>
           <h1>Categories</h1>
           <p>Find your favorite category</p>
         </div>
@@ -59,8 +55,7 @@ export const CategoriesPage = () => {
           </div>
         ) : (
           <div className={classes.Empty}>
-            <h2>No Categories found</h2>
-            <p>There are no categories at the moment, please come back later.</p>
+            <h2>Nema kategorija trenutno, molimo vas da se vratite kasnije.</h2>
           </div>
         )}
       </div>

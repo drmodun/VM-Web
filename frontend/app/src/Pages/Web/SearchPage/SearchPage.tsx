@@ -84,10 +84,10 @@ export const SearchPage = () => {
     <div className={classes.Container}>
       <div className={classes.SearchPage}>
         <h2 className={classes.Title}>
-          Search Results for: {searchTerm.get("name")}
+          Rezultati pretrage za: {searchTerm.get("name")}
         </h2>
         <div className={classes.Section}>
-          <h3 className={classes.Subtitle}>Categories: {categories.length}</h3>
+          <h3 className={classes.Subtitle}>Kategorije: {categories.length}</h3>
           {categories.length ? (
             <div className={classes.SectionList}>
               {categories.map((category) => (
@@ -101,7 +101,7 @@ export const SearchPage = () => {
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No categories found</span>
+            <span className={classes.NotFound}>Nema pronađenih kategorija</span>
           )}
         </div>
         <div className={classes.Section}>
@@ -121,7 +121,7 @@ export const SearchPage = () => {
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No subcategories found</span>
+            <span className={classes.NotFound}>Nema pronađenih subkategorija</span>
           )}
         </div>
         <div className={classes.Section}>
@@ -139,7 +139,7 @@ export const SearchPage = () => {
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No brands found</span>
+            <span className={classes.NotFound}>Nema pronađenih brendova</span>
           )}
         </div>
         <div className={classes.Section}>
@@ -151,7 +151,7 @@ export const SearchPage = () => {
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products found</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
         </div>
       </div>
