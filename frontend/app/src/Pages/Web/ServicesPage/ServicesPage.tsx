@@ -5,10 +5,10 @@ import classes from "./ServicesPage.module.scss";
 import { SortAttributeType } from "../../../Types/Enums";
 import services4 from "../../../assets/services4.webp";
 const serviceTypeDict: { [key: string]: string } = {
-  0: "Network",
-  1: "Computer",
-  2: "Device",
-  3: "Other",
+  0: "Mreža",
+  1: "Računalo",
+  2: "Uređaj",
+  3: "Ostalo",
 };
 
 export const ServicesPage = () => {
@@ -21,7 +21,7 @@ export const ServicesPage = () => {
     setServices(response.items);
   };
   useEffect(() => {
-    window.scrollTo(0, 0);  
+    window.scrollTo(0, 0);
     window.document.title = "Services";
     fetchServices();
   }, []);
@@ -30,13 +30,12 @@ export const ServicesPage = () => {
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
         <img src={services4} alt="services" />
-        <div
-          className={
-            classes.CoverText
-          }
-        >
-          <h1>Service</h1>
-          <p>Find the service you need</p>
+        <div className={classes.CoverText}>
+          <h1>Servisi</h1>
+          <p>
+            Pregledajte našu ponudu servisa i odaberite onaj koji vam najviše
+            odgovara
+          </p>
         </div>
       </div>
       {services && services.length > 0 ? (
@@ -58,8 +57,11 @@ export const ServicesPage = () => {
         </div>
       ) : (
         <div className={classes.Empty}>
-          <h2>No Services found</h2>
-          <p>There are no services at the moment, please come back later.</p>
+          <h2>Nema pronađenih usluga</h2>
+          <p>
+            Trenutno nema usluga na stranici. Pokušajte ponovno kasnije ili
+            kontaktirajte podršku
+          </p>
         </div>
       )}
     </div>

@@ -84,7 +84,7 @@ export const SubcategoryPage = () => {
               to={"/categories/" + Subcategory.categoryId}
               className={classes.CategoryName}
             >
-              Part of: {Subcategory.categoryName}
+              Dio od: {Subcategory.categoryName}
             </Link>
           </div>
           <div className={classes.SubcategoryImage}>
@@ -101,7 +101,7 @@ export const SubcategoryPage = () => {
           </div>
         </div>
 
-        <span className={classes.SubHeader}>Brands</span>
+        <span className={classes.SubHeader}>Brendovi</span>
         {Subcategory.brands.length ? (
           <div className={classes.Companies}>
             {Subcategory?.brands.map((company) => (
@@ -115,24 +115,22 @@ export const SubcategoryPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No brands found</span>
+          <span className={classes.NotFound}>Nema pronađenih brendova</span>
         )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
-            <span className={classes.SubHeader} id="#products">
-              Products
-            </span>
+            <span className={classes.SubHeader} id="#products">Proizvodi</span>
             <div className={classes.Sorting}>
               <div className={classes.Sort}>
                 <span>Sortiraj po:</span>
                 <Switch
                   options={[
-                    { label: "Name", value: SortAttributeType.SortByName },
+                    { label: "Ime", value: SortAttributeType.SortByName },
                     {
-                      label: "Company",
+                      label: "Brend",
                       value: SortAttributeType.SortByCompanyName,
                     },
-                    { label: "Price", value: SortAttributeType.SortByPrice },
+                    { label: "Cijena", value: SortAttributeType.SortByPrice },
                     {
                       label: "Profit",
                       value: SortAttributeType.SortByProfit,
@@ -146,8 +144,8 @@ export const SubcategoryPage = () => {
               <div className={classes.Sort}>
                 <Switch
                   options={[
-                    { label: "Ascending", value: SortType.Ascending },
-                    { label: "Descending", value: SortType.Descending },
+                    { label: "Rastuće", value: SortType.Ascending },
+                    { label: "Padajuće", value: SortType.Descending },
                   ]}
                   onSwitch={(value) => {
                     setSortType(value);
@@ -162,7 +160,7 @@ export const SubcategoryPage = () => {
                 products.map((product) => <ProductView product={product} />)}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products found</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
           {products?.length! && (
             <div className={classes.Pagination}>

@@ -36,8 +36,10 @@ export const CompaniesPage = () => {
             classes.CoverText
           }
         >
-          <h1>Brands</h1>
-          <p>Find your favorite brand</p>
+          <h1>Brendovi</h1>
+          <p>
+            Pronađite brend koji vas zanima i pronađite proizvode koji su vam potrebni.
+          </p>
         </div>
       </div>
       <div className={classes.CompaniesPage}>
@@ -53,8 +55,10 @@ export const CompaniesPage = () => {
               />
             ))}
         </div> : <div className={classes.Empty}>
-            <h2>No Brands found</h2>
-            <p>There are no brands at the moment, please come back later.</p>
+            <h2>Nema pronađenih brendova</h2>
+            <p>
+              Molimo vas da se vratite kasnije.
+            </p>
           </div>
         }
       </div>

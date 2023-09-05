@@ -27,7 +27,7 @@ export const CategoryPage = () => {
     const response = await getLargeCategory(categoryId as string);
     if (response == null) {
       return;
-    };
+    }
     setCategory(response);
   };
 
@@ -94,7 +94,7 @@ export const CategoryPage = () => {
             )}
           </div>
         </div>
-        <span className={classes.SubHeader}>Subcategories</span>
+        <span className={classes.SubHeader}>Subkategorije</span>
         {category.subcategories.length ? (
           <div className={classes.Subcategories}>
             {category?.subcategories.map((subcategory) => (
@@ -108,9 +108,11 @@ export const CategoryPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No subcategories found</span>
+          <span className={classes.NotFound}>
+            Nema pronađenih subkategorija
+          </span>
         )}
-        <span className={classes.SubHeader}>Brands</span>
+        <span className={classes.SubHeader}>Brendovi</span>
         {category.brands?.length! ? (
           <div className={classes.Companies}>
             {category?.brands.map((company) => (
@@ -124,28 +126,28 @@ export const CategoryPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No brands found</span>
+          <span className={classes.NotFound}>Nema pronađenih brendova</span>
         )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
             <span className={classes.SubHeader} id="#products">
-              Products
+              Proizvodi
             </span>
             <div className={classes.Sorting}>
               <div className={classes.Sort}>
                 <span>Sortiraj po:</span>
                 <Switch
                   options={[
-                    { label: "Name", value: SortAttributeType.SortByName },
+                    { label: "Ime", value: SortAttributeType.SortByName },
                     {
-                      label: "Subcategory",
+                      label: "Subkategorija",
                       value: SortAttributeType.SortBySubcategoryName,
                     },
                     {
-                      label: "Company",
+                      label: "Brend",
                       value: SortAttributeType.SortByCompanyName,
                     },
-                    { label: "Price", value: SortAttributeType.SortByPrice },
+                    { label: "Cijena", value: SortAttributeType.SortByPrice },
                     {
                       label: "Profit",
                       value: SortAttributeType.SortByProfit,
@@ -159,8 +161,8 @@ export const CategoryPage = () => {
               <div className={classes.Sort}>
                 <Switch
                   options={[
-                    { label: "Ascending", value: SortType.Ascending },
-                    { label: "Descending", value: SortType.Descending },
+                    { label: "Rastuće", value: SortType.Ascending },
+                    { label: "Padajuće", value: SortType.Descending },
                   ]}
                   onSwitch={(value) => {
                     setSortType(value);
@@ -175,7 +177,7 @@ export const CategoryPage = () => {
                 products.map((product) => <ProductView product={product} />)}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products found</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
           <div className={classes.Pagination}>
             {pageInfo && products?.length! > 0 && (

@@ -40,7 +40,7 @@ export const SimilarProducts = ({ prod }: Props) => {
 
   return (
     <div className={classes.Container}>
-      <h2>Similar Products</h2>
+      <h2>Slični proizvodi</h2>
       <div className={classes.SimilarProducts}>
         {products.map((product) => (
           <>

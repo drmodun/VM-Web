@@ -116,7 +116,7 @@ export const UserPage = () => {
                     (tab === Tabs.Payment ? classes.Active : "")
                   }
                 >
-                  Payment
+                  Plaćanje
                 </div>
                 <div
                   className={
@@ -126,7 +126,7 @@ export const UserPage = () => {
                   }
                   onClick={() => setTab(Tabs.Orders)}
                 >
-                  <span>Orders</span>
+                  <span>Narudžbe</span>
                 </div>
                 <div
                   className={
@@ -136,7 +136,7 @@ export const UserPage = () => {
                   }
                   onClick={() => setTab(Tabs.Transactions)}
                 >
-                  <span>Transactions</span>
+                  <span>Transakcije</span>
                 </div>
                 <Link
                   className={
@@ -147,7 +147,7 @@ export const UserPage = () => {
                   to={`/favourites`}
                   onClick={() => setTab(Tabs.Favourites)}
                 >
-                  <span>Favourites</span>
+                  <span>Favoriti</span>
                 </Link>
                 <Link
                   className={
@@ -158,7 +158,7 @@ export const UserPage = () => {
                   to={`/cart`}
                   onClick={() => setTab(Tabs.Cart)}
                 >
-                  <span>Cart</span>
+                  <span>Košarica</span>
                 </Link>
               </div>
               <div className={classes.Content}>
@@ -172,8 +172,8 @@ export const UserPage = () => {
                     <h3>Payment</h3>
                     <span>
                       {hasCard
-                        ? "You already have card info saved, but you can still update it"
-                        : "You don't have a card, please enter your card info"}
+                        ? "Već imate spremljene podatke o kartici, možete ih promijeniti"
+                        : "Nemate spremljene podatke o kartici, možete ih dodati"}
                     </span>
                     <CardSection />
                   </div>

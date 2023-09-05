@@ -1,5 +1,4 @@
 import classes from "./LargeInput.module.scss";
-import { useState } from "react";
 interface Props {
   label: string;
   name: string;

@@ -1,77 +1,251 @@
 .Container {
+  width: 100%;
+  height: 100%;
+  background-color: #ecf4ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 70px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 0px;
+  }
+
+  .NotFound {
+    width: 78vw;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2vw;
+    font-family: Nuckle;
+    font-weight: 500;
+    color: var(--neutral-200, #9d9ea2);
+
+    @media (max-width: 768px) {
+      font-size: 4.5vw;
+    }
+  }
+
+  .Cover {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 768px) {
+      height: 500px;
+    }
+
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      top: 70px;
+      left: 0;
+
+      @media (max-width: 768px) {
+        top: 180px;
+        height: 500px;
+      }
+    }
+
+    .Backdrop {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      z-index: 1;
+      opacity: 0.5;
+
+      @media (max-width: 768px) {
+        top: 180px;
+        height: 500px;
+      }
+
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .CoverText {
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      font-size: 3rem;
+      height: fit-content;
+      font-weight: 700;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .Homepage {
+    padding: 20px 11vw;
+
+    @media (max-width: 768px) {
+      padding: 20px 5vw;
+    }
+
+    .Description {
+      width: 80%;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      font-size: 2vw;
+      font-family: Nuckle;
+      font-weight: 500;
+      line-height: 1.5;
+      margin: 5vw 0px;
+      background-color: #fff;
+      padding: 4vw 2vw;
+      border-radius: 1.5vw;
+
+      @media (max-width: 768px) {
+        font-size: 4vw;
+        width: 90%;
+        padding: 4vw 2vw;
+        border-radius: 2.5vw;
+      }
+    }
+
     width: 100%;
     height: 100%;
-    background-color: #ecf4ff;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 70px;
 
-    @media screen and (max-width: 768px) {
-        margin-top: 0px;
-    }
+    .Cards {
+      flex-direction: row;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
 
-    .NotFound {
-        width: 78vw;
+      .Arrow {
         display: flex;
-        text-align: center;
-        flex-direction: column;
-        align-items: center;
-        font-size: 2vw;
-        font-family: Nuckle;
-        font-weight: 500;
-        color: var(--neutral-200, #9d9ea2);
-
-        @media (max-width: 768px) {
-            font-size: 4.5vw;
-        }
-    }
-
-    .Cover {
-        width: 100%;
-        height: 800px;
-        display: flex;
+        width: 42px;
+        height: 42px;
+        padding: 5px;
+        background: var(
+          --button-gradient-20,
+          linear-gradient(
+            270deg,
+            rgba(77, 94, 246, 0.2) 0%,
+            rgba(246, 77, 77, 0.2) 100%
+          )
+        );
         justify-content: center;
-
-        @media (max-width: 768px) {
-            height: 500px;
-        }
-
         align-items: center;
+        font-size: 25px;
 
-        img {
-            width: 100%;
-            height: 800px;
-            object-fit: cover;
-            position: absolute;
-            top: 70px;
-            left: 0;
+        &:hover {
+          cursor: pointer;
+          background: var(
+            --button-gradient,
+            linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+          );
+          color: white;
 
-            @media (max-width: 768px) {
-                top: 180px;
-                height: 500px;
-            }
+          img {
+            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg)
+              brightness(100%) contrast(100%);
+          }
         }
 
-        .Backdrop {
-            width: 100%;
-            height: 800px;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            z-index: 1;
-            opacity: 0.5;
+        &:active {
+          background: var(
+            --button-gradient,
+            linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%)
+          );
+          color: white;
 
-            @media (max-width: 768px) {
-                top: 180px;
-                height: 500px;
-            }
-
-            background-color: rgba(0, 0, 0, 0.5);
+          img {
+            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg)
+              brightness(100%) contrast(100%);
+          }
         }
 
-        .CoverText {
+        border-radius: 50%;
+      }
+
+      .Upper {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .DotRow {
+          flex-direction: row;
+          display: flex;
+          width: 200px;
+
+          .ActiveDot {
+            background: var(
+              --button-gradient,
+              linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%)
+            );
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+          }
+
+          .Dot {
+            background: var(
+              --button-gradient-20,
+              linear-gradient(
+                270deg,
+                rgba(77, 94, 246, 0.2) 0%,
+                rgba(246, 77, 77, 0.2) 100%
+              )
+            );
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+
+            &:hover {
+              cursor: pointer;
+              background: var(
+                --button-gradient,
+                linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+              );
+            }
+          }
+
+          justify-content: space-around;
+        }
+
+        .Section {
+          margin-bottom: 40px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          text-decoration: none;
+
+          &:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+          }
+
+          justify-content: center;
+          flex-wrap: wrap;
+          width: 60vw;
+          border-radius: 15px;
+          height: 400px;
+
+          .Title {
             z-index: 2;
             display: flex;
             justify-content: center;
@@ -82,327 +256,205 @@
             text-align: center;
             font-size: 3rem;
             height: fit-content;
+            width: 60vw;
+            height: 400px;
             font-weight: 700;
 
             @media (max-width: 768px) {
-                font-size: 2rem;
-            }
-        }
-    }
-
-    .Homepage {
-        padding: 20px 11vw;
-
-        @media (max-width: 768px) {
-            padding: 20px 5vw;
-        }
-
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        .Cards {
-            flex-direction: row;
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: space-around;
-
-            .Arrow {
-                display: flex;
-                width: 42px;
-                height: 42px;
-                padding: 5px;
-                background: var(--button-gradient-20,
-                        linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%));
-                justify-content: center;
-                align-items: center;
-                font-size: 25px;
-
-                &:hover {
-                    cursor: pointer;
-                    background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                    color: white;
-
-                    img {
-                        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
-                    }
-                }
-
-                &:active {
-                    background: var(--button-gradient, linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%));
-                    color: white;
-
-                    img {
-                        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
-                    }
-                }
-
-                border-radius: 50%;
+              font-size: 2rem;
             }
 
-            .Upper {
-                flex-direction: column;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
+            flex-shrink: 0;
+            flex-basis: 100%;
+          }
 
-                .DotRow {
-                    flex-direction: row;
-                    display: flex;
-                    width: 200px;
-
-                    .ActiveDot {
-                        background: var(--button-gradient, linear-gradient(200deg, #4d2ef6 0%, #f64d8d 91%));
-                        height: 16px;
-                        width: 16px;
-                        border-radius: 50%;
-                    }
-
-                    .Dot {
-                        background: var(--button-gradient-20,
-                                linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%));
-                        height: 16px;
-                        width: 16px;
-                        border-radius: 50%;
-
-                        &:hover {
-                            cursor: pointer;
-                            background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                        }
-                    }
-
-                    justify-content: space-around;
-                }
-
-                .Section {
-                    margin-bottom: 40px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    text-decoration: none;
-
-                    &:hover {
-                        cursor: pointer;
-                        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-                    }
-
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    width: 60vw;
-                    border-radius: 15px;
-                    height: 400px;
-
-                    .Title {
-                        z-index: 2;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        flex-direction: column;
-                        color: white;
-                        font-weight: 600;
-                        text-align: center;
-                        font-size: 3rem;
-                        height: fit-content;
-                        width: 60vw;
-                        height: 400px;
-                        font-weight: 700;
-
-                        @media (max-width: 768px) {
-                            font-size: 2rem;
-                        }
-
-                        flex-shrink: 0;
-                        flex-basis: 100%;
-                    }
-
-                    .Cover {
-                        position: relative;
-                        width: 60vw;
-                        height: 400px;
-                        top: -400px;
-                        flex-shrink: 0;
-                        left: 0;
-                        border-radius: 15px;
-                        display: flex;
-                        opacity: 0.5;
-                        background-color: black;
-                        z-index: 1;
-                        flex-basis: 100%;
-                    }
-
-                    .Image {
-                        position: relative;
-                        width: 60vw;
-                        height: 400px;
-                        top: -800px;
-                        //horrible way to do this but it will do for now
-                        left: 0;
-                        z-index: 0;
-                        border-radius: 15px;
-                        flex-shrink: 0;
-
-                        img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            border-radius: 15px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .Row {
-        flex-direction: column;
-        display: flex;
-        align-items: flex-start;
-        margin: 40px 0px;
-
-        //width: 90vw; possibly will need later
-        @media (max-width: 768px) {
-            align-items: center;
-        }
-
-        >span {
-            font-size: 2.5rem;
-            font-weight: 600;
-            font-family: Nuckle;
-            margin-bottom: 20px;
-        }
-
-        .ProductList {
-            display: flex;
-            flex-direction: row;
-            column-gap: 30px;
-            row-gap: 30px;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            justify-content: center;
-
-            @media (max-width: 768px) {
-                display: flex;
-                justify-content: flex-start;
-                flex-direction: row;
-                align-items: center;
-                overflow-x: auto;
-                column-gap: 0px;
-                row-gap: 0px;
-                flex-wrap: nowrap;
-                max-width: 90vw;
-
-                &::-webkit-scrollbar {
-                    scroll-behavior: smooth;
-                    scroll-snap-type: none;
-                    position: relative;
-                    top: 20px;
-                    height: 20px;
-                }
-
-                &::-webkit-scrollbar-track {
-                    border-radius: 10px;
-                }
-
-                &::-webkit-scrollbar-track-piece {
-                    background-color: transparent;
-                }
-
-                &::-webkit-scrollbar-thumb {
-                    background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                    border-radius: 10px;
-                }
-
-                div {
-                    margin-right: 20px;
-                    margin-bottom: 20px;
-
-                    >div {
-                        margin-right: 0px;
-                        margin-bottom: 0px;
-                    }
-                }
-            }
-        }
-
-        .List {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            overflow-x: auto;
-            max-width: 78vw;
-
-            @media screen and (max-width: 768px) {
-                max-width: 90vw;
-            }
-
-            &::-webkit-scrollbar {
-                position: relative;
-                top: 20px;
-                height: 20px;
-                width: 20px;
-            }
-
-            &::-webkit-scrollbar-track {
-                border-radius: 10px;
-            }
-
-            &::-webkit-scrollbar-track-piece {
-                background-color: transparent;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                border-radius: 10px;
-            }
-
-            div {
-                //another dirty css trick
-                //might work on this later
-                margin-right: 20px;
-                margin-bottom: 20px;
-
-                >div {
-                    margin-right: 0px;
-                    margin-bottom: 0px;
-                }
-            }
-        }
-
-        .ViewAll {
-            width: 100%;
+          .Cover {
+            position: relative;
+            width: 60vw;
+            height: 400px;
+            top: -400px;
+            flex-shrink: 0;
+            left: 0;
             border-radius: 15px;
-            background-color: #fff;
-            color: #000;
-            font-size: 16px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Nuckle;
-            height: 50px;
-            margin-top: 20px;
-            font-weight: 600;
-            transition:
-                background-color 0.2s ease-in-out,
-                color 0.2s ease-in-out;
+            opacity: 0.5;
+            background-color: black;
+            z-index: 1;
+            flex-basis: 100%;
+          }
 
-            &:active {
-                background-color: #aaa;
-                cursor: pointer;
-                color: #f3f3f3;
+          .Image {
+            position: relative;
+            width: 60vw;
+            height: 400px;
+            top: -800px;
+            //horrible way to do this but it will do for now
+            left: 0;
+            z-index: 0;
+            border-radius: 15px;
+            flex-shrink: 0;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 15px;
             }
-
-            &:hover {
-                cursor: pointer;
-                background-color: #ccc;
-                color: #f5f5f5;
-            }
-
-            text-decoration: none;
+          }
         }
+      }
     }
+  }
+
+  .Row {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    margin: 40px 0px;
+
+    //width: 90vw; possibly will need later
+    @media (max-width: 768px) {
+      align-items: center;
+    }
+
+    > span {
+      font-size: 2.5rem;
+      font-weight: 600;
+      font-family: Nuckle;
+      margin-bottom: 20px;
+    }
+
+    .ProductList {
+      display: flex;
+      flex-direction: row;
+      column-gap: 30px;
+      row-gap: 30px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+
+      @media (max-width: 768px) {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto;
+        column-gap: 0px;
+        row-gap: 0px;
+        flex-wrap: nowrap;
+        max-width: 90vw;
+
+        &::-webkit-scrollbar {
+          scroll-behavior: smooth;
+          scroll-snap-type: none;
+          position: relative;
+          top: 20px;
+          height: 20px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track-piece {
+          background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(
+            --button-gradient,
+            linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+          );
+          border-radius: 10px;
+        }
+
+        div {
+          margin-right: 20px;
+          margin-bottom: 20px;
+
+          > div {
+            margin-right: 0px;
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+
+    .List {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      overflow-x: auto;
+      max-width: 78vw;
+
+      @media screen and (max-width: 768px) {
+        max-width: 90vw;
+      }
+
+      &::-webkit-scrollbar {
+        position: relative;
+        top: 20px;
+        height: 20px;
+        width: 20px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-track-piece {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(
+          --button-gradient,
+          linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+        );
+        border-radius: 10px;
+      }
+
+      div {
+        //another dirty css trick
+        //might work on this later
+        margin-right: 20px;
+        margin-bottom: 20px;
+
+        > div {
+          margin-right: 0px;
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    .ViewAll {
+      width: 100%;
+      border-radius: 15px;
+      background-color: #fff;
+      color: #000;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Nuckle;
+      height: 50px;
+      margin-top: 20px;
+      font-weight: 600;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+      &:active {
+        background-color: #aaa;
+        cursor: pointer;
+        color: #f3f3f3;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: #ccc;
+        color: #f5f5f5;
+      }
+
+      text-decoration: none;
+    }
+  }
 }

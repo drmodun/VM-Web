@@ -87,15 +87,15 @@ export const CompanyPage = () => {
                 "https://media0testing.blob.core.windows.net/vm-racunala/companies/" +
                 Company.id
               }
-              onError={
-                (e) => ((e.target as HTMLImageElement).src = Placeholder)
+              onError={(e) =>
+                ((e.target as HTMLImageElement).src = Placeholder)
               }
               alt={Company?.name}
             />
           </div>
         </div>
 
-        <span className={classes.SubHeader}>Categories</span>
+        <span className={classes.SubHeader}>Kategorije</span>
         {Company.categories.length ? (
           <div className={classes.Categories}>
             {Company?.categories.map((category) => (
@@ -109,9 +109,11 @@ export const CompanyPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No categories found</span>
+          <span className={classes.NotFound}>
+            Nema kategorija za ovaj brend
+          </span>
         )}
-        <span className={classes.SubHeader}>Subcategories</span>
+        <span className={classes.SubHeader}>Subkategorije</span>
         {Company.subcategories.length ? (
           <div className={classes.Subcategories}>
             {Company?.subcategories.map((subcategory) => (
@@ -125,28 +127,30 @@ export const CompanyPage = () => {
             ))}
           </div>
         ) : (
-          <span className={classes.NotFound}>No subcategories found</span>
+          <span className={classes.NotFound}>
+            Nema pronađenih subkategorija
+          </span>
         )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
             <span className={classes.SubHeader} id="#products">
-              Products
+              Proizvodi
             </span>
             <div className={classes.Sorting}>
               <div className={classes.Sort}>
                 <span>Sortiraj po:</span>
                 <Switch
                   options={[
-                    { label: "Name", value: SortAttributeType.SortByName },
+                    { label: "Ime", value: SortAttributeType.SortByName },
                     {
-                      label: "Category",
+                      label: "Kategorija",
                       value: SortAttributeType.SortByCompanyName,
                     },
                     {
-                      label: "Subcategory",
+                      label: "Subkategorija",
                       value: SortAttributeType.SortBySubcategoryName,
                     },
-                    { label: "Price", value: SortAttributeType.SortByPrice },
+                    { label: "Cijena", value: SortAttributeType.SortByPrice },
                     {
                       label: "Profit",
                       value: SortAttributeType.SortByProfit,
@@ -160,8 +164,8 @@ export const CompanyPage = () => {
               <div className={classes.Sort}>
                 <Switch
                   options={[
-                    { label: "Ascending", value: SortType.Ascending },
-                    { label: "Descending", value: SortType.Descending },
+                    { label: "Rastuće", value: SortType.Ascending },
+                    { label: "Padajuće", value: SortType.Descending },
                   ]}
                   onSwitch={(value) => {
                     setSortType(value);
@@ -176,9 +180,9 @@ export const CompanyPage = () => {
                 products.map((product) => <ProductView product={product} />)}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products found</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
-          {products?.length! > 0  && (
+          {products?.length! > 0 && (
             <div className={classes.Pagination}>
               {pageInfo && (
                 <Pagination

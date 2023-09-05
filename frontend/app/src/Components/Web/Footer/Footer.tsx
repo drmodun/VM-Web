@@ -66,11 +66,6 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a className={classes.Link} href="tel:+38761548123">
-                  +385 99 999 9999
-                </a>
-              </li>
-              <li>
                 Adresa: Vukovarska  ulica 127
               </li>
               <li>

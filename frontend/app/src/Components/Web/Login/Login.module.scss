@@ -29,6 +29,10 @@
             > img {
                 width: 60px;
                 height: 60px;
+                @media screen and (max-width: 768px) {
+                    width: 40px;
+                    height: 40px;
+                }
             }
             > h1 {
                 color: var(--black-h-1, #2c2c2c);
@@ -42,6 +46,9 @@
                 font-size: 14px;
                 font-family: Nuckle;
                 font-weight: 600;
+                @media screen and (max-width: 768px) {
+                    font-size: 10px;
+                }
                 &:hover {
                     cursor: pointer;
                     text-decoration: underline;
@@ -92,6 +99,7 @@
                     color: var(--red-base, #ff0000);
                     font-family: Nuckle;
                     font-size: 12px;
+                    text-align: center;
                     font-weight: 600;
                     margin-bottom: 10px;
                     min-height: 40px;
@@ -100,10 +108,10 @@
                     border-radius: 10px;
                     background: var(--light-blue, #3f86ef);
                     color: var(--white, #fff);
-                    font-family: SF Pro Display;
+                    font-family: Nuckle;
                     font-size: 18px;
                     font-style: normal;
-                    font-weight: 400;
+                    font-weight: 600;
                     line-height: normal;
                     letter-spacing: 0.09px;
                     padding: 12px 80px;

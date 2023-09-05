@@ -91,13 +91,13 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               label="Name"
               name="name"
               type="text"
-              placeholder="Name"
+              placeholder="Ime"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className={classes.Category}>
-            <span>Category</span>
+            <span>Kategorija</span>
             <Dropdown
               cancel={categoryCloser}
               closer={handleCategoryCloser}
@@ -112,7 +112,7 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
             />
           </div>
           <div className={classes.Subcategory}>
-            <span>Subcategory</span>
+            <span>Subkategorija</span>
             <Dropdown
               cancel={subcategoryCloser}
               closer={handleSubcategoryCloser}
@@ -131,7 +131,7 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
             />
           </div>
           <div className={classes.Company}>
-            <span>Company</span>
+            <span>Brend</span>
             <Dropdown
               cancel={companyCloser}
               closer={handleCompanyCloser}
@@ -199,7 +199,7 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               })
             }
           >
-            Filter
+            Filtriraj
           </button>
         </div>
       </div>

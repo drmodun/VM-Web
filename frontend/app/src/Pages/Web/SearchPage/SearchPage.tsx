@@ -63,6 +63,7 @@ export const SearchPage = () => {
   };
 
   useEffect(() => {
+    if (searchTerm.get("name") === "") return;
     window.scrollTo(0, 0);
     window.document.title = "Search";
     productFetcher();
@@ -72,6 +73,7 @@ export const SearchPage = () => {
   }, []);
 
   useEffect(() => {
+    if (searchTerm.get("name") === "") return;
     productFetcher();
     categoryFetcher();
     subcategoryFetcher();
@@ -84,36 +86,36 @@ export const SearchPage = () => {
     <div className={classes.Container}>
       <div className={classes.SearchPage}>
         <h2 className={classes.Title}>
-          Search Results for: {searchTerm.get("name")}
+          Rezultati pretrage za: {searchTerm.get("name")}
         </h2>
         <div className={classes.Section}>
-          <h3 className={classes.Subtitle}>Categories: {categories.length}</h3>
+          <h3 className={classes.Subtitle}>Kategorije: {categories.length}</h3>
           {categories.length ? (
             <div className={classes.SectionList}>
               {categories.map((category) => (
                 <ShortView
                   subtitle={category.numberOfProducts.toString()}
                   directory="categories"
-                  title={category.name} 
+                  title={category.name}
                   id={category.id}
                   link={`/categories/${category.id}`}
                 />
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No categories found</span>
+            <span className={classes.NotFound}>Nema pronađenih kategorija</span>
           )}
         </div>
         <div className={classes.Section}>
           <h3 className={classes.Subtitle}>
-            Subcategories: {subcategories.length}
+            Subkategorije: {subcategories.length}
           </h3>
           {subcategories.length ? (
             <div className={classes.SectionList}>
               {subcategories.map((subcategory) => (
                 <ShortView
                   subtitle={subcategory.numberOfProducts.toString()}
-                  title={subcategory.name} 
+                  title={subcategory.name}
                   directory="subcategories"
                   link={`/subcategories/${subcategory.id}`}
                   id={subcategory.id}
@@ -121,11 +123,13 @@ export const SearchPage = () => {
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No subcategories found</span>
+            <span className={classes.NotFound}>
+              Nema pronađenih subkategorija
+            </span>
           )}
         </div>
         <div className={classes.Section}>
-          <h3 className={classes.Subtitle}>Brands: {brands.length}</h3>
+          <h3 className={classes.Subtitle}>Brendovi: {brands.length}</h3>
           {brands.length ? (
             <div className={classes.SectionList}>
               {brands.map((brand) => (
@@ -133,17 +137,17 @@ export const SearchPage = () => {
                   directory="companies"
                   id={brand.id}
                   subtitle={brand.numberOfProducts.toString()}
-                  title={brand.name} 
+                  title={brand.name}
                   link={`/brands/${brand.id}`}
                 />
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No brands found</span>
+            <span className={classes.NotFound}>Nema pronađenih brendova</span>
           )}
         </div>
         <div className={classes.Section}>
-          <h3 className={classes.Subtitle}>Products: {products.length}</h3>
+          <h3 className={classes.Subtitle}>Proizvodi: {products.length}</h3>
           {products.length ? (
             <div className={classes.ProductList}>
               {products.map((product) => (
@@ -151,7 +155,7 @@ export const SearchPage = () => {
               ))}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products found</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
         </div>
       </div>

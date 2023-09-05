@@ -14,7 +14,6 @@ interface Props {
   product: Product;
 }
 
-
 export const MainProductView = ({ product }: Props) => {
   const [selectedQuantity, setSelectedQuantity] = useState(
     product?.cartQuantity || 1
@@ -86,7 +85,7 @@ export const MainProductView = ({ product }: Props) => {
               </Link>
             </div>
             <div className={classes.Linked}>
-              <span>Brand</span>
+              <span>Brend</span>
               <Link
                 className={classes.SubLink}
                 to={`/brands/${product.companyId}`}

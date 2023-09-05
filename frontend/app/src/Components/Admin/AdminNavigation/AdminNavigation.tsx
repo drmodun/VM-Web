@@ -15,7 +15,7 @@ export const AdminNavigation = () => {
                     <NavLink className={classes.Link} to="/admin/categories">Categories</NavLink>
                 </li>
                 <li>
-                    <NavLink className={classes.Link} to="/admin/subcategories">Subcategories</NavLink>
+                    <NavLink className={classes.Link} to="/admin/subcategories">Subkategorije</NavLink>
                 </li>
                 <li>
                     <NavLink className={classes.Link} to="/admin/companies">Companies</NavLink>

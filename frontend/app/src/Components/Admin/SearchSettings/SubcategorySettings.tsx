@@ -88,8 +88,8 @@ export const SubcategorySearch = ({ search, categories }: Props) => {
           value={sortType}
           options={[
             { value: -1, label: "None" },
-            { value: SortType.Ascending, label: "Ascending" },
-            { value: SortType.Descending, label: "Descending" },
+            { value: SortType.Ascending, label: "Rastuće" },
+            { value: SortType.Descending, label: "Padajuće" },
           ]}
           onChange={(e) => setSortType(Number(e.target.value))}
         />

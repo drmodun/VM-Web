@@ -15,12 +15,16 @@ export const Login = () => {
   const [tab, setTab] = useState(false);
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!email || !password) {
+      setError("Sva polja moraju biti popunjena");
+      return;
+    }
     const response = await login(email, password);
     if (response) {
       window.location.href = "/";
       return;
     }
-    setError("Invalid credentials");
+    setError("Krivi podaci");
   };
 
   const handleForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,11 +33,11 @@ export const Login = () => {
     if (response) {
       alert("Email poslan");
       window.location.href = "/#/login";
+      window.location.reload();
       return;
     }
-    setError("Invalid credentials");
-  }
-
+    setError("Nije pronađen korisnik s tim emailom");
+  };
 
   return (
     <div className={classes.Container}>
@@ -41,14 +45,16 @@ export const Login = () => {
         <div className={classes.LoginForm}>
           <div className={classes.LoginFormHeader}>
             <img src={Logo} alt="VM-racunala" />
-            <h1>Login</h1>
+            <h1>Prijavi se</h1>
             <Link to="/register" className={classes.Link}>
-              Sign Up
+              Registracija
             </Link>
           </div>
           <div className={classes.LoginFormBody}>
-            <form className={classes.LoginFormBodyInput} onSubmit={tab ? handleForgotPassword :
-              handleLogin}>
+            <form
+              className={classes.LoginFormBodyInput}
+              onSubmit={tab ? handleForgotPassword : handleLogin}
+            >
               {!tab && (
                 <>
                   <Input
@@ -61,10 +67,10 @@ export const Login = () => {
                     icon1={Email}
                   />
                   <Input
-                    label="Password"
+                    label="Lozinka"
                     name="password"
                     type="password"
-                    placeholder="Password"
+                    placeholder="Lozinka"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     icon1={Hide}

@@ -75,10 +75,7 @@ export const ProductView = ({ product, removal }: Props) => {
           />
         </div>
         <div className={classes.ProductInfo}>
-          <Link
-            to={`/products/${product.id}`}
-            className={classes.Name}
-          >
+          <Link to={`/products/${product.id}`} className={classes.Name}>
             <span>{product.name}</span>
           </Link>
           <div className={classes.Sub}>

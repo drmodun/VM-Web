@@ -31,11 +31,11 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
 
   const handleDelete = async () => {
     const action = await deleteUser();
-    const confirmation = window.confirm("Are you sure you want to delete user?");
+    const confirmation = window.confirm("Jeste li sigurni da želite izbrisati korisnika, vaša odluka je konačna?");
     //TODO: possibly add another verification check for deletion
     if (!confirmation) return;
     if (!action) {
-      alert("Failed to delete user");
+      alert("Neuspješno brisanje korisnika");
       return;
     }
     window.location.href = "/";
@@ -45,16 +45,16 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
   return (
     <div className={classes.Container}>
       <LargeInput
-        label="Name"
+        label="Ime"
         name="name"
-        placeholder="Name"
+        placeholder="Ime"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <LargeInput
-        label="Address"
+        label="Adresa"
         name="address"
-        placeholder="Address"
+        placeholder="Adresa"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
       />
@@ -66,20 +66,20 @@ export const EditableUserInfo = ({ user, reload }: Props) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <LargeInput
-        label="Phone"
+        label="Broj mobitela"
         name="phone"
-        placeholder="Phone"
+        placeholder="Broj mobitela"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
       <div className={classes.Button}>
         <button className={classes.Save} onClick={handleSave}>
-          Save
+          Spremi
         </button>
       </div>
       <div className={classes.Button}>
         <button className={classes.Delete} onClick={handleDelete}>
-          Delete account
+          Izbrisi korisnika
         </button>
       </div>
     </div>

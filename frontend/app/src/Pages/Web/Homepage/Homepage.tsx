@@ -21,7 +21,11 @@ import { ShortCompany, getShortCompanies } from "../../../Api/CompanyApi";
 import { Service, getServices } from "../../../Api/ServiceApi";
 import ServiceView from "../../../Components/Web/Service";
 import PreviousClientView from "../../../Components/Web/PreviousClient";
-import { PreviousClient, getPreviousClient, getPreviousClients } from "../../../Api/PreviousClientApi";
+import {
+  PreviousClient,
+  getPreviousClient,
+  getPreviousClients,
+} from "../../../Api/PreviousClientApi";
 const enum Tabs {
   Products,
   Services,
@@ -34,7 +38,7 @@ export const Homepage = () => {
   const [tab, setTab] = useState<Tabs>(Tabs.Products);
   const [brands, setBrands] = useState<ShortCompany[]>([]);
   const [previousClients, setPreviousClients] = useState<PreviousClient[]>([]);
-  const [services, setServices] = useState<Service[]>([])
+  const [services, setServices] = useState<Service[]>([]);
 
   const productFetcher = async (params?: GetAllProps) => {
     const response = await getShortProducts({
@@ -55,7 +59,7 @@ export const Homepage = () => {
       "Pagination.PageNumber": 1,
     });
     setPreviousClients(response?.items!);
-  }
+  };
 
   const categoryFetcher = async () => {
     const response = await getShortCategories({
@@ -73,7 +77,7 @@ export const Homepage = () => {
       "Pagination.PageNumber": 1,
     });
     setServices(response?.items!);
-  }
+  };
 
   const brandFetcher = async () => {
     const response = await getShortCompanies({
@@ -90,7 +94,7 @@ export const Homepage = () => {
     serviceFetcher();
     previousClientsFetcher();
     window.scrollTo(0, 0);
-    window.document.title = "VM | Home";
+    window.document.title = "VM Računala d.o.o";
   }, []);
 
   return (
@@ -104,17 +108,18 @@ export const Homepage = () => {
       ></link>
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
-        <img src={products2} alt="" />
-        <div
-          className={
-            classes.CoverText
-          }
-        >
+        <img src={products2} alt="Cover-VM" />
+        <div className={classes.CoverText}>
           <h1>VM računala</h1>
-          <p>Business solutions for IT</p>
+          <p>Poslovna rješenja za IT</p>
         </div>
       </div>
       <div className={classes.Homepage}>
+        <div className={classes.Description}>
+          Kupujte na najjednostavniji način. Koristite VM računala webshop.
+          Imate pristup svim kategorijama, brendovima, proizvodima i uslugama na
+          jednom mjestu.
+        </div>
         <div className={classes.Cards}>
           <div
             className={classes.Arrow}
@@ -125,7 +130,7 @@ export const Homepage = () => {
           <div className={classes.Upper}>
             {tab === Tabs.Categories && (
               <Link to={"/categories"} className={classes.Section}>
-                <div className={classes.Title}>Categories</div>
+                <div className={classes.Title}>Kategorije</div>
                 <div className={classes.Cover}></div>
                 <div className={classes.Image}>
                   <img src={categories1} alt="kategorije" />
@@ -134,7 +139,7 @@ export const Homepage = () => {
             )}
             {tab === Tabs.Products && (
               <Link className={classes.Section} to="/products">
-                <div className={classes.Title}>Products</div>
+                <div className={classes.Title}>Proizvodi</div>
                 <div className={classes.Cover}></div>
                 <div className={classes.Image}>
                   <img src={products3} alt="kategorije" />
@@ -143,7 +148,7 @@ export const Homepage = () => {
             )}
             {tab === Tabs.Services && (
               <Link to="/services" className={classes.Section}>
-                <div className={classes.Title}>Services</div>
+                <div className={classes.Title}>Servisi</div>
                 <div className={classes.Cover}></div>
                 <div className={classes.Image}>
                   <img src={services1} alt="Servisi" />
@@ -152,7 +157,7 @@ export const Homepage = () => {
             )}
             {tab === Tabs.Brands && (
               <Link className={classes.Section} to="/brands">
-                <div className={classes.Title}>Brands</div>
+                <div className={classes.Title}>Brendovi</div>
                 <div className={classes.Cover}></div>
                 <div className={classes.Image}>
                   <img src={brands2} alt="Brendovi" />
@@ -190,12 +195,13 @@ export const Homepage = () => {
             className={classes.Arrow}
             onClick={() =>
               setTab((prev) => (prev !== Tabs.Brands ? prev + 1 : 0))
-            }>
+            }
+          >
             <img src={chevronRight} alt="" />
           </div>
         </div>
         <div className={classes.Row}>
-          <span>Categories</span>
+          <span>Kategorije</span>
           {categories && categories.length ? (
             <div className={classes.List}>
               {categories &&
@@ -213,14 +219,14 @@ export const Homepage = () => {
                 })}
             </div>
           ) : (
-            <span className={classes.NotFound}>No categories founds</span>
+            <span className={classes.NotFound}>Nema pronađenih kategorija</span>
           )}
           <Link className={classes.ViewAll} to={"/categories"}>
-            View all
+            Pogledaj sve
           </Link>
         </div>
         <div className={classes.Row}>
-          <span>Brands</span>
+          <span>Brendovi</span>
           {brands && brands.length ? (
             <div className={classes.List}>
               {brands &&
@@ -238,10 +244,10 @@ export const Homepage = () => {
                 })}
             </div>
           ) : (
-            <span className={classes.NotFound}>No brands founds</span>
+            <span className={classes.NotFound}>Nema pronađenih brendova</span>
           )}
           <Link className={classes.ViewAll} to={"/brands"}>
-            View all
+            Pogledaj sve
           </Link>
         </div>
         <div className={classes.Row}>
@@ -254,10 +260,10 @@ export const Homepage = () => {
                 })}
             </div>
           ) : (
-            <span className={classes.NotFound}>No services founds</span>
+            <span className={classes.NotFound}>Nema pronađenih servisa</span>
           )}
           <Link className={classes.ViewAll} to={"/services"}>
-            View all
+            Pogledaj sve
           </Link>
         </div>
         <div className={classes.Row}>
@@ -270,7 +276,7 @@ export const Homepage = () => {
                 })}
             </div>
           ) : (
-            <span className={classes.NotFound}>No products founds</span>
+            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
         </div>
         <div className={classes.Row}>
@@ -279,14 +285,21 @@ export const Homepage = () => {
             <div>
               {previousClients &&
                 previousClients.map((previousClient) => {
-                  return <PreviousClientView key={previousClient.id} client={previousClient} />;
+                  return (
+                    <PreviousClientView
+                      key={previousClient.id}
+                      client={previousClient}
+                    />
+                  );
                 })}
             </div>
           ) : (
-            <span className={classes.NotFound}>No previous clients founds</span>
+            <span className={classes.NotFound}>
+              Nema pronađenih prijašnjih klijenata
+            </span>
           )}
           <Link className={classes.ViewAll} to={"/clients"}>
-            View all
+            Pogledaj sve
           </Link>
         </div>
       </div>

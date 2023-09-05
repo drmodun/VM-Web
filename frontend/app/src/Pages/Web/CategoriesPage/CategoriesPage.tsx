@@ -34,13 +34,11 @@ export const CategoriesPage = () => {
       <div className={classes.Cover}>
         <div className={classes.Backdrop}></div>
         <img src={categories2} alt="" />
-        <div
-          className={
-            classes.CoverText
-          }
-        >
-          <h1>Categories</h1>
-          <p>Find your favorite category</p>
+        <div className={classes.CoverText}>
+          <h1>Kategorije</h1>
+          <p>
+            Pronađite kategoriju koja vas zanima i pronađite proizvode koji su vam potrebni.
+          </p>
         </div>
       </div>
       <div className={classes.CategoriesPage}>
@@ -59,8 +57,7 @@ export const CategoriesPage = () => {
           </div>
         ) : (
           <div className={classes.Empty}>
-            <h2>No Categories found</h2>
-            <p>There are no categories at the moment, please come back later.</p>
+            <h2>Nema kategorija trenutno, molimo vas da se vratite kasnije.</h2>
           </div>
         )}
       </div>

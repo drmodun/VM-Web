@@ -60,8 +60,8 @@ export const PreviousClientSearch = ({ search }: Props) => {
           value={sortType}
           options={[
             { value: -1, label: "None" },
-            { value: 0, label: "Ascending" },
-            { value: 1, label: "Descending" },
+            { value: 0, label: "Rastuće" },
+            { value: 1, label: "Padajuće" },
           ]}
           onChange={(e) => setSortType(Number(e.target.value))}
         />

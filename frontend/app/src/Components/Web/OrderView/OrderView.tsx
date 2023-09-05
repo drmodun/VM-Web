@@ -26,9 +26,9 @@ export const OrderView = ({ order }: Props) => {
     <div className={classes.Container}>
       <div className={classes.Order}>
         <div className={classes.Info}>
-            <span className={classes.Date}>
-              {new Date(order.created).toLocaleDateString()}
-            </span>
+          <span className={classes.Date}>
+            {new Date(order.created).toLocaleDateString()}
+          </span>
           <div className={classes.Details}>
             <Link to={`/services/${order.serviceId}`} className={classes.Name}>
               {order.serviceName}
