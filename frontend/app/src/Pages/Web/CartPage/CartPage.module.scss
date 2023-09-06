@@ -6,6 +6,10 @@
     display: flex;
     justify-content: center;
     background-color: #ecf4ff;
+    @media screen and (max-width: 768px) {
+        padding: 0px 5vw;
+        margin-top: 0px;
+    }
     .Empty {
         display: flex;
         flex-direction: column;
