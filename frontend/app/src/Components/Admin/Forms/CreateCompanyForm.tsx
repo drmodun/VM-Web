@@ -68,7 +68,10 @@ export const CompanyForm = ({ isEdit, reload, item }: Props) => {
     const response = isEdit
       ? await updateCompany(newCompany)
       : await createCompany(newCompany);
-    if (!response) return;
+    if (!response) {
+      setStatus("Something went wrong");
+      return;
+    }
     const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );

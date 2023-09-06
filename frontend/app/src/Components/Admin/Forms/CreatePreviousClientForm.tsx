@@ -69,8 +69,10 @@ export const PreviousClientForm = ({ reload, isEdit, item }: Props) => {
     const response = isEdit
       ? await updatePreviousClient(newPreviousClient)
       : await createPreviousClient(newPreviousClient);
-    if (!response) return;
-    const upload: boolean = await handleFileUpload(
+if (!response) {
+      setStatus("Something went wrong");
+      return;
+    }    const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
     response?.success && (upload || !file)

@@ -80,7 +80,10 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
     const response = isEdit
       ? await updateCategory(newCategory)
       : await createCategory(newCategory);
-    if (!response) return;
+    if (!response) {
+      setStatus("Something went wrong");
+      return;
+    }
     const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
