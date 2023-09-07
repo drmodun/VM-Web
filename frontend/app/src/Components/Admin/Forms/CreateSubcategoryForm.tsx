@@ -75,7 +75,7 @@ export const SubcategoryForm = ({
 
   const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (name.length < 3 || name.length > 20) {
+    if (name.length < 3 || name.length > 50) {
       setStatus("Error: Name must be between 3 and 20 characters");
       return;
     }
@@ -103,10 +103,11 @@ export const SubcategoryForm = ({
     const response = isEdit
       ? await updateSubcategory(newSubcategory)
       : await createSubcategory(newSubcategory);
-if (!response) {
+    if (!response) {
       setStatus("Something went wrong");
       return;
-    }    const upload: boolean = await handleFileUpload(
+    }
+    const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
     response?.success && (upload || !file)

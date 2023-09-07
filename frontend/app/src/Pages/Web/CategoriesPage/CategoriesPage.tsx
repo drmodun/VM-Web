@@ -18,7 +18,10 @@ export const CategoriesPage = () => {
   const [categories, setCategories] = useState<ShortCategory[]>([]);
 
   const categoriesFetcher = async () => {
-    const response = await getShortCategories();
+    const response = await getShortCategories({
+      "Sorting.Attribute" : SortAttributeType.SortByName,
+      "Sorting.SortType" : SortType.Ascending
+    });
     if (!response?.items) return;
     setCategories(response?.items);
   };
