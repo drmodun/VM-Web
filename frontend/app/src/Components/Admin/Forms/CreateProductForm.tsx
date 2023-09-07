@@ -174,11 +174,11 @@ export const ProductForm = ({
     const response = isEdit
       ? await updateProduct(product)
       : await createProduct(product);
-    await createProduct(product);
-if (!response) {
+    if (!response) {
       setStatus("Something went wrong");
       return;
-    }    const upload: boolean = await handleFileUpload(
+    }
+    const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
     response?.success && (upload || !file)

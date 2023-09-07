@@ -253,7 +253,7 @@ export const Homepage = () => {
         <div className={classes.Row}>
           <span>Popularni servisi</span>
           {services && services.length ? (
-            <div>
+            <div className={classes.Services}>
               {services &&
                 services.map((service) => {
                   return <ServiceView key={service.id} service={service} />;
