@@ -1,122 +1,120 @@
 .Container {
-    width: 100%;
-    min-width: 20vw;
-    padding: 14px;
-    background-color: #fff;
+  width: 100%;
+  min-width: 20vw;
+  padding: 14px;
+  background-color: #fff;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  flex-direction: column;
+  margin-bottom: 20px;
+  .Order {
     display: flex;
-    border-radius: 10px;
-    border: 1px solid #e0e0e0;
-    flex-direction: column;
-    margin-bottom: 20px;
-    .Order {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-content: flex-start;
+    padding: 20px 2vw;
+    .Info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      word-wrap: break-word;
+      width: 100%;
+      .Details {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        @media screen and (max-width: 950px) {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+        width: 80%;
+        .Name {
+          color: var(--text-main, #1e1e1e);
+          font-family: Nuckle;
+          font-size: 1.25vw;
+          font-style: normal;
+          font-weight: 591;
+          line-height: normal;
+          text-decoration: none;
+          width: 45%;
+          @media screen and (max-width: 950px) {
+            font-size: 13px;
+            width: 35%;
+          }
+          &:hover {
+            text-decoration: underline;
+          }
+          &:active {
+            color: var(--background-main-color, #0d63f3);
+          }
+          word-wrap: break-word;
+        }
+        .Type {
+          color: var(--text-main, #1e1e1e);
+          font-family: Nuckle;
+          font-size: 0.75vw;
+          font-style: normal;
+          font-weight: 591;
+          line-height: normal;
+          @media screen and (max-width: 950px) {
+            font-size: 10px;
+            width: 35%;
+          }
+          width: 30%;
+          word-wrap: break-word;
+        }
+        .Price {
+          color: #0d63f3;
+          font-family: Nuckle;
+          font-size: 0.95vw;
+          font-style: normal;
+          width: 20%;
+          font-weight: 591;
+          line-height: normal;
+          word-wrap: break-word;
+          word-break: break-all;
+          @media screen and (max-width: 950px) {
+            font-size: 12px;
+          }
+        }
+      }
+      .Date {
+        color: var(--text-main, #1e1e1e);
+        font-family: Nuckle;
+        font-size: 0.75vw;
+        font-style: normal;
+        font-weight: 591;
+        line-height: normal;
         width: 100%;
-        justify-content: space-between;
-        align-content: flex-start;
-        padding: 20px 2vw;
-        .Info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            word-wrap: break-word;
-            width: 95%;
-            .Details {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-                @media screen and (max-width: 950px) {
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 100%;
-                }
-                width: 80%;
-                .Name {
-                    color: var(--text-main, #1e1e1e);
-                    font-family: Nuckle;
-                    font-size: 1.25vw;
-                    font-style: normal;
-                    font-weight: 591;
-                    line-height: normal;
-                    text-decoration: none;
-                    width: 30%;
-                    @media screen and (max-width: 950px) {
-                        font-size: 13px;
-                        width: 35%;
-                    }
-                    &:hover {
-                        text-decoration: underline;
-                    }   
-                    &:active {
-                        color: var(--background-main-color, #0d63f3);
-                    }
-                    word-wrap: break-word;
-                    word-break: break-all;
-                }
-                .Type {
-                    color: var(--text-main, #1e1e1e);
-                    font-family: Nuckle;
-                    font-size: 0.75vw;
-                    font-style: normal;
-                    font-weight: 591;
-                    line-height: normal;
-                    @media screen and (max-width: 950px) {
-                        font-size: 10px;
-                        width: 35%;
-                    }
-                    width: 20%;
-                    word-wrap: break-word;
-                    word-break: break-all;
-                }
-                .Price {
-                    color: #0d63f3;
-                    font-family: Nuckle;
-                    font-size: 0.95vw;
-                    font-style: normal;
-                    width: 20%;
-                    font-weight: 591;
-                    line-height: normal;
-                    word-wrap: break-word;
-                    word-break: break-all;
-                    @media screen and (max-width: 950px) {
-                        font-size: 12px;
-                    }
-                }
-            }
-            .Date {
-                color: var(--text-main, #1e1e1e);
-                font-family: Nuckle;
-                font-size: 0.75vw;
-                font-style: normal;
-                font-weight: 591;
-                line-height: normal;
-                width: 100%;
-                word-wrap: break-word;
-                word-break: break-all;
-                @media screen and (max-width: 950px) {
-                    font-size: 12px;
-                }
-                @media screen and (max-width: 768px) {
-                    font-size: 8px;
-                }
-            }
+        word-wrap: break-word;
+        word-break: break-all;
+        @media screen and (max-width: 950px) {
+          font-size: 12px;
         }
-        .Total {
-            color: var(--light-green-base, #20bf86);
-            font-family: Nuckle;
-            font-size: 1vw;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            @media screen and (max-width: 950px) {
-                font-size: 12px;
-            }
+        @media screen and (max-width: 768px) {
+          font-size: 8px;
         }
+      }
     }
-    &:hover {
-        box-shadow: 0px 2px 8px 0px rgba(41, 82, 225, 0.15);
+    .Total {
+      color: var(--light-green-base, #20bf86);
+      font-family: Nuckle;
+      font-size: 1vw;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      @media screen and (max-width: 950px) {
+        font-size: 12px;
+      }
     }
+  }
+  &:hover {
+    box-shadow: 0px 2px 8px 0px rgba(41, 82, 225, 0.15);
+  }
 }

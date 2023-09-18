@@ -6,7 +6,6 @@ import {
 } from "../../../Api/ProductApi";
 import brands2 from "../../../assets/companies2.webp";
 import chevronLeft from "../../../assets/chevron-left.svg";
-import ProductView from "../../../Components/Web/ProductView";
 import chevronRight from "../../../assets/chevron-right.svg";
 import { SortAttributeType, SortType } from "../../../Types/Enums";
 import classes from "./Homepage.module.scss";
@@ -23,19 +22,17 @@ import ServiceView from "../../../Components/Web/Service";
 import PreviousClientView from "../../../Components/Web/PreviousClient";
 import {
   PreviousClient,
-  getPreviousClient,
   getPreviousClients,
 } from "../../../Api/PreviousClientApi";
 const enum Tabs {
-  Products,
-  Services,
-  Categories,
-  Brands,
+  Services = 0,
+  Categories = 1,
+  Brands = 2,
+  Products = 3,
 }
 export const Homepage = () => {
-  const [products, setProducts] = useState<ShortProduct[]>([]);
   const [categories, setCategories] = useState<ShortCategory[]>([]);
-  const [tab, setTab] = useState<Tabs>(Tabs.Products);
+  const [tab, setTab] = useState<Tabs>(Tabs.Services);
   const [brands, setBrands] = useState<ShortCompany[]>([]);
   const [previousClients, setPreviousClients] = useState<PreviousClient[]>([]);
   const [services, setServices] = useState<Service[]>([]);
@@ -48,7 +45,6 @@ export const Homepage = () => {
       "Pagination.PageSize": 20,
       ...params,
     });
-    setProducts(response?.items!);
   };
 
   const previousClientsFetcher = async () => {
@@ -88,7 +84,6 @@ export const Homepage = () => {
   };
 
   useEffect(() => {
-    productFetcher();
     categoryFetcher();
     brandFetcher();
     serviceFetcher();
@@ -137,15 +132,6 @@ export const Homepage = () => {
                 </div>
               </Link>
             )}
-            {tab === Tabs.Products && (
-              <Link className={classes.Section} to="/products">
-                <div className={classes.Title}>Proizvodi</div>
-                <div className={classes.Cover}></div>
-                <div className={classes.Image}>
-                  <img src={products3} alt="kategorije" />
-                </div>
-              </Link>
-            )}
             {tab === Tabs.Services && (
               <Link to="/services" className={classes.Section}>
                 <div className={classes.Title}>Servisi</div>
@@ -164,13 +150,19 @@ export const Homepage = () => {
                 </div>
               </Link>
             )}
+            {tab === Tabs.Products && (
+              <Link
+                className={classes.Section}
+                to="https://www.microline.hr/EUWeb/StartEU.ashx"
+              >
+                <div className={classes.Title}>Proizvodi</div>
+                <div className={classes.Cover}></div>
+                <div className={classes.Image}>
+                  <img src={products3} alt="proizvodi" />
+                </div>
+              </Link>
+            )}
             <div className={classes.DotRow}>
-              <div
-                className={
-                  tab === Tabs.Products ? classes.ActiveDot : classes.Dot
-                }
-                onClick={() => setTab(Tabs.Products)}
-              />
               <div
                 className={
                   tab === Tabs.Services ? classes.ActiveDot : classes.Dot
@@ -189,12 +181,18 @@ export const Homepage = () => {
                   tab === Tabs.Brands ? classes.ActiveDot : classes.Dot
                 }
               />
+              <div
+                className={
+                  tab === Tabs.Products ? classes.ActiveDot : classes.Dot
+                }
+                onClick={() => setTab(Tabs.Products)}
+              />
             </div>
           </div>
           <div
             className={classes.Arrow}
             onClick={() =>
-              setTab((prev) => (prev !== Tabs.Brands ? prev + 1 : 0))
+              setTab((prev) => (prev !== Tabs.Products ? prev + 1 : 0))
             }
           >
             <img src={chevronRight} alt="" />
@@ -265,19 +263,6 @@ export const Homepage = () => {
           <Link className={classes.ViewAll} to={"/services"}>
             Pogledaj sve
           </Link>
-        </div>
-        <div className={classes.Row}>
-          <span>Popularni produkti</span>
-          {products && products.length ? (
-            <div className={classes.ProductList}>
-              {products &&
-                products.map((product) => {
-                  return <ProductView key={product.id} product={product} />;
-                })}
-            </div>
-          ) : (
-            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
-          )}
         </div>
         <div className={classes.Row}>
           <span>Top prijašnji klijenti</span>

@@ -125,14 +125,6 @@ const router = createHashRouter(
         </Route>
         <Route path="/categories">
           <Route index element={<WebCategoriesPage />}></Route>
-          <Route path=":categoryId" element={<WebCategoryPage />}></Route>
-        </Route>
-        <Route path="/products">
-          <Route index element={<WebProductsPage />}></Route>
-          <Route path=":productId" element={<WebProductPage />}></Route>
-        </Route>
-        <Route path="/subcategories">
-          <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
         </Route>
         <Route
           path="/user"
@@ -145,7 +137,6 @@ const router = createHashRouter(
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
           <Route index element={<WebCompaniesPage />}></Route>
-          <Route path=":companyId" element={<BrandPage />}></Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Route>

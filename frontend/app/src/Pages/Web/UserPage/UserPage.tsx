@@ -21,10 +21,7 @@ const stripePromise = loadStripe(
 const enum Tabs {
   Info,
   Orders,
-  Transactions,
-  Payment,
   Favourites,
-  Cart,
 }
 
 export const UserPage = () => {
@@ -109,16 +106,6 @@ export const UserPage = () => {
                   <span>Info</span>
                 </div>
                 <div
-                  onClick={() => setTab(Tabs.Payment)}
-                  className={
-                    classes.Option +
-                    " " +
-                    (tab === Tabs.Payment ? classes.Active : "")
-                  }
-                >
-                  Plaćanje
-                </div>
-                <div
                   className={
                     classes.Option +
                     " " +
@@ -132,34 +119,12 @@ export const UserPage = () => {
                   className={
                     classes.Option +
                     " " +
-                    (tab === Tabs.Transactions ? classes.Active : "")
-                  }
-                  onClick={() => setTab(Tabs.Transactions)}
-                >
-                  <span>Transakcije</span>
-                </div>
-                <Link
-                  className={
-                    classes.Option +
-                    " " +
                     (tab === Tabs.Favourites ? classes.Active : "")
                   }
-                  to={`/favourites`}
                   onClick={() => setTab(Tabs.Favourites)}
                 >
                   <span>Favoriti</span>
-                </Link>
-                <Link
-                  className={
-                    classes.Option +
-                    " " +
-                    (tab === Tabs.Cart ? classes.Active : "")
-                  }
-                  to={`/cart`}
-                  onClick={() => setTab(Tabs.Cart)}
-                >
-                  <span>Košarica</span>
-                </Link>
+                </div>
               </div>
               <div className={classes.Content}>
                 {tab === Tabs.Info && (
@@ -167,17 +132,7 @@ export const UserPage = () => {
                     <EditableUserInfo user={user!} reload={reload} />
                   </div>
                 )}
-                {tab === Tabs.Payment && (
-                  <div className={classes.Form}>
-                    <h3>Payment</h3>
-                    <span>
-                      {hasCard
-                        ? "Već imate spremljene podatke o kartici, možete ih promijeniti"
-                        : "Nemate spremljene podatke o kartici, možete ih dodati"}
-                    </span>
-                    <CardSection />
-                  </div>
-                )}
+
                 {tab === Tabs.Orders &&
                   (orders && orders.length > 0 ? (
                     <div className={classes.Orders}>
@@ -240,70 +195,6 @@ export const UserPage = () => {
                     </div>
                   ) : (
                     <span className={classes.NotFound}>No orders found</span>
-                  ))}
-                {tab === Tabs.Transactions &&
-                  (transactions && transactions.length > 0 ? (
-                    <div className={classes.Transactions}>
-                      <div className={classes.SelectRow}>
-                        <Switch
-                          options={[
-                            { label: "Nijedno", value: 0 },
-                            { label: "Abecedno", value: 1 },
-                            { label: "Ukupna cijena", value: 2 },
-                            { label: "Datum", value: 3 },
-                          ]}
-                          onSwitch={(value) => {
-                            setCriteria(value);
-                          }}
-                        />
-                        <Switch
-                          options={[
-                            { label: "Rastuće", value: 0 },
-                            { label: "Padajuće", value: 1 },
-                          ]}
-                          onSwitch={(value) => {
-                            setSortType(value);
-                          }}
-                        />
-                      </div>
-                      {transactions
-                        .sort((a, b) => {
-                          if (criteria === 0) return 0;
-                          if (criteria === 1) {
-                            if (a.productName > b.productName) return 1;
-                            else return -1;
-                          }
-                          if (criteria === 2) {
-                            if (
-                              a.pricePerUnit * a.quantity >
-                              b.quantity * b.pricePerUnit
-                            )
-                              return 1;
-                            else return -1;
-                          }
-                          if (criteria === 3) {
-                            if (a.createdAt > b.createdAt) return 1;
-                            else return -1;
-                          }
-                          return 0;
-                        })
-                        .sort((a, b) => {
-                          if (sortType === 0) return 0;
-                          return -1;
-                        })
-                        .map((transaction, index) => {
-                          return (
-                            <TransactionView
-                              key={index}
-                              transaction={transaction}
-                            />
-                          );
-                        })}
-                    </div>
-                  ) : (
-                    <span className={classes.NotFound}>
-                      No transactions found
-                    </span>
                   ))}
               </div>
             </div>

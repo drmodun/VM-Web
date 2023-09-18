@@ -45,19 +45,12 @@ export const Navigation = ({
           <button
             className={classes.SearchButton}
             //TODO: add elastic search
-            onClick={() => navigate(`/search/?name=${search}`)}
+            onClick={() => search && navigate(`/search/?name=${search}`)}
           >
             <img src={Search} alt="search" />
           </button>
         </div>
-        <div className={classes.Buttons}>
-          <Link className={classes.Favourites} to="/favourites">
-            <img src={Favourites} alt="favourites" />
-          </Link>
-          <Link className={classes.Cart} to="/cart">
-            <img src={Cart} alt="favourites" />
-          </Link>
-        </div>
+
         {!isLoggedIn ? (
           <Link className={classes.Login} to="/login">
             <span>Login</span>

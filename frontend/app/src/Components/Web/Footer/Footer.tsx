@@ -16,12 +16,6 @@ export const Footer = () => {
               <Link className={classes.Link} to={"/user"}>
                 <li>Korisnička stranica</li>
               </Link>
-              <Link className={classes.Link} to={"/cart"}>
-                <li>Košarica</li>
-              </Link>
-              <Link className={classes.Link} to={"/favourites"}>
-                <li>Favoriti</li>
-              </Link>
             </ul>
           </div>
           <div className={classes.FooterSection}>
@@ -29,9 +23,6 @@ export const Footer = () => {
             <ul>
               <Link className={classes.Link} to={"/"}>
                 <li>Početna stranica</li>
-              </Link>
-              <Link className={classes.Link} to={"/products"}>
-                <li>Svi proizvodi</li>
               </Link>
               <Link className={classes.Link} to={"/services"}>
                 <li>Servisi</li>
@@ -65,33 +56,17 @@ export const Footer = () => {
                   021/543-318
                 </a>
               </li>
-              <li>
-                Adresa: Vukovarska  ulica 127
-              </li>
-              <li>
-                Prodajno mjesto: Velebitska ulica 71
-              </li>
+              <li>Adresa: Vukovarska ulica 127</li>
+              <li>Prodajno mjesto: Velebitska ulica 71</li>
             </ul>
-            <div className={classes.Social}>
-              <a href="https://www.facebook.com/">
-                <img src={Facebook} alt="" />
-              </a>
-              <a href="https://www.instagram.com/">
-                <img src={Instagram} alt="" />
-              </a>
-              <a href="https://www.telegram.com/">
-                <img src={Telegram} alt="" />
-              </a>
-              <a href="https://www.tiktok.com/">
-                <img src={Tiktok} alt="" />
-              </a>
-            </div>
           </div>
         </div>
         <div className={classes.Divider}></div>
         <div className={classes.Author}>
           <p>Made by</p>
-          <a href="https://www.linkedin.com/in/jan-modun-020779260">Jan Modun</a>
+          <a href="https://www.linkedin.com/in/jan-modun-020779260">
+            Jan Modun
+          </a>
         </div>
       </footer>
     </div>

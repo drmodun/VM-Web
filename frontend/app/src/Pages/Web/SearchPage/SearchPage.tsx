@@ -18,7 +18,6 @@ export const SearchPage = () => {
   const [categories, setCategories] = useState<ShortCategory[]>([]);
   const [brands, setBrands] = useState<ShortCompany[]>([]);
   const [subcategories, setSubcategories] = useState<ShortSubcategory[]>([]);
-  const [loading, setLoading] = useState(true);
 
   const productFetcher = async () => {
     const products = await getShortProducts(
@@ -66,19 +65,14 @@ export const SearchPage = () => {
     if (searchTerm.get("name") === "") return;
     window.scrollTo(0, 0);
     window.document.title = "Search";
-    productFetcher();
     categoryFetcher();
-    subcategoryFetcher();
     brandFetcher();
   }, []);
 
   useEffect(() => {
     if (searchTerm.get("name") === "") return;
-    productFetcher();
     categoryFetcher();
-    subcategoryFetcher();
     brandFetcher();
-    setLoading(false);
     window.scrollTo(0, 0);
   }, [searchTerm]);
 
@@ -107,28 +101,6 @@ export const SearchPage = () => {
           )}
         </div>
         <div className={classes.Section}>
-          <h3 className={classes.Subtitle}>
-            Subkategorije: {subcategories.length}
-          </h3>
-          {subcategories.length ? (
-            <div className={classes.SectionList}>
-              {subcategories.map((subcategory) => (
-                <ShortView
-                  subtitle={subcategory.numberOfProducts.toString()}
-                  title={subcategory.name}
-                  directory="subcategories"
-                  link={`/subcategories/${subcategory.id}`}
-                  id={subcategory.id}
-                />
-              ))}
-            </div>
-          ) : (
-            <span className={classes.NotFound}>
-              Nema pronađenih subkategorija
-            </span>
-          )}
-        </div>
-        <div className={classes.Section}>
           <h3 className={classes.Subtitle}>Brendovi: {brands.length}</h3>
           {brands.length ? (
             <div className={classes.SectionList}>
@@ -144,18 +116,6 @@ export const SearchPage = () => {
             </div>
           ) : (
             <span className={classes.NotFound}>Nema pronađenih brendova</span>
-          )}
-        </div>
-        <div className={classes.Section}>
-          <h3 className={classes.Subtitle}>Proizvodi: {products.length}</h3>
-          {products.length ? (
-            <div className={classes.ProductList}>
-              {products.map((product) => (
-                <ProductView product={product} />
-              ))}
-            </div>
-          ) : (
-            <span className={classes.NotFound}>Nema pronađenih proizvoda</span>
           )}
         </div>
       </div>
