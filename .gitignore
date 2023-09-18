@@ -363,3 +363,13 @@ MigrationBackup/
 FodyWeavers.xsd
 # Local Netlify folder
 .netlify
+/api/appsettings.json
+/Data/AdminSeed.cs
+/Data/Context.cs
+/Data/Migrations/20230905231951_added-admin.cs
+/Data/Migrations/20230905231951_added-admin.Designer.cs
+/Data/Migrations/20230905232109_added-admin-2.cs
+/Data/Migrations/20230905232109_added-admin-2.Designer.cs
+/Data/DbContextfactory.cs
+/Data/Migrations/20230905232150_added-admin-user.cs
+/Data/Migrations/20230905232150_added-admin-user.Designer.cs
