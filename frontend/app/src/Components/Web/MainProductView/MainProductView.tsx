@@ -95,7 +95,24 @@ export const MainProductView = ({ product }: Props) => {
             </div>
           </div>
           <span className={classes.Description}>{product.description}</span>
-          <span className={classes.Quantity}>{product.quantity} komada</span>
+          <div className={classes.ExpectedTimeOfArrival}>
+            <span>Dostupnost</span>
+            <span
+              className={
+                product.expectedTimeOfArrival === 0
+                  ? classes.Available
+                  : product.expectedTimeOfArrival === -1
+                  ? classes.Order
+                  : classes.NotAvailable
+              }
+            >
+              {product.expectedTimeOfArrival === 0
+                ? "U skladištu"
+                : product.expectedTimeOfArrival === -1
+                ? "Po narudžbi"
+                : product.expectedTimeOfArrival + " dana"}
+            </span>
+          </div>
           <span className={classes.Price}>{product.price} €</span>
           <div className={classes.QuantitySelector}>
             <button

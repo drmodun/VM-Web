@@ -4,6 +4,7 @@ import classes from "./CompaniesPage.module.scss";
 import companies1 from "../../../assets/companies2.png";
 import ShortView from "../../../Components/Web/ShortView";
 import { ShortCompany, getShortCompanies } from "../../../Api/CompanyApi";
+import { SortAttributeType, SortType } from "../../../Types/Enums";
 
 export const CompaniesPage = () => {
   // const [sortAttribute, setSortAttribute] = useState<SortAttributeType>(SortAttributeType.SortByName);
@@ -12,7 +13,10 @@ export const CompaniesPage = () => {
   const [companies, setCompanies] = useState<ShortCompany[]>([]);
 
   const companiesFetcher = async () => {
-    const response = await getShortCompanies();
+    const response = await getShortCompanies({
+      "Sorting.Attribute" : SortAttributeType.SortByName,
+      "Sorting.SortType" : SortType.Ascending
+    });
     if (!response?.items) return;
     setCompanies(response?.items);
   };

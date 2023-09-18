@@ -13,7 +13,7 @@ export const ProductPage = () => {
     if (response == null) {
       window.location.href = "/#/404";
       return;
-    };
+    }
     console.log(response);
     setProduct(response);
   };
@@ -39,7 +39,6 @@ export const ProductPage = () => {
           <SimilarProducts prod={product} />
         </>
       )}
-      
     </div>
   );
 };

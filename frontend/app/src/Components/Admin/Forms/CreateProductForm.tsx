@@ -37,6 +37,9 @@ export const ProductForm = ({
   const [description, setDescription] = useState<string>(
     isEdit ? item!.description : ""
   );
+  const [arrivalTime, setArrivalTime] = useState<number>(
+    isEdit ? item!.expectedTimeOfArrival : 0
+  );
   const [price, setPrice] = useState<number>(isEdit ? item!.price : 0);
   const [quantity, setQuantity] = useState<number>(isEdit ? item!.quantity : 0);
   const [category, setCategory] = useState<string>(
@@ -124,7 +127,7 @@ export const ProductForm = ({
     setSchema(isEdit ? schema : categories[0] ? categories[0].schema : {});
     setSubSchema(subcategory ? subcategory.subSchema : {});
   }, [categories, subCatgories, companies]);
-
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name.length > 50 || name.length < 3) {
@@ -161,6 +164,7 @@ export const ProductForm = ({
       name,
       description,
       price,
+      expectedTimeOfArrival: arrivalTime,
       quantity,
       categoryId: category,
       attributes: additionalInfo,
@@ -266,7 +270,12 @@ export const ProductForm = ({
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
             />
-
+            <Inputs.NumberInput
+              label="Expected Time of arrival"
+              name="arrivalTime"
+              value={arrivalTime}
+              onChange={(e) => setArrivalTime(Number(e.target.value))}
+            />
             <Inputs.SelectInput
               label="Category"
               name="category"

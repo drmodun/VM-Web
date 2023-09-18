@@ -11,7 +11,7 @@ import { Indexable } from "../Types/Interfaces";
 export interface Product {
   id: string;
   name: string;
-  
+  expectedTimeOfArrival: number;
   price: number;
   categoryId: string;
   subcategoryId: string;
@@ -37,7 +37,7 @@ export interface SimilarProps {
 export interface SimilarProduct {
   id: string;
   name: string;
-  
+
   price: number;
   isInStock: boolean;
   companyId: string;
@@ -47,7 +47,7 @@ export interface SimilarProduct {
 export interface ShortProduct {
   id: string;
   name: string;
-  
+
   price: number;
   isFavourite: boolean;
   isInCart: boolean;
@@ -71,7 +71,6 @@ export interface SimilarResponse {
 export interface NewProduct {
   id?: string;
   name: string;
-  
   price: number;
   quantity: number;
   categoryId: string;
@@ -80,6 +79,7 @@ export interface NewProduct {
   description: string;
   attributes: object;
   subAttributes: object;
+  expectedTimeOfArrival: number;
 }
 
 export interface GetAllProps {
@@ -108,7 +108,8 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (
-      (token && ["post", "put", "delete", "get"].includes(config.method || "")) ||
+      (token &&
+        ["post", "put", "delete", "get"].includes(config.method || "")) ||
       (token && config.url?.includes("short")) ||
       (token && config.url?.includes("favourite"))
     ) {
@@ -142,7 +143,9 @@ export const getProduct = async (id: string) => {
   }
 };
 
-export const createProduct = async (product: NewProduct): Promise<ActionResult | null> => {
+export const createProduct = async (
+  product: NewProduct
+): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/products", product);
     const result = response.data as ActionResult;
@@ -154,7 +157,9 @@ export const createProduct = async (product: NewProduct): Promise<ActionResult |
   }
 };
 
-export const updateProduct = async (product: NewProduct): Promise<ActionResult | null> => {
+export const updateProduct = async (
+  product: NewProduct
+): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`/products/${product.id!}`, product);
     const result = response.data as ActionResult;
@@ -192,11 +197,14 @@ export const getSimilar = async (
 
 export const getShortProducts = async (
   props: GetAllProps | {} = {}
-) : Promise<ShortProductsResponse | null> => {
+): Promise<ShortProductsResponse | null> => {
   try {
-    const response = await api.get<PaginationResult<ShortProduct>>(`/products/short`, {
-      params: props,
-    });
+    const response = await api.get<PaginationResult<ShortProduct>>(
+      `/products/short`,
+      {
+        params: props,
+      }
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {

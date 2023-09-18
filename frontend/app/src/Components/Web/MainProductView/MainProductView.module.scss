@@ -1,309 +1,354 @@
+$backgorundColor : #F2F2F2;
+
 .Container {
-    background-color: transparent;
-    padding: 45px 3vw;
+  background-color: transparent;
+  padding: 45px 3vw;
+  width: 100%;
+  height: 800px;
+  @media screen and (max-width: 768px) {
     width: 100%;
-    height: 800px;
-    @media screen and (max-width: 768px) {
-        width: 100%;
-        padding: 45px 0px;
-        height: fit-content;
-        align-items: center;
-    }
+    padding: 45px 0px;
+    height: fit-content;
+    align-items: center;
+  }
+  display: flex;
+  flex-direction: column;
+  .Product {
+    flex-direction: row;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    .Product {
-        flex-direction: row;
-        width: 100%;
-        display: flex;
-        align-items: flex-start;
-        @media screen and (max-width: 768px) {
-            align-self: center;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .Image {
-            min-width: 33vw;
-            height: 33vw;
-            display: flex;
-            margin-right: 40px;
-            justify-content: center;
-            border-radius: 20px;
-            align-items: center;
-            @media screen and (max-width: 768px) {
-                width: 100%;
-                height: 90vw;
-                margin-bottom: 20px;
-                margin-right: 0px;
-            }
-            background-color: #fff;
-            &:hover {
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            }
-            img {
-                width: 23vw;
-                height: 23vw;
-                @media screen and (max-width: 768px) {
-                    width: 90%;
-                    height: 90%;
-                }
-            }
-        }
-        .ProductInfo {
-            display: flex;
-            flex-direction: column;
-            width: 20vw;
-            height: 100%;
-            align-items: flex-start;
-            justify-content: flex-start;
-            @media screen and (max-width: 768px) {
-                width: 100%;
-            }
-            .Title {
-                font-family: Nuckle;
-                font-size: 30px;
-                color: var(--text-main, #1e1e1e);
-                margin-bottom: 15px;
-                font-weight: 800;
-            }
-            .Description {
-                color: var(--text-main, #1e1e1e);
-                font-family: Nuckle;
-                font-size: 24px;
-                font-style: normal;
-                font-weight: 591;
-                line-height: normal;
-                min-height: 150px;
-                max-width: 100%;
-                word-wrap: break-word;
-                margin-bottom: 15px;
-                @media screen and (max-width: 768px) {
-                    max-width: 100%;
-                    min-height: 100px;
-                    font-size: 18px;
-                }
-            }
-            .Price {
-                color: var(--background-main-color, #0d63f3);
-                font-family: Nuckle;
-                font-size: 48px;
-                font-weight: 591;
-                margin-bottom: 35px;
-            }
-            .Quantity {
-                color: var(--text-main, #1e1e1e);
-                font-family: Nuckle;
-                font-size: 18px;
-                font-weight: 591;
-                margin-bottom: 35px;
-                @media screen and (max-width: 768px) {
-                    margin-bottom: 10px;
-                }
-            }
-            .QuantitySelector {
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 35px;
-                .Button {
-                    width: 70px;
-                    padding: 15px;
-                    font-size: 24px;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 10px;
-                    border: 2px solid #0d63f3;
-                    background-color: white;
-                    color: #0d63f3;
-                    display: flex;
-                    height: 70px;
-                    &:hover {
-                        cursor: pointer;
-                        background-color: #0d63f3;
-                        color: white;
-                        border-color: white;
-                    }
-                    &:active {
-                        background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                        color: white;
-                        border-color: white;
-                    }
-                }
-                .SelectedQuantity {
-                    margin: 0px 30px;
-                    width: 100px;
-                    padding: 15px;
-                    font-size: 24px;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 10px;
-                    border: 2px solid #0d63f3;
-                    background-color: #0d63f3;
-                    color: white;
-                    display: flex;
-                    @media screen and (max-width: 768px) {
-                        width: 120px;
-                    }
-                    height: 70px;
-                    &:hover {
-                        cursor: pointer;
-                        background-color: #0d63f3;
-                        color: white;
-                        border-color: white;
-                    }
-                }
-            }
-            .Sub {
-                flex-direction: column;
-                display: flex;
-                margin-bottom: 40px;
-                @media screen and (max-width: 768px) {
-                    margin-bottom: 20px;
-                    width: 100%;
-                }
-                .Linked {
-                    width: 25vw;
-                    height: 30px;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    margin-bottom: 10px;
-                    align-items: center;
-                    @media screen and (max-width: 768px) {
-                        width: 100%;
-                    }
-                    > span {
-                        font-size: 20px;
-                        font-family: Nuckle;
-                        font-weight: 600;
-                    }
-                    .SubLink {
-                        text-decoration: none;
-                        color: #0d63f3;
-                        font-family: Nuckle;
-                        font-size: 18px;
-                        font-weight: 591;
-                        &:hover {
-                            text-decoration: underline;
-                        }
-                        &:active {
-                            color: #4d5ef6;
-                        }
-                    }
-                }
-            }
-            .Buttons {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 30px;
-                @media screen and (max-width: 768px) {
-                    width: 100%;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-                > .Update {
-                    width: 14vw;
-                    min-width: 170px;
-                    height: 52px;
-                    text-decoration: none;
-                    color: #fff;
-                    display: flex;
-                    margin-right: 40px;
-                    font-size: 18px;
-                    padding: 15px 0px;
-                    border: none;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 8px;
-                    @media screen and (max-width: 768px) {
-                        width: 100%;
-                        height: 90px;
-                        font-size: 14px;
-                        margin-right: 20px;
-                        min-width: 0px;
-                    }
-                    &:last-child {
-                        margin-right: 0px;
-                    }
-                    background: var(--background-main-color, #75e093);
-                    &:hover {
-                        cursor: pointer;
-                        background: #20bf86;
-                    }
-                    //TOD: add removal on single product page
-                    &:active {
-                        background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                    }
-                }
-                > .Inactive {
-                    width: 14vw;
-                    min-width: 170px;
-                    height: 52px;
-                    text-decoration: none;
-                    color: #fff;
-                    display: flex;
-                    margin-right: 40px;
-                    font-size: 18px;
-                    padding: 15px 0px;
-                    border: none;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 8px;
-                    @media screen and (max-width: 768px) {
-                        width: 100%;
-                        height: 90px;
-                        font-size: 14px;
-                        margin-right: 20px;
-                        min-width: 0px;
-                    }
-                    &:last-child {
-                        margin-right: 0px;
-                    }
-                    background: var(--background-main-color, #d9d9d9);
-                    &:hover {
-                        cursor: pointer;
-                        background: #979797;
-                    }
-                    &:active {
-                        background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                    }
-                }
-                > .Active {
-                    width: 14vw;
-                    min-width: 170px;
-                    height: 52px;
-                    text-decoration: none;
-                    color: #fff;
-                    display: flex;
-                    margin-right: 40px;
-                    font-size: 18px;
-                    padding: 15px 0px;
-                    border: none;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 8px;
-                    @media screen and (max-width: 768px) {
-                        width: 100%;
-                        height: 90px;
-                        font-size: 14px;
-                        margin-right: 20px;
-                        min-width: 0px;
-                    }
-                    &:last-child {
-                        margin-right: 0px;
-                    }
-                    background: var(--background-main-color, #0d63f3);
-                    &:hover {
-                        cursor: pointer;
-                        background: #4d5ef6;
-                    }
-                    &:active {
-                        background: var(--button-gradient, linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%));
-                    }
-                }
-            }
-        }
+    align-items: flex-start;
+    @media screen and (max-width: 768px) {
+      align-self: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+    .Image {
+      min-width: 33vw;
+      height: 33vw;
+      display: flex;
+      margin-right: 40px;
+      justify-content: center;
+      border-radius: 20px;
+      align-items: center;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        height: 90vw;
+        margin-bottom: 20px;
+        margin-right: 0px;
+      }
+      background-color: #fff;
+      &:hover {
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+      img {
+        width: 23vw;
+        height: 23vw;
+        @media screen and (max-width: 768px) {
+          width: 90%;
+          height: 90%;
+        }
+      }
+    }
+    .ProductInfo {
+      display: flex;
+      flex-direction: column;
+      width: 33vw;
+      height: 100%;
+      align-items: flex-start;
+      justify-content: flex-start;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+      .Title {
+        font-family: Nuckle;
+        font-size: 30px;
+        color: var(--text-main, #1e1e1e);
+        margin-bottom: 15px;
+        font-weight: 800;
+      }
+      .Description {
+        color: var(--text-main, #1e1e1e);
+        font-family: Nuckle;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 591;
+        line-height: normal;
+        min-height: 150px;
+        max-width: 100%;
+        word-wrap: break-word;
+        margin-bottom: 15px;
+        @media screen and (max-width: 768px) {
+          max-width: 100%;
+          min-height: 100px;
+          font-size: 18px;
+        }
+      }
+      .Price {
+        color: var(--background-main-color, #0d63f3);
+        font-family: Nuckle;
+        font-size: 48px;
+        font-weight: 591;
+        margin-bottom: 35px;
+      }
+      .Quantity {
+        color: var(--text-main, #1e1e1e);
+        font-family: Nuckle;
+        font-size: 18px;
+        font-weight: 591;
+        margin-bottom: 35px;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 10px;
+        }
+      }
+      .QuantitySelector {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 35px;
+        .Button {
+          width: 70px;
+          padding: 15px;
+          font-size: 24px;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          border: 2px solid #0d63f3;
+          background-color: white;
+          color: #0d63f3;
+          display: flex;
+          height: 70px;
+          &:hover {
+            cursor: pointer;
+            background-color: #0d63f3;
+            color: white;
+            border-color: white;
+          }
+          &:active {
+            background: var(
+              --button-gradient,
+              linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+            );
+            color: white;
+            border-color: white;
+          }
+        }
+        .SelectedQuantity {
+          margin: 0px 30px;
+          width: 100px;
+          padding: 15px;
+          font-size: 24px;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          border: 2px solid #0d63f3;
+          background-color: #0d63f3;
+          color: white;
+          display: flex;
+          @media screen and (max-width: 768px) {
+            width: 120px;
+          }
+          height: 70px;
+          &:hover {
+            cursor: pointer;
+            background-color: #0d63f3;
+            color: white;
+            border-color: white;
+          }
+        }
+      }
+      .Sub {
+        flex-direction: column;
+        display: flex;
+        margin-bottom: 40px;
+        @media screen and (max-width: 768px) {
+          margin-bottom: 20px;
+          width: 100%;
+        }
+        .Linked {
+          width: 33vw;
+          height: 30px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          align-items: center;
+          @media screen and (max-width: 768px) {
+            width: 100%;
+          }
+          > span {
+            font-size: 20px;
+            font-family: Nuckle;
+            font-weight: 600;
+          }
+          .SubLink {
+            text-decoration: none;
+            color: #0d63f3;
+            font-family: Nuckle;
+            font-size: 18px;
+            font-weight: 591;
+            &:hover {
+              text-decoration: underline;
+            }
+            &:active {
+              color: #4d5ef6;
+            }
+          }
+        }
+      }
+      .ExpectedTimeOfArrival {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 20px 0px;
+        > span {
+          font-size: 20px;
+          font-family: Nuckle;
+          font-weight: 600;
+        }
+        > .Available {
+          color: #20bf86;
+          font-family: Nuckle;
+          font-size: 18px;
+          font-weight: 591;
+        }
+        > .Order {
+          color: #f64d4d;
+          font-family: Nuckle;
+          font-size: 18px;
+          font-weight: 591;
+        }
+        > .NotAvailable {
+          color: #0d63f3;
+          font-family: Nuckle;
+          font-size: 18px;
+          font-weight: 591;
+        }
+      }
+      .Buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        > .Update {
+          width: 14vw;
+          min-width: 170px;
+          height: 52px;
+          text-decoration: none;
+          color: #fff;
+          display: flex;
+          margin-right: 40px;
+          font-size: 18px;
+          padding: 15px 0px;
+          border: none;
+          justify-content: center;
+          align-items: center;
+          border-radius: 8px;
+          @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 90px;
+            font-size: 14px;
+            margin-right: 20px;
+            min-width: 0px;
+          }
+          &:last-child {
+            margin-right: 0px;
+          }
+          background: var(--background-main-color, #75e093);
+          &:hover {
+            cursor: pointer;
+            background: #20bf86;
+          }
+          //TOD: add removal on single product page
+          &:active {
+            background: var(
+              --button-gradient,
+              linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+            );
+          }
+        }
+        > .Inactive {
+          width: 14vw;
+          min-width: 170px;
+          height: 52px;
+          text-decoration: none;
+          color: #fff;
+          display: flex;
+          margin-right: 40px;
+          font-size: 18px;
+          padding: 15px 0px;
+          border: none;
+          justify-content: center;
+          align-items: center;
+          border-radius: 8px;
+          @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 90px;
+            font-size: 14px;
+            margin-right: 20px;
+            min-width: 0px;
+          }
+          &:last-child {
+            margin-right: 0px;
+          }
+          background: var(--background-main-color, #d9d9d9);
+          &:hover {
+            cursor: pointer;
+            background: #979797;
+          }
+          &:active {
+            background: var(
+              --button-gradient,
+              linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+            );
+          }
+        }
+        > .Active {
+          width: 14vw;
+          min-width: 170px;
+          height: 52px;
+          text-decoration: none;
+          color: #fff;
+          display: flex;
+          margin-right: 40px;
+          font-size: 18px;
+          padding: 15px 0px;
+          border: none;
+          justify-content: center;
+          align-items: center;
+          border-radius: 8px;
+          @media screen and (max-width: 768px) {
+            width: 100%;
+            height: 90px;
+            font-size: 14px;
+            margin-right: 20px;
+            min-width: 0px;
+          }
+          &:last-child {
+            margin-right: 0px;
+          }
+          background: var(--background-main-color, #0d63f3);
+          &:hover {
+            cursor: pointer;
+            background: #4d5ef6;
+          }
+          &:active {
+            background: var(
+              --button-gradient,
+              linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%)
+            );
+          }
+        }
+      }
+    }
+  }
 }

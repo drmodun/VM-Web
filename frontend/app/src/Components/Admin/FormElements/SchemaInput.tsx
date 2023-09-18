@@ -7,7 +7,6 @@ interface SchemaInputProps {
   onChange: Function;
 }
 
-
 export const SchemaInput = (props: SchemaInputProps) => {
   return (
     <div className={classes.Element}>
@@ -18,6 +17,7 @@ export const SchemaInput = (props: SchemaInputProps) => {
             <div className={classes.SchemaAttribute}>
               <button
                 className={classes.RemoveButton}
+                type="button"
                 onClick={() => {
                   const newSchema = { ...props.value };
                   delete Object.assign(newSchema, {
@@ -33,11 +33,10 @@ export const SchemaInput = (props: SchemaInputProps) => {
                 type="text"
                 value={key}
                 onChange={(e) => {
-                  const newSchema = { ...props.value };
-                  delete Object.assign(newSchema, {
-                    [e.target.value]: newSchema[key],
-                  })[key];
-                  props.onChange(newSchema);
+                  props.onChange({
+                    ...props.value,
+                    [e.target.value]: props.value[key],
+                  });
                 }}
               />
               <input
@@ -52,7 +51,8 @@ export const SchemaInput = (props: SchemaInputProps) => {
             </div>
           );
         })}
-        <button type="button"
+        <button
+          type="button"
           className={classes.AddButton}
           onClick={() => {
             const newSchema = { ...props.value };
