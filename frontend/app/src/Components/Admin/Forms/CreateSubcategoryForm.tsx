@@ -103,8 +103,10 @@ export const SubcategoryForm = ({
     const response = isEdit
       ? await updateSubcategory(newSubcategory)
       : await createSubcategory(newSubcategory);
-    if (!response) return;
-    const upload: boolean = await handleFileUpload(
+if (!response) {
+      setStatus("Something went wrong");
+      return;
+    }    const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
     response?.success && (upload || !file)

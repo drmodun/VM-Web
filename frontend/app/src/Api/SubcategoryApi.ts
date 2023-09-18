@@ -9,7 +9,6 @@ import {
 } from "./Shared";
 import { Indexable } from "../Types/Interfaces";
 import { ShortCompany } from "./CompanyApi";
-import { ActionFunction } from "react-router-dom";
 
 export interface Subcategory {
   id: string;

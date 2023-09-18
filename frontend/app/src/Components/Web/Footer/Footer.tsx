@@ -91,7 +91,7 @@ export const Footer = () => {
         <div className={classes.Divider}></div>
         <div className={classes.Author}>
           <p>Made by</p>
-          <a href="/about">Jan Modun</a>
+          <a href="https://www.linkedin.com/in/jan-modun-020779260">Jan Modun</a>
         </div>
       </footer>
     </div>

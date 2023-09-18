@@ -1,12 +1,8 @@
-import React from 'react';
-import { Router } from './Components/Router';
-import "./assets/fonts/stylesheet.css"
-
+import { Router } from "./Components/Router";
+import "./assets/fonts/stylesheet.css";
 
 function App() {
-  return (
-    <Router/>
-  );
+  return <Router />;
 }
 
 export default App;

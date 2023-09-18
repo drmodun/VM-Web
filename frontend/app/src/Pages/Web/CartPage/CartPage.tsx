@@ -74,9 +74,8 @@ export const CartPage = () => {
           <div className={classes.Empty}>
             <h1>Vaša košarica je prazna, dodajte proizvode na </h1>
             <p>
-              Go to the <a href="/">home page</a> or{" "}
-              <a href="/#/products">the product page</a> to add items to your
-              cart
+              Otiđite na<a href="/"> početnu stranicu </a>ili{" "}
+              <a href="/#/products">strnaicu za produkte</a> da dodate proizvode u svoju košaricu
             </p>
           </div>
         )}

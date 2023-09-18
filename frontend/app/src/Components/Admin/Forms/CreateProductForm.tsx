@@ -174,8 +174,10 @@ export const ProductForm = ({
     const response = isEdit
       ? await updateProduct(product)
       : await createProduct(product);
-    await createProduct(product);
-    if (!response) return;
+    if (!response) {
+      setStatus("Something went wrong");
+      return;
+    }
     const upload: boolean = await handleFileUpload(
       isEdit ? item!.id! : response.id!
     );
