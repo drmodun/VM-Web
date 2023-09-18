@@ -1,155 +1,162 @@
+.Container {
+  width: 100%;
+}
 .Service {
-    width: 70vw;
-    height: 24vw;
-    background: #fff;
+  width: 100%;
+  height: 24vw;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: 770px) {
+    width: 88vw;
+    height: 100%;
     border-radius: 20px;
+    flex-direction: column;
+  }
+  &:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  .Image {
+    width: 35%;
+    height: 24vw;
+    border-radius: 10px 0px 0px 10px;
     display: flex;
-    flex-direction: row;
     @media screen and (max-width: 770px) {
-        width: 88vw;
-        height: 100%;
-        border-radius: 20px;
-        flex-direction: column;
+      width: 88vw;
+      height: 88vw;
+      border-radius: 20px 20px 0px 0px;
     }
-    &:hover {
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    > img {
+      width: 100%;
+      height: 100%;
+      border-right: #2d2d2d 1px solid;
+      border-radius: 10px 0px 0px 10px;
+      object-fit: cover;
+      @media screen and (max-width: 770px) {
+        border-radius: 20px 20px 0px 0px;
+        border-right: none;
+        border-bottom: #2d2d2d 1px solid;
+      }
     }
-    .Image {
-        width: 24vw;
-        height: 24vw;
-        border-radius: 10px 0px 0px 10px;
+  }
+  .Info {
+    width: 65%;
+    flex-direction: column;
+    display: flex;
+    padding: 40px 20px;
+    @media screen and (max-width: 770px) {
+      width: 88vw;
+      padding: 20px 20px;
+    }
+    .Name {
+      color: #2d2d2d;
+      font-family: Nuckle;
+      font-size: 2.8vw;
+      font-style: normal;
+      font-weight: 700;
+      margin-bottom: 1vw;
+      @media screen and (max-width: 770px) {
+        font-size: 7vw;
+        margin-bottom: 3vw;
+      }
+    }
+    .Type {
+      color: #6d6d6d;
+      font-family: Nuckle;
+      font-size: 1.5vw;
+      font-style: normal;
+      font-weight: 600;
+      margin-bottom: 1.4vw;
+      @media screen and (max-width: 770px) {
+        font-size: 4vw;
+        margin-bottom: 3.5vw;
+      }
+    }
+    .Description {
+      color: #6d6d6d;
+      font-family: Nuckle;
+      font-size: 1vw;
+      font-style: normal;
+      max-width: 100%;
+      word-wrap: break-word;
+      font-weight: 500;
+      @media screen and (max-width: 770px) {
+        font-size: 3vw;
+        min-height: 15vw;
+      }
+    }
+    .Price {
+      display: flex;
+      margin-bottom: 10px;
+      width: 100%;
+      justify-content: flex-end;
+      font-family: Nuckle;
+      font-size: 2vw;
+      text-decoration: none;
+      color: #0d63f3;
+      font-weight: 800;
+      @media screen and (max-width: 770px) {
+        font-size: 6vw;
+        margin-bottom: 20px;
+      }
+    }
+    .Bottom {
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      @media screen and (max-width: 770px) {
+        align-items: center;
+      }
+      > .Button {
+        min-width: 150px;
+        width: 13vw;
+        min-height: 50px;
+        height: 3.5vw;
+        text-decoration: none;
+        color: #fff;
         display: flex;
+        padding: 10px 0px;
+        justify-content: center;
+        font-family: Nuckle;
+        border: none;
+        align-items: center;
+        border-radius: 8px;
+        background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
+        font-size: 1.8vw;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.09px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: none;
         @media screen and (max-width: 770px) {
-            width: 88vw;
-            height: 88vw;
-            border-radius: 20px 20px 0px 0px;
+          width: 75vw;
+          height: 10vw;
+          font-size: 4vw;
         }
-        > img {
-            width: 100%;
-            height: 100%;
-            border-right: #2d2d2d 1px solid;
-            border-radius: 10px 0px 0px 10px;
-            object-fit: cover;
-            @media screen and (max-width: 770px) {
-                border-radius: 20px 20px 0px 0px;
-                border-right: none;
-                border-bottom: #2d2d2d 1px solid;
-            }
+        &:hover {
+          cursor: pointer;
+          background: var(
+            --button-gradient-20,
+            linear-gradient(
+              270deg,
+              rgba(77, 94, 246, 0.2) 0%,
+              rgba(246, 77, 77, 0.2) 100%
+            )
+          );
+          color: black;
         }
+        &:active {
+          background: var(--background-main-color-hover, #0d63f3);
+          color: #fff;
+        }
+      }
     }
-    .Info {
-        width: 46vw;
-        flex-direction: column;
-        display: flex;
-        padding: 40px 20px;
-        @media screen and (max-width: 770px) {
-            width: 88vw;
-            padding: 20px 20px;
-        }
-        .Name {
-            color: #2d2d2d;
-            font-family: Nuckle;
-            font-size: 2.8vw;
-            font-style: normal;
-            font-weight: 700;
-            margin-bottom: 1vw;
-            @media screen and (max-width: 770px) {
-                font-size: 7vw;
-                margin-bottom: 3vw;
-            }
-        }
-        .Type {
-            color: #6d6d6d;
-            font-family: Nuckle;
-            font-size: 1.5vw;
-            font-style: normal;
-            font-weight: 600;
-            margin-bottom: 1.4vw;
-            @media screen and (max-width: 770px) {
-                font-size: 4vw;
-                margin-bottom: 3.5vw;
-            }
-        }
-        .Description {
-            color: #6d6d6d;
-            font-family: Nuckle;
-            font-size: 1vw;
-            font-style: normal;
-            max-width: 100%;
-            word-wrap: break-word;
-            font-weight: 500;
-            @media screen and (max-width: 770px) {
-                font-size: 3vw;
-                min-height: 15vw;
-            }
-        }
-        .Price {
-            display: flex;
-            margin-bottom: 10px;
-            width: 100%;
-            justify-content: flex-end;
-            font-family: Nuckle;
-            font-size: 2vw;
-            text-decoration: none;
-            color: #0d63f3;
-            font-weight: 800;
-            @media screen and (max-width: 770px) {
-                font-size: 6vw;
-                margin-bottom: 20px;
-            }
-        }
-        .Bottom {
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-end;
-            @media screen and (max-width: 770px) {
-                align-items: center;
-            }
-            > .Button {
-                min-width: 150px;
-                width: 13vw;
-                min-height: 50px;
-                height: 3.5vw;
-                text-decoration: none;
-                color: #fff;
-                display: flex;
-                padding: 10px 0px;
-                justify-content: center;
-                font-family: Nuckle;
-                border: none;
-                align-items: center;
-                border-radius: 8px;
-                background: linear-gradient(270deg, #4d5ef6 0%, #f64d4d 100%);
-                font-size: 1.8vw;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;
-                letter-spacing: 0.09px;
-                text-align: center;
-                text-decoration: none;
-                text-transform: none;
-                @media screen and (max-width: 770px) {
-                    width: 75vw;
-                    height: 10vw;
-                    font-size: 4vw;
-                }
-                &:hover {
-                    cursor: pointer;
-                    background: var(
-                        --button-gradient-20,
-                        linear-gradient(270deg, rgba(77, 94, 246, 0.2) 0%, rgba(246, 77, 77, 0.2) 100%)
-                    );
-                    color: black;
-                }
-                &:active {
-                    background: var(--background-main-color-hover, #0d63f3);
-                    color: #fff;
-                }
-            }
-        }
-    }
+  }
 }
