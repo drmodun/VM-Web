@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	
 	<PropertyGroup>
-		<ContainerImageName>products-crud-api</ContainerImageName>
+		<ContainerImageName>api</ContainerImageName>
 		<ContainerImageTags>latest</ContainerImageTags>
 		<PublishProfile>DefaultContainer</PublishProfile>
 		<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
