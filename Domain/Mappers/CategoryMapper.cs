@@ -14,6 +14,8 @@ namespace Domain.Mappers
                 Name = category.Name,
                 Description = category.Description,
                 Schema = category.Schema,
+                Website = category.Website
+                
             };
         }
         public static Category ToEntity(CreateCategoryRequest request)
@@ -32,6 +34,7 @@ namespace Domain.Mappers
             {
                 Schema = request.Schema,
                 Name = request.Name,
+                Website = request.Website,
                 Description = request.Description,
                 Id = request.Id
             };
@@ -43,6 +46,7 @@ namespace Domain.Mappers
                 Id = category.Id,
                 Name = category.Name,
                 NumberOfProducts = category.Products.Count(),
+                Website = category.Website
             };
         }
         public static GetLargeCategoryResponse ToLarge(Category category)
@@ -52,6 +56,7 @@ namespace Domain.Mappers
                 Id = category.Id,
                 Name = category.Name,
                 Description = category.Description,
+                Website = category.Website,
                 Subcategories = category.Subcategories.Select(SubcategoryMapper.ToShort).ToList(),
                 Brands = category.Products.DistinctBy(x => x.CompanyId)
                 .Select(x => CompanyMapper.ToShort(x.Company))
