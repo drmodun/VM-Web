@@ -14,6 +14,7 @@ import { SortAttributeType, SortType } from "../../../Types/Enums";
 import { PageInfo } from "../../../Api/Shared";
 import Pagination from "../../../Components/Web/Pagination";
 import Switch from "../../../Components/Web/Switch";
+import { ShortCompany } from "../../../Api/CompanyApi";
 
 export const CategoryPage = () => {
   const { categoryId } = useParams();
@@ -115,13 +116,13 @@ export const CategoryPage = () => {
         <span className={classes.SubHeader}>Brendovi</span>
         {category.brands?.length! ? (
           <div className={classes.Companies}>
-            {category?.brands.map((company) => (
+            {category?.brands.map((company: ShortCompany) => (
               <ShortView
                 id={company.id}
                 title={company.name}
                 directory="companies"
                 subtitle={company.numberOfProducts.toString()}
-                link={`/brands/${company.id}`}
+                link={company.website ?? ""}
               />
             ))}
           </div>

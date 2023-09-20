@@ -21,7 +21,7 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
   const [description, setDescription] = useState<string>(
     isEdit ? item!.description : ""
   );
-  const [schema, setSchema] = useState<Indexable>(isEdit ? item!.schema : {});
+  const [website, setWebsite] = useState<string>(item?.website || "");
   const [status, setStatus] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -65,16 +65,13 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
       setStatus("Error: Description must be between 3 and 100 characters");
       return;
     }
-    if (Object.keys(schema).length < 1) {
-      setStatus("Error: Schema must have at least one attribute");
-      return;
-    }
+
     setStatus("Loading...");
     const newCategory: NewCategory = {
       id: isEdit ? item!.id : undefined,
       name,
       description,
-      schema,
+      website,
     };
 
     const response = isEdit
@@ -111,11 +108,11 @@ export const CategoryForm = ({ isEdit, item, reload }: Props) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Inputs.SchemaInput
-          label="Schema"
-          name="schema"
-          value={schema}
-          onChange={setSchema}
+        <Inputs.TextInput
+          label="Website"
+          name="website"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
         />
         <input type="file" onChange={handleFileChange} />
         <button type="submit">{isEdit ? "Edit" : "Create"} Category</button>

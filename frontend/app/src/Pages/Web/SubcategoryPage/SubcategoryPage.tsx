@@ -31,7 +31,7 @@ export const SubcategoryPage = () => {
     if (response == null) {
       window.location.href = "/#/404";
       return;
-    };
+    }
     setSubcategory(response);
   };
 
@@ -110,7 +110,7 @@ export const SubcategoryPage = () => {
                 directory="companies"
                 id={company.id}
                 subtitle={company.numberOfProducts.toString()}
-                link={`/brands/${company.id}`}
+                link={company.website ?? ""}
               />
             ))}
           </div>
@@ -119,7 +119,9 @@ export const SubcategoryPage = () => {
         )}
         <div className={classes.ProductsSection}>
           <div className={classes.ProductsHeader}>
-            <span className={classes.SubHeader} id="#products">Proizvodi</span>
+            <span className={classes.SubHeader} id="#products">
+              Proizvodi
+            </span>
             <div className={classes.Sorting}>
               <div className={classes.Sort}>
                 <span>Sortiraj po:</span>

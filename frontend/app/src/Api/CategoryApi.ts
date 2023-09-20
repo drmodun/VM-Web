@@ -16,15 +16,17 @@ import { ShortCompany } from "./CompanyApi";
 export interface Category {
   id: string;
   name: string;
-  schema: Indexable;
+  schema?: Indexable;
   description: string;
+  website?: string;
 }
 
 export interface NewCategory {
   id?: string;
   name: string;
-  schema: object;
+  schema?: object;
   description: string;
+  website?: string;
 }
 
 export interface GetLargeCategory {
@@ -48,6 +50,7 @@ export interface ShortCategory {
   id: string;
   name: string;
   numberOfProducts: number;
+  website?: string;
 }
 
 const api = axios.create({

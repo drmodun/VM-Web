@@ -209,7 +209,7 @@ export const Homepage = () => {
                       directory="categories"
                       id={category.id}
                       key={category.id}
-                      link={`/categories/${category.id}`}
+                      link={category.website ?? ""}
                       title={category.name}
                       subtitle={category.numberOfProducts.toString()}
                     />
@@ -232,7 +232,7 @@ export const Homepage = () => {
                   return (
                     <ShortView
                       key={brand.id}
-                      link={`/brands/${brand.id}`}
+                      link={brand.website ?? ""}
                       directory="companies"
                       id={brand.id}
                       title={brand.name}

@@ -20,25 +20,20 @@ export const ShortView = ({
   id,
 }: Props) => {
   return (
-    <Link to={link} className={classes.Link}>
+    <Link to={`https://www.microline.hr/EUWeb/StartEU.ashx?_command=showGroup&group=${link}`} className={classes.Link}>
       <div className={isShort ? classes.ShortContainer : classes.Container}>
         <div className={classes.Item}>
           <div className={classes.Image}>
             <img
-              src={
-                `https://media0testing.blob.core.windows.net/vm-racunala/${directory}/${id}`
-              }
-              onError={
-                (e) => {
-                  e.currentTarget.src = Placeholder;
-                }
-              }
+              src={`https://media0testing.blob.core.windows.net/vm-racunala/${directory}/${id}`}
+              onError={(e) => {
+                e.currentTarget.src = Placeholder;
+              }}
               alt={title}
             />
           </div>
           <div className={classes.ItemInfo}>
             <span className={classes.Name}>{title}</span>
-            <span className={classes.Subtitle}>Produkti: ({subtitle})</span>
           </div>
         </div>
       </div>
