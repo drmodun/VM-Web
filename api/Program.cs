@@ -69,7 +69,6 @@ namespace api
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
 
             app.UseAuthorization();
             app.UseMiddleware<ValidationMappingMiddleware>();

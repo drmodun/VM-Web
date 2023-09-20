@@ -26,6 +26,7 @@ namespace Domain.Mappers
                 Name = request.Name,
                 Description = request.Description,
                 Id = Guid.NewGuid(),
+                Website = request.Website
             };
         }
         public static Category ToUpdated(PutCategoryRequest request)
