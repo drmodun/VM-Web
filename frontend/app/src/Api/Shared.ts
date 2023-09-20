@@ -1,7 +1,9 @@
-export const baseUrl: string = "https://vm-racunala.azurewebsites.net/api"; // for dev
+//export const baseUrl: string = "https://vm-racunala.azurewebsites.net/api"; // for dev
 //export const baseUrl: string = "https://vm-dev.azurewebsites.net/api/"; // for (ironically) production
 //export const baseUrl: string = "https://localhost:7069/api";
 // for local testing
+export const baseUrl: string =
+  "http://ec2-3-76-202-74.eu-central-1.compute.amazonaws.com/api";
 export let jwt: string = localStorage.getItem("token") || "";
 
 export const setJwt = (token: string) => {
@@ -14,7 +16,7 @@ export const setJwt = (token: string) => {
 export let accountInfo =
   localStorage.getItem("token") &&
   new Date(localStorage.getItem("loginTime") ?? "") >
-  new Date(Date.now() - 1000 * 60 * 60 * 8) &&
+    new Date(Date.now() - 1000 * 60 * 60 * 8) &&
   parseJwt(jwt);
 
 export function parseJwt(token: string) {
@@ -59,4 +61,3 @@ export interface PaginationResult<T> {
   pageInfo: PageInfo;
   items: T[];
 }
-
