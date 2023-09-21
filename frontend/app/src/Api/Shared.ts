@@ -3,7 +3,7 @@
 //export const baseUrl: string = "https://localhost:7069/api";
 // for local testing
 export const baseUrl: string =
-  "http://ec2-3-66-84-194.eu-central-1.compute.amazonaws.com/api";
+  "http://ec2-3-68-231-122.eu-central-1.compute.amazonaws.com/api";
 export let jwt: string = localStorage.getItem("token") || "";
 
 export const setJwt = (token: string) => {

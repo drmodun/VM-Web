@@ -121,6 +121,7 @@ export const CategoryPage = () => {
                 id={company.id}
                 title={company.name}
                 directory="companies"
+                isCompany
                 subtitle={company.numberOfProducts.toString()}
                 link={company.website ?? ""}
               />

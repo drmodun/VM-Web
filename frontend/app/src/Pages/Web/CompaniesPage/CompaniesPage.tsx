@@ -49,6 +49,7 @@ export const CompaniesPage = () => {
                   title={company.name}
                   subtitle={company.numberOfProducts.toString()}
                   directory="companies"
+                  isCompany
                   id={company.id}
                   link={company.website ?? ""}
                 />

@@ -80,6 +80,7 @@ export const Homepage = () => {
       "Sorting.Attribute": SortAttributeType.SortByName,
       "Sorting.SortType": SortType.Descending,
     });
+    console.log(response);
     setBrands(response?.items!);
   };
 
@@ -236,6 +237,7 @@ export const Homepage = () => {
                       directory="companies"
                       id={brand.id}
                       title={brand.name}
+                      isCompany
                       subtitle={brand.numberOfProducts.toString()}
                     />
                   );
