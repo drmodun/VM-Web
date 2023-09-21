@@ -10,15 +10,11 @@ import UsersPage from "../Pages/Admin/IndexPages/UsersPage";
 import { UserPage } from "../Pages/Admin/SingleItemPages/UserPage/UserPage";
 import CategoriesPage from "../Pages/Admin/IndexPages/CategoriesPage";
 import { CategoryPage } from "../Pages/Admin/SingleItemPages/CategoryPage/CategoryPage";
-import { SubcategoriesPage } from "../Pages/Admin/IndexPages/SubcategoriesPage/SubcategoriesPage";
-import { SubcategoryPage } from "../Pages/Admin/SingleItemPages/SubcategoryPage/SubcategoryPage";
 import { CompaniesPage } from "../Pages/Admin/IndexPages/CompaniesPage/CompaniesPage";
 import { CompanyPage } from "../Pages/Admin/SingleItemPages/CompanyPage/CompanyPage";
 import WebSubcategoryPage from "../Pages/Web/SubcategoryPage";
 import { ServicesPage } from "../Pages/Admin/IndexPages/ServicesPage/ServicesPage";
 import { ServicePage } from "../Pages/Admin/SingleItemPages/ServicePage/ServicePage";
-import { ProductsPage } from "../Pages/Admin/IndexPages/ProductsPage/ProductsPage";
-import { ProductPage } from "../Pages/Admin/SingleItemPages/ProductPage/ProductPage";
 import { PreviousClientsPage } from "../Pages/Admin/IndexPages/PreviousClient/PreviousClientsPage";
 import WebCategoryPage from "../Pages/Web/CategoryPage";
 import { PreviousClientPage } from "../Pages/Admin/SingleItemPages/PreviousClient/PreviousClientPage";
@@ -58,22 +54,10 @@ const router = createHashRouter(
             new Date(Date.now() - 1000 * 60 * 60 * 8) && (
             <>
               <Route path="/admin" element={<AdminHomepage />}></Route>
-              <Route path="/admin/products">
-                <Route index element={<ProductsPage />}></Route>
-                <Route path=":productId" element={<ProductPage />}></Route>
-              </Route>
 
               <Route path="/admin/categories">
                 <Route index element={<CategoriesPage />}></Route>
                 <Route path=":categoryId" element={<CategoryPage />}></Route>
-              </Route>
-
-              <Route path="/admin/subcategories">
-                <Route index element={<SubcategoriesPage />}></Route>
-                <Route
-                  path=":subcategoryId"
-                  element={<SubcategoryPage />}
-                ></Route>
               </Route>
 
               <Route path="/admin/companies">

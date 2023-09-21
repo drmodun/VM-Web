@@ -92,7 +92,7 @@ export const SearchPage = () => {
                   directory="categories"
                   title={category.name}
                   id={category.id}
-                  link={`/categories/${category.id}`}
+                  link={category.website ?? ""}
                 />
               ))}
             </div>
@@ -110,7 +110,7 @@ export const SearchPage = () => {
                   id={brand.id}
                   subtitle={brand.numberOfProducts.toString()}
                   title={brand.name}
-                  link={`/brands/${brand.id}`}
+                  link={brand.website ?? ""}
                 />
               ))}
             </div>

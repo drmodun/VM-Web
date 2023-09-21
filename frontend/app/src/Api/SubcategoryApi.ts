@@ -13,7 +13,7 @@ import { ShortCompany } from "./CompanyApi";
 export interface Subcategory {
   id: string;
   name: string;
-  subSchema: Indexable;
+  subSchema?: Indexable;
   description: string;
   categoryId: string;
   categoryName: string;
@@ -22,7 +22,7 @@ export interface Subcategory {
 export interface NewSubcategory {
   id?: string;
   name: string;
-  subSchema: Indexable;
+  subSchema?: Indexable;
   description: string;
   categoryId: string;
 }

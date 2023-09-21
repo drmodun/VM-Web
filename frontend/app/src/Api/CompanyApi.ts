@@ -28,6 +28,7 @@ export interface ShortCompany {
   id: string;
   name: string;
   numberOfProducts: number;
+  website?: string;
 }
 
 export interface GetAllProps {
@@ -47,7 +48,6 @@ export interface GetLargeCompany {
   subcategories: ShortSubcategory[];
   categories: ShortCategory[];
 }
-
 
 const api = axios.create({
   baseURL: baseUrl,
@@ -90,22 +90,26 @@ export const getCompany = async (id: string) => {
   }
 };
 
-export const createCompany = async (company: NewCompany): Promise<ActionResult | null> => {
+export const createCompany = async (
+  company: NewCompany
+): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/companies", company);
     const result = response.data as ActionResult;
-    return result
+    return result;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
 
-export const updateCompany = async (company: NewCompany): Promise<ActionResult | null> => {
+export const updateCompany = async (
+  company: NewCompany
+): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`/companies/${company.id!}`, company);
     const result = response.data as ActionResult;
-    return result
+    return result;
   } catch (error) {
     console.error(error);
     return null;
@@ -146,5 +150,3 @@ export const getShortCompanies = async (params?: GetAllProps | undefined) => {
     console.error(error);
   }
 };
-
-
