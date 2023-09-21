@@ -24,6 +24,7 @@ namespace Domain.Mappers
                 Id = company.Id,
                 NumberOfProducts = company.Products.Count,
                 Name = company.Name,
+                Website = company.Website
             };
         }
         public static Company ToEntity(CreateCompanyRequest request)
