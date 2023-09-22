@@ -24,7 +24,7 @@
     display: flex;
     @media screen and (max-width: 770px) {
       width: 88vw;
-      height: 88vw;
+      height: 50vw;
       border-radius: 20px 20px 0px 0px;
     }
     > img {
@@ -57,7 +57,7 @@
       font-weight: 700;
       margin-bottom: 1vw;
       @media screen and (max-width: 770px) {
-        font-size: 7vw;
+        font-size: 5vw;
         margin-bottom: 3vw;
       }
     }
@@ -69,7 +69,7 @@
       font-weight: 600;
       margin-bottom: 1.4vw;
       @media screen and (max-width: 770px) {
-        font-size: 4vw;
+        font-size: 3vw;
         margin-bottom: 3.5vw;
       }
     }
@@ -82,7 +82,7 @@
       word-wrap: break-word;
       font-weight: 500;
       @media screen and (max-width: 770px) {
-        font-size: 3vw;
+        font-size: 2.5vw;
         min-height: 15vw;
       }
     }
