@@ -5,6 +5,7 @@ import {
   PaginationResult,
   Sorting,
   accountInfo,
+  api,
   baseUrl,
   jwt,
   parseJwt,
@@ -71,18 +72,12 @@ export interface GetAllProps {
   address?: string;
 }
 
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (
-      (token && ["post", "put", "delete", "get"].includes(config.method || "")) ||
+      (token &&
+        ["post", "put", "delete", "get"].includes(config.method || "")) ||
       (token && config.url?.includes("short")) ||
       (token && config.url?.includes("cart")) ||
       (token && config.url?.includes("me"))
@@ -155,7 +150,6 @@ export const deleteUser = async (): Promise<boolean> => {
     return false;
   }
 };
-
 
 export const login = async (email: string, password: string) => {
   try {
@@ -262,7 +256,7 @@ export const getMe = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    alert(error)
+    alert(error);
     return null;
   }
 };
@@ -326,4 +320,3 @@ export const activateUser = async (code: string) => {
     return false;
   }
 };
- 

@@ -6,6 +6,7 @@ import {
   Pagination,
   Sorting,
   baseUrl,
+  api,
 } from "./Shared";
 import { ShortCategory } from "./CategoryApi";
 import { ShortSubcategory } from "./SubcategoryApi";
@@ -49,12 +50,6 @@ export interface GetLargeCompany {
   categories: ShortCategory[];
 }
 
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {

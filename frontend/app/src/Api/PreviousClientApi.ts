@@ -1,6 +1,13 @@
 import axios from "axios";
 
-import { PaginationResult, ActionResult, Pagination, Sorting, baseUrl } from "./Shared";
+import {
+  PaginationResult,
+  ActionResult,
+  Pagination,
+  Sorting,
+  baseUrl,
+  api,
+} from "./Shared";
 
 export interface PreviousClient {
   name: string;
@@ -19,22 +26,15 @@ export interface NewPreviousClient {
 }
 
 export interface GetAllProps {
- "Pagination.PageNumber"? : number;
-  "Pagination.PageSize"? : number;
-  "Sorting.Attribute"? : number;
-  "Sorting.SortType"? : number;
+  "Pagination.PageNumber"?: number;
+  "Pagination.PageSize"?: number;
+  "Sorting.Attribute"?: number;
+  "Sorting.SortType"?: number;
   description?: string;
   name?: string;
   minRating?: number;
 }
 
-const api = axios.create({
-  baseURL: 
-baseUrl ,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {
@@ -48,8 +48,6 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-
 
 export const getPreviousClients = async (props: GetAllProps | {} = {}) => {
   try {
@@ -78,7 +76,7 @@ export const getPreviousClient = async (id: string) => {
 
 export const createPreviousClient = async (
   previousClient: NewPreviousClient
-): Promise<ActionResult |null> => {
+): Promise<ActionResult | null> => {
   try {
     const response = await api.post("/previous-clients", previousClient);
     const result = response.data as ActionResult;
@@ -105,7 +103,9 @@ export const updatePreviousClient = async (
   }
 };
 
-export const deletePreviousClient = async (id: string): Promise<ActionResult | null> => {
+export const deletePreviousClient = async (
+  id: string
+): Promise<ActionResult | null> => {
   try {
     const response = await api.delete(`/previous-clients/${id}`);
     const result = response.data as ActionResult;

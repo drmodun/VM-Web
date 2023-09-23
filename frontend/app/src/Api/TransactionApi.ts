@@ -6,6 +6,7 @@ import {
   Pagination,
   Sorting,
   baseUrl,
+  api,
 } from "./Shared";
 
 export interface Transaction {
@@ -37,13 +38,6 @@ export interface GetAllProps {
   productId?: string;
   createdAt?: Date;
 }
-
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {

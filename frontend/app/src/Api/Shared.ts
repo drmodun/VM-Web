@@ -1,9 +1,20 @@
 //export const baseUrl: string = "https://vm-racunala.azurewebsites.net/api"; // for dev
-export const baseUrl: string = "https://vm-dev.azurewebsites.net/api/"; // for (ironically) production
+//export const baseUrl: string = "https://vm-dev.azurewebsites.net/api/"; // for (ironically) production
 //export const baseUrl: string = "https://localhost:7069/api";
+
+import axios from "axios";
+
 // for local testing
-//export const baseUrl: string ="http://ec2-3-68-231-122.eu-central-1.compute.amazonaws.com/api"; // for production, have to change to https
+export const baseUrl: string = "https://api.vm-racunala.store/api"; // for production, have to change to https
 export let jwt: string = localStorage.getItem("token") || "";
+
+export const api = axios.create({
+  baseURL: baseUrl,
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  },
+});
 
 export const setJwt = (token: string) => {
   jwt = token;

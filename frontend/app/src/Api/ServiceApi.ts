@@ -5,6 +5,7 @@ import {
   Pagination,
   PaginationResult,
   Sorting,
+  api,
   baseUrl,
 } from "./Shared";
 import { ActionFunction } from "react-router-dom";
@@ -35,13 +36,6 @@ export interface GetAllProps {
   maxPrice?: number;
   serviceType?: ServiceType;
 }
-
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {
@@ -77,7 +71,9 @@ export const getService = async (id: string) => {
   }
 };
 
-export const createService = async (props: NewService): Promise<ActionResult | null> => {
+export const createService = async (
+  props: NewService
+): Promise<ActionResult | null> => {
   try {
     const response = await api.post("services", props);
     return response.data;
@@ -87,7 +83,9 @@ export const createService = async (props: NewService): Promise<ActionResult | n
   }
 };
 
-export const updateService = async (props: NewService): Promise<ActionResult | null> => {
+export const updateService = async (
+  props: NewService
+): Promise<ActionResult | null> => {
   try {
     const response = await api.put(`services/${props.id}`, props);
     return response.data;

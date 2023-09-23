@@ -6,6 +6,7 @@ import {
   Pagination,
   Sorting,
   baseUrl,
+  api,
 } from "./Shared";
 import { ServiceType, StatusType } from "../Types/Enums";
 
@@ -36,7 +37,7 @@ export interface UpdateOrder {
   userId: string;
 }
 
-export interface UpdateOrderInfo{
+export interface UpdateOrderInfo {
   status: StatusType;
   deadline?: Date;
   note?: string;
@@ -57,17 +58,13 @@ export interface GetAllProps {
   deadline?: Date;
 }
 
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-    if (token && ["post", "put", "delete", "get"].includes(config.method || "")) {
+    if (
+      token &&
+      ["post", "put", "delete", "get"].includes(config.method || "")
+    ) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -131,7 +128,10 @@ export const deleteOrder = async (id: string): Promise<boolean> => {
   }
 };
 
-export const updateOrderInfo = async (id: string, order: UpdateOrderInfo): Promise<boolean> => {
+export const updateOrderInfo = async (
+  id: string,
+  order: UpdateOrderInfo
+): Promise<boolean> => {
   try {
     const response = await api.put(`/orders/info/${id!}`, order);
     const result = response.data as ActionResult;
@@ -140,4 +140,4 @@ export const updateOrderInfo = async (id: string, order: UpdateOrderInfo): Promi
     console.error(error);
     return false;
   }
-}
+};
