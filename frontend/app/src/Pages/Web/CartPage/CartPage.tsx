@@ -75,7 +75,7 @@ export const CartPage = () => {
             <h1>Vaša košarica je prazna, dodajte proizvode na </h1>
             <p>
               Otiđite na<a href="/"> početnu stranicu </a>ili{" "}
-              <a href="/#/products">strnaicu za produkte</a> da dodate proizvode u svoju košaricu
+              <a href="/#/products">strancu za produkte</a> da dodate proizvode u svoju košaricu
             </p>
           </div>
         )}

@@ -45,7 +45,7 @@ import PasswordChangePage from "../Pages/Web/PasswordChangePage";
 import { OrdersPage } from "../Pages/Admin/IndexPages/OrdersPage/OrdersPage";
 import { OrderPageAdmin } from "../Pages/Admin/SingleItemPages/OrderPage/OrderPage";
 import NotFoundPage from "../Pages/Web/404";
-const router = createHashRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<AdminLayout />}>
