@@ -120,22 +120,7 @@ const router = createHashRouter(
         <Route path="/reset" element={<PasswordChangePage />}></Route>
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route
-          path="/index.php?option=com_content&task=view&id=2"
-          element={
-            <Navigate to="https://www.microline.hr/EUWeb/StartEU.ashx" />
-          }
-        />
 
-        <Route
-          path="/index.php?option=com_contact&Itemid=3"
-          element={<Navigate to="/" />}
-        />
-
-        <Route
-          path="/index.php?option=com_content&task=view&id=1&Itemid=3"
-          element={<Navigate to="/service" />}
-        />
         <Route path="/brands">
           <Route index element={<WebCompaniesPage />}></Route>
         </Route>
