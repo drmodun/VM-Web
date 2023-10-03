@@ -127,13 +127,15 @@ const router = createHashRouter(
           }
         />
 
-        <Route path="/index.php?option=com_contact&Itemid=3">
-          <Navigate to="/" />
-        </Route>
+        <Route
+          path="/index.php?option=com_contact&Itemid=3"
+          element={<Navigate to="/" />}
+        />
 
-        <Route path="/index.php?option=com_content&task=view&id=1&Itemid=3">
-          <Navigate to="/service" />
-        </Route>
+        <Route
+          path="/index.php?option=com_content&task=view&id=1&Itemid=3"
+          element={<Navigate to="/service" />}
+        />
         <Route path="/brands">
           <Route index element={<WebCompaniesPage />}></Route>
         </Route>
