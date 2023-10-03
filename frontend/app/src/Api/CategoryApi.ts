@@ -7,6 +7,7 @@ import {
   Sorting,
   baseUrl,
   jwt,
+  api,
 } from "./Shared";
 import { Indexable } from "../Types/Interfaces";
 import { ShortSubcategory } from "./SubcategoryApi";
@@ -53,12 +54,6 @@ export interface ShortCategory {
   website?: string;
 }
 
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {

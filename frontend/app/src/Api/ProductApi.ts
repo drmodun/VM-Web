@@ -5,6 +5,7 @@ import {
   Pagination,
   PaginationResult,
   Sorting,
+  api,
   baseUrl,
 } from "./Shared";
 import { Indexable } from "../Types/Interfaces";
@@ -96,13 +97,6 @@ export interface GetAllProps {
   maxQuantity?: number;
   minQuantity?: number;
 }
-
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {

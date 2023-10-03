@@ -37,22 +37,12 @@ export const Homepage = () => {
   const [previousClients, setPreviousClients] = useState<PreviousClient[]>([]);
   const [services, setServices] = useState<Service[]>([]);
 
-  const productFetcher = async (params?: GetAllProps) => {
-    const response = await getShortProducts({
-      "Sorting.Attribute": SortAttributeType.SortByTotalSold,
-      "Sorting.SortType": SortType.Descending,
-      "Pagination.PageNumber": 1,
-      "Pagination.PageSize": 20,
-      ...params,
-    });
-  };
-
   const previousClientsFetcher = async () => {
     const response = await getPreviousClients({
       "Sorting.Attribute": SortAttributeType.SortByName,
       "Sorting.SortType": SortType.Descending,
       "Pagination.PageSize": 3,
-      "Pagination.PageNumber": 1,
+      "Pagination.PageNumber": 2,
     });
     setPreviousClients(response?.items!);
   };
@@ -60,15 +50,17 @@ export const Homepage = () => {
   const categoryFetcher = async () => {
     const response = await getShortCategories({
       "Sorting.Attribute": SortAttributeType.SortByName,
-      "Sorting.SortType": SortType.Descending,
+      "Sorting.SortType": SortType.Ascending,
+      "Pagination.PageSize": 20,
+      "Pagination.PageNumber": 1,
     });
     setCategories(response?.items!);
   };
 
   const serviceFetcher = async () => {
     const response = await getServices({
-      "Sorting.Attribute": SortAttributeType.SortByAmountOfOrders,
-      "Sorting.SortType": SortType.Descending,
+      "Sorting.Attribute": SortAttributeType.SortByPrice,
+      "Sorting.SortType": SortType.Ascending,
       "Pagination.PageSize": 3,
       "Pagination.PageNumber": 1,
     });
@@ -78,8 +70,11 @@ export const Homepage = () => {
   const brandFetcher = async () => {
     const response = await getShortCompanies({
       "Sorting.Attribute": SortAttributeType.SortByName,
-      "Sorting.SortType": SortType.Descending,
+      "Sorting.SortType": SortType.Ascending,
+      "Pagination.PageSize": 20,
+      "Pagination.PageNumber": 1,
     });
+    console.log(response);
     setBrands(response?.items!);
   };
 
@@ -236,6 +231,7 @@ export const Homepage = () => {
                       directory="companies"
                       id={brand.id}
                       title={brand.name}
+                      isCompany
                       subtitle={brand.numberOfProducts.toString()}
                     />
                   );

@@ -6,6 +6,7 @@ import {
   Pagination,
   Sorting,
   baseUrl,
+  api,
 } from "./Shared";
 import { Indexable } from "../Types/Interfaces";
 import { ShortCompany } from "./CompanyApi";
@@ -41,7 +42,6 @@ export interface GetLargeSubcategory {
   categoryName: string;
   brands: ShortCompany[];
 }
-  
 
 export interface GetAllProps {
   "Pagination.PageNumber"?: number;
@@ -52,13 +52,6 @@ export interface GetAllProps {
   name?: string;
   categoryId?: string;
 }
-
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 api.interceptors.request.use(
   (config) => {
@@ -107,7 +100,7 @@ export const createSubcategory = async (
   }
 };
 
-export const getShortSubcategories = async ( params: GetAllProps | {} = {}) => {
+export const getShortSubcategories = async (params: GetAllProps | {} = {}) => {
   try {
     const response = await api.get<PaginationResult<ShortSubcategory>>(
       "/subcategories/short",
@@ -156,5 +149,4 @@ export const getLargeSubcategory = async (id: string) => {
     console.error(error);
     return null;
   }
-}
-
+};

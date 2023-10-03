@@ -7,7 +7,7 @@ interface Props {
   title: string;
   subtitle: string;
   link: string;
-  isShort?: boolean;
+  isCompany?: boolean;
   directory: string;
   id: string;
 }
@@ -15,13 +15,21 @@ export const ShortView = ({
   title,
   subtitle,
   link,
-  isShort,
+  isCompany,
   directory,
   id,
 }: Props) => {
+  isCompany &&  console.log(link);
   return (
-    <Link to={`https://www.microline.hr/EUWeb/StartEU.ashx?_command=showGroup&group=${link}`} className={classes.Link}>
-      <div className={isShort ? classes.ShortContainer : classes.Container}>
+    <Link
+      to={
+        isCompany
+          ? `https://www.microline.hr/EUWeb/StartEU.ashx?_command=showMark&mark=${link}`
+          : `https://www.microline.hr/EUWeb/StartEU.ashx?_command=showGroup&group=${link}`
+      }
+      className={classes.Link}
+    >
+      <div className={classes.Container}>
         <div className={classes.Item}>
           <div className={classes.Image}>
             <img
