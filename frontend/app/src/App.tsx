@@ -13,7 +13,7 @@ function App() {
   if (
     window.location.search === "?option=com_content&task=view&id=1&Itemid=3"
   ) {
-    window.location.href = "/#/service";
+    window.location.href = "/#/services";
   }
 
   return <Router />;
