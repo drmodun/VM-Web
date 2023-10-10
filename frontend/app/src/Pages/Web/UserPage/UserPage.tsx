@@ -115,16 +115,6 @@ export const UserPage = () => {
                 >
                   <span>Narudžbe</span>
                 </div>
-                <div
-                  className={
-                    classes.Option +
-                    " " +
-                    (tab === Tabs.Favourites ? classes.Active : "")
-                  }
-                  onClick={() => setTab(Tabs.Favourites)}
-                >
-                  <span>Favoriti</span>
-                </div>
               </div>
               <div className={classes.Content}>
                 {tab === Tabs.Info && (

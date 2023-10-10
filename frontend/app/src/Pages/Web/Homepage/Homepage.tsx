@@ -109,6 +109,14 @@ export const Homepage = () => {
           Kupujte na najjednostavniji način. Koristite VM računala webshop.
           Imate pristup svim kategorijama, brendovima, proizvodima i uslugama na
           jednom mjestu.
+          <div className={classes.Row}>
+            <Link
+              className={classes.BlueLink}
+              to={"https://www.microline.hr/EUWeb/StartEU.ashx"}
+            >
+              Pogledaj sve proizvode
+            </Link>
+          </div>
         </div>
         <div className={classes.Cards}>
           <div

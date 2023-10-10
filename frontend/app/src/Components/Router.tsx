@@ -103,7 +103,6 @@ const router = createHashRouter(
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/favourites" element={<FavouritesPage />} />
         <Route path="/services">
           <Route index element={<WebServicesPage />} />
           <Route path=":serviceId" element={<OrderPage />} />

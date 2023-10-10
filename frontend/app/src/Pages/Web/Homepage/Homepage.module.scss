@@ -324,7 +324,7 @@
       margin-bottom: 20px;
     }
 
-    .Services{
+    .Services {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -464,6 +464,26 @@
       }
 
       text-decoration: none;
+    }
+  }
+
+  .BlueLink {
+    color: #0666ff;
+    font-weight: 600;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+
+    &:hover {
+      color: #9d5ef6;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: #4d5ef6;
     }
   }
 }

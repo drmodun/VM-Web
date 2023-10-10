@@ -57,12 +57,6 @@ export const SideMenu = ({
             <Link className={classes.Link} onClick={closeMenu} to="/user">
               <span>Korisnička stranica</span>
             </Link>
-            <Link className={classes.Link} onClick={closeMenu} to="/favourites">
-              <span>Favoriti</span>
-            </Link>
-            <Link className={classes.Link} onClick={closeMenu} to="/cart">
-              <span>Košarica</span>
-            </Link>
           </div>
           <div className={classes.Divider}></div>
           <div className={classes.Info}>
