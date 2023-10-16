@@ -27,7 +27,7 @@ namespace Domain.Services
             {
                 //TODO: change on deploy
                 Name = user.Name,
-                Link = "https://vm-racunala.store/#/activate?code=" + action,
+                Link = "https://vmracunala.hr/#/activate?code=" + action,
             };
             var email = await _viewToStringRenderer.RenderViewToStringAsync(Templates.ActivateAccountView, emailModel);
             var emailSend = await EmailSender.SendEmail(request.Email, "Account creation", email);
@@ -51,7 +51,7 @@ namespace Domain.Services
             var emailModel = new ChangePasswordModel
             {
                 Name = user.Name,
-                Link = "https://vm-racunala.store/#/reset?code=" + user.ActivationCode,
+                Link = "https://vmracunala.hr/#/reset?code=" + user.ActivationCode,
             };
             var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.PasswordResetView, emailModel);
             var emailSend = await EmailSender.SendEmail(email, "Password change", newEmail);

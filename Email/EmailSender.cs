@@ -16,7 +16,7 @@ public static class EmailSender
                 Console.WriteLine("pain");
             }
             var client = new SendGridClient(ApiKey);
-            var from = new EmailAddress("vm-mail@vm-racunala.store", "VM Računala");
+            var from = new EmailAddress("mail@vmracunala.hr", "VM Računala");
             var subject = emailSubject;
             var to = new EmailAddress(emailAddress);
             var plainTextContent = "VM-računala email to let you know about a recent action, if you are seeing this it means that your mail has not loaded properly and that you should try openning it again later";

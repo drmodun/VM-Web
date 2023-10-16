@@ -47,9 +47,22 @@ namespace Domain.Services
         {
             var order = OrderMapper.ToEntity(request);
             var action = await _orderRepo.CreateOrder(order, cancellationToken);
+            var model = new OrderUpdateModel
+            {
+                ServiceName = order.Service.Name,
+                Note = "Ovo je inicijalni mail da se potvrdi narudžba",
+                UserName = order.User.Name,
+                Status = "Order Made",
+                Link = "https://vmracunala.hr/#/user"
+            };
+            var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.OrderUpdateView, model);
+            var emailSend = await EmailSender.SendEmail(order.Email, "Order update", newEmail);
+            var adminMail = await EmailSender.SendEmail("mail@vmracunala.hr", "Nova narudžba",
+                $"Obavijest: Napravljena je nova narudžba servisa {order.Service.Name} korisnika na mail {request.Email}, deskripcija glasi: {request.Description}, pogledajte više na admin dashboardu");
+
             return new CreateOrderResponse
             {
-                Success = action
+                Success = action && emailSend && adminMail && newEmail != null
             };
         }
 
@@ -93,7 +106,7 @@ namespace Domain.Services
                 Note = request.Note,
                 UserName = order.User.Name,
                 Status = StatusDictionary[request.Status],
-                Link = "https://vm-racunala.store/#/user"
+                Link = "https://vmracunala.hr/#/user"
             };
             var newEmail = await _viewToStringRenderer.RenderViewToStringAsync(Templates.OrderUpdateView, model);
             var emailSend = await EmailSender.SendEmail(order.Email, "Order update", newEmail);
