@@ -16,13 +16,14 @@
 
         SortByProfit,
         SortByAddress,
-        SortByEmail,
+
         SortByType,
         SortByUpdated,
         SortByCompanyName,
         SortByAmountOfOrders,
         SortByOrderProfit,
 
+        //TODO: Make sorting different, simpler and only one criteria, maybe two
 
     }
 }
