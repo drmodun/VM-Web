@@ -63,10 +63,10 @@ export const SideMenu = ({
             <h3>Contact</h3>
             <a
               href="mailonClick={closeMenu} to:
-                vm-mail@vm-racunala.store
+                vmracunala@vmracunala.hr
                 ?subject=Kontakt sa stranice"
             >
-              vm-mail@vm-racunala.store
+              vmracunala@vmracunala.hr
               <br />
             </a>
             <a href="tel:+38761548123">+387 61 548 123</a>

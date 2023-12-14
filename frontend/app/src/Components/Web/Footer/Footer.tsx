@@ -46,14 +46,14 @@ export const Footer = () => {
                 <a
                   className={classes.Link}
                   href="mailto:
-                  vm-mail@vm-racunala.store?subject=Kontakt sa stranice"
+                  vmracunala@vmracunala.hr?subject=Kontakt sa stranice"
                 >
-                  vm-mail@vm-racunala.store
+                  vmracunala@vmracunala.hr
                 </a>
               </li>
               <li>
                 <a className={classes.Link} href="tel:+021/543-318">
-                  021/543-318
+                  +387 61 548 123
                 </a>
               </li>
               <li>Adresa: Vukovarska ulica 127</li>
