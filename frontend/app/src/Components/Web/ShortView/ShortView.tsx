@@ -19,13 +19,13 @@ export const ShortView = ({
   directory,
   id,
 }: Props) => {
-  isCompany &&  console.log(link);
+  isCompany && console.log(link);
   return (
     <Link
       to={
         isCompany
-          ? `https://www.microline.hr/EUWeb/StartEU.ashx?_command=showMark&mark=${link}`
-          : `https://www.microline.hr/EUWeb/StartEU.ashx?_command=showGroup&group=${link}`
+          ? `https://www.microline.hr/PriceList.ashx?_command=showGroup&group=${link}&tradeMark=true`
+          : `https://www.microline.hr/PriceList.ashx?_command=showGroup&group=${link}&tradeMark=false`
       }
       className={classes.Link}
     >
