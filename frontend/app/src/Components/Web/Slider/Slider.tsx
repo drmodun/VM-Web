@@ -67,7 +67,7 @@ export const Slider = ({
           onChange={(event) => handleBottomValueChange(event)}
           value={bottomValue}
         />
-        <div className={classes.Divider}></div>
+        <div className={classes.Divider} />
         <input
           type="number"
           placeholder={String(maxValue)}
@@ -131,7 +131,7 @@ export const Slider = ({
               //         (maxValue - minValue)
               //   );
             }}
-          ></div>
+           />
           <div
             draggable={true}
             className={classes.SliderHandle}
@@ -180,7 +180,7 @@ export const Slider = ({
               //         (maxValue - minValue)
               //   );
             }}
-          ></div>
+           />
         </div>
       </div>
     </div>

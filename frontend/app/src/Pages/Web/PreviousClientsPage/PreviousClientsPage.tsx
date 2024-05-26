@@ -22,7 +22,7 @@ export const PreviousClientsPage = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.Cover}>
-        <div className={classes.Backdrop}></div>
+        <div className={classes.Backdrop} />
         <img src={clients2} alt="clients" />
         <div
           className={

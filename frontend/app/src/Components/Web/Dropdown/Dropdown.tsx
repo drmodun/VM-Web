@@ -67,9 +67,7 @@ export const Dropdown = ({ options, onSelect, cancel, closer }: Props) => {
               onSelect("");
               setVisible(false);
             }}
-          >
-            
-          </li>
+           />
         }
         {options
           .filter((option) =>

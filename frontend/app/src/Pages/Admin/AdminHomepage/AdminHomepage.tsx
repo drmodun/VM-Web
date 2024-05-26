@@ -9,7 +9,7 @@ export const AdminHomepage = () => {
         kompanijama, korisnicima, narudžbama, transakcijama, prethodnim
         klijentima i uslugama.
       </div>
-      <div className={classes.Divider}></div>
+      <div className={classes.Divider} />
       <h2>Kako koristiti</h2>
       <div className={classes.Paragraph}>
         Klikom na link na navigaciji (gore) možete pristupiti stranici sa svim
@@ -18,7 +18,7 @@ export const AdminHomepage = () => {
         možete pristupiti stranici za editiranje entiteta, a tamo imate detaljni
         prikay toga eniteta i mogućnost brisanja.
       </div>
-      <div className={classes.Divider}></div>
+      <div className={classes.Divider} />
       <h2>Tehnička podrška</h2>
       <div className={classes.Paragraph}>
         U slučaju da se pojave problemi pri korištenju ove stranice ili

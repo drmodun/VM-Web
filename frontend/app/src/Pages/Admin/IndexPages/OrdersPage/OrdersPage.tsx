@@ -108,9 +108,7 @@ export const OrdersPage = () => {
           deleteItem={handleDeleteOrder} 
           type="orders"
         />
-        <div className={classes.OrderPagePagination}>
-          
-        </div>
+        <div className={classes.OrderPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.OrderPageSearch}>

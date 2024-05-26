@@ -159,7 +159,7 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
                 }
                 value={minPrice}
               />
-              <div className={classes.Divider}></div>
+              <div className={classes.Divider} />
               <input
                 type="number"
                 placeholder={String(maxValue)}

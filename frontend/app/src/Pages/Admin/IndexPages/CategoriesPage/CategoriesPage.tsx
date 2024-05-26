@@ -87,9 +87,7 @@ export const CategoriesPage = () => {
           deleteItem={handleDeleteCategory} 
           type="categories"
         />
-        <div className={classes.CategoryPagePagination}>
-          
-        </div>
+        <div className={classes.CategoryPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.CategoryPageSearch}>

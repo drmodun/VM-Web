@@ -35,7 +35,7 @@ export const CategoriesPage = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.Cover}>
-        <div className={classes.Backdrop}></div>
+        <div className={classes.Backdrop} />
         <img src={categories2} alt="" />
         <div className={classes.CoverText}>
           <h1>Kategorije</h1>

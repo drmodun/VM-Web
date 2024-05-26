@@ -44,7 +44,7 @@ export const SimilarProducts = ({ prod }: Props) => {
       <div className={classes.SimilarProducts}>
         {products.map((product) => (
           <>
-            <div className={classes.Divider}></div>
+            <div className={classes.Divider} />
             <div className={classes.SimilarProduct}>
               <div className={classes.Main}>
                 <img

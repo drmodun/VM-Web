@@ -32,7 +32,7 @@ export const SideMenu = ({
               Login
             </Link>
           )}
-          <div className={classes.Divider}></div>
+          <div className={classes.Divider} />
           <div className={classes.Links}>
             <h3>Stranice</h3>
             <Link className={classes.Link} onClick={closeMenu} to="/">
@@ -54,7 +54,7 @@ export const SideMenu = ({
               <span>Brendovi</span>
             </Link>
           </div>
-          <div className={classes.Divider}></div>
+          <div className={classes.Divider} />
           <div className={classes.Links}>
             <h3>Korisnik</h3>
             <Link className={classes.Link} onClick={closeMenu} to="/user">
@@ -67,7 +67,7 @@ export const SideMenu = ({
               <span>Košarica</span>
             </Link>
           </div>
-          <div className={classes.Divider}></div>
+          <div className={classes.Divider} />
           <div className={classes.Info}>
             <h3>Contact</h3>
             <a
@@ -86,7 +86,7 @@ export const SideMenu = ({
         className={classes.Backdrop}
         onClick={closeMenu}
         style={{ display: menuOpen ? "block" : "none" }}
-      ></div>
+       />
     </div>
   );
 };

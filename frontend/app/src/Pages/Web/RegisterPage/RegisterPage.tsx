@@ -17,7 +17,7 @@ export const RegisterPage = () => {
             <div className={classes.BackgroundImage}>
                 <img src={Background} alt="" />
             </div>
-            <div className={classes.Backdrop}></div>
+            <div className={classes.Backdrop} />
             <div className={classes.RegisterContainer}>
             <Register
                 isEdit={false}

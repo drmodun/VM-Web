@@ -102,9 +102,7 @@ export const PreviousClientsPage = () => {
           deleteItem={handleDeletePreviousClient}
           type="previousClients"
         />
-        <div className={classes.PreviousClientPagePagination}>
-          
-        </div>
+        <div className={classes.PreviousClientPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.PreviousClientPageSearch}>

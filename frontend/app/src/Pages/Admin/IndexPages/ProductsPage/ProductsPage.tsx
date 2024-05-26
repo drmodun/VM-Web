@@ -146,9 +146,7 @@ export const ProductsPage = () => {
           deleteItem={handleDeleteProduct} 
           type="products"
         />
-        <div className={classes.ProductPagePagination}>
-          
-        </div>
+        <div className={classes.ProductPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.ProductPageSearch}>

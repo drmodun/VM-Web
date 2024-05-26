@@ -30,7 +30,7 @@ export const CompaniesPage = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.Cover}>
-        <div className={classes.Backdrop}></div>
+        <div className={classes.Backdrop} />
         <img src={companies1} alt="" />
         <div
           className={

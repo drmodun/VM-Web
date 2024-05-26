@@ -99,9 +99,7 @@ export const UsersPage = () => {
           deleteItem={handleDeleteUser} 
           type="users"
         />
-        <div className={classes.UserPagePagination}>
-          
-        </div>
+        <div className={classes.UserPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.UserPageSearch}>

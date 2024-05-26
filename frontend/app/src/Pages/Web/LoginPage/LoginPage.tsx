@@ -14,7 +14,7 @@ export const LoginPage = () => {
             <div className={classes.BackgroundImage}>
                 <img src={Background} alt="" />
             </div>
-            <div className={classes.Backdrop}></div>
+            <div className={classes.Backdrop} />
             <div className={classes.LoginContainer}>
             <Login />
             </div>            

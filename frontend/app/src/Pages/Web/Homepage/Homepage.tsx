@@ -105,9 +105,9 @@ export const Homepage = () => {
         as="image"
         href={products2}
         type="image/webp"
-      ></link>
+       />
       <div className={classes.Cover}>
-        <div className={classes.Backdrop}></div>
+        <div className={classes.Backdrop} />
         <img src={products2} alt="Cover-VM" />
         <div className={classes.CoverText}>
           <h1>VM računala</h1>
@@ -131,7 +131,7 @@ export const Homepage = () => {
             {tab === Tabs.Categories && (
               <Link to={"/categories"} className={classes.Section}>
                 <div className={classes.Title}>Kategorije</div>
-                <div className={classes.Cover}></div>
+                <div className={classes.Cover} />
                 <div className={classes.Image}>
                   <img src={categories1} alt="kategorije" />
                 </div>
@@ -140,7 +140,7 @@ export const Homepage = () => {
             {tab === Tabs.Products && (
               <Link className={classes.Section} to="/products">
                 <div className={classes.Title}>Proizvodi</div>
-                <div className={classes.Cover}></div>
+                <div className={classes.Cover} />
                 <div className={classes.Image}>
                   <img src={products3} alt="kategorije" />
                 </div>
@@ -149,7 +149,7 @@ export const Homepage = () => {
             {tab === Tabs.Services && (
               <Link to="/services" className={classes.Section}>
                 <div className={classes.Title}>Servisi</div>
-                <div className={classes.Cover}></div>
+                <div className={classes.Cover} />
                 <div className={classes.Image}>
                   <img src={services1} alt="Servisi" />
                 </div>
@@ -158,7 +158,7 @@ export const Homepage = () => {
             {tab === Tabs.Brands && (
               <Link className={classes.Section} to="/brands">
                 <div className={classes.Title}>Brendovi</div>
-                <div className={classes.Cover}></div>
+                <div className={classes.Cover} />
                 <div className={classes.Image}>
                   <img src={brands2} alt="Brendovi" />
                 </div>

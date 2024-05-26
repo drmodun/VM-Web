@@ -106,7 +106,7 @@ export const SubcategoriesPage = () => {
           deleteItem={handleDeleteSubcategory} 
           type="subcategories"
         />
-        <div className={classes.SubcategoryPagePagination}></div>
+        <div className={classes.SubcategoryPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.SubcategoryPageSearch}>

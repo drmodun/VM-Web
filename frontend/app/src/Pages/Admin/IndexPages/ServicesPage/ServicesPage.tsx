@@ -100,9 +100,7 @@ export const ServicesPage = () => {
           deleteItem={handleDeleteService}
           type="services"
         />
-        <div className={classes.ServicePagePagination}>
-          
-        </div>
+        <div className={classes.ServicePagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.ServicePageSearch}>

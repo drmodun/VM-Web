@@ -94,6 +94,6 @@ export const OrderPage = () => {
       <div className={classes.Error}>{error}</div>
     </div>
   ) : (
-    <div></div>
+    <div />
   );
 };

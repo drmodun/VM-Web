@@ -88,7 +88,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className={classes.Divider}></div>
+        <div className={classes.Divider} />
         <div className={classes.Author}>
           <p>Made by</p>
           <a href="https://www.linkedin.com/in/jan-modun-020779260">Jan Modun</a>

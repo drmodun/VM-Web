@@ -90,9 +90,7 @@ export const CompaniesPage = () => {
           deleteItem={handleDeleteCompany} 
           type="companies"
         />
-        <div className={classes.CompanyPagePagination}>
-          
-        </div>
+        <div className={classes.CompanyPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.CompanyPageSearch}>
