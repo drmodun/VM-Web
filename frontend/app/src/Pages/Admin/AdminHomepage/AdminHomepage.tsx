@@ -23,11 +23,11 @@ export const AdminHomepage = () => {
       <div className={classes.Paragraph}>
         U slučaju da se pojave problemi pri korištenju ove stranice ili
         neočekivane greške, javite se na idući kontakt:
-        </div>
-        <div className={classes.ContactInfo}>
-          <div className={classes.Contact}>Jan Modun</div>
-          <div className={classes.Contact}>jan.modun.st@gmail.com</div>   
-          <div className={classes.Contact}>+0996615935</div>
+      </div>
+      <div className={classes.ContactInfo}>
+        <div className={classes.Contact}>Jan Modun</div>
+        <div className={classes.Contact}>jan.modun.st@gmail.com</div>
+        <div className={classes.Contact}>+0996615935</div>
       </div>
     </div>
   );

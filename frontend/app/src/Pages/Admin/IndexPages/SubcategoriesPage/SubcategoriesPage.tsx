@@ -33,7 +33,7 @@ export const SubcategoriesPage = () => {
       setTotalItems(subcategories.pageInfo.totalItems || 1);
       setPageInfo(
         `Page ${subcategories.pageInfo.page} of ${subcategories.pageInfo
-          .totalPages!}`
+          .totalPages!}`,
       );
       setStatus("Subcategorys fetched successfully");
     } else {
@@ -51,7 +51,7 @@ export const SubcategoriesPage = () => {
       setTotalItems(subcategories.pageInfo.totalItems || 1);
       setPageInfo(
         `Page ${subcategories.pageInfo.page} of ${subcategories.pageInfo
-          .totalPages!}`
+          .totalPages!}`,
       );
       setStatus("Subcategories fetched successfully");
     } else {
@@ -83,7 +83,6 @@ export const SubcategoriesPage = () => {
     }
   };
 
-
   return (
     <div className={classes.Page}>
       <h1>Subkategorije</h1>
@@ -103,7 +102,7 @@ export const SubcategoriesPage = () => {
             { name: "categoryName", link: "categoryId", type: "categories" },
           ]}
           important={["name", "categoryName", "description"]}
-          deleteItem={handleDeleteSubcategory} 
+          deleteItem={handleDeleteSubcategory}
           type="subcategories"
         />
         <div className={classes.SubcategoryPagePagination} />

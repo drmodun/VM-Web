@@ -119,7 +119,7 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               options={subcategories
                 .filter(
                   (subcategory) =>
-                    subcategory.categoryId === category || !category
+                    subcategory.categoryId === category || !category,
                 )
                 .map((subcategory) => ({
                   label: subcategory.name,
@@ -149,13 +149,14 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               <input
                 type="number"
                 placeholder={String(minValue)}
-                onChange={(event) => setMinPrice(
-                  Number(event.target.value) < minValue
-                    ? minValue
-                    : Number(event.target.value) > maxPrice
-                      ? maxPrice
-                      : Number(event.target.value)
-                )
+                onChange={(event) =>
+                  setMinPrice(
+                    Number(event.target.value) < minValue
+                      ? minValue
+                      : Number(event.target.value) > maxPrice
+                        ? maxPrice
+                        : Number(event.target.value),
+                  )
                 }
                 value={minPrice}
               />
@@ -163,12 +164,15 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               <input
                 type="number"
                 placeholder={String(maxValue)}
-                onChange={(event) => setMaxPrice(Number(event.target.value) > maxValue
-                  ? maxValue
-                  : Number(event.target.value) < minPrice
-                    ? minPrice
-                    : Number(event.target.value)
-                )}
+                onChange={(event) =>
+                  setMaxPrice(
+                    Number(event.target.value) > maxValue
+                      ? maxValue
+                      : Number(event.target.value) < minPrice
+                        ? minPrice
+                        : Number(event.target.value),
+                  )
+                }
                 value={maxPrice}
               />
             </div>
@@ -178,12 +182,10 @@ export const Filter = ({ minValue, maxValue, filter }: Props) => {
               min={minValue}
               max={maxValue}
               thumbClassName={classes.Thumb}
-              onChange={
-                ([min, max]) => {
-                  setMinPrice(min);
-                  setMaxPrice(max);
-                }
-              }
+              onChange={([min, max]) => {
+                setMinPrice(min);
+                setMaxPrice(max);
+              }}
             />
           </div>
           <button

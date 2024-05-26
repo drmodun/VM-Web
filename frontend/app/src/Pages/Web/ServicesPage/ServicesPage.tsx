@@ -49,7 +49,7 @@ export const ServicesPage = () => {
                     (service) =>
                       service.serviceType === parseInt(key) && (
                         <ServiceView service={service} />
-                      )
+                      ),
                   )}
                 </div>
               </div>

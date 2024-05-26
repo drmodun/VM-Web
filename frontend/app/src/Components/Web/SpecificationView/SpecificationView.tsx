@@ -21,14 +21,16 @@ export const SpecificationView = ({ specs, subSpecs }: Props) => {
         </div>
         {subSpecs && (
           <div className={classes.Specs}>
-            {Object.keys(subSpecs).map((key) => (
-              subSpecs[key] && (
-                <div className={classes.Spec}>
-                  <span className={classes.Key}>{key}</span>
-                  <span className={classes.Divider} />
-                  <span className={classes.Value}>{subSpecs[key]}</span>
-                </div>)
-            ))}
+            {Object.keys(subSpecs).map(
+              (key) =>
+                subSpecs[key] && (
+                  <div className={classes.Spec}>
+                    <span className={classes.Key}>{key}</span>
+                    <span className={classes.Divider} />
+                    <span className={classes.Value}>{subSpecs[key]}</span>
+                  </div>
+                ),
+            )}
           </div>
         )}
       </div>

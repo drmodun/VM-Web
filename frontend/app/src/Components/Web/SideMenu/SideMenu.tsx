@@ -86,7 +86,7 @@ export const SideMenu = ({
         className={classes.Backdrop}
         onClick={closeMenu}
         style={{ display: menuOpen ? "block" : "none" }}
-       />
+      />
     </div>
   );
 };

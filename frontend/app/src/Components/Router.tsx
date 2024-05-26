@@ -70,10 +70,7 @@ const router = createHashRouter(
 
               <Route path="/admin/subcategories">
                 <Route index element={<SubcategoriesPage />} />
-                <Route
-                  path=":subcategoryId"
-                  element={<SubcategoryPage />}
-                 />
+                <Route path=":subcategoryId" element={<SubcategoryPage />} />
               </Route>
 
               <Route path="/admin/companies">
@@ -93,10 +90,7 @@ const router = createHashRouter(
 
               <Route path="/admin/transactions">
                 <Route index element={<TransactionsPage />} />
-                <Route
-                  path=":transactionId"
-                  element={<TransactionPage />}
-                 />
+                <Route path=":transactionId" element={<TransactionPage />} />
               </Route>
 
               <Route path="/admin/previousClients">
@@ -104,7 +98,7 @@ const router = createHashRouter(
                 <Route
                   path=":previousClientId"
                   element={<PreviousClientPage />}
-                 />
+                />
               </Route>
 
               <Route path="/admin/services">
@@ -149,8 +143,8 @@ const router = createHashRouter(
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-    </>
-  )
+    </>,
+  ),
 );
 
 export const Router = () => {

@@ -24,11 +24,7 @@ export const PreviousClientsPage = () => {
       <div className={classes.Cover}>
         <div className={classes.Backdrop} />
         <img src={clients2} alt="clients" />
-        <div
-          className={
-            classes.CoverText
-          }
-        >
+        <div className={classes.CoverText}>
           <h1>Prijašnji klijenti</h1>
           <p>Pogledajte neke od naših zadovoljnih prijašnjih klijenata</p>
         </div>
@@ -42,9 +38,7 @@ export const PreviousClientsPage = () => {
       ) : (
         <div className={classes.Empty}>
           <h2>Nema pronađenih klijenata</h2>
-          <p>
-            Trenutno nema pronađenih klijenata, molimo pokušajte kasnije
-          </p>
+          <p>Trenutno nema pronađenih klijenata, molimo pokušajte kasnije</p>
         </div>
       )}
     </div>

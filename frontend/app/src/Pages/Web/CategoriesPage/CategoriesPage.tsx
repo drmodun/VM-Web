@@ -19,8 +19,8 @@ export const CategoriesPage = () => {
 
   const categoriesFetcher = async () => {
     const response = await getShortCategories({
-      "Sorting.Attribute" : SortAttributeType.SortByName,
-      "Sorting.SortType" : SortType.Ascending
+      "Sorting.Attribute": SortAttributeType.SortByName,
+      "Sorting.SortType": SortType.Ascending,
     });
     if (!response?.items) return;
     setCategories(response?.items);
@@ -40,7 +40,8 @@ export const CategoriesPage = () => {
         <div className={classes.CoverText}>
           <h1>Kategorije</h1>
           <p>
-            Pronađite kategoriju koja vas zanima i pronađite proizvode koji su vam potrebni.
+            Pronađite kategoriju koja vas zanima i pronađite proizvode koji su
+            vam potrebni.
           </p>
         </div>
       </div>

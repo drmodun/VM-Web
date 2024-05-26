@@ -39,7 +39,7 @@ export const OrdersPage = () => {
       setTotalPages(orders.pageInfo.totalPages || 1);
       setTotalItems(orders.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${orders.pageInfo.page} of ${orders.pageInfo.totalPages!}`
+        `Page ${orders.pageInfo.page} of ${orders.pageInfo.totalPages!}`,
       );
       setStatus("Orders fetched successfully");
     } else {
@@ -56,7 +56,7 @@ export const OrdersPage = () => {
       setTotalPages(orders.pageInfo.totalPages || 1);
       setTotalItems(orders.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${orders.pageInfo.page} of ${orders.pageInfo.totalPages!}`
+        `Page ${orders.pageInfo.page} of ${orders.pageInfo.totalPages!}`,
       );
       setStatus("Orders fetched successfully");
     } else {
@@ -78,7 +78,6 @@ export const OrdersPage = () => {
     }
   };
 
-
   return (
     <div className={classes.Page}>
       <h1>Orders</h1>
@@ -95,7 +94,7 @@ export const OrdersPage = () => {
               Type: orderTypeDict[order.statusType],
               Deadline: order.deadline
                 ? `${new Date(order.deadline).getDate()}/${
-                  new Date(order.deadline).getMonth() + 1
+                    new Date(order.deadline).getMonth() + 1
                   }/${new Date(order.deadline).getFullYear()}`
                 : "No deadline",
             };
@@ -105,7 +104,7 @@ export const OrdersPage = () => {
             { name: "User", link: "userId", type: "users" },
           ]}
           important={["Service", "User", "Type", "Deadline"]}
-          deleteItem={handleDeleteOrder} 
+          deleteItem={handleDeleteOrder}
           type="orders"
         />
         <div className={classes.OrderPagePagination} />

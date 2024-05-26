@@ -65,12 +65,8 @@ export const Footer = () => {
                   021/543-318
                 </a>
               </li>
-              <li>
-                Adresa: Vukovarska  ulica 127
-              </li>
-              <li>
-                Prodajno mjesto: Velebitska ulica 71
-              </li>
+              <li>Adresa: Vukovarska ulica 127</li>
+              <li>Prodajno mjesto: Velebitska ulica 71</li>
             </ul>
             <div className={classes.Social}>
               <a href="https://www.facebook.com/">
@@ -91,7 +87,9 @@ export const Footer = () => {
         <div className={classes.Divider} />
         <div className={classes.Author}>
           <p>Made by</p>
-          <a href="https://www.linkedin.com/in/jan-modun-020779260">Jan Modun</a>
+          <a href="https://www.linkedin.com/in/jan-modun-020779260">
+            Jan Modun
+          </a>
         </div>
       </footer>
     </div>

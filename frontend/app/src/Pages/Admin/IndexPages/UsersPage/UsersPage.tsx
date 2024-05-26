@@ -22,7 +22,7 @@ export const UsersPage = () => {
 
   //decide wether filters and sorting get reset on page change
 
-  const reload = async() => {
+  const reload = async () => {
     userGetter();
   };
 
@@ -35,7 +35,7 @@ export const UsersPage = () => {
       setTotalPages(users.pageInfo.totalPages || 1);
       setTotalItems(users.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${users.pageInfo.page} of ${users.pageInfo.totalPages!}`
+        `Page ${users.pageInfo.page} of ${users.pageInfo.totalPages!}`,
       );
       setStatus("Users fetched successfully");
     } else {
@@ -52,7 +52,7 @@ export const UsersPage = () => {
       setTotalPages(users.pageInfo.totalPages || 1);
       setTotalItems(users.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${users.pageInfo.page} of ${users.pageInfo.totalPages!}`
+        `Page ${users.pageInfo.page} of ${users.pageInfo.totalPages!}`,
       );
       setStatus("Users fetched successfully");
     } else {
@@ -73,7 +73,6 @@ export const UsersPage = () => {
       setStatus("Something went wrong");
     }
   };
-
 
   return (
     <div className={classes.Page}>
@@ -96,7 +95,7 @@ export const UsersPage = () => {
           })}
           links={[]}
           important={["name", "lastUpdate", "email"]}
-          deleteItem={handleDeleteUser} 
+          deleteItem={handleDeleteUser}
           type="users"
         />
         <div className={classes.UserPagePagination} />
@@ -106,10 +105,7 @@ export const UsersPage = () => {
           <Search.UserSearch search={userSearch} />
         </div>
         <div className={classes.UserPageCreate}>
-          <Forms.UserForm
-            isEdit={false}
-            reload={reload} 
-           />
+          <Forms.UserForm isEdit={false} reload={reload} />
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@ export const OrderPage = () => {
     if (
       !email.match(
         // eslint-disable-next-line no-control-regex
-        /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
       )
     ) {
       setError("Email is not valid");
@@ -87,8 +87,7 @@ export const OrderPage = () => {
         </form>
       ) : (
         <div className={classes.NotFound}>
-          Morate biti prijavljeni, prijavite se na {" "}
-          <a href="/#/login">login</a>
+          Morate biti prijavljeni, prijavite se na <a href="/#/login">login</a>
         </div>
       )}
       <div className={classes.Error}>{error}</div>

@@ -29,7 +29,7 @@ export const CompaniesPage = () => {
       setTotalPages(companies.pageInfo.totalPages || 1);
       setTotalItems(companies.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${companies.pageInfo.page} of ${companies.pageInfo.totalPages!}`
+        `Page ${companies.pageInfo.page} of ${companies.pageInfo.totalPages!}`,
       );
       setStatus("Companies fetched successfully");
     } else {
@@ -46,7 +46,7 @@ export const CompaniesPage = () => {
       setTotalPages(companies.pageInfo.totalPages || 1);
       setTotalItems(companies.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${companies.pageInfo.page} of ${companies.pageInfo.totalPages!}`
+        `Page ${companies.pageInfo.page} of ${companies.pageInfo.totalPages!}`,
       );
       setStatus("Companies fetched successfully");
     } else {
@@ -68,7 +68,6 @@ export const CompaniesPage = () => {
     }
   };
 
-
   return (
     <div className={classes.Page}>
       <h1>Companies</h1>
@@ -79,15 +78,13 @@ export const CompaniesPage = () => {
             return {
               id: company.id,
               name: company.name,
-              description : company.description,
-              website : company.website,
-
-              
+              description: company.description,
+              website: company.website,
             };
           })}
           links={[]}
           important={["name", "description", "website"]}
-          deleteItem={handleDeleteCompany} 
+          deleteItem={handleDeleteCompany}
           type="companies"
         />
         <div className={classes.CompanyPagePagination} />
@@ -97,10 +94,7 @@ export const CompaniesPage = () => {
           <Search.CompanySearch search={companySearch} />
         </div>
         <div className={classes.CompanyPageCreate}>
-          <Forms.CompanyForm 
-          isEdit={false}
-          reload={companyGetter}
-          />
+          <Forms.CompanyForm isEdit={false} reload={companyGetter} />
         </div>
       </div>
     </div>

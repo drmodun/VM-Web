@@ -105,7 +105,7 @@ export const Homepage = () => {
         as="image"
         href={products2}
         type="image/webp"
-       />
+      />
       <div className={classes.Cover}>
         <div className={classes.Backdrop} />
         <img src={products2} alt="Cover-VM" />

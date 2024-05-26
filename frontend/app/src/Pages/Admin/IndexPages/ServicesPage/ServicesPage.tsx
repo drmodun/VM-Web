@@ -41,7 +41,7 @@ export const ServicesPage = () => {
       setTotalPages(services.pageInfo.totalPages || 1);
       setTotalItems(services.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${services.pageInfo.page} of ${services.pageInfo.totalPages!}`
+        `Page ${services.pageInfo.page} of ${services.pageInfo.totalPages!}`,
       );
       setStatus("Services fetched successfully");
     } else {
@@ -58,7 +58,7 @@ export const ServicesPage = () => {
       setTotalPages(services.pageInfo.totalPages || 1);
       setTotalItems(services.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${services.pageInfo.page} of ${services.pageInfo.totalPages!}`
+        `Page ${services.pageInfo.page} of ${services.pageInfo.totalPages!}`,
       );
       setStatus("Services fetched successfully");
     } else {
@@ -79,7 +79,6 @@ export const ServicesPage = () => {
       setStatus("Something went wrong");
     }
   };
-
 
   return (
     <div className={classes.Page}>
@@ -107,10 +106,7 @@ export const ServicesPage = () => {
           <Search.ServiceSearch search={serviceSearch} />
         </div>
         <div className={classes.ServicePageCreate}>
-          <Forms.ServiceForm
-            isEdit={false}
-           reload={reload} />
-
+          <Forms.ServiceForm isEdit={false} reload={reload} />
         </div>
       </div>
     </div>

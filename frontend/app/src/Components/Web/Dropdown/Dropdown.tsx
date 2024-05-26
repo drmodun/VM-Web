@@ -67,11 +67,11 @@ export const Dropdown = ({ options, onSelect, cancel, closer }: Props) => {
               onSelect("");
               setVisible(false);
             }}
-           />
+          />
         }
         {options
           .filter((option) =>
-            option.label.toLowerCase().includes(searchTerm.toLowerCase())
+            option.label.toLowerCase().includes(searchTerm.toLowerCase()),
           )
           .map((option) => (
             <li

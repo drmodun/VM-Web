@@ -38,7 +38,7 @@ export const PreviousClientsPage = () => {
       setTotalItems(previousClients.pageInfo.totalItems || 1);
       setPageInfo(
         `Page ${previousClients.pageInfo.page} of ${previousClients.pageInfo
-          .totalPages!}`
+          .totalPages!}`,
       );
       setStatus("PreviousClients fetched successfully");
     } else {
@@ -56,7 +56,7 @@ export const PreviousClientsPage = () => {
       setTotalItems(previousClients.pageInfo.totalItems || 1);
       setPageInfo(
         `Page ${previousClients.pageInfo.page} of ${previousClients.pageInfo
-          .totalPages!}`
+          .totalPages!}`,
       );
       setStatus("PreviousClients fetched successfully");
     } else {
@@ -72,14 +72,13 @@ export const PreviousClientsPage = () => {
     const result = await deletePreviousClient(id);
     if (result) {
       setPreviousClients(
-        previousClients.filter((previousClient) => previousClient.id !== id)
+        previousClients.filter((previousClient) => previousClient.id !== id),
       );
       setStatus("PreviousClient deleted successfully");
     } else {
       setStatus("Something went wrong");
     }
   };
-
 
   return (
     <div className={classes.Page}>
