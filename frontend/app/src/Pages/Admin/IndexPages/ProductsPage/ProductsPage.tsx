@@ -36,7 +36,7 @@ export const ProductsPage = () => {
       setTotalPages(products.pageInfo.totalPages || 1);
       setTotalItems(products.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${products.pageInfo.page} of ${products.pageInfo.totalPages!}`
+        `Page ${products.pageInfo.page} of ${products.pageInfo.totalPages!}`,
       );
       setStatus("Products fetched successfully");
     } else {
@@ -53,7 +53,7 @@ export const ProductsPage = () => {
       setTotalPages(products.pageInfo.totalPages || 1);
       setTotalItems(products.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${products.pageInfo.page} of ${products.pageInfo.totalPages!}`
+        `Page ${products.pageInfo.page} of ${products.pageInfo.totalPages!}`,
       );
       setStatus("Products fetched successfully");
     } else {
@@ -104,7 +104,6 @@ export const ProductsPage = () => {
     }
   };
 
-
   return (
     <div className={classes.Page}>
       <h1>Products</h1>
@@ -143,12 +142,10 @@ export const ProductsPage = () => {
             "price",
             "quantity",
           ]}
-          deleteItem={handleDeleteProduct} 
+          deleteItem={handleDeleteProduct}
           type="products"
         />
-        <div className={classes.ProductPagePagination}>
-          
-        </div>
+        <div className={classes.ProductPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.ProductPageSearch}>
@@ -160,18 +157,20 @@ export const ProductsPage = () => {
           />
         </div>
         <div className={classes.ProductPageCreate}>
-          { subcategories && companies && categories &&
+          {subcategories && companies && categories && (
             <Forms.ProductForm
-           isEdit={false}
-           reload={productGetter}
-            subCatgories={subcategories}
-            companies={companies}
-            categories={categories
-                .filter((category) => subcategories.filter
-                ((subcategory) => subcategory.categoryId === category.id).length
-                 > 0)
-            }
-          />}
+              isEdit={false}
+              reload={productGetter}
+              subCatgories={subcategories}
+              companies={companies}
+              categories={categories.filter(
+                (category) =>
+                  subcategories.filter(
+                    (subcategory) => subcategory.categoryId === category.id,
+                  ).length > 0,
+              )}
+            />
+          )}
         </div>
       </div>
     </div>

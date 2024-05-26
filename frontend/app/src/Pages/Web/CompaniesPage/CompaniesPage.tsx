@@ -14,8 +14,8 @@ export const CompaniesPage = () => {
 
   const companiesFetcher = async () => {
     const response = await getShortCompanies({
-      "Sorting.Attribute" : SortAttributeType.SortByName,
-      "Sorting.SortType" : SortType.Ascending
+      "Sorting.Attribute": SortAttributeType.SortByName,
+      "Sorting.SortType": SortType.Ascending,
     });
     if (!response?.items) return;
     setCompanies(response?.items);
@@ -30,38 +30,36 @@ export const CompaniesPage = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.Cover}>
-        <div className={classes.Backdrop}></div>
+        <div className={classes.Backdrop} />
         <img src={companies1} alt="" />
-        <div
-          className={
-            classes.CoverText
-          }
-        >
+        <div className={classes.CoverText}>
           <h1>Brendovi</h1>
           <p>
-            Pronađite brend koji vas zanima i pronađite proizvode koji su vam potrebni.
+            Pronađite brend koji vas zanima i pronađite proizvode koji su vam
+            potrebni.
           </p>
         </div>
       </div>
       <div className={classes.CompaniesPage}>
-        {companies && companies.length > 0 ?<div className={classes.Companies}>
-          {companies &&
-            companies.map((company) => (
-              <ShortView
-                title={company.name}
-                subtitle={company.numberOfProducts.toString()}
-                directory="companies"
-                id={company.id}
-                link={`/brands/${company.id}`}
-              />
-            ))}
-        </div> : <div className={classes.Empty}>
-            <h2>Nema pronađenih brendova</h2>
-            <p>
-              Molimo vas da se vratite kasnije.
-            </p>
+        {companies && companies.length > 0 ? (
+          <div className={classes.Companies}>
+            {companies &&
+              companies.map((company) => (
+                <ShortView
+                  title={company.name}
+                  subtitle={company.numberOfProducts.toString()}
+                  directory="companies"
+                  id={company.id}
+                  link={`/brands/${company.id}`}
+                />
+              ))}
           </div>
-        }
+        ) : (
+          <div className={classes.Empty}>
+            <h2>Nema pronađenih brendova</h2>
+            <p>Molimo vas da se vratite kasnije.</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export const ServicesPage = () => {
   return (
     <div className={classes.Container}>
       <div className={classes.Cover}>
-        <div className={classes.Backdrop}></div>
+        <div className={classes.Backdrop} />
         <img src={services4} alt="services" />
         <div className={classes.CoverText}>
           <h1>Servisi</h1>
@@ -49,7 +49,7 @@ export const ServicesPage = () => {
                     (service) =>
                       service.serviceType === parseInt(key) && (
                         <ServiceView service={service} />
-                      )
+                      ),
                   )}
                 </div>
               </div>

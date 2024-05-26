@@ -57,65 +57,59 @@ const router = createHashRouter(
           new Date(localStorage.getItem("loginTime") ?? "") >
             new Date(Date.now() - 1000 * 60 * 60 * 8) && (
             <>
-              <Route path="/admin" element={<AdminHomepage />}></Route>
+              <Route path="/admin" element={<AdminHomepage />} />
               <Route path="/admin/products">
-                <Route index element={<ProductsPage />}></Route>
-                <Route path=":productId" element={<ProductPage />}></Route>
+                <Route index element={<ProductsPage />} />
+                <Route path=":productId" element={<ProductPage />} />
               </Route>
 
               <Route path="/admin/categories">
-                <Route index element={<CategoriesPage />}></Route>
-                <Route path=":categoryId" element={<CategoryPage />}></Route>
+                <Route index element={<CategoriesPage />} />
+                <Route path=":categoryId" element={<CategoryPage />} />
               </Route>
 
               <Route path="/admin/subcategories">
-                <Route index element={<SubcategoriesPage />}></Route>
-                <Route
-                  path=":subcategoryId"
-                  element={<SubcategoryPage />}
-                ></Route>
+                <Route index element={<SubcategoriesPage />} />
+                <Route path=":subcategoryId" element={<SubcategoryPage />} />
               </Route>
 
               <Route path="/admin/companies">
-                <Route index element={<CompaniesPage />}></Route>
-                <Route path=":companyId" element={<CompanyPage />}></Route>
+                <Route index element={<CompaniesPage />} />
+                <Route path=":companyId" element={<CompanyPage />} />
               </Route>
 
               <Route path="/admin/users">
-                <Route index element={<UsersPage />}></Route>
-                <Route path=":userId" element={<UserPage />}></Route>
+                <Route index element={<UsersPage />} />
+                <Route path=":userId" element={<UserPage />} />
               </Route>
 
               <Route path="/admin/orders">
-                <Route index element={<OrdersPage />}></Route>
-                <Route path=":orderId" element={<OrderPageAdmin />}></Route>
+                <Route index element={<OrdersPage />} />
+                <Route path=":orderId" element={<OrderPageAdmin />} />
               </Route>
 
               <Route path="/admin/transactions">
-                <Route index element={<TransactionsPage />}></Route>
-                <Route
-                  path=":transactionId"
-                  element={<TransactionPage />}
-                ></Route>
+                <Route index element={<TransactionsPage />} />
+                <Route path=":transactionId" element={<TransactionPage />} />
               </Route>
 
               <Route path="/admin/previousClients">
-                <Route index element={<PreviousClientsPage />}></Route>
+                <Route index element={<PreviousClientsPage />} />
                 <Route
                   path=":previousClientId"
                   element={<PreviousClientPage />}
-                ></Route>
+                />
               </Route>
 
               <Route path="/admin/services">
-                <Route index element={<ServicesPage />}></Route>
-                <Route path=":serviceId" element={<ServicePage />}></Route>
+                <Route index element={<ServicesPage />} />
+                <Route path=":serviceId" element={<ServicePage />} />
               </Route>
             </>
           )}
       </Route>
       <Route element={<Layout />}>
-        <Route path="/" element={<Homepage />}></Route>
+        <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
@@ -124,33 +118,33 @@ const router = createHashRouter(
           <Route path=":serviceId" element={<OrderPage />} />
         </Route>
         <Route path="/categories">
-          <Route index element={<WebCategoriesPage />}></Route>
-          <Route path=":categoryId" element={<WebCategoryPage />}></Route>
+          <Route index element={<WebCategoriesPage />} />
+          <Route path=":categoryId" element={<WebCategoryPage />} />
         </Route>
         <Route path="/products">
-          <Route index element={<WebProductsPage />}></Route>
-          <Route path=":productId" element={<WebProductPage />}></Route>
+          <Route index element={<WebProductsPage />} />
+          <Route path=":productId" element={<WebProductPage />} />
         </Route>
         <Route path="/subcategories">
-          <Route path=":subcategoryId" element={<WebSubcategoryPage />}></Route>
+          <Route path=":subcategoryId" element={<WebSubcategoryPage />} />
         </Route>
         <Route
           path="/user"
           element={accountInfo ? <WebUserPage /> : <LoginPage />}
         />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/activate" element={<ActivationPage />}></Route>
-        <Route path="/reset" element={<PasswordChangePage />}></Route>
+        <Route path="/activate" element={<ActivationPage />} />
+        <Route path="/reset" element={<PasswordChangePage />} />
         <Route path="/clients" element={<WebPreviousClientPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/brands">
-          <Route index element={<WebCompaniesPage />}></Route>
-          <Route path=":companyId" element={<BrandPage />}></Route>
+          <Route index element={<WebCompaniesPage />} />
+          <Route path=":companyId" element={<BrandPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-    </>
-  )
+    </>,
+  ),
 );
 
 export const Router = () => {

@@ -29,7 +29,7 @@ export const CategoriesPage = () => {
       setTotalPages(categories.pageInfo.totalPages || 1);
       setTotalItems(categories.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${categories.pageInfo.page} of ${categories.pageInfo.totalPages!}`
+        `Page ${categories.pageInfo.page} of ${categories.pageInfo.totalPages!}`,
       );
       setStatus("Categorys fetched successfully");
     } else {
@@ -46,7 +46,7 @@ export const CategoriesPage = () => {
       setTotalPages(categories.pageInfo.totalPages || 1);
       setTotalItems(categories.pageInfo.totalItems || 1);
       setPageInfo(
-        `Page ${categories.pageInfo.page} of ${categories.pageInfo.totalPages!}`
+        `Page ${categories.pageInfo.page} of ${categories.pageInfo.totalPages!}`,
       );
       setStatus("Categorys fetched successfully");
     } else {
@@ -68,7 +68,6 @@ export const CategoriesPage = () => {
     }
   };
 
-
   return (
     <div className={classes.Page}>
       <h1>Categories</h1>
@@ -84,22 +83,17 @@ export const CategoriesPage = () => {
           })}
           links={[]}
           important={["id", "name", "description"]}
-          deleteItem={handleDeleteCategory} 
+          deleteItem={handleDeleteCategory}
           type="categories"
         />
-        <div className={classes.CategoryPagePagination}>
-          
-        </div>
+        <div className={classes.CategoryPagePagination} />
       </div>
       <div className={classes.PageActions}>
         <div className={classes.CategoryPageSearch}>
           <Search.CategorySearch search={categorySearch} />
         </div>
         <div className={classes.CategoryPageCreate}>
-          <Forms.CategoryForm
-            isEdit={false}
-            reload={categoryGetter}
-           />
+          <Forms.CategoryForm isEdit={false} reload={categoryGetter} />
         </div>
       </div>
     </div>

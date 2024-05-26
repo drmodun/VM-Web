@@ -21,7 +21,7 @@ export const Slider = ({
   const getWidth = useRef<HTMLDivElement | null>(null);
 
   const handleBottomValueChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     event.preventDefault();
     const value =
@@ -67,7 +67,7 @@ export const Slider = ({
           onChange={(event) => handleBottomValueChange(event)}
           value={bottomValue}
         />
-        <div className={classes.Divider}></div>
+        <div className={classes.Divider} />
         <input
           type="number"
           placeholder={String(maxValue)}
@@ -75,7 +75,7 @@ export const Slider = ({
           value={topValue}
         />
       </div>
-      
+
       <div className={classes.Slider} ref={getWidth}>
         <div
           className={classes.SliderFill}
@@ -91,19 +91,18 @@ export const Slider = ({
         >
           <div
             draggable={true}
-         
             className={classes.SliderHandle}
             onDrag={(event) => {
               event.preventDefault();
               event.stopPropagation();
               const left = Number(
-                getWidth.current?.getBoundingClientRect().left
+                getWidth.current?.getBoundingClientRect().left,
               );
               let width = Number(
-                window.getComputedStyle(getWidth.current!).width.split("p")[0]
+                window.getComputedStyle(getWidth.current!).width.split("p")[0],
               );
               let midWidth = Number(
-                event.currentTarget.parentElement!.style.width.split("p")[0]
+                event.currentTarget.parentElement!.style.width.split("p")[0],
               );
               const value =
                 Number(event.clientX) - left > width
@@ -113,16 +112,15 @@ export const Slider = ({
               //  console.log(event.clientX);
               console.log("width", width, midWidth, value, left);
               console.log(
-                event.currentTarget.parentElement!.style.width.split("p")[0]
+                event.currentTarget.parentElement!.style.width.split("p")[0],
               );
               console.log(Math.round((value / midWidth) * topValue));
               setBottomValue(
-                Math.round((value / width) * maxValue) 
-                > 0 ? Math.round((value / width) * maxValue)
-                > topValue
-                  ? topValue
-                  : Math.round((value / width) * maxValue)
-                  : 0
+                Math.round((value / width) * maxValue) > 0
+                  ? Math.round((value / width) * maxValue) > topValue
+                    ? topValue
+                    : Math.round((value / width) * maxValue)
+                  : 0,
               );
               //   setTopValue(
               //     topValue -
@@ -131,7 +129,7 @@ export const Slider = ({
               //         (maxValue - minValue)
               //   );
             }}
-          ></div>
+          />
           <div
             draggable={true}
             className={classes.SliderHandle}
@@ -139,13 +137,13 @@ export const Slider = ({
               event.preventDefault();
               event.stopPropagation();
               const left = Number(
-                getWidth.current?.getBoundingClientRect().left
+                getWidth.current?.getBoundingClientRect().left,
               );
               let width = Number(
-                window.getComputedStyle(getWidth.current!).width.split("p")[0]
+                window.getComputedStyle(getWidth.current!).width.split("p")[0],
               );
               let midWidth = Number(
-                event.currentTarget.parentElement!.style.width.split("p")[0]
+                event.currentTarget.parentElement!.style.width.split("p")[0],
               );
               const value =
                 Number(event.clientX) - left > width
@@ -158,20 +156,20 @@ export const Slider = ({
                 width,
                 midWidth,
                 value,
-                getWidth.current?.getBoundingClientRect()
+                getWidth.current?.getBoundingClientRect(),
               );
               console.log(
-                event.currentTarget.parentElement!.style.width.split("p")[0]
+                event.currentTarget.parentElement!.style.width.split("p")[0],
               );
               console.log(
-                Math.round(value / midWidth) * (topValue - bottomValue)
+                Math.round(value / midWidth) * (topValue - bottomValue),
               );
               setTopValue(
                 Math.round((value / width) * maxValue) > maxValue
                   ? maxValue
                   : Math.round((value / width) * maxValue) < bottomValue
-                  ? bottomValue
-                  : Math.round((value / width) * maxValue)
+                    ? bottomValue
+                    : Math.round((value / width) * maxValue),
               );
               //   setTopValue(
               //     topValue -
@@ -180,7 +178,7 @@ export const Slider = ({
               //         (maxValue - minValue)
               //   );
             }}
-          ></div>
+          />
         </div>
       </div>
     </div>
