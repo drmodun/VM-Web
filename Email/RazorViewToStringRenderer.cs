@@ -56,7 +56,7 @@ namespace Email
 
         private IView FindView(ActionContext actionContext, string viewName)
         {
-            
+
             var getViewResult = _viewEngine.GetView(null, viewName, true);
             if (getViewResult.Success) return getViewResult.View;
 
