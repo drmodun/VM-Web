@@ -24,7 +24,8 @@ namespace Domain
             //gonna hardcode this for now but later this will be editable
             services.AddScoped<CompanyRepo>();
             services.AddScoped<BlobService>();
-            services.Configure<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>(o => {
+            services.Configure<Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions>(o =>
+            {
                 o.ViewLocationFormats.Add("/Email/Views/{0}" + Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.ViewExtension);
             });
             services.AddRazorPages();

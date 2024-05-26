@@ -46,8 +46,8 @@ namespace Domain.Repositories
         public async Task<Order?> UpdateAndGetOrder(Guid id, UpdateOrderInfoRequest request, CancellationToken cancellationToken)
         {
             var order = await _context.Orders
-                .Include(x=>x.Service)
-                .Include(x=>x.User)
+                .Include(x => x.Service)
+                .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
             if (order == null) { return null; };
             order.Status = request.Status;
@@ -78,9 +78,9 @@ namespace Domain.Repositories
                 .Include(x => x.Service)
                 .Where(x => request.ServiceId == null || request.ServiceId == x.ServiceId)
                 .Where(x => request.UserId == null || request.UserId == x.UserId)
-                .Where(x=>request.UserName == null || x.User.Name.Contains(request.UserName))
-                .Where(x=>request.ServiceName == null || x.Service.Name.Contains(request.ServiceName))
-                .Where(x=> request.Status == null || request.Status==x.Status)
+                .Where(x => request.UserName == null || x.User.Name.Contains(request.UserName))
+                .Where(x => request.ServiceName == null || x.Service.Name.Contains(request.ServiceName))
+                .Where(x => request.Status == null || request.Status == x.Status)
                 .Where(x => request.ServiceType == null || request.ServiceType == x.Service.ServiceType)
                 .Where(x => request.MaxPrice == null || request.MaxPrice <= x.Service.Price)
                 .Where(x => request.MinPrice == null || request.MinPrice >= x.Service.Price)
@@ -107,7 +107,7 @@ namespace Domain.Repositories
 
                     case SortAttributeType.SortByType:
                         if (request.Sorting.SortType == SortType.Ascending)
-                            orders = orders.OrderBy(x=>x.Status);
+                            orders = orders.OrderBy(x => x.Status);
                         else
                             orders = orders.OrderByDescending(x => x.Status);
                         break;
