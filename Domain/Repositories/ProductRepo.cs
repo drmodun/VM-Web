@@ -48,9 +48,9 @@ namespace Domain.Repositories
             var product = await _context.Products
                 .Include(x => x.Company)
                 .Include(x => x.Category)
-                .Include(x=>x.Favourites)
+                .Include(x => x.Favourites)
                 .Include(x => x.CartsProducts)
-                    .ThenInclude(x=>x.Cart)
+                    .ThenInclude(x => x.Cart)
                 .Include(x => x.Subcategory)
                 .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
             if (product is null)

@@ -3,7 +3,7 @@
     public class CreateSubcategoryResponse
     {
         public bool Success { get; set; }
-        public Guid? Id 
+        public Guid? Id
         {
             get; set;
         }
