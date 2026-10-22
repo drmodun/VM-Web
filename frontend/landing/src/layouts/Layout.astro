@@ -1,0 +1,90 @@
+---
+// Metadata mirrors frontend/app/public/index.html so this site can replace it 1:1.
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "VM računala — servis računala Split",
+  description = "Servis računala u Splitu: dijagnostika i popravak laptopa i stolnih računala, nadogradnja, čišćenje i održavanje te IT rješenja za tvrtke. Nazovite +385 91 505 8719.",
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="hr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#121314" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="vm računala, vm racunala, vm-racunala, servis računala, servis računala Split, popravak laptopa, popravak računala, nadogradnja računala, IT podrška, Split"
+    />
+    <meta name="author" content="Jan Modun" />
+    <meta name="robots" content="index, follow" />
+    <meta name="revisit-after" content="1 days" />
+    <meta name="language" content="hr" />
+    <meta name="distribution" content="global" />
+    <meta name="url" content="https://vm-racunala.store" />
+    <meta name="identifier-URL" content="https://vm-racunala.store" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:site_name" content="VM računala" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL("/android-chrome-512x512.png", Astro.site)} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ComputerStore",
+      name: "VM računala d.o.o.",
+      url: Astro.site?.toString(),
+      telephone: "+385915058719",
+      email: "vmracunala@vmracunala.hr",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Velebitska ulica 71",
+        postalCode: "21000",
+        addressLocality: "Split",
+        addressCountry: "HR",
+      },
+    })} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- Apply the saved theme before first paint; dark is the default. -->
+    <script is:inline>
+      (function () {
+        var theme = "dark";
+        try {
+          theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.content = theme === "dark" ? "#121314" : "#F2F0EB";
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
