@@ -69,7 +69,7 @@ export const SideMenu = ({
               vmracunala@vmracunala.hr
               <br />
             </a>
-            <a href="tel:+38761548123">+387 61 548 123</a>
+            <a href="tel:+385915058719">+385915058719</a>
           </div>
         </div>
       </div>
